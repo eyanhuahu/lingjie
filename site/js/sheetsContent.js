@@ -1,0 +1,487 @@
+﻿(function () {
+  const PRIMARY_IMAGE_BASE_PATH = "images/";
+  const DEFAULT_PLACEHOLDER_IMAGE = "images/placeholder.jpg";
+  const CONTENT_WORKBOOK_URL = "./content.xlsx";
+  const SHEET_NAMES = ["site", "sections", "items", "changelog", "tele", "images"];
+  let imageAliasMap = new Map();
+
+  const HEADER_MAPS = {
+    site: {
+      "网站标题": "name", "标题": "name", "name": "name",
+      "网站版本": "version", "版本": "version", "version": "version",
+      "作者": "author", "author": "author"
+    },
+    sections: {
+      "分类id": "id", "分类ID": "id", "id": "id",
+      "分类名": "name", "分类名称": "name", "name": "name",
+      "排序值": "sort_order", "排序": "sort_order", "sort_order": "sort_order",
+      "是否展示": "visible", "展示": "visible", "visible": "visible"
+    },
+    items: {
+      "id": "id",
+      "分类id": "section", "分类ID": "section", "section": "section",
+      "名称": "name", "标题": "name", "name": "name",
+      "标签": "tags", "tags": "tags",
+      "图片": "image", "图片地址": "image", "image": "image",
+      "制作配方": "recipe", "配方": "recipe", "recipe": "recipe",
+      "简介": "summary", "摘要": "summary", "summary": "summary",
+      "详情": "detail", "detail": "detail",
+      "排序值": "sort_order", "排序": "sort_order", "sort_order": "sort_order",
+      "是否展示": "visible", "展示": "visible", "visible": "visible"
+    },
+    changelog: {
+      "日志版本": "version", "版本": "version", "version": "version",
+      "日期": "date", "date": "date",
+      "内容": "content", "content": "content",
+      "是否展示": "visible", "展示": "visible", "visible": "visible"
+    },
+    tele: {
+      "导向id": "target_id", "导向ID": "target_id", "target_id": "target_id",
+      "字段": "field", "词条": "field", "关键词": "field", "名称": "field", "field": "field", "term": "field", "terms": "field",
+      "说明": "note", "note": "note",
+      "是否展示": "visible", "展示": "visible", "visible": "visible"
+    },
+    images: {
+      "图片名": "name", "name": "name",
+      "文件名": "filename", "filename": "filename",
+      "说明": "note", "note": "note",
+      "是否展示": "visible", "展示": "visible", "visible": "visible"
+    }
+  };
+
+  function compactHeader(header) {
+    return String(header ?? "").trim().replace(/\s+/g, "").toLowerCase();
+  }
+
+  function mapHeader(sheetName, header) {
+    const map = HEADER_MAPS[sheetName] || {};
+    const raw = String(header ?? "").trim();
+    return map[raw] || map[compactHeader(raw)] || "";
+  }
+
+  function isHidden(value) {
+    return ["false", "否", "no", "0"].includes(String(value ?? "").trim().toLowerCase());
+  }
+
+  function sortValue(row) {
+    const value = Number(row.sort_order);
+    return Number.isFinite(value) ? value : Number.POSITIVE_INFINITY;
+  }
+
+  function rowsToObjects(rows) {
+    const nonEmptyRows = rows.filter((cells) => cells.some((cell) => String(cell ?? "").trim() !== ""));
+    if (!nonEmptyRows.length) return [];
+    const headers = nonEmptyRows[0].map((header) => String(header ?? "").trim());
+    return nonEmptyRows.slice(1).map((cells) => {
+      const obj = {};
+      headers.forEach((header, index) => {
+        obj[header] = String(cells[index] ?? "").trim();
+      });
+      return obj;
+    });
+  }
+
+  function firstCell(row) {
+    const firstKey = Object.keys(row)[0];
+    return String(row[firstKey] ?? "").trim();
+  }
+
+  function normalizeSheetRows(sheetName, rows) {
+    return rows
+      .filter((row) => {
+        const first = firstCell(row);
+        return first && !first.startsWith("#");
+      })
+      .map((row) => {
+        const normalized = {};
+        Object.entries(row).forEach(([header, value]) => {
+          const key = mapHeader(sheetName, header);
+          if (key) normalized[key] = String(value ?? "").trim();
+        });
+        return normalized;
+      });
+  }
+
+  function splitList(value) {
+    return String(value ?? "")
+      .split(/[，,、|;\n\r]+/)
+      .map((item) => item.trim())
+      .filter(Boolean);
+  }
+
+  function isHttpUrl(value) {
+    return /^https?:\/\//i.test(String(value ?? "").trim());
+  }
+
+  function looksLikeImageFilename(value) {
+    const text = String(value ?? "").trim();
+    if (!text || isHttpUrl(text) || /[\\/]/.test(text)) return false;
+    return /\.(jpe?g|png|webp|gif|svg)$/i.test(text);
+  }
+
+  function imageAlias(value) {
+    return imageAliasMap.get(String(value ?? "").trim()) || "";
+  }
+
+  function toLocalImagePath(filename) {
+    const clean = String(filename ?? "").trim().replace(/^\/+/, "");
+    if (!clean) return "";
+    if (clean.startsWith(PRIMARY_IMAGE_BASE_PATH)) return clean;
+    return `${PRIMARY_IMAGE_BASE_PATH}${clean}`;
+  }
+
+  function resolveImagePath(path) {
+    const clean = String(path ?? "").trim();
+    if (!clean) return "";
+    const alias = imageAlias(clean);
+    if (alias) return resolveImagePath(alias);
+    if (isHttpUrl(clean) || clean.startsWith(PRIMARY_IMAGE_BASE_PATH)) return clean;
+    if (looksLikeImageFilename(clean)) return toLocalImagePath(clean);
+    return "";
+  }
+
+  function resolveImage(row) {
+    return resolveImagePath(row?.image) || DEFAULT_PLACEHOLDER_IMAGE;
+  }
+
+  function plainTextFromHtml(html) {
+    const template = document.createElement("template");
+    template.innerHTML = String(html ?? "")
+      .replace(/<\/p>\s*<p[^>]*>/gi, "\n\n")
+      .replace(/<br\s*\/?>/gi, "\n")
+      .replace(/<\/li>\s*<li[^>]*>/gi, "\n")
+      .replace(/<\/h[1-6]>\s*/gi, "\n\n")
+      .replace(/<h[1-6][^>]*>/gi, "");
+    return template.content.textContent || "";
+  }
+
+  function parseDetailBlocks(detailText) {
+    const text = String(detailText ?? "").replace(/\r\n/g, "\n").replace(/\r/g, "\n").trim();
+    if (!text) return [];
+
+    return text.split(/\n{2,}/).map((part) => {
+      const trimmed = part.trim();
+      const imageMatch = trimmed.match(/^\[\[(?:图片|image):([^|\]]+)(?:\|([^\]]+))?\]\]$/i);
+      if (imageMatch) {
+        const raw = imageMatch[1].trim();
+        return {
+          type: "image",
+          src: resolveImagePath(raw),
+          raw,
+          caption: String(imageMatch[2] ?? "").trim()
+        };
+      }
+      return { type: "paragraph", text: trimmed };
+    });
+  }
+
+  function appendInlineText(container, text, options = {}) {
+    const source = String(text ?? "");
+    const resolveXref = typeof options.resolveXref === "function" ? options.resolveXref : null;
+    source.split(/(\[\[[^\]]+\]\])/g).forEach((part) => {
+      const imageMarker = part.match(/^\[\[(?:图片|image):/i);
+      const xref = part.match(/^\[\[([^\]]+)\]\]$/);
+      if (!imageMarker && xref && resolveXref) {
+        const target = resolveXref(xref[1].trim());
+        if (target) {
+          const a = document.createElement("a");
+          a.className = "xref";
+          a.href = `#item=${encodeURIComponent(target.id)}`;
+          a.dataset.target = target.id;
+          a.textContent = xref[1].trim();
+          container.appendChild(a);
+          return;
+        }
+      }
+      if (!imageMarker && typeof options.appendText === "function") {
+        options.appendText(container, part);
+        return;
+      }
+      container.appendChild(document.createTextNode(part));
+    });
+  }
+
+  function renderDetailBlocks(blocks, container, options = {}) {
+    container.textContent = "";
+    (blocks || []).forEach((block) => {
+      if (block.type === "image") {
+        const figure = document.createElement("figure");
+        figure.className = "detail-image-block";
+
+        if (block.src) {
+          const img = document.createElement("img");
+          img.src = block.src;
+          img.alt = block.caption || block.raw || "详情图片";
+          img.loading = "lazy";
+          figure.appendChild(img);
+
+          if (block.caption) {
+            const caption = document.createElement("figcaption");
+            caption.textContent = block.caption;
+            figure.appendChild(caption);
+          }
+
+          const error = document.createElement("div");
+          error.className = "detail-image-error";
+          error.hidden = true;
+          error.textContent = `图片未找到：${block.raw || block.src}。请确认图片已上传到 images/，且文件名大小写完全一致。`;
+          figure.appendChild(error);
+          img.addEventListener("error", () => {
+            img.hidden = true;
+            const caption = figure.querySelector("figcaption");
+            if (caption) caption.hidden = true;
+            error.hidden = false;
+          });
+        } else {
+          const error = document.createElement("div");
+          error.className = "detail-image-error";
+          error.textContent = `图片未找到：${block.raw || ""}。请确认图片已上传到 images/，且文件名大小写完全一致。`;
+          figure.appendChild(error);
+        }
+
+        container.appendChild(figure);
+        return;
+      }
+
+      const p = document.createElement("p");
+      appendInlineText(p, block.text, options);
+      container.appendChild(p);
+    });
+  }
+
+  function readU16(view, offset) {
+    return view.getUint16(offset, true);
+  }
+
+  function readU32(view, offset) {
+    return view.getUint32(offset, true);
+  }
+
+  async function inflateRaw(bytes) {
+    if (typeof DecompressionStream === "undefined") {
+      throw new Error("当前浏览器不支持静态解析 xlsx，请使用现代浏览器打开页面。");
+    }
+    const stream = new Blob([bytes]).stream().pipeThrough(new DecompressionStream("deflate-raw"));
+    return new Uint8Array(await new Response(stream).arrayBuffer());
+  }
+
+  async function unzipEntries(arrayBuffer) {
+    const bytes = new Uint8Array(arrayBuffer);
+    const view = new DataView(arrayBuffer);
+    const decoder = new TextDecoder();
+    let eocd = -1;
+    for (let i = bytes.length - 22; i >= 0; i -= 1) {
+      if (readU32(view, i) === 0x06054b50) {
+        eocd = i;
+        break;
+      }
+    }
+    if (eocd < 0) throw new Error("content.xlsx 文件结构无效。");
+
+    const total = readU16(view, eocd + 10);
+    let offset = readU32(view, eocd + 16);
+    const entries = new Map();
+    for (let i = 0; i < total; i += 1) {
+      if (readU32(view, offset) !== 0x02014b50) throw new Error("content.xlsx 文件目录损坏。");
+      const method = readU16(view, offset + 10);
+      const compressedSize = readU32(view, offset + 20);
+      const nameLength = readU16(view, offset + 28);
+      const extraLength = readU16(view, offset + 30);
+      const commentLength = readU16(view, offset + 32);
+      const localOffset = readU32(view, offset + 42);
+      const name = decoder.decode(bytes.slice(offset + 46, offset + 46 + nameLength));
+
+      const localNameLength = readU16(view, localOffset + 26);
+      const localExtraLength = readU16(view, localOffset + 28);
+      const dataStart = localOffset + 30 + localNameLength + localExtraLength;
+      const compressed = bytes.slice(dataStart, dataStart + compressedSize);
+      const data = method === 0 ? compressed : await inflateRaw(compressed);
+      entries.set(name.replace(/\\/g, "/"), data);
+      offset += 46 + nameLength + extraLength + commentLength;
+    }
+    return entries;
+  }
+
+  function xmlText(entries, path) {
+    const data = entries.get(path);
+    return data ? new TextDecoder().decode(data) : "";
+  }
+
+  function parseXml(xml) {
+    return new DOMParser().parseFromString(xml, "application/xml");
+  }
+
+  function relTarget(basePath, target) {
+    const stack = [];
+    `${basePath}/${target}`.split("/").forEach((part) => {
+      if (!part || part === ".") return;
+      if (part === "..") stack.pop();
+      else stack.push(part);
+    });
+    return stack.join("/");
+  }
+
+  function columnIndex(ref) {
+    const letters = String(ref || "").match(/[A-Z]+/i)?.[0] || "A";
+    return letters.toUpperCase().split("").reduce((value, char) => value * 26 + char.charCodeAt(0) - 64, 0) - 1;
+  }
+
+  function parseSharedStrings(entries) {
+    const xml = xmlText(entries, "xl/sharedStrings.xml");
+    if (!xml) return [];
+    return Array.from(parseXml(xml).getElementsByTagName("si")).map((si) => {
+      return Array.from(si.getElementsByTagName("t")).map((t) => t.textContent || "").join("");
+    });
+  }
+
+  function parseWorksheet(xml, sharedStrings) {
+    if (!xml) return [];
+    return Array.from(parseXml(xml).getElementsByTagName("row")).map((rowEl) => {
+      const cells = [];
+      Array.from(rowEl.getElementsByTagName("c")).forEach((cell) => {
+        const index = columnIndex(cell.getAttribute("r"));
+        const type = cell.getAttribute("t");
+        let value = "";
+        if (type === "inlineStr") {
+          value = Array.from(cell.getElementsByTagName("t")).map((t) => t.textContent || "").join("");
+        } else {
+          const raw = cell.getElementsByTagName("v")[0]?.textContent || "";
+          value = type === "s" ? (sharedStrings[Number(raw)] || "") : raw;
+        }
+        cells[index] = value;
+      });
+      return cells.map((cell) => cell ?? "");
+    });
+  }
+
+  async function parseXlsx(arrayBuffer) {
+    const entries = await unzipEntries(arrayBuffer);
+    const workbookXml = xmlText(entries, "xl/workbook.xml");
+    const relsXml = xmlText(entries, "xl/_rels/workbook.xml.rels");
+    if (!workbookXml || !relsXml) throw new Error("content.xlsx 缺少工作簿信息。");
+
+    const workbook = parseXml(workbookXml);
+    const rels = parseXml(relsXml);
+    const relMap = new Map(Array.from(rels.getElementsByTagName("Relationship")).map((rel) => {
+      return [rel.getAttribute("Id"), relTarget("xl", rel.getAttribute("Target") || "")];
+    }));
+    const sharedStrings = parseSharedStrings(entries);
+    const rows = {};
+    Array.from(workbook.getElementsByTagName("sheet")).forEach((sheet) => {
+      const name = sheet.getAttribute("name") || "";
+      const relId = sheet.getAttribute("r:id");
+      const target = relMap.get(relId);
+      if (name && target) rows[name] = rowsToObjects(parseWorksheet(xmlText(entries, target), sharedStrings));
+    });
+    return rows;
+  }
+
+  function normalizeSite(rows) {
+    const row = normalizeSheetRows("site", rows)[0] || {};
+    return {
+      name: row.name || "灵界",
+      version: row.version || "v0.1.0",
+      author: row.author || "预留作者"
+    };
+  }
+
+  function normalizeSections(rows) {
+    return normalizeSheetRows("sections", rows)
+      .filter((row) => row.id && !isHidden(row.visible))
+      .sort((a, b) => sortValue(a) - sortValue(b))
+      .map((row) => ({ id: row.id, name: row.name || row.id }));
+  }
+
+  function normalizeImages(rows) {
+    return normalizeSheetRows("images", rows)
+      .filter((row) => (row.name || row.filename) && !isHidden(row.visible))
+      .map((row) => ({ name: row.name || "", filename: row.filename || "", note: row.note || "" }));
+  }
+
+  function normalizeItems(rows) {
+    return normalizeSheetRows("items", rows)
+      .filter((row) => row.id && !isHidden(row.visible))
+      .sort((a, b) => sortValue(a) - sortValue(b))
+      .map((row) => {
+        const images = splitList(row.image);
+        return {
+          id: row.id,
+          section: row.section || "uncategorized",
+          name: row.name || row.id,
+          tags: splitList(row.tags),
+          images,
+          resolved_image: resolveImage({ image: images[0] || "" }),
+          recipe: row.recipe || "",
+          summary: row.summary || "",
+          detailText: row.detail || "",
+          detailHtml: row.detail || ""
+        };
+      });
+  }
+
+  function normalizeChangelog(rows) {
+    return normalizeSheetRows("changelog", rows)
+      .filter((row) => row.version && !isHidden(row.visible))
+      .map((row) => ({
+        version: row.version,
+        date: row.date || "",
+        entries: splitList(row.content).length ? splitList(row.content) : [row.content || ""]
+      }));
+  }
+
+  function normalizeTele(rows) {
+    return normalizeSheetRows("tele", rows)
+      .filter((row) => !isHidden(row.visible))
+      .filter((row) => row.target_id || row.field)
+      .map((row) => ({
+        target_id: row.target_id || "",
+        field: row.field || "",
+        note: row.note || ""
+      }));
+  }
+
+  function buildContentFromSheets(sheetRows) {
+    const images = normalizeImages(sheetRows.images || []);
+    imageAliasMap = new Map(images.filter((image) => image.name && image.filename).map((image) => [image.name, image.filename]));
+    const data = {
+      site: normalizeSite(sheetRows.site || []),
+      sections: normalizeSections(sheetRows.sections || []),
+      items: normalizeItems(sheetRows.items || []),
+      changelog: normalizeChangelog(sheetRows.changelog || []),
+      tele: normalizeTele(sheetRows.tele || []),
+      images
+    };
+    const sectionIds = new Set(data.sections.map((section) => section.id));
+    if (data.items.some((item) => !sectionIds.has(item.section))) data.sections.push({ id: "uncategorized", name: "未分类" });
+    if (data.changelog.length && !data.sections.some((section) => section.id === "log")) data.sections.push({ id: "log", name: "更新日志" });
+    return data;
+  }
+
+  async function loadContentWorkbook() {
+    const response = await fetch(CONTENT_WORKBOOK_URL, { cache: "no-store" });
+    if (!response.ok) throw new Error("未找到 content.xlsx，请确认它位于仓库一级目录。");
+    const rows = await parseXlsx(await response.arrayBuffer());
+    return { rows, data: buildContentFromSheets(rows), source: CONTENT_WORKBOOK_URL };
+  }
+
+  window.SheetsContent = {
+    PRIMARY_IMAGE_BASE_PATH,
+    DEFAULT_PLACEHOLDER_IMAGE,
+    CONTENT_WORKBOOK_URL,
+    SHEET_NAMES,
+    HEADER_MAPS,
+    parseXlsx,
+    buildContentFromSheets,
+    loadContentWorkbook,
+    isHidden,
+    isHttpUrl,
+    looksLikeImageFilename,
+    toLocalImagePath,
+    resolveImage,
+    resolveImagePath,
+    parseDetailBlocks,
+    renderDetailBlocks,
+    appendInlineText,
+    plainTextFromHtml
+  };
+})();

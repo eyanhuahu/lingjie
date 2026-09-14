@@ -1,0 +1,802 @@
+﻿const $ = (selector, root = document) => root.querySelector(selector);
+const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
+
+const LOG_SECTION_ID = "log";
+const Sheets = window.SheetsContent || {};
+const PRIMARY_IMAGE_BASE_PATH = Sheets.PRIMARY_IMAGE_BASE_PATH || "images/";
+const DEFAULT_PLACEHOLDER_IMAGE = Sheets.DEFAULT_PLACEHOLDER_IMAGE || "images/placeholder.jpg";
+
+function scrollTrigger() {
+  const value = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop);
+  return Number.isFinite(value) ? value : 156;
+}
+
+const state = {
+  data: null,
+  query: "",
+  activeSec: "",
+  pendingItem: "",
+  itemById: new Map(),
+  itemByName: new Map(),
+  autoXrefByTerm: new Map(),
+  autoXrefPattern: null,
+  carousel: new Map(),
+  reducedMotion: window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+  lastFocus: null,
+  modalMode: "",
+  locked: false,
+  lockTimer: 0,
+  ticking: false
+};
+
+function escapeHtml(value) {
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+function normalize(value) {
+  return String(value ?? "").toLowerCase().trim();
+}
+
+function stripHtml(value) {
+  const box = document.createElement("div");
+  box.innerHTML = String(value ?? "");
+  return box.textContent || "";
+}
+
+function debounce(fn, delay = 160) {
+  let timer = 0;
+  return (...args) => {
+    window.clearTimeout(timer);
+    timer = window.setTimeout(() => fn(...args), delay);
+  };
+}
+
+function ensureShell() {
+  document.body.innerHTML = `
+    <a class="skip-link" href="#main">跳到主内容</a>
+    <header class="masthead">
+      <div class="mast-center">
+        <div class="serif site-name" id="siteName">灵界</div>
+        <div class="site-ver" id="siteMeta">V0.1.0 · 预留作者</div>
+        <div class="ornament" aria-hidden="true"><i></i><b></b><i></i></div>
+      </div>
+      <form class="mast-tools" id="searchForm" role="search">
+        <label class="sr-only" for="searchInput">搜索</label>
+        <div class="search"><i class="ti ti-search" aria-hidden="true"></i><input id="searchInput" type="search" autocomplete="off" placeholder="搜索"></div>
+        <button class="btn-clear" type="button" id="clearSearchBtn">清空</button>
+      </form>
+    </header>
+
+    <div class="shell">
+      <aside class="rail" aria-label="卷目">
+        <div class="rail-inner">
+          <div class="rail-title">卷目</div>
+          <ul class="nav" id="nav"></ul>
+        </div>
+      </aside>
+      <main class="content" id="main" tabindex="-1">
+        <div class="content-inner">
+          <section class="editor-panel" id="editorPanel" hidden></section>
+          <div class="empty-state" id="emptyState" hidden>
+            <strong>没有找到匹配条目。</strong>
+            <span>可以清空搜索后再试。</span>
+            <button class="btn-clear" type="button" id="emptyClearBtn">清空搜索</button>
+          </div>
+          <div id="sectionsRoot"></div>
+        </div>
+      </main>
+    </div>
+
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+      <pattern id="yun" width="40" height="34" patternUnits="userSpaceOnUse">
+        <path d="M0,34 V22 Q10,8 20,22 Q30,8 40,22 V34 Z" fill="var(--c-white)"/>
+      </pattern>
+    </defs></svg>
+
+    <div class="modal-mask" id="modal" hidden aria-hidden="true">
+      <div class="modal-backdrop" data-close="modal"></div>
+      <section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1">
+        <button class="modal-close" type="button" data-close="modal" aria-label="关闭弹窗">×</button>
+        <h3 id="modalTitle"></h3>
+        <div class="modal-body" id="modalBody"></div>
+      </section>
+    </div>
+  `;
+}
+
+function parseHash() {
+  const raw = location.hash.replace(/^#/, "");
+  const params = new URLSearchParams(raw);
+  state.query = params.get("q") || "";
+  state.activeSec = params.get("sec") || "";
+  if (state.activeSec === "changelog") state.activeSec = LOG_SECTION_ID;
+  state.pendingItem = params.get("item") || "";
+}
+
+function writeHash(extra = {}) {
+  const params = new URLSearchParams();
+  let sec = extra.sec ?? state.activeSec;
+  if (sec === "changelog") sec = LOG_SECTION_ID;
+  const q = extra.q ?? state.query;
+  const item = extra.item ?? "";
+  if (item) params.set("item", item);
+  else if (sec) params.set("sec", sec);
+  if (q) params.set("q", q);
+  const next = params.toString() ? `#${params.toString()}` : `${location.pathname}${location.search}`;
+  history.replaceState(null, "", next);
+}
+
+async function loadData() {
+  if (!Sheets.loadContentWorkbook) {
+    throw new Error("缺少 content.xlsx 读取脚本，请确认 js/sheetsContent.js 已正确加载。");
+  }
+  const result = await Sheets.loadContentWorkbook();
+  if (!result.data.sections.length || !result.data.items.length) {
+    throw new Error("content.xlsx 解析失败，请确认文件包含 sections 和 items 工作表。");
+  }
+  return result.data;
+}
+
+function buildIndex() {
+  state.itemById.clear();
+  state.itemByName.clear();
+  state.autoXrefByTerm.clear();
+  state.autoXrefPattern = null;
+  (state.data.items || []).forEach((item) => {
+    state.itemById.set(item.id, item);
+    state.itemByName.set(item.name, item);
+  });
+  (state.data.tele || []).forEach((row) => {
+    const terms = splitTeleTerms(row.field);
+    const target = state.itemById.get(row.target_id)
+      || state.itemByName.get(row.target_id)
+      || (terms.length === 1 ? state.itemByName.get(terms[0]) : null);
+    if (!target) return;
+    terms.forEach((term) => {
+      state.autoXrefByTerm.set(normalize(term), target);
+    });
+  });
+  const terms = Array.from(state.autoXrefByTerm.keys())
+    .filter(Boolean)
+    .sort((a, b) => b.length - a.length);
+  state.autoXrefPattern = terms.length ? new RegExp(terms.map(escapeRegExp).join("|"), "gi") : null;
+}
+
+function sectionIds() {
+  return new Set((state.data.sections || []).map((section) => section.id));
+}
+
+function itemSearchText(item) {
+  return normalize([
+    item.name,
+    ...(item.tags || []),
+    item.summary,
+    item.detailText,
+    stripHtml(item.detailHtml)
+  ].join(" "));
+}
+
+function matchesQuery(item) {
+  return !state.query || itemSearchText(item).includes(normalize(state.query));
+}
+
+function highlightEscaped(text) {
+  const raw = String(text ?? "");
+  const query = String(state.query || "").trim();
+  if (!query) return escapeHtml(raw);
+  const safeQuery = query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const reg = new RegExp(safeQuery, "ig");
+  const matches = raw.match(reg);
+  if (!matches) return escapeHtml(raw);
+  const parts = raw.split(reg);
+  return parts.map((part, index) => {
+    const hit = matches[index] ? `<mark>${escapeHtml(matches[index])}</mark>` : "";
+    return `${escapeHtml(part)}${hit}`;
+  }).join("");
+}
+
+function escapeRegExp(value) {
+  return String(value ?? "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function splitTeleTerms(value) {
+  return String(value ?? "")
+    .split(/[，,、|;\n\r]+/)
+    .map((term) => term.trim())
+    .filter(Boolean);
+}
+
+function xrefTargetHtml(label, item) {
+  if (!item) return escapeHtml(label);
+  return `<a href="#item=${encodeURIComponent(item.id)}" class="xref" data-target="${escapeHtml(item.id)}">${highlightEscaped(label)}</a>`;
+}
+
+function xrefHtml(name) {
+  const item = state.itemByName.get(name);
+  return xrefTargetHtml(name, item);
+}
+
+function renderAutoXrefs(text) {
+  const source = String(text ?? "");
+  if (!source || !state.autoXrefPattern) return highlightEscaped(source);
+  state.autoXrefPattern.lastIndex = 0;
+  let html = "";
+  let lastIndex = 0;
+  let match;
+  while ((match = state.autoXrefPattern.exec(source)) !== null) {
+    const hit = match[0];
+    const item = state.autoXrefByTerm.get(normalize(hit));
+    if (!hit || !item) continue;
+    html += highlightEscaped(source.slice(lastIndex, match.index));
+    html += xrefTargetHtml(hit, item);
+    lastIndex = match.index + hit.length;
+  }
+  html += highlightEscaped(source.slice(lastIndex));
+  return html;
+}
+
+function appendAutoXrefs(container, text) {
+  const source = String(text ?? "");
+  if (!source || !state.autoXrefPattern) {
+    container.appendChild(document.createTextNode(source));
+    return;
+  }
+  state.autoXrefPattern.lastIndex = 0;
+  let lastIndex = 0;
+  let match;
+  while ((match = state.autoXrefPattern.exec(source)) !== null) {
+    const hit = match[0];
+    const item = state.autoXrefByTerm.get(normalize(hit));
+    if (!hit || !item) continue;
+    container.appendChild(document.createTextNode(source.slice(lastIndex, match.index)));
+    const a = document.createElement("a");
+    a.className = "xref";
+    a.href = `#item=${encodeURIComponent(item.id)}`;
+    a.dataset.target = item.id;
+    a.textContent = hit;
+    container.appendChild(a);
+    lastIndex = match.index + hit.length;
+  }
+  container.appendChild(document.createTextNode(source.slice(lastIndex)));
+}
+
+function renderTextWithXrefs(text, options = {}) {
+  const auto = options.auto !== false;
+  return String(text ?? "").split(/(\[\[[^\]]+\]\])/g).map((part) => {
+    const imageMarker = part.match(/^\[\[(?:图片|image):/i);
+    const match = part.match(/^\[\[([^\]]+)\]\]$/);
+    if (!imageMarker && match) return xrefHtml(match[1].trim());
+    return auto ? renderAutoXrefs(part) : highlightEscaped(part);
+  }).join("");
+}
+
+function parseRecipe(recipe) {
+  const raw = String(recipe ?? "");
+  if (!raw.trim()) return "";
+  return raw.split(/(\[\[[^\]]+\]\]|\[[^\]]+\])/g).filter(Boolean).map((part) => {
+    const xref = part.match(/^\[\[([^\]]+)\]\]$/);
+    if (xref) return xrefHtml(xref[1].trim());
+    const image = part.match(/^\[([^\]]+)\]$/);
+    if (image) return `<img class="recipe-icon" src="${escapeHtml(image[1].trim())}" alt="" loading="lazy" onerror="this.style.display='none'">`;
+    return `<span>${highlightEscaped(part)}</span>`;
+  }).join("");
+}
+
+function isHttpUrl(value) {
+  if (Sheets.isHttpUrl) return Sheets.isHttpUrl(value);
+  return /^https?:\/\//i.test(String(value ?? "").trim());
+}
+
+function looksLikeImageFilename(value) {
+  if (Sheets.looksLikeImageFilename) return Sheets.looksLikeImageFilename(value);
+  const text = String(value ?? "").trim();
+  if (!text || isHttpUrl(text) || /[\\/]/.test(text)) return false;
+  return /\.(jpe?g|png|webp|gif|svg)$/i.test(text);
+}
+
+function toLocalImagePath(filename) {
+  if (Sheets.toLocalImagePath) return Sheets.toLocalImagePath(filename);
+  const clean = String(filename ?? "").trim().replace(/^\/+/, "");
+  if (!clean) return "";
+  if (clean.startsWith(PRIMARY_IMAGE_BASE_PATH)) return clean;
+  return `${PRIMARY_IMAGE_BASE_PATH}${clean}`;
+}
+
+function resolveImagePath(path) {
+  if (Sheets.resolveImagePath) return Sheets.resolveImagePath(path);
+  const clean = String(path ?? "").trim();
+  if (!clean) return "";
+  if (isHttpUrl(clean) || clean.startsWith(PRIMARY_IMAGE_BASE_PATH) || /[\\/]/.test(clean)) return clean;
+  if (looksLikeImageFilename(clean)) return toLocalImagePath(clean);
+  return clean;
+}
+
+function imageTag(path, alt, className = "") {
+  const src = resolveImagePath(path);
+  if (!src) return "";
+  return `<img class="${className}" src="${escapeHtml(src)}" alt="${escapeHtml(alt)}" loading="lazy" onerror="this.style.display='none'">`;
+}
+
+function renderCarousel(item) {
+  const images = Array.isArray(item.images) ? item.images.filter(Boolean) : [];
+  if (!images.length) return "";
+  const current = Math.min(state.carousel.get(item.id) || 0, images.length - 1);
+  state.carousel.set(item.id, current);
+  const controls = images.length > 1 ? `
+    <div class="carNav">
+      <button class="carBtn" type="button" data-action="prev" data-id="${escapeHtml(item.id)}" aria-label="上一张">‹</button>
+      <button class="carBtn" type="button" data-action="next" data-id="${escapeHtml(item.id)}" aria-label="下一张">›</button>
+    </div>
+    <div class="dots" aria-label="图片分页">
+      ${images.map((_, index) => `<button class="dot ${index === current ? "active" : ""}" type="button" data-action="dot" data-id="${escapeHtml(item.id)}" data-index="${index}" aria-label="第 ${index + 1} 张"></button>`).join("")}
+    </div>
+  ` : "";
+  return `<div class="card-media">${imageTag(images[current], `${item.name} 展示图 ${current + 1}`, "")}${controls}</div>`;
+}
+
+function yunFoot() {
+  const head = `<svg class="yun-head" style="left:6px" width="30" height="26" viewBox="0 0 24 22" aria-hidden="true"><path d="M12,21 C6,21 1,17 2,10 C2.6,5 8,5 9,10 C9.4,12 14.6,12 15,10 C16,5 21.4,5 22,10 C23,17 18,21 12,21 Z" fill="#FFFFFF"/></svg>`;
+  return `<svg class="yun-band" aria-hidden="true"><rect width="100%" height="34" fill="url(#yun)"/></svg>${head}${head.replace("left:6px", "right:6px;transform:scaleX(-1)")}`;
+}
+
+function renderCard(item) {
+  const tags = (item.tags || []).map((tag) => `<span class="tag">${highlightEscaped(tag)}</span>`).join("");
+  const recipe = item.recipe ? `<div class="card-recipe">${parseRecipe(item.recipe)}</div>` : "";
+  const hasImages = Array.isArray(item.images) && item.images.filter(Boolean).length > 0;
+  return `
+    <article class="card${hasImages ? "" : " no-media"}" id="${escapeHtml(item.id)}" data-item-id="${escapeHtml(item.id)}" tabindex="0">
+      <div class="card-top">
+        ${renderCarousel(item)}
+        <div class="card-summary">
+          <h3 class="card-title card-title-preview serif">${renderTextWithXrefs(item.name, { auto: false })}</h3>
+          <div class="card-tags">${tags}</div>
+          <p class="card-desc card-preview-desc">${renderTextWithXrefs(item.summary)}</p>
+        </div>
+      </div>
+      ${recipe}
+      <div class="card-foot"><button class="btn-detail" type="button" data-action="detail" data-id="${escapeHtml(item.id)}">查看详情</button></div>
+    </article>
+  `;
+}
+
+function renderHeader() {
+  const site = state.data.site || {};
+  $("#siteName").textContent = site.name || "灵界";
+  $("#siteMeta").textContent = `${String(site.version || "v0.1.0").toUpperCase()} · ${site.author || "预留作者"}`;
+}
+
+function validItems() {
+  const ids = sectionIds();
+  return (state.data.items || []).filter((item) => ids.has(item.section));
+}
+
+function sectionItems(sectionId) {
+  return validItems().filter((item) => item.section === sectionId);
+}
+
+function isLogSection(section) {
+  return section?.id === LOG_SECTION_ID;
+}
+
+function openGroup(li) {
+  const ul = $(".nav-sub", li);
+  if (!ul) return;
+  li.classList.add("open");
+  ul.style.maxHeight = `${ul.scrollHeight}px`;
+}
+
+function closeGroup(li) {
+  const ul = $(".nav-sub", li);
+  if (!ul) return;
+  li.classList.remove("open");
+  ul.style.maxHeight = "0px";
+}
+
+function toggleGroup(li) {
+  if (!li) return;
+  li.classList.contains("open") ? closeGroup(li) : openGroup(li);
+}
+
+function syncOpenHeights() {
+  $$(".nav-group.open").forEach(openGroup);
+}
+
+function clearActive() {
+  $$(".nav-row.on,.nav-sub a.on").forEach((el) => el.classList.remove("on"));
+}
+
+function setActiveSection(gid) {
+  clearActive();
+  $(`.nav-row[data-sec="${CSS.escape(gid)}"]`)?.classList.add("on");
+}
+
+function setActiveItemByAnchor(a) {
+  clearActive();
+  a.classList.add("on");
+  const li = a.closest(".nav-group");
+  $(".nav-row", li)?.classList.add("on");
+  openGroup(li);
+}
+
+function setActiveItemById(itemId) {
+  const a = $(`.nav-sub a[data-item="${CSS.escape(itemId)}"]`);
+  if (a) setActiveItemByAnchor(a);
+}
+
+function renderNav(sections) {
+  const nav = $("#nav");
+  const signature = sections.map((section) => {
+    const count = isLogSection(section) ? (state.data.changelog || []).length : sectionItems(section.id).length;
+    return `${section.id}:${count}`;
+  }).join("|");
+  if (nav.dataset.signature === signature) {
+    setActiveSection(state.activeSec);
+    syncOpenHeights();
+    return;
+  }
+  nav.dataset.signature = signature;
+  nav.innerHTML = sections.map((section) => {
+    const subs = isLogSection(section)
+      ? (state.data.changelog || []).slice().reverse().map((log) => `<li><a data-log="${escapeHtml(log.version)}">${escapeHtml(log.version)} · ${escapeHtml(log.date || "")}</a></li>`).join("")
+      : sectionItems(section.id).map((item) => `<li><a data-item="${escapeHtml(item.id)}">${escapeHtml(item.name)}</a></li>`).join("");
+    return `
+      <li class="nav-group${state.activeSec === section.id ? " open" : ""}" data-g="${escapeHtml(section.id)}">
+        <div class="nav-row${state.activeSec === section.id ? " on" : ""}" data-sec="${escapeHtml(section.id)}">
+          <span class="nav-lbl">${escapeHtml(section.name)}</span>
+          <i class="ti ti-chevron-right nav-chev" aria-hidden="true"></i>
+        </div>
+        <ul class="nav-sub">${subs}</ul>
+      </li>
+    `;
+  }).join("");
+  syncOpenHeights();
+}
+
+function renderChangelog(section) {
+  const logs = [...(state.data.changelog || [])].reverse();
+  const body = logs.length ? `<div class="cards">${logs.map((log) => `
+    <article class="card no-media log-card">
+      <div class="card-head"><div class="card-main"><h3 class="card-title serif">${escapeHtml(log.version)}</h3><div class="card-tags"><span class="tag">${escapeHtml(log.date || "")}</span></div></div></div>
+      <p class="card-desc">${(log.entries || []).map((entry) => renderTextWithXrefs(entry)).join("；")}</p>
+      <div class="card-foot"><button class="btn-detail" type="button" data-action="changelog">完整更新</button></div>
+      ${yunFoot()}
+    </article>
+  `).join("")}</div>` : `<p class="sec-empty">暂无条目</p>`;
+  return `<section class="section" id="sec-${escapeHtml(section.id)}" data-section="${escapeHtml(section.id)}"><div class="sec-head"><h2 class="sec-title serif">${escapeHtml(section.name)}</h2></div>${body}</section>`;
+}
+
+function renderSections() {
+  const sections = state.data.sections || [];
+  renderNav(sections);
+  let visibleCount = 0;
+  const html = sections.map((section) => {
+    if (isLogSection(section)) return renderChangelog(section);
+    const items = sectionItems(section.id).filter(matchesQuery);
+    if (!items.length && state.query) return "";
+    visibleCount += items.length;
+    const body = items.length ? `<div class="cards">${items.map(renderCard).join("")}</div>` : `<p class="sec-empty">暂无条目</p>`;
+    return `<section class="section" id="sec-${escapeHtml(section.id)}" data-section="${escapeHtml(section.id)}"><div class="sec-head"><h2 class="sec-title serif">${escapeHtml(section.name)}</h2></div>${body}</section>`;
+  }).join("");
+  $("#sectionsRoot").innerHTML = html;
+  $("#emptyState").hidden = Boolean(visibleCount || !state.query);
+  $("#searchInput").value = state.query;
+  renderEditorPanel();
+  syncOpenHeights();
+  requestAnimationFrame(updateSpy);
+}
+
+function renderEditorPanel() {
+  const panel = $("#editorPanel");
+  const editorEnabled = new URLSearchParams(location.search).get("editor") === "1";
+  if (!editorEnabled) {
+    panel.hidden = true;
+    return;
+  }
+  const ids = sectionIds();
+  const issues = [];
+  (state.data.items || []).forEach((item) => {
+    if (!ids.has(item.section)) issues.push(`section 失配：${item.name} -> ${item.section}`);
+  });
+  (state.data.sections || []).forEach((section) => {
+    if ("icon" in section) issues.push(`sections 不应包含 icon：${section.id}`);
+  });
+  panel.hidden = false;
+  panel.innerHTML = `<h2>editor 自检：${issues.length} 个问题</h2><ul>${issues.map((issue) => `<li>${escapeHtml(issue)}</li>`).join("") || "<li>未发现问题。</li>"}</ul>`;
+}
+
+function lockSpy(ms = 700) {
+  state.locked = true;
+  window.clearTimeout(state.lockTimer);
+  state.lockTimer = window.setTimeout(() => {
+    state.locked = false;
+    updateSpy();
+  }, state.reducedMotion ? 80 : ms);
+}
+
+function clickJump(id) {
+  const target = document.getElementById(id);
+  if (!target) return;
+  const trigger = scrollTrigger();
+  lockSpy();
+  const y = target.getBoundingClientRect().top + window.scrollY - (trigger - 8);
+  window.scrollTo({ top: Math.max(0, y), behavior: state.reducedMotion ? "auto" : "smooth" });
+  target.classList.remove("flash");
+  void target.offsetWidth;
+  target.classList.add("flash");
+}
+
+function visibleSections() {
+  return $$('.content section[id^="sec-"]').filter((section) => section.offsetParent !== null);
+}
+
+function currentSectionId() {
+  const secs = visibleSections();
+  if (!secs.length) return null;
+  if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) return secs[secs.length - 1].id;
+  const trigger = scrollTrigger();
+  let active = secs[0].id;
+  for (const section of secs) {
+    if (section.getBoundingClientRect().top - trigger <= 0) active = section.id;
+    else break;
+  }
+  return active;
+}
+
+function updateSpy() {
+  if (state.locked) return;
+  const sectionId = currentSectionId();
+  if (!sectionId) return;
+  const gid = sectionId.replace(/^sec-/, "");
+  if (gid !== state.activeSec) {
+    state.activeSec = gid;
+    setActiveSection(gid);
+    writeHash({ sec: gid });
+  } else {
+    setActiveSection(gid);
+  }
+}
+
+function scheduleScrollSpy() {
+  if (state.ticking) return;
+  state.ticking = true;
+  requestAnimationFrame(() => {
+    state.ticking = false;
+    updateSpy();
+  });
+}
+
+function scrollToSection(sectionId, write = true) {
+  if (!document.getElementById(`sec-${sectionId}`)) return;
+  state.activeSec = sectionId;
+  setActiveSection(sectionId);
+  openGroup($(`.nav-group[data-g="${CSS.escape(sectionId)}"]`));
+  clickJump(`sec-${sectionId}`);
+  if (write) writeHash({ sec: sectionId });
+}
+
+function jumpToItem(itemId, write = true) {
+  const card = document.getElementById(itemId);
+  if (!card) return;
+  const item = state.itemById.get(itemId);
+  if (item) state.activeSec = item.section;
+  setActiveItemById(itemId);
+  clickJump(itemId);
+  card.focus({ preventScroll: true });
+  if (write) writeHash({ sec: state.activeSec, item: "" });
+}
+
+function openItemModal(itemId, trigger = document.activeElement, write = true) {
+  const item = state.itemById.get(itemId);
+  if (!item) return;
+  state.lastFocus = trigger;
+  state.modalMode = "item";
+  $("#modalTitle").textContent = item.name;
+  const body = $("#modalBody");
+  body.textContent = "";
+  if (item.recipe) {
+    const recipe = document.createElement("div");
+    recipe.className = "card-recipe";
+    recipe.innerHTML = parseRecipe(item.recipe);
+    body.appendChild(recipe);
+  }
+  const detail = document.createElement("div");
+  detail.className = "detail-content";
+  const detailText = item.detailText
+    || (item.detailHtml ? (Sheets.plainTextFromHtml ? Sheets.plainTextFromHtml(item.detailHtml) : stripHtml(item.detailHtml)) : "")
+    || item.summary
+    || "暂无详情。";
+  const blocks = Sheets.parseDetailBlocks ? Sheets.parseDetailBlocks(detailText) : [{ type: "paragraph", text: detailText }];
+  if (Sheets.renderDetailBlocks) {
+    Sheets.renderDetailBlocks(blocks, detail, {
+      resolveXref: (name) => state.itemByName.get(name),
+      appendText: appendAutoXrefs
+    });
+  } else {
+    detail.textContent = detailText;
+  }
+  body.appendChild(detail);
+  openModal();
+  if (write) writeHash({ item: itemId });
+}
+
+function openChangelogModal(trigger = document.activeElement) {
+  state.lastFocus = trigger;
+  state.modalMode = "changelog";
+  $("#modalTitle").textContent = "完整更新";
+  const logs = [...(state.data.changelog || [])].reverse();
+  $("#modalBody").innerHTML = logs.map((log) => `
+    <section class="log-detail">
+      <h3>${escapeHtml(log.version)} <small>${escapeHtml(log.date || "")}</small></h3>
+      <ul>${(log.entries || []).map((entry) => `<li>${renderTextWithXrefs(entry)}</li>`).join("")}</ul>
+    </section>
+  `).join("") || "<p>暂无更新记录。</p>";
+  openModal();
+}
+
+function openModal() {
+  const modal = $("#modal");
+  modal.hidden = false;
+  modal.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+  $(".modal-card").focus();
+}
+
+function closeModal() {
+  const modal = $("#modal");
+  if (modal.hidden) return;
+  modal.hidden = true;
+  modal.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+  if (state.modalMode === "item") writeHash({ item: "", sec: state.activeSec });
+  state.modalMode = "";
+  if (state.lastFocus && typeof state.lastFocus.focus === "function") state.lastFocus.focus();
+}
+
+function trapFocus(event) {
+  if ($("#modal").hidden || event.key !== "Tab") return;
+  const panel = $(".modal-card");
+  const focusables = $$("a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex='-1'])", panel);
+  if (!focusables.length) return;
+  const first = focusables[0];
+  const last = focusables[focusables.length - 1];
+  if (event.shiftKey && document.activeElement === first) {
+    event.preventDefault();
+    last.focus();
+  } else if (!event.shiftKey && document.activeElement === last) {
+    event.preventDefault();
+    first.focus();
+  }
+}
+
+function clearSearch() {
+  state.query = "";
+  writeHash({ q: "", item: "" });
+  renderSections();
+  $("#searchInput").focus();
+}
+
+function handleAction(action) {
+  const id = action.dataset.id;
+  const item = id ? state.itemById.get(id) : null;
+  if (action.dataset.action === "detail" && item) openItemModal(id, action);
+  if (action.dataset.action === "changelog") openChangelogModal(action);
+  if ((action.dataset.action === "prev" || action.dataset.action === "next" || action.dataset.action === "dot") && item) {
+    const images = Array.isArray(item.images) ? item.images.filter(Boolean) : [];
+    if (images.length < 2) return;
+    let index = state.carousel.get(id) || 0;
+    if (action.dataset.action === "prev") index = (index - 1 + images.length) % images.length;
+    if (action.dataset.action === "next") index = (index + 1) % images.length;
+    if (action.dataset.action === "dot") index = Number(action.dataset.index || 0);
+    state.carousel.set(id, Math.max(0, Math.min(index, images.length - 1)));
+    renderSections();
+  }
+}
+
+function wireEvents() {
+  $("#searchForm").addEventListener("submit", (event) => event.preventDefault());
+  $("#searchInput").addEventListener("input", debounce((event) => {
+    state.query = event.target.value.trim();
+    writeHash({ q: state.query });
+    renderSections();
+  }));
+  $("#clearSearchBtn").addEventListener("click", clearSearch);
+  $("#emptyClearBtn").addEventListener("click", clearSearch);
+
+  document.addEventListener("click", (event) => {
+    const close = event.target.closest("[data-close='modal']");
+    if (close) {
+      closeModal();
+      return;
+    }
+    const chev = event.target.closest(".nav-chev");
+    if (chev) {
+      event.preventDefault();
+      event.stopPropagation();
+      toggleGroup(chev.closest(".nav-group"));
+      return;
+    }
+    const row = event.target.closest(".nav-row");
+    if (row) {
+      const gid = row.dataset.sec;
+      openGroup(row.closest(".nav-group"));
+      state.activeSec = gid;
+      setActiveSection(gid);
+      clickJump(`sec-${gid}`);
+      writeHash({ sec: gid });
+      return;
+    }
+    const subItem = event.target.closest(".nav-sub a[data-item]");
+    if (subItem) {
+      event.preventDefault();
+      jumpToItem(subItem.dataset.item);
+      return;
+    }
+    const subLog = event.target.closest(".nav-sub a[data-log]");
+    if (subLog) {
+      event.preventDefault();
+      scrollToSection(LOG_SECTION_ID);
+      return;
+    }
+    const xref = event.target.closest(".xref");
+    if (xref) {
+      event.preventDefault();
+      event.stopPropagation();
+      closeModal();
+      jumpToItem(xref.dataset.target);
+      return;
+    }
+    const action = event.target.closest("[data-action]");
+    if (action) {
+      event.stopPropagation();
+      handleAction(action);
+      return;
+    }
+    const card = event.target.closest(".card[data-item-id]");
+    if (card) openItemModal(card.dataset.itemId, card);
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeModal();
+    trapFocus(event);
+    const card = event.target.closest?.(".card[data-item-id]");
+    if (card && (event.key === "Enter" || event.key === " ")) {
+      event.preventDefault();
+      openItemModal(card.dataset.itemId, card);
+    }
+  });
+
+  window.addEventListener("hashchange", () => {
+    parseHash();
+    renderSections();
+    if (state.pendingItem) openItemModal(state.pendingItem, document.body, false);
+    else if (state.activeSec) requestAnimationFrame(() => scrollToSection(state.activeSec, false));
+  });
+  window.addEventListener("scroll", scheduleScrollSpy, { passive: true });
+  window.addEventListener("resize", () => {
+    syncOpenHeights();
+    scheduleScrollSpy();
+  });
+}
+
+async function init() {
+  ensureShell();
+  parseHash();
+  state.data = await loadData();
+  buildIndex();
+  renderHeader();
+  renderSections();
+  wireEvents();
+  if (state.pendingItem) openItemModal(state.pendingItem, document.body, false);
+  else if (state.activeSec) requestAnimationFrame(() => scrollToSection(state.activeSec, false));
+}
+
+init().catch((err) => {
+  console.error(err);
+  ensureShell();
+  $("#sectionsRoot").innerHTML = `<div class="empty-state"><strong>未找到或无法解析 content.xlsx。</strong><span>${escapeHtml(err.message || "请确认 content.xlsx 位于仓库一级目录，并包含 site / sections / items 等工作表。")}</span></div>`;
+});
