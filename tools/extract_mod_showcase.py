@@ -7,11 +7,26 @@
 真正的渲染与导出由 dst-app 的 script 模式完成。
 
 用法：
-    python tools/extract_mod_showcase.py <mod.zip> <dst-app路径>
+    python tools/extract_mod_showcase.py <mod.zip>
 
-随后按脚本打印出的两条命令执行：
-    dst-app.exe script --bypass --file .work/batch_dryrun.lua   # 先看配对结果
-    dst-app.exe script --bypass --file .work/batch_export.lua   # 正式导出
+随后按脚本打印出的两条命令执行。**注意：dst-app 每次启动都会联网检查更新，
+建议先按下面的「断网运行」设置环境变量再跑。**
+
+断网运行（重要）
+----------------
+dst-app 启动时会请求 gitee 上的更新清单，且它用的是 reqwest，
+尊重标准代理环境变量。要让它完全不联网，先设好：
+
+    $env:DST_UPDATE_MANIFEST_URL = "http://127.0.0.1:9/none.json"
+    $env:HTTP_PROXY  = "http://127.0.0.1:9"
+    $env:HTTPS_PROXY = "http://127.0.0.1:9"
+    $env:ALL_PROXY   = "http://127.0.0.1:9"
+    $env:NO_PROXY    = "127.0.0.1,localhost"
+
+（9 是 discard 端口，本地连接会立刻被拒，因此不会有任何外部流量；
+  NO_PROXY 保留本地地址，避免影响 dst-app 自己的本地 IPC。）
+
+更彻底的做法是用管理员权限加一条 Windows 防火墙出站规则，直接封掉该 exe。
 
 导出目录：images/lingjie/showcase/<物品id>.png
 

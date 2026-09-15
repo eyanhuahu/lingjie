@@ -7,6 +7,20 @@
 动画在 mod 的 `anim/*.zip` 里（`anim.bin` + `build.bin` + `atlas-0.tex`），
 这是饥荒编译过的动画格式，需要用 **DST Mod Tool**（`dst-app`）来渲染导出。
 
+> ⚠️ **跑之前先把工具断网。** dst-app 每次启动都会去 gitee 拉更新清单，
+> 而它用的 reqwest 尊重标准代理环境变量，所以这样设置即可让它发不出任何外部请求：
+>
+> ```powershell
+> $env:DST_UPDATE_MANIFEST_URL = "http://127.0.0.1:9/none.json"
+> $env:HTTP_PROXY  = "http://127.0.0.1:9"
+> $env:HTTPS_PROXY = "http://127.0.0.1:9"
+> $env:ALL_PROXY   = "http://127.0.0.1:9"
+> $env:NO_PROXY    = "127.0.0.1,localhost"
+> ```
+>
+> （9 是 discard 端口，本地连接立刻被拒；`NO_PROXY` 保留本地地址以免影响它自己的 IPC。）
+> 更彻底可以用管理员权限加防火墙出站规则。
+
 ```bash
 # ① 解出动画包并生成两份 Lua 脚本
 python tools/extract_mod_showcase.py <mod的zip包>
