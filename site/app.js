@@ -38,27 +38,6 @@ function escapeHtml(value) {
     .replaceAll("'", "&#039;");
 }
 
-// 正文里的 **重要信息** 渲染成 <strong>，而不是把星号原样显示出来。
-// 必须在 escapeHtml 之后调用：转义不会动星号，所以标记仍然完整。
-function applyBold(escaped) {
-  return String(escaped ?? "").replace(/\*\*([^*\n]+)\*\*/g, "<strong>$1</strong>");
-}
-
-// 往 DOM 里追加一段可能含 **加粗** 的纯文本（详情正文走这条路径）。
-function appendBoldText(container, text) {
-  String(text ?? "").split(/(\*\*[^*\n]+\*\*)/g).forEach((seg) => {
-    if (!seg) return;
-    const hit = seg.match(/^\*\*([^*\n]+)\*\*$/);
-    if (hit) {
-      const strong = document.createElement("strong");
-      strong.textContent = hit[1];
-      container.appendChild(strong);
-      return;
-    }
-    container.appendChild(document.createTextNode(seg));
-  });
-}
-
 function normalize(value) {
   return String(value ?? "").toLowerCase().trim();
 }
@@ -209,16 +188,16 @@ function matchesQuery(item) {
 function highlightEscaped(text) {
   const raw = String(text ?? "");
   const query = String(state.query || "").trim();
-  if (!query) return applyBold(escapeHtml(raw));
+  if (!query) return escapeHtml(raw);
   const safeQuery = query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   const reg = new RegExp(safeQuery, "ig");
   const matches = raw.match(reg);
-  if (!matches) return applyBold(escapeHtml(raw));
+  if (!matches) return escapeHtml(raw);
   const parts = raw.split(reg);
-  return applyBold(parts.map((part, index) => {
+  return parts.map((part, index) => {
     const hit = matches[index] ? `<mark>${escapeHtml(matches[index])}</mark>` : "";
     return `${escapeHtml(part)}${hit}`;
-  }).join(""));
+  }).join("");
 }
 
 function escapeRegExp(value) {
@@ -264,7 +243,7 @@ function renderAutoXrefs(text) {
 function appendAutoXrefs(container, text) {
   const source = String(text ?? "");
   if (!source || !state.autoXrefPattern) {
-    appendBoldText(container, source);
+    container.appendChild(document.createTextNode(source));
     return;
   }
   state.autoXrefPattern.lastIndex = 0;
@@ -274,7 +253,7 @@ function appendAutoXrefs(container, text) {
     const hit = match[0];
     const item = state.autoXrefByTerm.get(normalize(hit));
     if (!hit || !item) continue;
-    appendBoldText(container, source.slice(lastIndex, match.index));
+    container.appendChild(document.createTextNode(source.slice(lastIndex, match.index)));
     const a = document.createElement("a");
     a.className = "xref";
     a.href = `#item=${encodeURIComponent(item.id)}`;
@@ -283,7 +262,7 @@ function appendAutoXrefs(container, text) {
     container.appendChild(a);
     lastIndex = match.index + hit.length;
   }
-  appendBoldText(container, source.slice(lastIndex));
+  container.appendChild(document.createTextNode(source.slice(lastIndex)));
 }
 
 function renderTextWithXrefs(text, options = {}) {
