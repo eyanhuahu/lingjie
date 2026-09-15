@@ -102,9 +102,18 @@ check(
   "出现了 uncategorized 卷目，说明有条目的分类失配"
 );
 
-// ---- 4. 图片：按「留空」要求，不应解析出任何卡片图 ----
+// ---- 4. 卡片图片：有图就必须真实存在（不存在的图会在前台留白）----
 const withImages = built.items.filter((it) => Array.isArray(it.images) && it.images.filter(Boolean).length);
-check(withImages.length === 0, `有 ${withImages.length} 个条目解析出了图片，但本次要求图片字段全部留空`);
+let missingCardImages = 0;
+for (const it of withImages) {
+  for (const img of it.images.filter(Boolean)) {
+    const p = path.join(ROOT, String(img).split("/").join(path.sep));
+    if (!fs.existsSync(p)) {
+      missingCardImages += 1;
+      failures.push(`条目 ${it.id} 的卡片图不存在：${img}`);
+    }
+  }
+}
 
 // ---- 5. 词条自动跳转 ----
 const byId = new Map(built.items.map((it) => [it.id, it]));
@@ -173,7 +182,7 @@ for (const item of built.items) {
   console.log(`  条目 ${built.items.length} 个（data.json 可见 ${rawVisible.length} 个）`);
   console.log(`  词条自动跳转 ${xrefOk} / ${built.tele.length} 条生效`);
   console.log(`  配方法 ${recipes} 条，其中图标 ${icons} 个，缺失 ${missingIconFiles} 个`);
-  console.log(`  卡片图片：${withImages.length} 个条目带图（本次要求为 0）`);
+  console.log(`  卡片图片：${withImages.length} 个条目带图，缺失 ${missingCardImages} 个`);
   console.log(`  加载入口：${loaded ? "loadContentJson() 正常" : "loadContentJson() 失败"}`);
   if (built.sections.length) {
     console.log("  卷目清单：");

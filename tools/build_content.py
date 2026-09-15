@@ -136,6 +136,35 @@ def icon_path(basename):
     return ICON_INDEX.get(basename.lower())
 
 
+# mod 自己的材料：中文名 -> 预制体 id。对应图标由 tools/extract_mod_icons.py
+# 从 mod 的 ethereal_realm_icons 图集导出到 images/lingjie/icons/。
+MOD_MATERIAL_ID = {
+    "魔核碎片": "lj_magic_debris",
+    "魔核": "lj_magic_core",
+    "魔晶": "lj_magic_crystal",
+    "采下的融灵草": "lj_reiki_cutgrass",
+    "融灵草根": "lj_reiki_dug_grass",
+    "采下的彼岸花": "lj_red_magic_cutflower",
+    "彼岸花根": "lj_red_magic_dug_flower",
+    "紫晶塑体花瓣": "lj_purple_magic_bloom",
+    "血蝠精血": "lj_bat_blood",
+    "蝎龙骨": "lj_scorpion_dragon_bone",
+    "紫晶壳": "lj_amethyst_shell",
+    "狮骨": "lj_lion_bone",
+    "噬魂蛇皮": "lj_soul_snake_skin",
+    "风干的羽毛": "lj_dried_camel_feathers",
+    "冰霜业火本体": "lj_ice_flame",
+    "龙炎心火本体": "lj_dragon_flame",
+}
+
+
+def icon_for(name):
+    """先查 mod 材料表（优先），再查原版材料表。"""
+    if name in MOD_MATERIAL_ID:
+        return MOD_MATERIAL_ID[name]
+    return MATERIAL_ICON.get(name)
+
+
 # mod 源码里「配方材料的中文名」与「设计文档用的名字」不是一回事：
 # 文档说"融灵草"，代码里炼丹用的是采集物 `lj_reiki_cutgrass`（官方名「采下的融灵草」）。
 # 这里做统一翻译，保证配方文本与 mod 一致。
@@ -157,7 +186,7 @@ def R(*parts):
     for part in parts:
         raw_name, qty = part[0], part[1]
         name = CODE_MATERIAL_NAME.get(raw_name, raw_name)
-        basename = part[2] if len(part) > 2 else MATERIAL_ICON.get(name)
+        basename = part[2] if len(part) > 2 else icon_for(name)
         path = icon_path(basename)
         if basename and path is None:
             WARNINGS.append("配方图标缺失：%s -> %s" % (name, basename))
@@ -242,6 +271,9 @@ def item(sec, iid, name, tags, summary, detail, recipe="", image="", visible=Tru
     if iid in _ORDER:
         raise SystemExit("重复 id: %s" % iid)
     _ORDER[iid] = True
+    if not image:
+        # 物品图标按预制体 id 命名，存放在 images/lingjie/icons/
+        image = icon_path(iid) or ""
     ITEMS.append({
         "id": iid,
         "分类id": sec,
@@ -1929,7 +1961,38 @@ DATA = {
 }
 
 
+# 详情行首的说明性标签，例如「材料：」「制作：」「炼丹炉炼制：」
+RECIPE_LABEL_RE = re.compile(r"^\s*[^：:\n]{1,22}[：:]\s*")
+
+
+def strip_recipe_from_detail(detail, recipe):
+    """详情里不要再重复一遍材料清单。
+
+    「制作配方」字段已经带图标显示了一次材料，如果详情里再写一遍，
+    点开卡片的弹窗里就会出现两份物品信息（用户反馈的问题）。
+    """
+    if not recipe:
+        return detail
+    out = []
+    for line in detail.split("\n"):
+        if recipe not in line:
+            out.append(line)
+            continue
+        rest = line.replace(recipe, "", 1)
+        rest = RECIPE_LABEL_RE.sub("", rest, count=1)
+        rest = rest.strip().lstrip("，,、").strip()
+        if rest in ("", "。", ".", "；", ";", "，", ","):
+            continue
+        out.append(rest)
+    text = "\n".join(out)
+    text = re.sub(r"\n{3,}", "\n\n", text)
+    return text.strip()
+
+
 def main():
+    for _it in DATA["items"]:
+        _it["详情"] = strip_recipe_from_detail(_it["详情"], _it["制作配方"])
+
     if WARNINGS:
         sys.stderr.write("警告 %d 条：\n" % len(WARNINGS))
         for w in sorted(set(WARNINGS)):

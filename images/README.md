@@ -10,4 +10,7 @@
 6. 文件名大小写必须完全一致。
 7. `inventoryimages1` ~ `inventoryimages4` 是《饥荒》原版物品图标，按字母顺序分批存放，**没有规律**。
    配方里引用图标时必须写完整相对路径，例如 `[images/inventoryimages2/nitre.png] 硝石 2`。
-8. `lingjie/` 预留给 mod 自己的物品图标，建议命名为**物品 id**，例如 `lj_magic_crystal.png`。
+8. `lingjie/icons/` 放**灵界 mod 的物品图标**，文件名 = 物品预制体 id，例如 `lj_magic_crystal.png`。
+   已从 mod 的 `ethereal_realm_icons` 图集导出全部 74 个。
+   重新导出：`python tools/extract_mod_icons.py <mod的zip包> images/lingjie/icons`
+9. `lingjie/` 下以后新增的**展示图**（截图、大图）请另开目录，不要混进 `icons/`。
