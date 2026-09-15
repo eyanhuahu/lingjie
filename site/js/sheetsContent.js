@@ -198,7 +198,18 @@
         options.appendText(container, part);
         return;
       }
-      container.appendChild(document.createTextNode(part));
+      // 兜底：没有外部追加器时，自己处理 **加粗** 与纯文本
+      String(part).split(/(\*\*[^*\n]+\*\*)/g).forEach((seg) => {
+        if (!seg) return;
+        const hit = seg.match(/^\*\*([^*\n]+)\*\*$/);
+        if (hit) {
+          const strong = document.createElement("strong");
+          strong.textContent = hit[1];
+          container.appendChild(strong);
+          return;
+        }
+        container.appendChild(document.createTextNode(seg));
+      });
     });
   }
 
