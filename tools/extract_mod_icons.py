@@ -145,9 +145,14 @@ def main():
     os.makedirs(args.out, exist_ok=True)
     count = 0
     for name, u1, v1, u2, v2 in elements:
-        left, top = int(round(u1 * width)), int(round(v1 * height))
-        right, bottom = int(round(u2 * width)), int(round(v2 * height))
+        # 坐标本身用 v1 当上边界是对的；但这套图集解出来的像素是上下镜像的，
+        # 所以切完要再垂直翻转一次，否则物品图标会上下颠倒（剑柄跑到上面）。
+        left = int(round(u1 * width))
+        right = int(round(u2 * width))
+        top = int(round(v1 * height))
+        bottom = int(round(v2 * height))
         tile = atlas.crop((left, top, max(right, left + 1), max(bottom, top + 1)))
+        tile = tile.transpose(Image.FLIP_TOP_BOTTOM)
         if args.scale > 1:
             tile = tile.resize((tile.width * args.scale, tile.height * args.scale), Image.NEAREST)
         tile.save(os.path.join(args.out, name + ".png"))
