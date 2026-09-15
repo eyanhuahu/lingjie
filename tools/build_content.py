@@ -24,7 +24,12 @@ OUT_JSON = os.path.join(ROOT, "data.json")
 # 图标索引：文件名(小写) -> 相对 index.html 的路径
 # ---------------------------------------------------------------------------
 ICON_INDEX = {}
+# 展示图目录不参与「图标」索引：配方里的材料图标必须用 icons/ 下的小图标，
+# 否则材料会被换成 idle 展示大图（两者同名，会互相覆盖）。
+_SHOWCASE_MARK = os.path.join("lingjie", "showcase")
 for dirpath, _dirnames, filenames in os.walk(IMAGES_DIR):
+    if _SHOWCASE_MARK in dirpath:
+        continue
     for fn in filenames:
         if not fn.lower().endswith(".png"):
             continue
