@@ -1,4 +1,4 @@
-﻿const $ = (selector, root = document) => root.querySelector(selector);
+const $ = (selector, root = document) => root.querySelector(selector);
 const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
 
 const LOG_SECTION_ID = "log";
@@ -132,12 +132,12 @@ function writeHash(extra = {}) {
 }
 
 async function loadData() {
-  if (!Sheets.loadContentWorkbook) {
-    throw new Error("缺少 content.xlsx 读取脚本，请确认 js/sheetsContent.js 已正确加载。");
+  if (!Sheets.loadContentJson) {
+    throw new Error("缺少 data.json 读取脚本，请确认 site/js/sheetsContent.js 已正确加载。");
   }
-  const result = await Sheets.loadContentWorkbook();
+  const result = await Sheets.loadContentJson();
   if (!result.data.sections.length || !result.data.items.length) {
-    throw new Error("content.xlsx 解析失败，请确认文件包含 sections 和 items 工作表。");
+    throw new Error("data.json 内容为空，请确认 sections 与 items 两个数组都有条目。");
   }
   return result.data;
 }
@@ -798,5 +798,5 @@ async function init() {
 init().catch((err) => {
   console.error(err);
   ensureShell();
-  $("#sectionsRoot").innerHTML = `<div class="empty-state"><strong>未找到或无法解析 content.xlsx。</strong><span>${escapeHtml(err.message || "请确认 content.xlsx 位于仓库一级目录，并包含 site / sections / items 等工作表。")}</span></div>`;
+  $("#sectionsRoot").innerHTML = `<div class="empty-state"><strong>未找到或无法解析 data.json。</strong><span>${escapeHtml(err.message || "请确认 data.json 位于仓库一级目录，并包含 site / sections / items / changelog / tele 五个数组。")}</span></div>`;
 });

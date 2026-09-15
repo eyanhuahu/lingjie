@@ -1,6 +1,7 @@
-﻿(function () {
+(function () {
   const PRIMARY_IMAGE_BASE_PATH = "images/";
   const DEFAULT_PLACEHOLDER_IMAGE = "images/placeholder.jpg";
+  const CONTENT_JSON_URL = "./data.json";
   const CONTENT_WORKBOOK_URL = "./content.xlsx";
   const SHEET_NAMES = ["site", "sections", "items", "changelog", "tele", "images"];
   let imageAliasMap = new Map();
@@ -464,14 +465,39 @@
     return { rows, data: buildContentFromSheets(rows), source: CONTENT_WORKBOOK_URL };
   }
 
+  // 站点当前使用的内容源：仓库一级目录的 data.json
+  // 形状与 content.xlsx 解析产物一致（"表名" -> 行对象数组，键为第一行的中文表头），
+  // 因此下游所有归一化逻辑（排序 / 是否展示 / 标签 / 图片别名 / 词条跳转）完全复用。
+  async function loadContentJson() {
+    let response;
+    try {
+      response = await fetch(CONTENT_JSON_URL, { cache: "no-store" });
+    } catch (err) {
+      throw new Error("无法读取 data.json（请确认它位于仓库一级目录，且页面通过 HTTP 打开而不是本地文件）。");
+    }
+    if (!response.ok) throw new Error("未找到 data.json，请确认它位于仓库一级目录。");
+    let rows;
+    try {
+      rows = await response.json();
+    } catch (err) {
+      throw new Error("data.json 不是合法 JSON，请检查是否漏了逗号、引号或多写了注释。");
+    }
+    if (!rows || typeof rows !== "object" || Array.isArray(rows)) {
+      throw new Error("data.json 顶层必须是一个对象，且包含 site / sections / items / changelog / tele 五个数组。");
+    }
+    return { rows, data: buildContentFromSheets(rows), source: CONTENT_JSON_URL };
+  }
+
   window.SheetsContent = {
     PRIMARY_IMAGE_BASE_PATH,
     DEFAULT_PLACEHOLDER_IMAGE,
+    CONTENT_JSON_URL,
     CONTENT_WORKBOOK_URL,
     SHEET_NAMES,
     HEADER_MAPS,
     parseXlsx,
     buildContentFromSheets,
+    loadContentJson,
     loadContentWorkbook,
     isHidden,
     isHttpUrl,
