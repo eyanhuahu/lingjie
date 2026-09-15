@@ -265,10 +265,22 @@ function appendAutoXrefs(container, text) {
   container.appendChild(document.createTextNode(source.slice(lastIndex)));
 }
 
+// 行内小图标：单个中括号里放图片路径，写法与制作配方一致。
+// 只有图片扩展名才会被当成图标，其他方括号内容照旧。
+const INLINE_IMAGE_RE = /^\[([^[\]]+\.(?:png|jpe?g|webp|gif|svg))\]$/i;
+const INLINE_IMAGE_SPLIT_RE = /(\[\[[^\]]+\]\]|\[[^[\]]+\.(?:png|jpe?g|webp|gif|svg)\])/gi;
+
 function renderTextWithXrefs(text, options = {}) {
   const auto = options.auto !== false;
-  return String(text ?? "").split(/(\[\[[^\]]+\]\])/g).map((part) => {
+  return String(text ?? "").split(INLINE_IMAGE_SPLIT_RE).map((part) => {
     const imageMarker = part.match(/^\[\[(?:图片|image):/i);
+    if (!imageMarker) {
+      const inlineImage = part.match(INLINE_IMAGE_RE);
+      if (inlineImage) {
+        const html = imageTag(inlineImage[1], "", "recipe-icon");
+        if (html) return html;
+      }
+    }
     const match = part.match(/^\[\[([^\]]+)\]\]$/);
     if (!imageMarker && match) return xrefHtml(match[1].trim());
     return auto ? renderAutoXrefs(part) : highlightEscaped(part);

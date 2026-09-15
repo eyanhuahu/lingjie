@@ -158,6 +158,16 @@ def main():
             if not any(os.path.exists(os.path.join(ROOT, c.replace("/", os.sep))) for c in cand):
                 warn("%s：详情引用的图片未找到 -> %s" % (line, target))
 
+        # 详情里的行内小图标 [images/xxx.png]（单个中括号 + 图片扩展名）
+        # 前后加断言，避免把上面的 [[图片:xxx.png]] 也算进来
+        for m in re.finditer(r"(?<!\[)\[([^\]\[]+\.(?:png|jpe?g|webp|gif|svg))\](?!\])", row.get("详情") or "", re.I):
+            target = m.group(1).strip()
+            if target.startswith("http://") or target.startswith("https://"):
+                continue
+            fs = os.path.join(ROOT, target.replace("/", os.sep))
+            if not os.path.exists(fs):
+                err("%s：详情里的行内图标不存在 -> %s%s" % (line, target, icon_hint(target)))
+
         # 卡片图片字段
         img = (row.get("图片") or "").strip()
         if img:

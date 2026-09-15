@@ -176,11 +176,35 @@
     });
   }
 
+  // 详情正文里的行内小图标：单个中括号里放一个图片路径，
+  // 写法与「制作配方」字段完全一致，例如：
+  //     阵眼：四季核心（[images/inventoryimages1/deerclops_eyeball.png] 巨鹿眼球 1、…）
+  // 只认图片扩展名，避免把正文里别的方括号内容误当图片。
+  const INLINE_IMAGE_PATTERN = "\\[[^\\[\\]]+\\.(?:png|jpe?g|webp|gif|svg)\\]";
+  const INLINE_IMAGE_SPLIT_RE = new RegExp(`(\\[\\[[^\\]]+\\]\\]|${INLINE_IMAGE_PATTERN})`, "gi");
+  const INLINE_IMAGE_RE = new RegExp(`^${INLINE_IMAGE_PATTERN}$`, "i");
+
   function appendInlineText(container, text, options = {}) {
     const source = String(text ?? "");
     const resolveXref = typeof options.resolveXref === "function" ? options.resolveXref : null;
-    source.split(/(\[\[[^\]]+\]\])/g).forEach((part) => {
+    source.split(INLINE_IMAGE_SPLIT_RE).forEach((part) => {
       const imageMarker = part.match(/^\[\[(?:图片|image):/i);
+      if (!imageMarker && INLINE_IMAGE_RE.test(part)) {
+        const src = resolveImagePath(part.slice(1, -1).trim());
+        if (src) {
+          const img = document.createElement("img");
+          img.className = "recipe-icon";
+          img.src = src;
+          img.alt = "";
+          img.loading = "lazy";
+          // 与制作配方一致：文件缺失就悄悄隐藏，不破坏正文排版。
+          img.addEventListener("error", () => {
+            img.hidden = true;
+          });
+          container.appendChild(img);
+          return;
+        }
+      }
       const xref = part.match(/^\[\[([^\]]+)\]\]$/);
       if (!imageMarker && xref && resolveXref) {
         const target = resolveXref(xref[1].trim());

@@ -34,6 +34,59 @@ try {
 }
 
 // ---- 2. 在沙箱里加载真实站点脚本 ----
+// 极简 DOM 桩：够 renderDetailBlocks / appendInlineText 用，用来验证详情正文的渲染结果。
+function makeElement(tag) {
+  return {
+    tagName: String(tag || "").toUpperCase(),
+    children: [],
+    attributes: {},
+    content: { textContent: "" },
+    className: "",
+    hidden: false,
+    dataset: {},
+    style: {},
+    src: "",
+    alt: "",
+    loading: "",
+    _text: "",
+    _html: "",
+    appendChild(child) {
+      this.children.push(child);
+      return child;
+    },
+    addEventListener() {},
+    removeEventListener() {},
+    setAttribute(k, v) {
+      this.attributes[k] = String(v);
+    },
+    getAttribute(k) {
+      return Object.prototype.hasOwnProperty.call(this.attributes, k) ? this.attributes[k] : null;
+    },
+    querySelector() {
+      return null;
+    },
+    classList: { add() {}, remove() {}, contains: () => false },
+    get textContent() {
+      return this.children.length ? this.children.map((c) => c.textContent || "").join("") : this._text;
+    },
+    set textContent(v) {
+      this._text = String(v ?? "");
+      this.children = [];
+    },
+    get innerHTML() {
+      return this._html;
+    },
+    set innerHTML(v) {
+      this._html = String(v ?? "");
+    },
+  };
+}
+
+function walkElement(el, visit) {
+  visit(el);
+  for (const child of el.children || []) walkElement(child, visit);
+}
+
 const sandbox = {
   console,
   TextDecoder,
@@ -54,8 +107,8 @@ const sandbox = {
   },
   window: {},
   document: {
-    createElement: () => ({ innerHTML: "", textContent: "", content: { textContent: "" } }),
-    createTextNode: (t) => ({ textContent: t }),
+    createElement: (tag) => makeElement(tag),
+    createTextNode: (t) => ({ tagName: "#TEXT", textContent: String(t ?? ""), children: [] }),
   },
   DOMParser: class {
     parseFromString() {
@@ -158,7 +211,62 @@ for (const item of built.items) {
   }
 }
 
-// ---- 7. 走一遍站点真正使用的加载入口 loadContentJson ----
+// ---- 7. 详情正文里的行内图片：必须真实存在，且必须真的渲染成图标 ----
+// 详情正文写法与制作配方一致：[images/xxx.png] 名称 数量
+// 曾经的问题：详情走的渲染函数只认 [[...]]，导致这类引用在前台显示成裸路径文本。
+// 这里用与站点相同的切分方式取引用，[[图片:xxx.png]] 那种整段插图不会被算进来。
+const INLINE_PART_SPLIT_RE = /(\[\[[^\]]+\]\]|\[[^[\]]+\.(?:png|jpe?g|webp|gif|svg)\])/gi;
+const INLINE_PART_RE = /^\[([^[\]]+\.(?:png|jpe?g|webp|gif|svg))\]$/i;
+// 只在「漏渲染」检查里用：排除 [[图片:xxx.png]] 这种双中括号写法
+const INLINE_LEFTOVER_RE = /(?<!\[)\[[^[\]]+\.(?:png|jpe?g|webp|gif|svg)\](?!\])/i;
+
+function inlineImageRefs(text) {
+  return String(text || "")
+    .split(INLINE_PART_SPLIT_RE)
+    .map((part) => part.match(INLINE_PART_RE))
+    .filter(Boolean)
+    .map((m) => m[1].trim());
+}
+
+let detailRefs = 0;
+let detailRefsMissing = 0;
+let detailIconsRendered = 0;
+let detailItemsWithRefs = 0;
+for (const item of built.items) {
+  const refs = inlineImageRefs(item.detailText);
+  detailRefs += refs.length;
+  if (refs.length) detailItemsWithRefs += 1;
+  for (const ref of refs) {
+    const fsPath = path.join(ROOT, ref.split("/").join(path.sep));
+    if (!fs.existsSync(fsPath)) {
+      detailRefsMissing += 1;
+      failures.push(`条目 ${item.id} 详情正文引用的图片不存在：${ref}`);
+    }
+  }
+
+  // 用真实渲染函数跑一遍，确认引用变成了 <img class="recipe-icon">，且正文不留裸路径
+  const root = sandbox.document.createElement("div");
+  const blocks = Sheets.parseDetailBlocks(item.detailText || "");
+  Sheets.renderDetailBlocks(blocks, root, {
+    resolveXref: () => null,
+    appendText: (container, text) => container.appendChild(sandbox.document.createTextNode(text)),
+  });
+  let iconsHere = 0;
+  const leftovers = [];
+  walkElement(root, (el) => {
+    if (el.tagName === "IMG") iconsHere += 1;
+    if (el.tagName === "#TEXT" && INLINE_LEFTOVER_RE.test(el.textContent || "")) leftovers.push(el.textContent);
+  });
+  detailIconsRendered += iconsHere;
+  if (iconsHere !== refs.length) {
+    failures.push(`条目 ${item.id} 详情正文的图标渲染数量不符：引用 ${refs.length} 个，渲染出 ${iconsHere} 个`);
+  }
+  if (leftovers.length) {
+    failures.push(`条目 ${item.id} 详情正文仍有未渲染的图片路径文本：${leftovers[0].slice(0, 60)}`);
+  }
+}
+
+// ---- 8. 走一遍站点真正使用的加载入口 loadContentJson ----
 (async () => {
   check(typeof Sheets.loadContentJson === "function", "sheetsContent.js 未导出 loadContentJson（站点无法读取 data.json）");
   let loaded = null;
@@ -176,12 +284,13 @@ for (const item of built.items) {
     );
   }
 
-  // ---- 8. 输出 ----
+  // ---- 9. 输出 ----
   console.log("站点代码验证结果（真实 sheetsContent.js）");
   console.log(`  卷目 ${built.sections.length} 个`);
   console.log(`  条目 ${built.items.length} 个（data.json 可见 ${rawVisible.length} 个）`);
   console.log(`  词条自动跳转 ${xrefOk} / ${built.tele.length} 条生效`);
   console.log(`  配方法 ${recipes} 条，其中图标 ${icons} 个，缺失 ${missingIconFiles} 个`);
+  console.log(`  详情正文图片：${detailItemsWithRefs} 个条目共 ${detailRefs} 处引用，渲染出图标 ${detailIconsRendered} 个，缺失 ${detailRefsMissing} 个`);
   console.log(`  卡片图片：${withImages.length} 个条目带图，缺失 ${missingCardImages} 个`);
   console.log(`  加载入口：${loaded ? "loadContentJson() 正常" : "loadContentJson() 失败"}`);
   if (built.sections.length) {
