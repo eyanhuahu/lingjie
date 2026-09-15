@@ -127,6 +127,15 @@ MATERIAL_ICON = {
     "紫鳞日志": None,
 }
 
+# 展示图索引：images/lingjie/showcase/<物品id>.png
+# 由 tools/extract_mod_showcase.py 借助 DST Mod Tool 从 idle 动画第一帧导出。
+SHOWCASE_INDEX = {}
+_SHOWCASE_DIR = os.path.join(IMAGES_DIR, "lingjie", "showcase")
+if os.path.isdir(_SHOWCASE_DIR):
+    for _fn in os.listdir(_SHOWCASE_DIR):
+        if _fn.lower().endswith(".png"):
+            SHOWCASE_INDEX[os.path.splitext(_fn)[0]] = "images/lingjie/showcase/" + _fn
+
 WARNINGS = []
 
 
@@ -272,8 +281,8 @@ def item(sec, iid, name, tags, summary, detail, recipe="", image="", visible=Tru
         raise SystemExit("重复 id: %s" % iid)
     _ORDER[iid] = True
     if not image:
-        # 物品图标按预制体 id 命名，存放在 images/lingjie/icons/
-        image = icon_path(iid) or ""
+        # 卡片图优先用「展示图」（idle 动画第一帧），没有才退回物品图标。
+        image = SHOWCASE_INDEX.get(iid) or icon_path(iid) or ""
     ITEMS.append({
         "id": iid,
         "分类id": sec,
