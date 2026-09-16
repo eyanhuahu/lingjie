@@ -659,9 +659,8 @@ function clickJump(id) {
   lockSpy();
   const y = target.getBoundingClientRect().top + window.scrollY - (trigger - 8);
   window.scrollTo({ top: Math.max(0, y), behavior: state.reducedMotion ? "auto" : "smooth" });
-  target.classList.remove("flash");
-  void target.offsetWidth;
-  target.classList.add("flash");
+  // 以前这里会给目标卷加一个 .flash 类，闪一圈金色内阴影当「落到这里」的提示；
+  // 用户觉得那圈金框抢眼，去掉了。滚动本身 + 侧栏高亮已经够表明位置。
 }
 
 function visibleSections() {
