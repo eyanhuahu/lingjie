@@ -107,7 +107,7 @@ function ensureShell() {
             <div class="search"><i class="ti ti-search" aria-hidden="true"></i><input id="searchInput" type="search" autocomplete="off" placeholder="搜索"></div>
             <button class="btn-clear" type="button" id="clearSearchBtn">清空</button>
           </form>
-          <div class="rail-title">卷目</div>
+          <div class="rail-divider" aria-hidden="true"></div>
           <ul class="nav" id="nav"></ul>
           <div class="rail-foot">
             <button class="btn-qq" type="button" id="joinGroupBtn">加入 mod 讨论群</button>

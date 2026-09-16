@@ -70,7 +70,10 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
 .shell{display:grid;grid-template-columns:236px minmax(0,1fr);align-items:stretch;min-height:calc(100vh - var(--mast-h))}
 .rail{background:var(--c-teal-soft2);border-right:1px solid var(--c-gold)}
 .rail-inner{position:sticky;top:var(--mast-h);max-height:calc(100vh - var(--mast-h));overflow:auto;padding:18px 12px 24px}
-.rail-title{font-size:11px;letter-spacing:.2em;color:var(--c-gold-ink);padding:0 12px 10px}
+/* 「卷目」两个字换成一条分割线：搜索行和卷目列表之间有个过渡就够，
+   文字标签反而占地方（导航区本身已经有 aria-label="卷目"）。两端淡出，不抢视线。 */
+.rail-divider{height:2px;margin:2px 12px 12px;border-radius:1px;
+  background:linear-gradient(90deg,rgba(194,162,78,0) 0%,var(--c-gold-pale) 22%,var(--c-gold) 50%,var(--c-gold-pale) 78%,rgba(194,162,78,0) 100%)}
 .content{min-width:0;padding:24px 48px 64px}
 /* 内容区在可用宽度里居中：窗口变宽时卡片跟着往中间走，而不是贴在左边。
    卡片本身宽度不变（还是 min(760px,100%)），改的只是位置。 */
@@ -255,7 +258,7 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
   .rail{min-width:0;border-right:0;border-bottom:1px solid var(--c-gold);position:sticky;top:var(--mast-h);z-index:15}
   /* 窄屏：侧栏变两行 —— 第一行搜索 + 清空，第二行横向卷目条（自己横向滚） */
   .rail-inner{position:static;top:auto;max-height:none;min-width:0;overflow:visible;display:flex;flex-wrap:wrap;gap:6px;padding:8px 12px}
-  .rail-inner .nav-sub,.rail-title,.nav-chev{display:none}
+  .rail-inner .nav-sub,.rail-divider,.nav-chev{display:none}
   .rail-search{flex:1 1 100%;min-width:0;margin:0}
   .rail-search .search{flex:1 1 auto;width:auto}
   .nav{flex:1 1 100%;min-width:0;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
