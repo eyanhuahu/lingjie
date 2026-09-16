@@ -125,6 +125,10 @@ def main():
     args = ap.parse_args()
 
     if args.tex and args.xml:
+        # 用 --tex/--xml 时只写一个位置参数就是输出目录，不必留空的 zipfile 占位
+        if not args.out and args.zipfile:
+            args.out = args.zipfile
+            args.zipfile = None
         tex_bytes = open(args.tex, "rb").read()
         xml_bytes = open(args.xml, "rb").read()
     elif args.zipfile:
