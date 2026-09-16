@@ -64,9 +64,13 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
    竖线用渐变做（上下淡出），比直接写一个「|」字符更贴合中式的细气。 */
 /* 站名后面的英文名：用「饥荒」那款 Bellefair，小一号、字距放开、颜色淡一些，
    中间一条金色竖线隔开。text-transform:capitalize 保证首字母大写
-   （就算 data.json 里手写成小写，显示出来也是 Spirit Realm）。 */
-.site-name-en{font-family:"DST Bellefair",var(--font-sans);font-size:.44em;font-weight:400;letter-spacing:.14em;
-  text-transform:capitalize;color:rgba(40,86,94,.78);vertical-align:.2em;text-shadow:none}
+   （就算 data.json 里手写成小写，显示出来也是 Spirit Realm）。
+   陛下反馈「看不清」：原来用的是 78% 透明度的青，压在浅青底上必然发虚 ——
+   改成**实色深青**、字号 .44 → .5em、字距 .14 → .1em（收紧了更实），
+   再加一道白色高光把字形从背景上托起来。 */
+.site-name-en{font-family:"DST Bellefair",var(--font-sans);font-size:.5em;font-weight:400;letter-spacing:.1em;
+  text-transform:capitalize;color:#24535C;vertical-align:.18em;
+  text-shadow:0 1px 0 rgba(255,255,255,.7),0 1px 4px rgba(255,255,255,.45)}
 .site-name-sep{display:inline-block;width:1.5px;height:.62em;margin:0 .5em;vertical-align:.02em;
   background:linear-gradient(180deg,rgba(194,162,78,.15),var(--c-gold) 45%,rgba(194,162,78,.15))}
 /* 站名 / 竖线 / 英文名+版本徽章 三列网格：左右两列都是 1fr，
