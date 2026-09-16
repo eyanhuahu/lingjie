@@ -106,8 +106,10 @@ DST 的动画按 8 个方向各有一套（`..._down` / `_side` / `_up`，蝎龙
 | `lj_reiki_dug_grass` / `lj_red_magic_dug_flower` | 挖出来的根没有自己的包，借用父本植物 `lj_reiki_grass` / `lj_red_magic_flower` 的 bank，取 `dug`（挖出来那一帧）。**不加这条会回退成 64×64 图标放大，很虚** |
 | 蝴蝶岛 | 没有动画，卡片无图（本来就没有展示图） |
 | 炼丹炉 / 灵虚光盏 / 残骸祭坛 / 月狮 / 毒蝎幼虫 / 噬魂蛇 | 都没有精确的 `idle`，脚本兜底取该 bank 里第一个 `idle*`（dry-run 报告会标 `(fallback)`） |
+| `lj_remains_altar` | 兜底取到的是 `idle_stage1`（**破碎残骸**），所以卡片图是那堆骨头。它在 mod 里有两个形态：`idle_stage1` 破碎 / `stage1_2` 修复过程 / `idle_stage2` 完整。**完整形态不在本目录的批量导出范围内**（批量脚本一个物品只出一张卡片图），需要单独导：`pwsh -File tools/run_dst_app.ps1 -LuaFile tools/export_altar_stage2.lua` |
 
-目前共 80 张（63 个独立动画的物品 + 17 种丹药的符号覆盖图，**17 张丹药图内容各不相同**）。
+目前共 81 张。其中 80 张是卡片预览图（63 个独立动画的物品 + 17 种丹药的符号覆盖图，**17 张丹药图内容各不相同**）；
+多出来的 `lj_remains_altar_complete.png` 是**详情正文插图**（残骸祭坛修复完成后的样子），不当卡片图用。
 
 ## 与 `icons/` 的区别
 
