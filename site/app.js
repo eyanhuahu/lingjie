@@ -29,6 +29,22 @@ const state = {
   ticking: false
 };
 
+// ---------------------------------------------------------------------------
+// 侧边栏底部的「加入 mod 讨论群」按钮（要换群 / 换链接改这里就行）
+// QQ_GROUP_INVITE_URL 是 QQ 群设置里「分享群链接」复制出来的地址，
+// 任何浏览器都能打开加群页面（含二维码）；authKey 那种参数是 QQ 生成的，
+// 万一哪天失效，按钮会退回用 scheme 唤起 QQ，群号也一直显示在旁边可以手搜。
+// ---------------------------------------------------------------------------
+const QQ_GROUP_NUMBER = "767318372";
+const QQ_GROUP_NAME = "【灵界】渡劫办事处";
+const QQ_GROUP_INVITE_URL = "https://qun.qq.com/universal-share/share?ac=1"
+  + "&authKey=QyAiF93GwBtDmUvMv0yL9TPnf42OggZXHjzmT%2BY4OWrRsvy%2FV8bxee0zHAULratp"
+  + "&busi_data=eyJncm91cENvZGUiOiI3NjczMTgzNzIiLCJ0b2tlbiI6IlMxaEFHQU5XRlVNT08yTzlFVHdoNW0yVUp4ZXA0clVMTTZKbUNtaU92dUx6OVJ4LzE3Z0pOZzd4Y0RzM1F5MnIiLCJ1aW4iOiI3ODYyNTYzOCJ9"
+  + "&data=wHS830Gr8gsVN5SkT3Q49xnPZH75_JKrDvfkv2Wj8KhzXT4iePgYWpin5P2eZOhzl_sKaLJwGAvuKE0myAkQnw"
+  + "&svctype=4&tempid=h5_group_info";
+const QQ_GROUP_SCHEME = "mqqapi://card/show_pslcard?src_type=internal&version=1&card_type=group"
+  + `&uin=${QQ_GROUP_NUMBER}&source=qrcode`;
+
 function escapeHtml(value) {
   return String(value ?? "")
     .replaceAll("&", "&amp;")
@@ -79,7 +95,7 @@ function ensureShell() {
           <ul class="nav" id="nav"></ul>
           <div class="rail-foot">
             <button class="btn-qq" type="button" id="joinGroupBtn">加入 mod 讨论群</button>
-            <p class="qq-hint" id="qqHint" hidden>QQ 群 <b id="qqNumber">767318372</b><button class="btn-copy" type="button" id="copyQqBtn">复制群号</button></p>
+            <p class="qq-hint" id="qqHint" hidden>QQ 群「${QQ_GROUP_NAME}」<b id="qqNumber">${QQ_GROUP_NUMBER}</b><button class="btn-copy" type="button" id="copyQqBtn">复制群号</button></p>
           </div>
         </div>
       </aside>
@@ -725,16 +741,8 @@ function handleAction(action) {
   }
 }
 
-// 侧边栏底部的加群按钮。
-// 桌面浏览器没装 QQ 时，唤起 scheme 是不会有反应的，所以点完同时把群号露出来，
-// 旁边配一个「复制群号」，让玩家能自己去 QQ 搜群。
-// 想更稳（全平台一步到位）就把 QQ 群设置里「分享群链接」复制的地址填到下面，
-// 那种链接在任何浏览器里都能打开加群页面（含二维码）。
-const QQ_GROUP_NUMBER = "767318372";
-const QQ_GROUP_INVITE_URL = ""; // 形如 https://qm.qq.com/q/xxxxxxx，填了就优先用它
-const QQ_GROUP_SCHEME = "mqqapi://card/show_pslcard?src_type=internal&version=1&card_type=group"
-  + `&uin=${QQ_GROUP_NUMBER}&source=qrcode`;
-
+// 点一下就能申请入群：优先打开 QQ 的分享链接（全平台都能用），
+// 万一链接失效则退回用 scheme 唤起 QQ；两种情况下都把群号显示出来 + 复制按钮兜底。
 function wireJoinGroup() {
   const btn = $("#joinGroupBtn");
   const hint = $("#qqHint");
