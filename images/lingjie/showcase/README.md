@@ -55,6 +55,18 @@ Layer 加进 `hide_layers` 一起导出（丹药那种刻意用 `override_symbol
 dry-run 报告里的 `hide=` 一列就是被隐藏的 Layer，`build 未找到，跳过幽灵检查` 表示那条
 无法判断（此时不会乱隐藏）。
 
+还有一条更隐蔽的坑：**导入过的资源会留在 dst-app 的文档里，跨多次调用都不清空**。
+所以做「只导某一个包」的隔离导出时，一定要先清空，否则上一个包还赖在文档里，
+符号会被它抢走。清空用的 Lua：
+
+```lua
+tool:reset_workspace()   -- 命令会排队，脚本提交后执行
+```
+
+实例：境界徽章 `realm_value_ui` 与灵力徽章 `spirit_value_ui` 的符号名完全一样
+（`bg`、`frame_circle`、`brain`…），不清空就连着导两次，两张图会渲染成**一模一样**
+（详见 `../anim/README.md`）。
+
 ## 已知特例
 
 | 物品 | 情况 |
