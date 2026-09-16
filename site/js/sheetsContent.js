@@ -10,6 +10,7 @@
     site: {
       "网站标题": "name", "标题": "name", "name": "name",
       "网站版本": "version", "版本": "version", "version": "version",
+      "网站英文名": "en_name", "英文名": "en_name", "en_name": "en_name",
       "作者": "author", "author": "author"
     },
     sections: {
@@ -533,6 +534,7 @@
     const row = normalizeSheetRows("site", rows)[0] || {};
     return {
       name: row.name || "灵界",
+      en_name: row.en_name || "",
       version: row.version || "v0.1.0",
       author: row.author || "预留作者"
     };

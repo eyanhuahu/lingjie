@@ -463,7 +463,14 @@ function renderCard(item) {
 
 function renderHeader() {
   const site = state.data.site || {};
-  $("#siteName").textContent = site.name || "灵界";
+  const name = site.name || "灵界";
+  const enName = String(site.en_name || "").trim();
+  // 英文名（data.json 的「网站英文名」）跟在站名后面，用一条竖线隔开；
+  // 没填英文名时连竖线一起不显示。
+  $("#siteName").innerHTML = enName
+    ? `${escapeHtml(name)}<span class="site-name-sep" aria-hidden="true"></span><span class="site-name-en">${escapeHtml(enName)}</span>`
+    : escapeHtml(name);
+  document.title = enName ? `${name} ${enName}` : name;
   $("#siteMeta").textContent = `${String(site.version || "v0.1.0").toUpperCase()} · ${site.author || "预留作者"}`;
 }
 

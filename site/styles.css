@@ -55,6 +55,12 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
   font-family:"KaiTi","楷体",STKaiti,"Kaiti SC",var(--font-serif);
   letter-spacing:.12em;text-indent:.12em;
   text-shadow:0 1px 0 rgba(255,255,255,.75),0 0 14px rgba(194,162,78,.35),0 2px 10px rgba(47,90,98,.16)}
+/* 站名后面的英文名：小一号、字距放开、颜色淡一些，中间一条金色竖线隔开。
+   竖线用渐变做（上下淡出），比直接写一个「|」字符更贴合中式的细气。 */
+.site-name-en{font-family:var(--font-sans);font-size:.42em;font-weight:600;letter-spacing:.22em;
+  color:rgba(40,86,94,.72);vertical-align:.22em;text-shadow:none}
+.site-name-sep{display:inline-block;width:1.5px;height:.62em;margin:0 .5em;vertical-align:.02em;
+  background:linear-gradient(180deg,rgba(194,162,78,.15),var(--c-gold) 45%,rgba(194,162,78,.15))}
 .site-ver{font-size:11px;letter-spacing:.2em;color:rgb(97,173,189);margin-top:7px;text-transform:uppercase}
 .ornament{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:12px}
 .ornament i{display:block;width:56px;height:2px;background:var(--c-gold-soft)}
