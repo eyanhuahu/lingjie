@@ -277,6 +277,33 @@ function renderAutoXrefs(text) {
   return html;
 }
 
+// 详情正文里提到的条目，名字前面挂一张对应小图标（同上：缺失就悄悄降级，不留破图）。
+// 图标优先用配方那种 64×64 小图标，没有就退回该条目的展示图；
+// 卡片图是占位图（该条目本来就没图）时不再试第二次，省一次必然 404 的请求。
+function xrefIconNode(item) {
+  if (!item || !item.id) return null;
+  const icon = resolveImagePath(`images/lingjie/icons/${item.id}.png`);
+  const cardImage = item.resolved_image && item.resolved_image !== DEFAULT_PLACEHOLDER_IMAGE
+    ? resolveImagePath(item.resolved_image)
+    : "";
+  const img = document.createElement("img");
+  img.className = "xref-icon";
+  img.alt = "";
+  img.loading = "lazy";
+  img.setAttribute("aria-hidden", "true");
+  let tried = 0;
+  img.addEventListener("error", () => {
+    tried += 1;
+    if (tried === 1 && cardImage && cardImage !== icon) {
+      img.src = cardImage;
+      return;
+    }
+    img.hidden = true;
+  });
+  img.src = icon;
+  return img;
+}
+
 function appendAutoXrefs(container, text) {
   const source = String(text ?? "");
   if (!source || !state.autoXrefPattern) {
@@ -291,6 +318,8 @@ function appendAutoXrefs(container, text) {
     const item = state.autoXrefByTerm.get(normalize(hit));
     if (!hit || !item) continue;
     container.appendChild(document.createTextNode(source.slice(lastIndex, match.index)));
+    const icon = xrefIconNode(item);
+    if (icon) container.appendChild(icon);
     const a = document.createElement("a");
     a.className = "xref";
     a.href = `#item=${encodeURIComponent(item.id)}`;
