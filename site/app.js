@@ -304,6 +304,12 @@ function xrefIconNode(item) {
   return img;
 }
 
+// 名字前面已经有一个行内小图标（配方那种 [路径] 图标）时不再重复加，否则会「大图小图」挤一起
+function hasRecipeIconBefore(container) {
+  const prev = container.lastElementChild;
+  return Boolean(prev && prev.tagName === "IMG" && prev.classList.contains("recipe-icon"));
+}
+
 function appendAutoXrefs(container, text) {
   const source = String(text ?? "");
   if (!source || !state.autoXrefPattern) {
@@ -318,7 +324,7 @@ function appendAutoXrefs(container, text) {
     const item = state.autoXrefByTerm.get(normalize(hit));
     if (!hit || !item) continue;
     container.appendChild(document.createTextNode(source.slice(lastIndex, match.index)));
-    const icon = xrefIconNode(item);
+    const icon = hasRecipeIconBefore(container) ? null : xrefIconNode(item);
     if (icon) container.appendChild(icon);
     const a = document.createElement("a");
     a.className = "xref";
