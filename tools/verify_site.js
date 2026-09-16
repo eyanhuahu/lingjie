@@ -332,6 +332,36 @@ for (const item of built.items) {
   }
 }
 
+// ---- 7b. 详情正文的结构化渲染：小标题/缩进条目/数据表识别后不能丢字 ----
+// 详情正文会按「小标题、缩进条目、数据表」分类渲染，规则是启发式的，
+// 所以这里要确认：原文每一行的文字都还在（去掉空格与标记后逐个包含检查）。
+const detailTypeCount = { heading: 0, sub: 0, table: 0, text: 0, image: 0 };
+const normForCompare = (s) =>
+  String(s || "")
+    .replace(/\[\[(?:图片|image):[^\]]*\]\]/gi, " ")
+    .replace(/\[[^[\]]*\.(?:png|jpe?g|webp|gif|svg)\]/gi, " ")
+    .replace(/[\s\u3000]+/g, "");
+
+let structureLost = 0;
+for (const item of built.items) {
+  const root = sandbox.document.createElement("div");
+  const blocks = Sheets.parseDetailBlocks(item.detailText || "");
+  for (const b of blocks) detailTypeCount[b.type] = (detailTypeCount[b.type] || 0) + 1;
+  Sheets.renderDetailBlocks(blocks, root, {
+    resolveXref: () => null,
+    appendText: (container, text) => container.appendChild(sandbox.document.createTextNode(text)),
+  });
+  const rendered = normForCompare(root.textContent);
+  for (const rawLine of String(item.detailText || "").split("\n")) {
+    const line = normForCompare(rawLine);
+    if (!line) continue;
+    if (!rendered.includes(line)) {
+      structureLost += 1;
+      failures.push(`条目「${item.name}」结构化渲染后丢了内容：${rawLine.trim().slice(0, 40)}`);
+    }
+  }
+}
+
 // ---- 8. 走一遍站点真正使用的加载入口 loadContentJson ----
 (async () => {
   check(typeof Sheets.loadContentJson === "function", "sheetsContent.js 未导出 loadContentJson（站点无法读取 data.json）");
@@ -358,7 +388,7 @@ for (const item of built.items) {
   console.log(`  配方法 ${recipes} 条，其中图标 ${icons} 个，缺失 ${missingIconFiles} 个`);
   console.log(`  详情正文图片：${detailItemsWithRefs} 个条目共 ${detailRefs} 处行内图标 + ${detailBlockRefs} 处整段插图，渲染出 ${detailIconsRendered} 个，缺失 ${detailRefsMissing} 个`);
   console.log(`  卡片图片：${withImages.length} 个条目带图，缺失 ${missingCardImages} 个`);
-  console.log(`  加载入口：${loaded ? "loadContentJson() 正常" : "loadContentJson() 失败"}`);
+  console.log(`  详情正文结构：小标题 ${detailTypeCount.heading} 个、缩进条目组 ${detailTypeCount.sub} 组、数据表 ${detailTypeCount.table} 个、普通文字 ${detailTypeCount.text} 块，丢字 ${structureLost} 处`);
   if (built.sections.length) {
     console.log("  卷目清单：");
     for (const s of built.sections) {

@@ -1,4 +1,4 @@
-﻿:root{
+:root{
   --mast-h:132px;
   --c-teal:#5F9AA6; --c-teal-link:#3E6E78; --c-teal-ink:#2F5A62;
   --c-teal-soft:#EFF5F3; --c-teal-soft2:#E3EEEA; --c-teal-line:#D2E0DC; --c-teal-btn:#B7C7C3;
@@ -126,6 +126,28 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
 .modal-body img{max-width:100%;height:auto}
 .detail-content{display:grid;gap:14px;color:var(--c-ink-2)}
 .detail-content p{margin:0;white-space:pre-line;line-height:1.9}
+/* 小标题：详情正文里的层级，让眼睛有落脚点 */
+.detail-content .detail-h{margin:6px 0 -2px;padding-left:9px;border-left:3px solid var(--c-gold);
+  color:var(--c-teal-ink);font-family:var(--font-serif);font-size:15.5px;font-weight:600;line-height:1.5}
+/* 缩进条目：全角空格缩进的行，用竖线标出层级 */
+.detail-sub-group{display:grid;gap:4px;margin:-6px 0 0;padding-left:2px}
+.detail-sub{position:relative;padding-left:14px;line-height:1.8}
+.detail-sub::before{content:"";position:absolute;left:4px;top:.72em;width:4px;height:4px;border-radius:50%;background:var(--c-gold-mut)}
+.detail-sub-2{padding-left:28px}
+.detail-sub-2::before{left:18px;background:var(--c-line)}
+.detail-sub-3{padding-left:42px}
+.detail-sub-3::before{left:32px;background:var(--c-line)}
+/* 数据表：境界名 + 数值两栏对齐，隔行浅底 */
+.detail-table{margin:-4px 0 0;border:.5px solid var(--c-line);border-radius:8px;overflow:hidden;background:var(--c-white)}
+.detail-table .detail-row{display:grid;grid-template-columns:5.2em 1fr;gap:10px;align-items:baseline;
+  padding:5px 12px;border-top:.5px solid rgba(224,215,194,.7)}
+.detail-table .detail-row:first-child{border-top:0}
+.detail-table .detail-row:nth-child(even){background:var(--c-cream)}
+.detail-table .detail-row-key{color:var(--c-teal-ink);font-weight:600;white-space:nowrap}
+.detail-table .detail-row-val{font-variant-numeric:tabular-nums;letter-spacing:.2px;line-height:1.7}
+.detail-table .detail-note{padding:6px 12px;border-top:.5px solid rgba(224,215,194,.7);
+  background:var(--c-teal-soft);color:var(--c-ink-3);font-size:13px;line-height:1.7}
+.detail-table .detail-row-val .recipe-icon{margin:0 1px}
 .detail-image-block{margin:4px 0 2px;padding:10px;background:rgba(255,255,255,.58);border:.5px solid rgba(95,154,166,.28);border-radius:10px}
 .detail-image-block img{display:block;max-width:100%;height:auto;object-fit:contain;border-radius:8px;margin:0 auto}
 .detail-image-block figcaption{margin-top:8px;text-align:center;color:var(--c-ink-3);font-size:13px;line-height:1.5}

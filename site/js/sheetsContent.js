@@ -156,24 +156,91 @@
     return template.content.textContent || "";
   }
 
+  // 详情正文的结构识别。
+  // 整篇文字一个粗细、一个层级时读起来很累（尤其是一堆数字），所以把三类内容认出来交给 CSS：
+  //   heading 小标题   —— 「升阶方式」「击杀掉落」「每阶经验门槛（…）」
+  //   sub     缩进条目 —— 以全角空格开头的一行（原本只靠空格缩进，看不出层级）
+  //   table   数据表   —— 「凡境　50 · 100 · …」这种「短标签 + 全角空格 + 内容」的行
+  // 注意：正文里这几种常常**挤在同一段**（标题行紧跟缩进行，中间没有空行），
+  // 所以按行分类再分组，而不是一整段判一个类型。
+  // 规则写得保守：拿不准就当普通文字，宁可不加样式也不能看错。
+  const DETAIL_TABLE_ROW_RE = /^([^\s　]{1,8})　(\S.*)$/;
+  const DETAIL_HEADING_LABEL_RE = /^[^。，、；：！？\n]{2,12}（[^）]*）$/;
+
+  function isDetailHeadingLine(line) {
+    const t = String(line).trim();
+    if (!t) return false;
+    // 「技能」「突破」「死亡惩罚」这类：短，且没有任何句读符号
+    if (t.length <= 8 && !/[。，、；：！？（）()\[\]【】]/.test(t)) return true;
+    // 「核心强化 —— 生命值」这类：短标签 + 破折号
+    if (/^[^。，、；：！？\n]{2,12} —— \S+$/.test(t)) return true;
+    // 「每境属性加成（达到该境界后生效）」这类：短标签 + 括号说明
+    return DETAIL_HEADING_LABEL_RE.test(t);
+  }
+
+  function detailLineKind(rawLine) {
+    const t = String(rawLine).trim();
+    if (!t) return null;
+    if (rawLine.startsWith("　")) return "sub";
+    if (DETAIL_TABLE_ROW_RE.test(t)) return "table";
+    if (isDetailHeadingLine(t)) return "heading";
+    return "text";
+  }
+
+  // 把一段拆成若干块：连续同类型的行合成一块；数据表至少要 2 行才值得做成表格
+  function expandDetailParagraph(text) {
+    const blocks = [];
+    let cur = null;
+    const flush = () => {
+      if (!cur) return;
+      if (cur.type === "table" && cur.lines.length < 2) {
+        // 孤零零一行「xx　yy」当普通文字处理，避免误做成表格
+        blocks.push({ type: "text", text: cur.lines.join("\n") });
+      } else {
+        blocks.push({ type: cur.type, text: cur.lines.join("\n") });
+      }
+      cur = null;
+    };
+    String(text).split("\n").forEach((line) => {
+      const kind = detailLineKind(line);
+      if (kind === null) return;
+      if (cur !== null && cur.type === kind) {
+        cur.lines.push(line);
+        return;
+      }
+      flush();
+      cur = { type: kind, lines: [line] };
+    });
+    flush();
+    return blocks;
+  }
+
   function parseDetailBlocks(detailText) {
     const text = String(detailText ?? "").replace(/\r\n/g, "\n").replace(/\r/g, "\n").trim();
     if (!text) return [];
 
-    return text.split(/\n{2,}/).map((part) => {
+    const blocks = [];
+    text.split(/\n{2,}/).forEach((part) => {
       const trimmed = part.trim();
       const imageMatch = trimmed.match(/^\[\[(?:图片|image):([^|\]]+)(?:\|([^\]]+))?\]\]$/i);
       if (imageMatch) {
         const raw = imageMatch[1].trim();
-        return {
+        blocks.push({
           type: "image",
           src: resolveImagePath(raw),
           raw,
           caption: String(imageMatch[2] ?? "").trim()
-        };
+        });
+        return;
       }
-      return { type: "paragraph", text: trimmed };
+      // 注意：这里**不能**把每行前面的全角缩进 trim 掉，否则同一组缩进行里
+      // 首行会掉出「缩进条目」分类，样式忽有忽无。只去掉首尾空行。
+      const lines = part.split("\n");
+      while (lines.length && !lines[0].trim()) lines.shift();
+      while (lines.length && !lines[lines.length - 1].trim()) lines.pop();
+      expandDetailParagraph(lines.join("\n")).forEach((block) => blocks.push(block));
     });
+    return blocks;
   }
 
   // 详情正文里的行内小图标：单个中括号里放一个图片路径，
@@ -268,10 +335,71 @@
         return;
       }
 
+      // 小标题：单独一行短标签，给个明显的层级
+      if (block.type === "heading") {
+        const h = document.createElement("h4");
+        h.className = "detail-h";
+        appendInlineText(h, block.text, options);
+        container.appendChild(h);
+        return;
+      }
+
+      // 数据表：短标签（境界名等）+ 内容，两栏对齐，隔行浅底色
+      if (block.type === "table") {
+        const wrap = document.createElement("div");
+        wrap.className = "detail-table";
+        String(block.text).split("\n").forEach((line) => {
+          const t = line.trim();
+          const m = t.match(DETAIL_TABLE_ROW_RE);
+          if (m) {
+            const row = document.createElement("div");
+            row.className = "detail-row";
+            const key = document.createElement("span");
+            key.className = "detail-row-key";
+            appendInlineText(key, m[1], options);
+            const val = document.createElement("span");
+            val.className = "detail-row-val";
+            appendInlineText(val, m[2], options);
+            row.appendChild(key);
+            row.appendChild(val);
+            wrap.appendChild(row);
+          } else if (t) {
+            const note = document.createElement("div");
+            note.className = "detail-note";
+            appendInlineText(note, t, options);
+            wrap.appendChild(note);
+          }
+        });
+        container.appendChild(wrap);
+        return;
+      }
+
+      // 缩进条目：全角空格开头的行，按缩进层级显示成带竖线的条目
+      if (block.type === "sub") {
+        const wrap = document.createElement("div");
+        wrap.className = "detail-sub-group";
+        String(block.text).split("\n").forEach((line) => {
+          if (!line.trim()) return;
+          let level = 0;
+          while (line.charAt(level) === "　") level += 1;
+          const item = document.createElement("div");
+          item.className = `detail-sub detail-sub-${Math.min(level, 3)}`;
+          appendInlineText(item, line.slice(level), options);
+          wrap.appendChild(item);
+        });
+        container.appendChild(wrap);
+        return;
+      }
+
       const p = document.createElement("p");
       appendInlineText(p, block.text, options);
       container.appendChild(p);
     });
+  }
+
+  // 供校验脚本使用：只分类、不渲染，方便统计各类块的数量
+  function classifyDetailText(detailText) {
+    return parseDetailBlocks(detailText).map((block) => block.type);
   }
 
   function readU16(view, offset) {
@@ -564,6 +692,7 @@
     resolveImagePath,
     parseDetailBlocks,
     renderDetailBlocks,
+    classifyDetailText,
     appendInlineText,
     buildXrefTerms,
     plainTextFromHtml
