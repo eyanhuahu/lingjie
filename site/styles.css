@@ -44,13 +44,16 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
   background-size:100% 100%,100% 3px;background-position:0 0,0 100%;background-repeat:no-repeat;
   min-height:var(--mast-h-base);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 28px 28px}
 .mast-center{text-align:center;padding-top:18px}
-/* 站名要一眼抓住：字号 32 → 44、颜色由浅青改成深青、再加一点白色高光。
-   ⚠️ 字体必须走 --font-sans：中文衬线回退到宋体后**没有真粗体**，
-   font-weight:700 加不粗，44px 下看着还是发虚（卡片标题也踩过同一个坑）。
-   --font-sans 里有微软雅黑 Bold / NotoSansSC 可变字体，是真加粗。
-   顶栏变高没关系：app.js 的 syncMastHeight() 会把真实高度写回 --mast-h。 */
-.site-name{font-size:44px;color:#2C5F67;line-height:1.08;font-family:var(--font-sans);font-weight:800;
-  letter-spacing:.08em;text-shadow:0 1px 0 rgba(255,255,255,.55)}
+/* 站名「灵界」用楷体：
+   · 黑体太硬，没有仙气（被陛下否掉）
+   · 宋体笔画太干太细，44px 还是发虚
+   · 楷体的笔画有起伏、收放自然，才配这两个字
+   楷体没有真粗体，所以**不加 font-weight**（合成加粗会糊），靠字号 + 字距 +
+   金色微光 + 白色高光撑气势。字体缺失时退回衬线栈（Mac 有 STKaiti，安卓/手机退回宋体）。 */
+.site-name{font-size:48px;color:#28565E;line-height:1.1;font-weight:500;
+  font-family:"KaiTi","楷体",STKaiti,"Kaiti SC",var(--font-serif);
+  letter-spacing:.12em;text-indent:.12em;
+  text-shadow:0 1px 0 rgba(255,255,255,.75),0 0 14px rgba(194,162,78,.35),0 2px 10px rgba(47,90,98,.16)}
 .site-ver{font-size:11px;letter-spacing:.2em;color:rgb(97,173,189);margin-top:7px;text-transform:uppercase}
 .ornament{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:12px}
 .ornament i{display:block;width:56px;height:2px;background:var(--c-gold-soft)}
