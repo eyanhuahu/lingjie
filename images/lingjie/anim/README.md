@@ -8,12 +8,18 @@
 | --- | --- | --- | --- |
 | `star_sword_charge.png` | 满充能时的剑身特效 | `swap_lj_star_sword` / `sword_charge4` 第 31 帧 | 星陨 |
 | `star_sword_hit.png` | 星陨命中特效 | `fx_sword_hit` / `fx_sword_hit` 第 3 帧 | 星陨 |
-| `realm_badge.png` | 境界徽章（绿色打坐人形图标） | `realm_value_ui` / `anim` 第 1 帧，默认 `brain` 符号 | 境界体系（兼卡片图）|
+| `realm_badge.png` | 境界徽章（深蓝打坐人形图标） | `realm_value_ui` / `anim` 第 1 帧，默认 `brain` 符号 | 境界体系（兼卡片图）|
 | `spirit_badge.png` | 灵力徽章（火焰 + 液面进度） | `spirit_value_ui` / `anim` 第 10 帧 | 灵力值（兼卡片图）|
 
 > 尺寸：正文插图**长边一律不超过 200px**。技能特效那种按原尺寸导出会有 400px 高，
 > 在详情里显得又大又占地方（试过毒沼喷涌 / 鳞粉飞弹弹体 / 爆炸特效三张，
 > 又大又没多大意义，已经删掉了）。
+
+> ⚠️ **两个徽章的源素材本来就小**：`realm_badge` 135×115、`spirit_badge` 90×115
+> （mod 的 UI 图集就这么大；dst-app 的 `max_dimension` 只是**上限、不会放大**）。
+> 所以卡片图区（172px 高）里不能用 `object-fit` 拉满，否则放大 1.5 倍发虚 ——
+> `styles.css` 里有一条 `.card-media img[src*="badge"]` 把它们限制在 118px 高并居中，
+> 等于按原始像素显示。想更清晰只能让作者把游戏里的徽章素材画大，没有别的办法。
 
 ## ⚠️ 两个徽章**必须各自单独导入**
 
