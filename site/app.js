@@ -11,6 +11,18 @@ function scrollTrigger() {
   return Number.isFinite(value) ? value : 156;
 }
 
+// 顶栏是 fixed 的，正文靠 --mast-h 让位。顶栏里文字换行、字体加载完、窗口变窄
+// 都会让它的真实高度和 CSS 里写死的 132px 对不上，于是侧栏第一行会被顶栏盖住。
+// 这里量一次真实高度写回去（min-height 用的是另一个变量，不会自反馈）。
+function syncMastHeight() {
+  const mast = $(".masthead");
+  if (!mast) return;
+  const h = Math.round(mast.getBoundingClientRect().height);
+  if (!h) return;
+  document.documentElement.style.setProperty("--mast-h", `${h}px`);
+  document.documentElement.style.scrollPaddingTop = `${h + 24}px`;
+}
+
 const state = {
   data: null,
   query: "",
@@ -82,17 +94,19 @@ function ensureShell() {
         <div class="site-ver" id="siteMeta">V0.1.0 · 预留作者</div>
         <div class="ornament" aria-hidden="true"><i></i><b></b><i></i></div>
       </div>
-      <form class="mast-tools" id="searchForm" role="search">
-        <label class="sr-only" for="searchInput">搜索</label>
-        <div class="search"><i class="ti ti-search" aria-hidden="true"></i><input id="searchInput" type="search" autocomplete="off" placeholder="搜索"></div>
-        <button class="btn-clear" type="button" id="clearSearchBtn">清空</button>
+      <div class="mast-tools">
         <button class="btn-qq btn-qq-flat" type="button" id="joinGroupTopBtn">加入 mod 讨论群</button>
-      </form>
+      </div>
     </header>
 
     <div class="shell">
       <aside class="rail" id="rail" aria-label="卷目">
         <div class="rail-inner">
+          <form class="rail-search" id="searchForm" role="search">
+            <label class="sr-only" for="searchInput">搜索</label>
+            <div class="search"><i class="ti ti-search" aria-hidden="true"></i><input id="searchInput" type="search" autocomplete="off" placeholder="搜索"></div>
+            <button class="btn-clear" type="button" id="clearSearchBtn">清空</button>
+          </form>
           <div class="rail-title">卷目</div>
           <ul class="nav" id="nav"></ul>
           <div class="rail-foot">
@@ -993,6 +1007,7 @@ function wireEvents() {
   });
   window.addEventListener("scroll", scheduleScrollSpy, { passive: true });
   window.addEventListener("resize", () => {
+    syncMastHeight();
     syncOpenHeights();
     scheduleScrollSpy();
     // 弹窗开着时窗口尺寸变了，重新贴回卡片
@@ -1002,6 +1017,7 @@ function wireEvents() {
 
 async function init() {
   ensureShell();
+  syncMastHeight();
   wireToTop();
   parseHash();
   state.data = await loadData();
@@ -1009,6 +1025,8 @@ async function init() {
   renderHeader();
   renderSections();
   wireEvents();
+  // 字体加载完标题高度可能变，再量一次顶栏（否则侧栏第一行会被顶栏盖住）
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(syncMastHeight).catch(() => {});
   if (state.pendingItem) openItemModal(state.pendingItem, document.body, false);
   else if (state.activeSec) requestAnimationFrame(() => scrollToSection(state.activeSec, false));
 }

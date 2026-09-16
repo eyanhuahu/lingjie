@@ -1,5 +1,8 @@
 :root{
   --mast-h:132px;
+  /* 顶栏 min-height 用这个「基准值」，运行时量出来的真实高度写进 --mast-h。
+     两者分开是为了避免自反馈：量高度 → 改 --mast-h → 又影响 min-height → 高度又变。 */
+  --mast-h-base:132px;
   --c-teal:#5F9AA6; --c-teal-link:#3E6E78; --c-teal-ink:#2F5A62;
   --c-teal-soft:#EFF5F3; --c-teal-soft2:#E3EEEA; --c-teal-line:#D2E0DC; --c-teal-btn:#B7C7C3;
   --c-gold:#C2A24E; --c-gold-ink:#8A7330; --c-gold-soft:#E0CB86; --c-gold-pale:#EBDBA6; --c-gold-mut:#B79A54;
@@ -33,15 +36,20 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
 .skip-link{position:fixed;left:12px;top:12px;z-index:100;transform:translateY(-160%);background:var(--c-surface);border:1px solid var(--c-gold);border-radius:8px;padding:8px 12px}
 .skip-link:focus{transform:none}
 
-.masthead{position:fixed;top:0;left:0;right:0;z-index:30;background:linear-gradient(180deg,rgb(217,241,227) 0%,rgb(154,211,220) 100%);border-bottom:1px solid var(--c-gold);min-height:var(--mast-h);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 28px 28px}
+/* 顶栏底部这条金线兼作「标题区 / 内容区」的分界，1px 在米白底上看不出边界，加粗到 3px */
+.masthead{position:fixed;top:0;left:0;right:0;z-index:30;background:linear-gradient(180deg,rgb(217,241,227) 0%,rgb(154,211,220) 100%);border-bottom:3px solid var(--c-gold);min-height:var(--mast-h-base);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 28px 28px}
 .mast-center{text-align:center;padding-top:18px}
 .site-name{font-size:32px;color:rgb(70,147,153);line-height:1.05;font-family:var(--font-serif);font-weight:500}
 .site-ver{font-size:11px;letter-spacing:.2em;color:rgb(97,173,189);margin-top:7px;text-transform:uppercase}
 .ornament{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:12px}
-.ornament i{display:block;width:52px;height:1px;background:var(--c-gold-soft)}
-.ornament b{display:block;width:7px;height:7px;background:var(--c-cream);transform:rotate(45deg)}
+.ornament i{display:block;width:56px;height:2px;background:var(--c-gold-soft)}
+.ornament b{display:block;width:9px;height:9px;background:var(--c-cream);transform:rotate(45deg)}
 .mast-tools{position:absolute;right:24px;bottom:14px;display:flex;align-items:center;gap:10px}
 .search{display:flex;align-items:center;gap:8px;background:var(--c-cream-box);border:.5px solid #BFD3D0;border-radius:8px;padding:8px 12px;width:200px}
+/* 搜索 + 清空搬到左侧菜单栏顶部（原来在顶栏右侧） */
+.rail-search{display:flex;align-items:center;gap:6px;margin:0 0 12px;padding:0}
+.rail-search .search{flex:1 1 auto;width:auto;min-width:0}
+.rail-search .btn-clear{padding:7px 10px;font-size:12px}
 .search input{border:0;background:none;outline:none;width:100%;font-size:13px;color:var(--c-ink);min-width:0}
 .search input::placeholder{color:var(--c-ink-3)}
 .search i{width:16px;height:16px;color:var(--c-gold-ink);font-size:16px;line-height:16px;font-style:normal;flex:0 0 auto}
@@ -237,19 +245,23 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
 .log-detail h3{margin:0 0 6px;color:var(--c-teal-ink)}
 
 @media (max-width:1023px){
-  html{scroll-padding-top:190px}
-  .masthead{min-height:var(--mast-h);padding:22px 14px 70px}
-  .mast-tools{left:14px;right:14px;bottom:14px}
-  .search{width:100%}
-  .shell{grid-template-columns:1fr;min-height:0}
-  .rail{border-right:0;border-bottom:1px solid var(--c-gold);position:sticky;top:var(--mast-h);z-index:15}
-  .rail-inner{position:static;top:auto;max-height:none;overflow-x:auto;overflow-y:hidden;display:flex;gap:6px;padding:8px 12px;scrollbar-width:none}
-  .rail-inner::-webkit-scrollbar{display:none}
+  .masthead{min-height:var(--mast-h-base);padding:20px 14px 16px;gap:10px}
+  /* 顶栏只剩加群按钮：走正常流（不用绝对定位），右对齐，绝不会被挤出屏幕。
+     顶栏真实高度由 app.js 的 syncMastHeight() 量出来写回 --mast-h。 */
+  .mast-tools{position:static;width:100%;justify-content:flex-end;padding:0}
+  /* 单列时必须是 minmax(0,1fr)：写成 1fr 等于 minmax(auto,1fr)，
+     grid 项的最小尺寸会把整行撑到内容宽度（横向卷目条 12 个按钮 → 1148px 溢出） */
+  .shell{grid-template-columns:minmax(0,1fr);min-height:0}
+  .rail{min-width:0;border-right:0;border-bottom:1px solid var(--c-gold);position:sticky;top:var(--mast-h);z-index:15}
+  /* 窄屏：侧栏变两行 —— 第一行搜索 + 清空，第二行横向卷目条（自己横向滚） */
+  .rail-inner{position:static;top:auto;max-height:none;min-width:0;overflow:visible;display:flex;flex-wrap:wrap;gap:6px;padding:8px 12px}
   .rail-inner .nav-sub,.rail-title,.nav-chev{display:none}
-  .nav{display:flex;gap:6px}
-  /* 窄屏时侧边栏变成横向条：加群按钮跟着排成一枚小按钮，群号提示只留按钮本身 */
-  .rail-foot{flex:0 0 auto;margin:0;padding:0;border-top:0;display:block}
-  .rail-foot .btn-qq{width:auto;white-space:nowrap;padding:7px 12px;font-size:13px}
+  .rail-search{flex:1 1 100%;min-width:0;margin:0}
+  .rail-search .search{flex:1 1 auto;width:auto}
+  .nav{flex:1 1 100%;min-width:0;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+  .nav::-webkit-scrollbar{display:none}
+  /* 加群按钮交给顶栏那一枚，侧栏底部的收起来，免得挤出第三行 */
+  .rail-foot{display:none}
   .qq-hint{display:none}
   /* 横向卷目条：保持直角按钮样子，选中依然是金色填充；li 不压缩，标签才不会被挤掉 */
   .nav-group{flex:0 0 auto}
@@ -266,11 +278,9 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
 @media (max-width:420px){
   .site-name{font-size:28px}
   .ornament i{width:42px}
-  .mast-tools{gap:8px}
-  .btn-clear{padding:8px 10px}
+  /* 顶栏只剩加群按钮一枚，右对齐；搜索已经在侧栏里了，不再挤 */
+  .mast-tools{gap:8px;justify-content:flex-end}
   .to-top{right:14px;bottom:14px;padding:8px 12px}
-  /* 手机上顶栏太挤：加群按钮只留侧边栏那一枚（横向条里也能点到） */
-  .btn-qq-flat{display:none}
   .card{padding:16px 16px 58px;border-radius:14px}
   .card::before{inset:5px;border-radius:10px}
   .card::after{inset:10px;border-radius:7px}
