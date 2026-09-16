@@ -91,8 +91,12 @@ function ensureShell() {
     <header class="masthead">
       <div class="mast-center">
         <div class="site-title-row">
-          <div class="serif site-name" id="siteName">灵界</div>
-          <span class="site-ver-badge" id="siteVersion">V0.1.0</span>
+          <span class="serif site-name" id="siteName">灵界</span>
+          <span class="site-name-sep" aria-hidden="true"></span>
+          <span class="site-title-right">
+            <span class="site-name-en" id="siteNameEn"></span>
+            <span class="site-ver-badge" id="siteVersion">V0.1.0</span>
+          </span>
         </div>
         <div class="site-ver" id="siteMeta">预留作者</div>
         <div class="ornament" aria-hidden="true"><i></i><b></b><i></i></div>
@@ -468,13 +472,11 @@ function renderHeader() {
   const site = state.data.site || {};
   const name = site.name || "灵界";
   const enName = String(site.en_name || "").trim();
-  // 英文名（data.json 的「网站英文名」）跟在站名后面，用一条竖线隔开；
-  // 没填英文名时连竖线一起不显示。
-  $("#siteName").innerHTML = enName
-    ? `${escapeHtml(name)}<span class="site-name-sep" aria-hidden="true"></span><span class="site-name-en">${escapeHtml(enName)}</span>`
-    : escapeHtml(name);
+  // 站名 / 竖线 / 英文名 + 版本徽章 是三个并排元素（见 .site-title-row），
+  // 竖线由网格钉在正中间，跟下面装饰线的菱形同一条中轴（用户要求的对齐）。
+  $("#siteName").textContent = name;
+  $("#siteNameEn").textContent = enName;
   document.title = enName ? `${name} ${enName}` : name;
-  // 版本号做成站名右边的小徽章（作者名留在下面一行）
   $("#siteVersion").textContent = String(site.version || "v0.1.0").toUpperCase();
   $("#siteMeta").textContent = site.author || "预留作者";
 }

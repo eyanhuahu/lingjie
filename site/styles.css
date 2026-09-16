@@ -56,7 +56,7 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
    · 楷体的笔画有起伏、收放自然，才配这两个字
    楷体没有真粗体，所以**不加 font-weight**（合成加粗会糊），靠字号 + 字距 +
    金色微光 + 白色高光撑气势。字体缺失时退回衬线栈（Mac 有 STKaiti，安卓/手机退回宋体）。 */
-.site-name{font-size:48px;color:#28565E;line-height:1.1;font-weight:500;
+.site-name{font-size:var(--title-size,48px);color:#28565E;line-height:1.1;font-weight:500;
   font-family:"KaiTi","楷体",STKaiti,"Kaiti SC",var(--font-serif);
   letter-spacing:.12em;text-indent:.12em;
   text-shadow:0 1px 0 rgba(255,255,255,.75),0 0 14px rgba(194,162,78,.35),0 2px 10px rgba(47,90,98,.16)}
@@ -69,9 +69,15 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
   text-transform:capitalize;color:rgba(40,86,94,.78);vertical-align:.2em;text-shadow:none}
 .site-name-sep{display:inline-block;width:1.5px;height:.62em;margin:0 .5em;vertical-align:.02em;
   background:linear-gradient(180deg,rgba(194,162,78,.15),var(--c-gold) 45%,rgba(194,162,78,.15))}
-/* 站名 + 版本徽章同一行：徽章样式照 DSH 那个「HARNESS」小牌子做的
-   —— 深色底、浅色大写字母、圆角小牌子，跟在站名右边 */
-.site-title-row{display:flex;align-items:center;justify-content:center;gap:.55em}
+/* 站名 / 竖线 / 英文名+版本徽章 三列网格：左右两列都是 1fr，
+   所以**中间那条竖线永远落在整行的正中**，跟下面装饰线的菱形同一条中轴。
+   （之前竖线只是夹在左右文字之间，位置由两边文字宽度决定，必然偏。）
+   字号写在行上（--title-size）：竖线的 .62em 高度、英文名的 .44em 都以标题字号为基准 ——
+   拆成独立元素后它们不再继承标题的 48px，不写就会缩成一小撮。 */
+.site-title-row{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:.5em;
+  --title-size:48px;font-size:var(--title-size)}
+.site-title-right{justify-self:start;display:flex;align-items:center;gap:.55em}
+.site-title-row .site-name{justify-self:end;text-indent:.12em}
 .site-ver-badge{font-family:"DST Bellefair",var(--font-sans);font-size:14px;font-weight:600;
   letter-spacing:.14em;text-transform:uppercase;color:#F6F1E2;
   background:linear-gradient(180deg,#33626B,#274F57);border-radius:7px;padding:3px 11px 4px;
@@ -317,7 +323,7 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
 }
 
 @media (max-width:420px){
-  .site-name{font-size:36px}
+  .site-title-row{--title-size:36px}
   .ornament i{width:42px}
   /* 顶栏只剩加群按钮一枚，右对齐；搜索已经在侧栏里了，不再挤 */
   .mast-tools{gap:8px;justify-content:flex-end}
