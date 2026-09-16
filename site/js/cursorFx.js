@@ -31,14 +31,15 @@
     jitter: 5            // 撒点时的随机偏移，免得排成一条死板的直线
   };
 
-  // 每颗星一组颜色：亮心（接近白）/ 实色（低饱和的淡色）/ 边缘。
-  // 边缘一律用白色描边 —— 不用金色（陛下指定）。底色是浅色，白色边缘压在淡色星体上
-  // 刚好勾出轮廓，又不会像金色那样跳。
+  // 每颗星一组颜色：亮心（白）/ 实色 / 光晕色。
+  // 实色**全部是蓝色系**（陛下指定），五种蓝在色相和明度上拉开，撒出来才有层次；
+  // 依旧保持低饱和度，不用金色、不用粉紫。边缘仍然是白色描边（见 drawStar）。
   var STARS = [
-    { core: "#FFFFFF", body: "#E7A9C4", halo: "#E7A9C4" },   // 淡粉
-    { core: "#FFFFFF", body: "#9CCFE0", halo: "#9CCFE0" },   // 淡青
-    { core: "#FFFFFF", body: "#AEC6E8", halo: "#AEC6E8" },   // 淡蓝
-    { core: "#FFFFFF", body: "#EFEFEF", halo: "#D9E4EA" }    // 白
+    { core: "#FFFFFF", body: "#9CCFE0", halo: "#9CCFE0" },   // 淡青蓝
+    { core: "#FFFFFF", body: "#A9C8EE", halo: "#A9C8EE" },   // 淡天蓝
+    { core: "#FFFFFF", body: "#AEB6E4", halo: "#AEB6E4" },   // 淡靛蓝
+    { core: "#FFFFFF", body: "#8FC7D8", halo: "#8FC7D8" },   // 稍深的蓝
+    { core: "#FFFFFF", body: "#D3E4F2", halo: "#C9DCEF" }    // 冰蓝白（原来是纯白那档）
   ];
 
   var TAU = Math.PI * 2;
