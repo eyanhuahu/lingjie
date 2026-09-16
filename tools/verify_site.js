@@ -182,6 +182,57 @@ for (const row of built.tele) {
   }
 }
 
+// ---- 5b. 所有条目名都要能自动跳转 ----
+// 规则：每个条目按自己的名称登记成跳转词，tele 只用于别名。
+// 曾经的问题：只登记 tele 表里的 37 个词，于是「尘火日志」这种没登记的物品名在正文里点不动。
+check(typeof Sheets.buildXrefTerms === "function", "sheetsContent.js 未导出 buildXrefTerms（所有条目名自动跳转要用它）");
+const xrefTerms = typeof Sheets.buildXrefTerms === "function"
+  ? Sheets.buildXrefTerms(built.items, built.tele)
+  : [];
+const xrefTermMap = new Map(xrefTerms.map((row) => [row.term, row.id]));
+
+let selfLinked = 0;
+for (const item of built.items) {
+  const key = String(item.name || "").toLowerCase().trim();
+  if (!key) continue;
+  if (xrefTermMap.get(key) !== item.id) {
+    failures.push(`条目「${item.name}」没有登记成跳转词，正文里引用它不会变成链接`);
+  } else {
+    selfLinked += 1;
+  }
+}
+
+// 长词优先：短名不能把长名截断（魔核 / 魔核碎片、日志 / 尘火日志）
+const order = xrefTerms.map((row) => row.term);
+for (const [longer, shorter] of [["魔核碎片", "魔核"], ["尘火日志", "日志"], ["彼岸花根", "彼岸花"]]) {
+  const a = order.indexOf(longer.toLowerCase());
+  const b = order.indexOf(shorter.toLowerCase());
+  if (a < 0 || b < 0) {
+    failures.push(`跳转词表里缺少「${longer}」或「${shorter}」`);
+  } else if (a > b) {
+    failures.push(`跳转词表排序错误：「${longer}」应排在「${shorter}」前面，否则会被短词抢先匹配`);
+  }
+}
+
+// 用真实的正则拼法验证一次：风干的羽毛正文里的「尘火日志」必须匹配到尘火日志这张卡
+function escapeRegExp(value) {
+  return String(value ?? "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+const xrefPattern = order.length ? new RegExp(order.map(escapeRegExp).join("|"), "gi") : null;
+const feather = built.items.find((it) => it.id === "lj_dried_camel_feathers");
+if (xrefPattern && feather) {
+  const hits = feather.detailText.match(xrefPattern) || [];
+  const wanted = hits.map((h) => xrefTermMap.get(h.toLowerCase().trim())).filter(Boolean);
+  if (!wanted.includes("lj_dust_log")) {
+    failures.push("风干的羽毛正文里的「尘火日志」没有匹配到 lj_dust_log，点不动");
+  }
+  // 「日志」这个短词不能把「尘火日志」截成两半
+  if (hits.some((h) => h.trim() === "日志") && feather.detailText.includes("尘火日志")) {
+    const bad = hits.filter((h) => h.trim() === "日志").length;
+    failures.push(`风干的羽毛正文里「日志」被单独匹配了 ${bad} 次，说明短词抢了长词的匹配`);
+  }
+}
+
 // ---- 6. 配方：确认图标语法能被 parseRecipe 正确切分 ----
 function splitRecipe(recipe) {
   return String(recipe || "")
@@ -303,7 +354,7 @@ for (const item of built.items) {
   console.log("站点代码验证结果（真实 sheetsContent.js）");
   console.log(`  卷目 ${built.sections.length} 个`);
   console.log(`  条目 ${built.items.length} 个（data.json 可见 ${rawVisible.length} 个）`);
-  console.log(`  词条自动跳转 ${xrefOk} / ${built.tele.length} 条生效`);
+  console.log(`  词条自动跳转：别名 ${xrefOk} / ${built.tele.length} 条生效；共 ${xrefTerms.length} 个跳转词，其中条目名自带 ${selfLinked} 个`);
   console.log(`  配方法 ${recipes} 条，其中图标 ${icons} 个，缺失 ${missingIconFiles} 个`);
   console.log(`  详情正文图片：${detailItemsWithRefs} 个条目共 ${detailRefs} 处行内图标 + ${detailBlockRefs} 处整段插图，渲染出 ${detailIconsRendered} 个，缺失 ${detailRefsMissing} 个`);
   console.log(`  卡片图片：${withImages.length} 个条目带图，缺失 ${missingCardImages} 个`);

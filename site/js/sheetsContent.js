@@ -489,6 +489,39 @@
     return { rows, data: buildContentFromSheets(rows), source: CONTENT_WORKBOOK_URL };
   }
 
+  // 自动跳转词表。
+  // 规则：**每个条目都按自己的名称自动登记**，于是任何卡片正文里写到别的条目名都会变成链接；
+  //       `tele` 表只用来登记别名（例如「魔兽森林」→ 蝴蝶岛），登记时覆盖同名条目。
+  // 返回 [{ term, id }]，按词长从长到短排序——保证「魔核碎片」不会被「魔核」抢先匹配。
+  function buildXrefTerms(items, tele) {
+    const byId = new Map();
+    const byName = new Map();
+    (items || []).forEach((item) => {
+      if (item.id) byId.set(item.id, item);
+      if (item.name) byName.set(item.name, item);
+    });
+
+    const terms = new Map();
+    (items || []).forEach((item) => {
+      const key = String(item.name || "").toLowerCase().trim();
+      if (key) terms.set(key, item.id);
+    });
+    (tele || []).forEach((row) => {
+      const list = String(row.field || "")
+        .split(/[，,、|;\n\r]+/)
+        .map((term) => term.trim())
+        .filter(Boolean);
+      const target = byId.get(row.target_id)
+        || byName.get(row.target_id)
+        || (list.length === 1 ? byName.get(list[0]) : null);
+      if (!target) return;
+      list.forEach((term) => terms.set(term.toLowerCase().trim(), target.id));
+    });
+
+    return Array.from(terms, ([term, id]) => ({ term, id }))
+      .sort((a, b) => b.term.length - a.term.length);
+  }
+
   // 站点当前使用的内容源：仓库一级目录的 data.json
   // 形状与 content.xlsx 解析产物一致（"表名" -> 行对象数组，键为第一行的中文表头），
   // 因此下游所有归一化逻辑（排序 / 是否展示 / 标签 / 图片别名 / 词条跳转）完全复用。
@@ -532,6 +565,7 @@
     parseDetailBlocks,
     renderDetailBlocks,
     appendInlineText,
+    buildXrefTerms,
     plainTextFromHtml
   };
 })();

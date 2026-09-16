@@ -151,16 +151,28 @@ function buildIndex() {
     state.itemById.set(item.id, item);
     state.itemByName.set(item.name, item);
   });
-  (state.data.tele || []).forEach((row) => {
-    const terms = splitTeleTerms(row.field);
-    const target = state.itemById.get(row.target_id)
-      || state.itemByName.get(row.target_id)
-      || (terms.length === 1 ? state.itemByName.get(terms[0]) : null);
-    if (!target) return;
-    terms.forEach((term) => {
-      state.autoXrefByTerm.set(normalize(term), target);
-    });
+  // 自动跳转词表：所有条目按名称登记，tele 只用于别名（例如「魔兽森林」→ 蝴蝶岛）。
+  // 这样任何卡片正文里写到别的条目名都会变成可点链接，不再需要逐条维护词条。
+  const xrefTerms = typeof Sheets.buildXrefTerms === "function"
+    ? Sheets.buildXrefTerms(state.data.items, state.data.tele)
+    : [];
+  xrefTerms.forEach((row) => {
+    const target = state.itemById.get(row.id);
+    if (target) state.autoXrefByTerm.set(normalize(row.term), target);
   });
+  // 兼容旧路径：万一站点脚本版本不匹配，退回只按 tele 表登记
+  if (!xrefTerms.length) {
+    (state.data.tele || []).forEach((row) => {
+      const terms = splitTeleTerms(row.field);
+      const target = state.itemById.get(row.target_id)
+        || state.itemByName.get(row.target_id)
+        || (terms.length === 1 ? state.itemByName.get(terms[0]) : null);
+      if (!target) return;
+      terms.forEach((term) => {
+        state.autoXrefByTerm.set(normalize(term), target);
+      });
+    });
+  }
   const terms = Array.from(state.autoXrefByTerm.keys())
     .filter(Boolean)
     .sort((a, b) => b.length - a.length);
