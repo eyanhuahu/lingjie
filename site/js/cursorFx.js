@@ -1,24 +1,18 @@
-/* 灵界 wiki —— 鼠标拖尾特效
+/* 灵界 wiki —— 鼠标拖尾特效（四角闪光星）
  *
- * 六种中式修仙元素混在一个画布上，按「谁该常出现、谁该偶尔出现」分配权重：
- *   ① 灵气星辉  随时都有 —— 会呼吸的金青色光点 + 细十字光芒
- *   ② 水墨飞白  跟着移动 —— 深青墨点带一点飞白尾迹，很淡
- *   ③ 剑意拖尾  快速移动才甩 —— 青白剑芒拉长淡出
- *   ④ 丹火火星  移动时溅出 —— 火星由亮黄→橙红→暗红，带上浮热流
- *   ⑤ 符文阵纹  每隔一会儿浮一枚 —— 金八卦爻（三爻）旋转淡出
- *   ⑥ 彼岸花瓣  偶尔飘一瓣 —— 带旋转与左右飘摆，慢慢落
- *   点击：迸一圈剑气涟漪 + 一把火星 + 一枚亮些的符文
- *   静止：鼠标停住一会儿，脚下缓缓浮现一圈极淡的阵法圆环（动一下就没）
+ * 参照 bigxian0201/start-home- 的 sparkles.js：鼠标走过撒下**会闪的四角星**。
+ * 三条关键差异（前两条是踩坑后改的，第三条是因为本站底色不同）：
  *
- * 几条硬约束（都照那个参考站点的做法，另外因为本站是**浅色背景**做了调整）：
- *   · 画布固定在 <html> 下、pointer-events:none —— 既不挡点击，也不会被 app.js
- *     重建 body 时连带删掉（app.js 会整体替换 body.innerHTML）
- *   · 颜色全部取**中间调**（鎏金 / 青碧 / 朱砂 / 紫 / 墨）：本站底色是米白，
- *     参考站那种 #fff6c9 亮白星在浅底上根本看不见，也不能用「叠加发光」混合模式
- *   · DPR 封顶 2、粒子总数封顶、移动事件节流 —— 省电、不卡
- *   · 系统开了「减少动态效果」就整个不启动
+ *   ① 撒点改成**按移动距离补插值**，不是按时间节流。
+ *      只按时间节流的话，快速移动时两点之间会空一大截，一转弯就断成一节一节；
+ *      现在是「每走 SPACING 像素沿路径均匀撒一颗」，多快都是连续一条，转弯也顺。
+ *   ② 星星用**线性渐变**（亮心 → 实色 → 略深的边）+ 径向渐变光晕，不是纯色块。
+ *   ③ 配色按**米白底色**重新调过：参考站是深色底，白/淡黄星一上去就看不见；
+ *      这里白星也给它一条金色边，浅底上才有轮廓。
  *
- * 想调浓淡/频率，只改下面 CFG 与 PALETTE 即可。
+ * 画布挂在 <html> 下、pointer-events:none —— 不挡点击，也不会被 app.js 重建 body 时删掉。
+ * DPR 封顶 2、粒子总数封顶、没东西可画时连清屏都跳过、系统开「减少动态效果」就整个不启动。
+ * 想调浓淡/大小/频率，只改下面 CFG 与 STARS 两个表。
  */
 (function () {
   "use strict";
@@ -26,33 +20,30 @@
   if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
   var CFG = {
-    maxParticles: 420,     // 粒子总数上限
-    moveInterval: 24,      // 鼠标移动节流（毫秒）
-    touchInterval: 40,     // 触摸移动节流
-    streakSpeed: 0.55,     // 移动速度（像素/毫秒）超过这个才甩剑光
-    fastSpeed: 1.1,        // 更快时多溅火星
-    runeInterval: 900,     // 每隔多久浮一枚符文
-    petalInterval: 520,    // 每隔多久飘一瓣花
-    inkSpeed: 0.12,        // 超过这个速度才落墨点
-    idleRingDelay: 650     // 鼠标静止多久后浮现阵法圆环
+    spacing: 9,          // 鼠标每走多少像素撒一颗星（越小越密）
+    maxParticles: 420,   // 粒子总数上限
+    maxPerMove: 26,      // 单次移动最多补几颗（防瞬移时炸出几百颗）
+    life: [0.9, 2.1],    // 星星寿命（秒）
+    size: [3.2, 8.2],    // 星星半径（像素）
+    drift: 0.28,         // 散开速度
+    rise: 0.18,          // 轻微上浮
+    burstCount: 14,      // 点击迸发的星星数
+    jitter: 5            // 撒点时的随机偏移，免得排成一条死板的直线
   };
 
-  // 浅色背景下能看清的中间调：鎏金 / 青碧 / 丹火 / 朱砂 / 紫 / 墨
-  var COLOR = {
-    mote: ["#B79A54", "#8A7330", "#3E8E9E", "#5F9AA6", "#C2A24E"],
-    spark: ["#D99A2B", "#C2551F", "#A03A18"],
-    petal: ["#B03A32", "#C75C74", "#8A5BB8", "#A97BD6"],
-    rune: "#A88636",
-    ink: "#33555E",
-    streakCore: "#6FBFC4",
-    streakEdge: "#C2A24E",
-    ring: "#B79A54"
-  };
+  // 每颗星一组颜色：亮心 / 实色 / 暗边。白星用金色暗边，浅底上才有轮廓。
+  var STARS = [
+    { core: "#FBEBB8", body: "#DFA43A", edge: "#B87F1F" },   // 金
+    { core: "#FBD3E6", body: "#DE6FA6", edge: "#B8487C" },   // 粉
+    { core: "#CDEFF9", body: "#49B2D4", edge: "#2E86A6" },   // 青
+    { core: "#FFFFFF", body: "#F3E7C6", edge: "#C9A64E" },   // 乳白
+    { core: "#FBEBB8", body: "#E8B84E", edge: "#BF8A22" }    // 暗金
+  ];
 
   var TAU = Math.PI * 2;
   var rand = Math.random;
-
-  function pick(list) { return list[Math.floor(rand() * list.length)]; }
+  function pick(a) { return a[Math.floor(rand() * a.length)]; }
+  function between(range) { return range[0] + rand() * (range[1] - range[0]); }
 
   function rgba(hex, alpha) {
     var h = hex.replace("#", "");
@@ -83,17 +74,17 @@
   resize();
   window.addEventListener("resize", resize);
 
-  // ---- 光点贴图（预先画好，避免每帧建渐变）----
+  // ---- 光晕贴图（预先画好，避免每帧建渐变）----
   var glowCache = {};
   function glowSprite(color) {
     if (glowCache[color]) return glowCache[color];
-    var size = 48;
+    var size = 64;
     var c = document.createElement("canvas");
     c.width = c.height = size;
     var g = c.getContext("2d");
     var grd = g.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
-    grd.addColorStop(0, rgba(color, 0.85));
-    grd.addColorStop(0.4, rgba(color, 0.35));
+    grd.addColorStop(0, rgba(color, 0.75));
+    grd.addColorStop(0.32, rgba(color, 0.3));
     grd.addColorStop(1, rgba(color, 0));
     g.fillStyle = grd;
     g.fillRect(0, 0, size, size);
@@ -109,334 +100,155 @@
     if (list.length > CFG.maxParticles) list.splice(0, list.length - CFG.maxParticles);
   }
 
-  // ---- ① 灵气星辉 ----
-  function spawnMote(x, y) {
+  // 一颗四角星；scale 用于点击时迸发的大星
+  function spawnStar(x, y, scale, forceColor) {
+    var pal = forceColor || pick(STARS);
+    var speed = CFG.drift * (0.4 + rand() * 1.2) * (scale || 1);
+    var ang = rand() * TAU;
     push({
-      kind: "mote", x: x, y: y,
-      vx: (rand() - 0.5) * 0.7, vy: -0.25 - rand() * 0.5,
-      life: 1, decay: 0.012 + rand() * 0.016,
-      size: 2.4 + rand() * 3.4, color: pick(COLOR.mote), phase: rand() * TAU,
-      twinkle: 0.08 + rand() * 0.1
+      x: x + (rand() - 0.5) * CFG.jitter,
+      y: y + (rand() - 0.5) * CFG.jitter,
+      vx: Math.cos(ang) * speed,
+      vy: Math.sin(ang) * speed - CFG.rise * (0.4 + rand()),
+      size: between(CFG.size) * (scale || 1),
+      rot: rand() * TAU,
+      spin: (rand() - 0.5) * 0.05,
+      life: 1,
+      decay: 1 / (between(CFG.life) * 60),
+      phase: rand() * TAU,
+      twinkle: 0.06 + rand() * 0.09,
+      pal: pal
     });
   }
 
-  // ---- ② 水墨飞白 ----
-  function spawnInk(x, y, dx, dy) {
-    var len = 8 + rand() * 14;
-    var a = Math.atan2(dy, dx) + (rand() - 0.5) * 0.5;
-    push({
-      kind: "ink", x: x, y: y,
-      vx: (rand() - 0.5) * 0.2, vy: (rand() - 0.5) * 0.2,
-      life: 1, decay: 0.05 + rand() * 0.04,
-      size: 1.4 + rand() * 2.2, color: COLOR.ink,
-      tx: Math.cos(a) * len, ty: Math.sin(a) * len
-    });
-  }
-
-  // ---- ③ 剑意拖尾 ----
-  function spawnStreak(x, y, dx, dy, speed) {
-    var a = Math.atan2(dy, dx);
-    push({
-      kind: "streak", x: x, y: y,
-      vx: Math.cos(a) * speed * 0.06, vy: Math.sin(a) * speed * 0.06,
-      life: 1, decay: 0.055 + rand() * 0.03,
-      size: 1.6 + Math.min(speed, 2.4) * 1.1, angle: a,
-      len: 26 + Math.min(speed, 2.6) * 22
-    });
-  }
-
-  // ---- ④ 丹火火星 ----
-  function spawnSpark(x, y, burst) {
-    var a = burst ? rand() * TAU : (rand() - 0.5) * 1.6 + Math.PI / 2;
-    var sp = burst ? 0.9 + rand() * 2.1 : 0.15 + rand() * 0.6;
-    push({
-      kind: "spark", x: x, y: y,
-      vx: Math.cos(a) * sp, vy: Math.sin(a) * sp - (burst ? 0 : 0.3),
-      life: 1, decay: 0.02 + rand() * 0.028,
-      size: 1.4 + rand() * 2.1, color: pick(COLOR.spark),
-      hot: 0
-    });
-  }
-
-  // ---- ⑤ 符文（金八卦爻：三爻，随机断连）----
-  function spawnRune(x, y, scale) {
-    var solid = [];
-    for (var i = 0; i < 3; i++) solid.push(rand() > 0.42);
-    push({
-      kind: "rune", x: x, y: y,
-      vx: (rand() - 0.5) * 0.16, vy: -0.12 - rand() * 0.2,
-      life: 1, decay: 0.011 + rand() * 0.008,
-      size: (13 + rand() * 5) * (scale || 1), color: COLOR.rune,
-      rot: (rand() - 0.5) * 0.5, spin: (rand() - 0.5) * 0.006, solid: solid
-    });
-  }
-
-  // ---- ⑥ 彼岸花瓣 ----
-  function spawnPetal(x, y) {
-    push({
-      kind: "petal", x: x, y: y,
-      vx: (rand() - 0.5) * 0.35, vy: 0.16 + rand() * 0.32,
-      life: 1, decay: 0.0045 + rand() * 0.005,
-      size: 4.5 + rand() * 3.5, color: pick(COLOR.petal),
-      rot: rand() * TAU, spin: (rand() - 0.5) * 0.05, phase: rand() * TAU
-    });
-  }
-
-  // ---- 点击：剑气涟漪 ----
-  function spawnRing(x, y) {
-    rings.push({ x: x, y: y, r: 6, life: 1 });
-  }
-
-  // ---- 画 ----
-  function drawMote(p) {
-    var tw = 0.62 + 0.38 * Math.sin(p.phase);
-    var r = p.size * tw;
-    ctx.globalAlpha = Math.max(0, Math.min(1, p.life)) * 0.9;
-    var sp = glowSprite(p.color);
-    ctx.drawImage(sp, p.x - r * 3, p.y - r * 3, r * 6, r * 6);
-    ctx.strokeStyle = p.color;
-    ctx.lineWidth = Math.max(0.6, r * 0.28);
-    ctx.beginPath();
-    ctx.moveTo(p.x - r * 2.1, p.y); ctx.lineTo(p.x + r * 2.1, p.y);
-    ctx.moveTo(p.x, p.y - r * 2.1); ctx.lineTo(p.x, p.y + r * 2.1);
-    ctx.stroke();
-  }
-
-  function drawInk(p) {
-    var a = Math.max(0, Math.min(1, p.life));
-    ctx.globalAlpha = a * 0.5;
-    ctx.strokeStyle = p.color;
-    ctx.lineCap = "round";
-    ctx.lineWidth = p.size * (1.6 - a * 0.9);
-    ctx.beginPath();
-    ctx.moveTo(p.x, p.y);
-    ctx.lineTo(p.x + p.tx, p.y + p.ty);
-    ctx.stroke();
-    ctx.globalAlpha = a * 0.3;
-    ctx.lineWidth = Math.max(0.6, p.size * 0.5);
-    ctx.beginPath();
-    ctx.moveTo(p.x, p.y);
-    ctx.lineTo(p.x + p.tx * 1.35, p.y + p.ty * 1.35);
-    ctx.stroke();
-  }
-
-  function drawStreak(p) {
-    var a = Math.max(0, Math.min(1, p.life));
-    var len = p.len * (0.4 + 0.6 * a);
-    var dx = Math.cos(p.angle), dy = Math.sin(p.angle);
-    var x2 = p.x - dx * len, y2 = p.y - dy * len;
-    ctx.lineCap = "round";
-    // 外圈金边 → 内芯青白，两层描边（浅底上比单向渐变清楚，也便宜）
-    ctx.globalAlpha = a * 0.3;
-    ctx.strokeStyle = COLOR.streakEdge;
-    ctx.lineWidth = p.size * 1.9 * (0.5 + 0.5 * a);
-    ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(x2, y2); ctx.stroke();
-    ctx.globalAlpha = a * 0.85;
-    ctx.strokeStyle = COLOR.streakCore;
-    ctx.lineWidth = p.size * (0.5 + 0.5 * a);
-    ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(x2, y2); ctx.stroke();
-  }
-
-  function drawSpark(p) {
-    var a = Math.max(0, Math.min(1, p.life));
-    // 亮黄 → 橙红 → 暗红
-    var c = p.life > 0.62 ? COLOR.spark[0] : (p.life > 0.3 ? COLOR.spark[1] : COLOR.spark[2]);
-    var r = p.size * (1.5 - a * 0.5);
-    ctx.globalAlpha = a * 0.95;
-    var sp = glowSprite(c);
-    ctx.drawImage(sp, p.x - r * 2.4, p.y - r * 2.4, r * 4.8, r * 4.8);
-  }
-
-  function drawRune(p) {
-    var a = Math.max(0, Math.min(1, p.life));
-    var w = p.size, gap = p.size * 0.6;
-    ctx.save();
-    ctx.translate(p.x, p.y);
-    ctx.rotate(p.rot);
-    ctx.globalAlpha = a * 0.8;
-    ctx.strokeStyle = p.color;
-    ctx.lineWidth = 1.7;
-    ctx.lineCap = "round";
-    for (var i = 0; i < 3; i++) {
-      var y = (i - 1) * gap;
-      ctx.beginPath();
-      if (p.solid[i]) {
-        ctx.moveTo(-w / 2, y); ctx.lineTo(w / 2, y);
-      } else {
-        ctx.moveTo(-w / 2, y); ctx.lineTo(-w * 0.14, y);
-        ctx.moveTo(w * 0.14, y); ctx.lineTo(w / 2, y);
-      }
-      ctx.stroke();
+  // 点击：一圈星星 + 中心几颗大星 + 一圈光晕涟漪
+  function spawnBurst(x, y) {
+    rings.push({ x: x, y: y, r: 4, life: 1 });
+    for (var i = 0; i < CFG.burstCount; i++) {
+      var a = (i / CFG.burstCount) * TAU + rand() * 0.3;
+      var d = 4 + rand() * 10;
+      spawnStar(x + Math.cos(a) * d, y + Math.sin(a) * d, 0.8 + rand() * 0.4);
     }
-    ctx.restore();
+    for (var j = 0; j < 3; j++) spawnStar(x, y, 1.5 + rand() * 0.5);
   }
 
-  function drawPetal(p) {
-    var a = Math.min(1, p.life * 1.6);
-    ctx.save();
-    ctx.translate(p.x, p.y);
-    ctx.rotate(p.rot);
-    ctx.globalAlpha = a * 0.82;
-    ctx.fillStyle = p.color;
-    var s = p.size;
+  // ---- 画：四角星 + 渐变 ----
+  function starPath(cx, cy, r, rot) {
+    var inner = r * 0.42;
     ctx.beginPath();
-    ctx.moveTo(0, -s);
-    ctx.bezierCurveTo(s * 0.9, -s * 0.45, s * 0.62, s * 0.7, 0, s);
-    ctx.bezierCurveTo(-s * 0.62, s * 0.7, -s * 0.9, -s * 0.45, 0, -s);
-    ctx.fill();
-    ctx.restore();
-  }
-
-  // 静止时的阵法圆环：双圈 + 八卦刻度，慢慢转
-  function drawIdleRing(t) {
-    if (state.idle < CFG.idleRingDelay || !state.inside) return;
-    var a = Math.min(1, (state.idle - CFG.idleRingDelay) / 600) * 0.3;
-    var r = 26;
-    ctx.save();
-    ctx.translate(state.x, state.y);
-    ctx.globalAlpha = a;
-    ctx.strokeStyle = COLOR.ring;
-    ctx.lineWidth = 1;
-    ctx.beginPath(); ctx.arc(0, 0, r, 0, TAU); ctx.stroke();
-    ctx.globalAlpha = a * 0.8;
-    ctx.beginPath(); ctx.arc(0, 0, r - 6, 0, TAU); ctx.stroke();
-    var rot = t / 4200;
-    ctx.globalAlpha = a * 0.9;
-    ctx.lineWidth = 1.6;
     for (var i = 0; i < 8; i++) {
-      var ang = rot + (i * TAU) / 8;
-      var cx = Math.cos(ang), cy = Math.sin(ang);
-      ctx.beginPath();
-      ctx.moveTo(cx * (r - 6), cy * (r - 6));
-      ctx.lineTo(cx * r, cy * r);
-      ctx.stroke();
+      var rad = i % 2 === 0 ? r : inner;
+      var a = (i * Math.PI) / 4 + rot;
+      var px = cx + Math.cos(a) * rad;
+      var py = cy + Math.sin(a) * rad;
+      if (i === 0) ctx.moveTo(px, py);
+      else ctx.lineTo(px, py);
     }
-    ctx.restore();
+    ctx.closePath();
+  }
+
+  function drawStar(p) {
+    var tw = 0.55 + 0.45 * Math.sin(p.phase);          // 闪烁
+    var fade = Math.max(0, Math.min(1, p.life));
+    var alpha = fade * (0.5 + 0.5 * tw);
+    if (alpha <= 0.01) return;
+    var r = p.size * (0.72 + 0.42 * tw);
+
+    // 光晕
+    var halo = glowSprite(p.pal.body);
+    ctx.globalAlpha = alpha * 0.5;
+    ctx.drawImage(halo, p.x - r * 3, p.y - r * 3, r * 6, r * 6);
+
+    // 星体：亮心 → 实色 → 暗边
+    var g = ctx.createLinearGradient(p.x - r, p.y - r, p.x + r, p.y + r);
+    g.addColorStop(0, p.pal.core);
+    g.addColorStop(0.5, p.pal.body);
+    g.addColorStop(1, p.pal.edge);
+    ctx.globalAlpha = alpha;
+    ctx.fillStyle = g;
+    starPath(p.x, p.y, r, p.rot);
+    ctx.fill();
   }
 
   function drawRings() {
     for (var i = rings.length - 1; i >= 0; i--) {
       var g = rings[i];
-      g.r += 2.6;
-      g.life -= 0.035;
+      g.r += 2.4;
+      g.life -= 0.032;
       if (g.life <= 0) { rings.splice(i, 1); continue; }
-      ctx.globalAlpha = g.life * 0.5;
-      ctx.strokeStyle = COLOR.streakEdge;
-      ctx.lineWidth = 2.4 * g.life + 0.6;
-      ctx.beginPath(); ctx.arc(g.x, g.y, g.r, 0, TAU); ctx.stroke();
-      ctx.globalAlpha = g.life * 0.4;
-      ctx.strokeStyle = COLOR.streakCore;
-      ctx.lineWidth = 1.2;
-      ctx.beginPath(); ctx.arc(g.x, g.y, g.r * 0.72, 0, TAU); ctx.stroke();
+      ctx.globalAlpha = g.life * 0.28;
+      ctx.strokeStyle = "#C2A24E";
+      ctx.lineWidth = 2 * g.life + 0.5;
+      ctx.beginPath();
+      ctx.arc(g.x, g.y, g.r, 0, TAU);
+      ctx.stroke();
     }
   }
 
-  var state = { x: 0, y: 0, px: 0, py: 0, lastMove: 0, idle: 1e9, inside: false, lastFrame: 0 };
-  var lastSpawn = 0, lastRune = 0, lastPetal = 0, last = 0, dirty = false;
+  var state = { x: 0, y: 0, px: 0, py: 0, hasLast: false, acc: 0, lastFrame: 0 };
+  var last = 0, dirty = false;
 
-  function move(x, y, now) {
-    var dx = x - state.px, dy = y - state.py;
-    var dist = Math.sqrt(dx * dx + dy * dy);
-    var gap = Math.max(now - state.lastMove, 8);
-    var speed = dist / gap;                     // 像素 / 毫秒
+  // 沿这段路径均匀补星：不管移动多快、转多急，都是一条连续的星轨
+  function move(x, y) {
+    var ox = state.px;
+    var oy = state.py;
+    if (!state.hasLast) {
+      state.hasLast = true;
+      ox = x; oy = y;
+      state.acc = CFG.spacing;          // 起手也撒一颗
+    }
     state.px = x; state.py = y; state.x = x; state.y = y;
-    state.lastMove = now; state.idle = 0; state.inside = true;
 
-    if (now - lastSpawn < CFG.moveInterval) return;
-    lastSpawn = now;
+    var dx = x - ox;
+    var dy = y - oy;
+    state.acc += Math.sqrt(dx * dx + dy * dy);
+    var n = Math.floor(state.acc / CFG.spacing);
+    if (n <= 0) return;
+    state.acc -= n * CFG.spacing;       // 余量留到下次，间距始终均匀
+    if (n > CFG.maxPerMove) n = CFG.maxPerMove;
 
-    // ① 灵气：常驻，走一下就撒 1~2 点
-    spawnMote(x, y);
-    if (rand() > 0.55) spawnMote(x + (rand() - 0.5) * 10, y + (rand() - 0.5) * 10);
-
-    // ② 水墨：只要在动就偶尔落一笔
-    if (speed > CFG.inkSpeed && rand() > 0.6) spawnInk(x, y, dx, dy);
-
-    // ③ 剑意 + ④ 丹火：快甩才出来
-    if (speed > CFG.streakSpeed && dist > 2) {
-      spawnStreak(x, y, dx, dy, speed);
-      spawnSpark(x, y, false);
-      if (speed > CFG.fastSpeed) spawnSpark(x, y, false);
-    }
-
-    // ⑤ 符文：隔一会儿浮一枚
-    if (now - lastRune > CFG.runeInterval) {
-      lastRune = now;
-      spawnRune(x + (rand() - 0.5) * 24, y + (rand() - 0.5) * 24, 1);
-    }
-
-    // ⑥ 花瓣：偶尔飘一瓣
-    if (now - lastPetal > CFG.petalInterval) {
-      lastPetal = now;
-      spawnPetal(x + (rand() - 0.5) * 30, y + (rand() - 0.5) * 20);
+    for (var i = 1; i <= n; i++) {
+      var t = i / (n + 1);
+      spawnStar(ox + dx * t, oy + dy * t);
     }
   }
 
   function frame(t) {
     var dt = last ? Math.min((t - last) / 16.7, 3) : 1;
     last = t;
-    state.idle += t - (state.lastFrame || t);
-    state.lastFrame = t;
 
-    // 屏幕上没东西可画时就不清屏、也不遍历，省电（rAF 本身很便宜）
-    var ringVisible = state.idle > CFG.idleRingDelay && state.inside;
-    if (dirty || list.length || rings.length || ringVisible) {
+    if (dirty || list.length || rings.length) {
       ctx.clearRect(0, 0, W, H);
-      drawIdleRing(t);
       for (var i = list.length - 1; i >= 0; i--) {
         var p = list[i];
         p.life -= p.decay * dt;
         if (p.life <= 0) { list.splice(i, 1); continue; }
         p.x += p.vx * dt;
         p.y += p.vy * dt;
-        if (p.kind === "mote") { p.phase += p.twinkle * dt; p.vy -= 0.004 * dt; }
-        else if (p.kind === "spark") { p.vy -= 0.012 * dt; p.vx *= 0.985; }
-        else if (p.kind === "petal") {
-          p.phase += 0.03 * dt;
-          p.x += Math.sin(p.phase) * 0.55 * dt;
-          p.vy = Math.min(p.vy + 0.004 * dt, 0.75);
-          p.rot += p.spin * dt;
-        }
-        else if (p.kind === "rune") { p.rot += p.spin * dt; }
-
-        if (p.kind === "mote") drawMote(p);
-        else if (p.kind === "ink") drawInk(p);
-        else if (p.kind === "streak") drawStreak(p);
-        else if (p.kind === "spark") drawSpark(p);
-        else if (p.kind === "rune") drawRune(p);
-        else if (p.kind === "petal") drawPetal(p);
+        p.rot += p.spin * dt;
+        p.phase += p.twinkle * dt;
+        drawStar(p);
       }
-
       drawRings();
       ctx.globalAlpha = 1;
-      dirty = Boolean(list.length || rings.length || ringVisible);
+      dirty = Boolean(list.length || rings.length);
     }
     requestAnimationFrame(frame);
   }
   requestAnimationFrame(frame);
 
   document.addEventListener("mousemove", function (e) {
-    move(e.clientX, e.clientY, performance.now());
+    move(e.clientX, e.clientY);
   }, { passive: true });
 
   document.addEventListener("touchmove", function (e) {
     var touch = e.touches && e.touches[0];
-    if (!touch) return;
-    var now = performance.now();
-    if (now - lastSpawn < CFG.touchInterval) return;
-    move(touch.clientX, touch.clientY, now);
+    if (touch) move(touch.clientX, touch.clientY);
   }, { passive: true });
 
-  document.addEventListener("mouseleave", function () { state.inside = false; });
   document.addEventListener("pointerdown", function (e) {
-    var now = performance.now();
-    state.x = e.clientX; state.y = e.clientY;
-    state.px = e.clientX; state.py = e.clientY;
-    state.idle = 0;
-    spawnRing(e.clientX, e.clientY);
-    for (var i = 0; i < 14; i++) spawnSpark(e.clientX, e.clientY, true);
-    spawnRune(e.clientX, e.clientY, 1.35);
-    spawnMote(e.clientX, e.clientY);
-    lastSpawn = now;
+    state.hasLast = false;               // 重新起头，免得从上次的位置拖一条长线过来
+    move(e.clientX, e.clientY);
+    spawnBurst(e.clientX, e.clientY);
   }, { passive: true });
 })();

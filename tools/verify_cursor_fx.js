@@ -17,9 +17,10 @@ function makeCtx(stat) {
   return {
     setTransform() {}, clearRect: rec("clearRect"), save() {}, restore() {},
     beginPath: rec("beginPath"), moveTo: rec("moveTo"), lineTo: rec("lineTo"),
-    arc: rec("arc"), bezierCurveTo: rec("bezierCurveTo"), fillRect: rec("fillRect"),
+    arc: rec("arc"), closePath: rec("closePath"), fillRect: rec("fillRect"),
     stroke: rec("stroke"), fill: rec("fill"), drawImage: rec("drawImage"),
     createRadialGradient: () => ({ addColorStop() {} }),
+    createLinearGradient: () => ({ addColorStop() {} }),
     translate() {}, rotate() {},
     set globalAlpha(v) { stat.lastAlpha = v; },
     get globalAlpha() { return stat.lastAlpha; },
@@ -32,7 +33,7 @@ function run({ reducedMotion }) {
   const listeners = {};
   const rafQueue = [];
   let canvasCount = 0;
-  let mainCanvas = null;   // 特效那张全屏画布（第一个创建的），后面还会创建光点贴图小画布
+  let mainCanvas = null;
 
   function makeCanvas() {
     const stat = {};
@@ -80,12 +81,12 @@ function run({ reducedMotion }) {
   }
 
   function frames(n) {
-    let last = null;
-    for (let i = 0; i < n; i++) last = frame() || last;
-    return last;
+    let lastStat = null;
+    for (let i = 0; i < n; i++) lastStat = frame() || lastStat;
+    return lastStat;
   }
 
-  return { clock, fire, frame, frames, canvasCount, getCanvas: () => mainCanvas };
+  return { clock, fire, frame, frames, canvasCount };
 }
 
 const fails = [];
@@ -98,56 +99,82 @@ const check = (ok, msg) => { if (!ok) fails.push(msg); };
   console.log("① 减少动态效果：画布数 =", env.canvasCount, env.canvasCount === 0 ? "✓ 不启动" : "✗");
 }
 
-// ---- 2. 移动轨迹能撒出粒子并画出来 ----
+// ---- 2. 连续移动：撒出来的是四角星（渐变星体 + 光晕）----
 {
   const env = run({ reducedMotion: false });
   let x = 120, y = 160;
   for (let i = 0; i < 30; i++) {
     x += 24; y += 8;
-    env.clock.now += 30;
+    env.clock.now += 16;
     env.fire("mousemove", x, y);
   }
-  const stat = env.frames(2);
-  console.log("② 30 次移动后一帧的画法调用：", JSON.stringify(stat));
-  check(stat && stat.drawImage >= 15, "移动后画出来的光点太少（drawImage=" + (stat && stat.drawImage) + "）");
-  check(stat && stat.stroke >= 5, "移动后没画出描边类粒子（stroke=" + (stat && stat.stroke) + "）");
+  const stat = env.frames(1);
+  console.log("② 30 次移动后一帧：", JSON.stringify(stat));
+  check(stat && stat.drawImage >= 20, "星星太少（drawImage=" + (stat && stat.drawImage) + "）");
+  check(stat && stat.fill >= 10, "没有画出星体（fill=" + (stat && stat.fill) + "）");
+  check(stat && stat.closePath >= 10, "星体不是闭合的四角星路径（closePath=" + (stat && stat.closePath) + "）");
 }
 
-// ---- 3. 点击要迸出涟漪 + 火星 ----
+// ---- 3. 连续移动 + 急转弯都不能断（按距离补插值）----
+{
+  const env = run({ reducedMotion: false });
+  // 先向右 400px、再向上 400px：共 40 次小步移动，转一个直角弯
+  let x = 100, y = 500;
+  env.clock.now += 16;
+  env.fire("mousemove", x, y);
+  for (let i = 0; i < 20; i++) { x += 20; env.clock.now += 16; env.fire("mousemove", x, y); }
+  for (let i = 0; i < 20; i++) { y -= 20; env.clock.now += 16; env.fire("mousemove", x, y); }
+  const stat = env.frames(1);
+  // 路径 800px、间距 9px → 大约 88 颗；转弯处若断了会明显少于这个数
+  console.log("③ 800px 直角路径后一帧：drawImage =", stat.drawImage, "（期望 ≈ 800/9 ≈ 88）");
+  check(stat.drawImage >= 70, "转弯处断了或者没补插值（drawImage=" + stat.drawImage + "）");
+
+  // 单次瞬移（比如鼠标从屏幕外跳进来）要被上限挡住，不能一口气炸出几百颗
+  const env2 = run({ reducedMotion: false });
+  env2.clock.now += 16;
+  env2.fire("mousemove", 100, 400);
+  env2.clock.now += 16;
+  env2.fire("mousemove", 900, 400);
+  const stat2 = env2.frames(1);
+  console.log("   单次跨 800px 瞬移：drawImage =", stat2.drawImage, "（上限 maxPerMove=26）");
+  check(stat2.drawImage <= 30, "瞬移没有限流（drawImage=" + stat2.drawImage + "）");
+}
+
+// ---- 4. 点击要迸发一圈星星 + 涟漪 ----
 {
   const env = run({ reducedMotion: false });
   env.clock.now += 100;
   env.fire("pointerdown", 400, 300);
   const stat = env.frames(1);
-  console.log("③ 点击一帧的画法调用：", JSON.stringify(stat));
-  check(stat && stat.arc >= 2, "点击没画出剑气涟漪（arc=" + (stat && stat.arc) + "）");
-  check(stat && stat.drawImage >= 10, "点击没迸出火星（drawImage=" + (stat && stat.drawImage) + "）");
+  console.log("④ 点击一帧：drawImage =", stat.drawImage, " arc =", stat.arc, " fill =", stat.fill);
+  check(stat.drawImage >= 12, "点击没迸出星星（drawImage=" + stat.drawImage + "）");
+  check(stat.arc >= 1, "点击没有涟漪（arc=" + stat.arc + "）");
 }
 
-// ---- 4. 粒子总数有上限 ----
+// ---- 5. 粒子总数有上限 ----
 {
   const env = run({ reducedMotion: false });
   for (let i = 0; i < 900; i++) {
-    env.clock.now += 30;
-    env.fire("mousemove", 200 + (i % 300), 200 + (i % 120));
+    env.clock.now += 16;
+    env.fire("mousemove", 100 + (i % 1000), 200 + (i % 300));
   }
   const stat = env.frames(1);
-  console.log("④ 900 次移动后一帧：drawImage =", stat.drawImage, "（上限 420）");
+  console.log("⑤ 900 次移动后一帧：drawImage =", stat.drawImage, "（上限 420）");
   check(stat.drawImage <= 420, "粒子数超过上限：" + stat.drawImage);
 }
 
-// ---- 5. 静止一会儿要浮现阵法圆环 ----
+// ---- 6. 星星会自己消失（不能越积越多）----
 {
   const env = run({ reducedMotion: false });
-  env.clock.now += 50;
-  env.fire("mousemove", 500, 400);
-  env.frames(2);
-  env.clock.now += 900;          // 静止 900ms
-  env.frames(30);                 // 让粒子散掉
-  env.clock.now += 300;
+  env.clock.now += 16;
+  env.fire("mousemove", 300, 300);
+  env.clock.now += 16;
+  env.fire("mousemove", 360, 320);
+  env.frames(1);
+  for (let i = 0; i < 200; i++) { env.clock.now += 16.7; env.frame(); }
   const stat = env.frames(1);
-  console.log("⑤ 静止后一帧：arc =", stat.arc, " stroke =", stat.stroke);
-  check(stat.arc >= 2, "静止后没有浮现阵法圆环（arc=" + stat.arc + "）");
+  console.log("⑥ 静置 3.3 秒后：list 画法调用 =", stat ? JSON.stringify(stat) : "(空)");
+  check(!stat || !stat.drawImage, "星星没有按时消失：" + JSON.stringify(stat));
 }
 
 console.log("");
@@ -157,5 +184,3 @@ if (fails.length) {
   process.exit(1);
 }
 console.log("全部通过 ✓");
-
-
