@@ -36,8 +36,13 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
 .skip-link{position:fixed;left:12px;top:12px;z-index:100;transform:translateY(-160%);background:var(--c-surface);border:1px solid var(--c-gold);border-radius:8px;padding:8px 12px}
 .skip-link:focus{transform:none}
 
-/* 顶栏底部这条金线兼作「标题区 / 内容区」的分界，1px 在米白底上看不出边界，加粗到 3px */
-.masthead{position:fixed;top:0;left:0;right:0;z-index:30;background:linear-gradient(180deg,rgb(217,241,227) 0%,rgb(154,211,220) 100%);border-bottom:3px solid var(--c-gold);min-height:var(--mast-h-base);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 28px 28px}
+/* 顶栏底部那条金线：跟侧栏分割线用同一套「两端淡出」的渐变（原来是实心 1px 边框）。
+   用两层 background 做：第一层是原来的浅青渐变底，第二层是贴在底部的 3px 金线。
+   去掉 border-bottom 后顶栏矮了 3px，app.js 的 syncMastHeight() 会自动更正 --mast-h。 */
+.masthead{position:fixed;top:0;left:0;right:0;z-index:30;
+  background-image:linear-gradient(180deg,rgb(217,241,227) 0%,rgb(154,211,220) 100%),linear-gradient(90deg,rgba(194,162,78,0) 0%,var(--c-gold-pale) 16%,var(--c-gold) 50%,var(--c-gold-pale) 84%,rgba(194,162,78,0) 100%);
+  background-size:100% 100%,100% 3px;background-position:0 0,0 100%;background-repeat:no-repeat;
+  min-height:var(--mast-h-base);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 28px 28px}
 .mast-center{text-align:center;padding-top:18px}
 /* 站名要一眼抓住：字号 32 → 44、颜色由浅青改成深青、再加一点白色高光。
    ⚠️ 字体必须走 --font-sans：中文衬线回退到宋体后**没有真粗体**，
