@@ -14,3 +14,6 @@
    已从 mod 的 `ethereal_realm_icons` 图集导出全部 74 个。
    重新导出：`python tools/extract_mod_icons.py <mod的zip包> images/lingjie/icons`
 9. `lingjie/` 下以后新增的**展示图**（截图、大图）请另开目录，不要混进 `icons/`。
+10. `cursor_sword.png` 是全站鼠标光标的图（淬铁灵剑手持外观，44×44，热点在剑尖 4 4），
+    由 `tools/export_sword_held.lua` + `tools/make_sword_cursor.py` 生成，样式里写在 `site/styles.css` 的 `--cursor-sword`。
+    **它不参与内容**，`data.json` 里不要引用它。

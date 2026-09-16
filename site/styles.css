@@ -8,13 +8,20 @@
   --c-surface:#FCFAF3; --c-line:#E0D7C2; --c-ink:#2B2620; --c-ink-2:#524E47; --c-ink-3:#9A8F7D; --c-hl:#F6E4A8;
   --font-serif:"Noto Serif SC","Source Han Serif SC","Source Han Serif CN","Songti SC",STSong,"SimSun","宋体",serif;
   --font-sans:"Noto Sans SC","Source Han Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+  /* 淬铁灵剑手持光标：图由 tools/make_sword_cursor.py 生成，热点 4 4 落在剑尖。
+     CSS 在 site/ 下，所以路径要往上一级找 images/。图挂了就退回系统光标。 */
+  --cursor-sword:url("../images/cursor_sword.png") 4 4, auto;
+  --cursor-sword-btn:url("../images/cursor_sword.png") 4 4, pointer;
 }
 
 *{box-sizing:border-box}
-html{scroll-padding-top:156px}
+html{scroll-padding-top:156px;cursor:var(--cursor-sword)}
+/* 输入框还是留 I 形光标，不然打字时找不到插入点 */
+input,textarea{cursor:text}
 body{margin:0;padding-top:var(--mast-h);font-family:var(--font-sans);color:var(--c-ink);background:#FEFFF1;font-size:15px;line-height:1.7;min-width:320px}
 button,input{font:inherit}
-button{cursor:pointer}
+button{cursor:var(--cursor-sword-btn)}
+a{cursor:var(--cursor-sword-btn)}
 a{color:var(--c-teal-link)}
 a:hover{color:var(--c-teal-ink)}
 mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px}
@@ -39,7 +46,7 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
 .search input::placeholder{color:var(--c-ink-3)}
 .search i{width:16px;height:16px;color:var(--c-gold-ink);font-size:16px;line-height:16px;font-style:normal;flex:0 0 auto}
 .search i::before{content:"⌕"}
-.btn-clear{background:linear-gradient(180deg,#F5E6AF 0%,var(--c-gold-soft) 42%,var(--c-gold) 100%);border:.5px solid #A88636;border-radius:6px;padding:8px 14px;color:#5D4616;font-size:13px;cursor:pointer;white-space:nowrap;box-shadow:inset 0 1px 0 rgba(255,255,255,.72),0 1px 2px rgba(43,38,32,.12)}
+.btn-clear{background:linear-gradient(180deg,#F5E6AF 0%,var(--c-gold-soft) 42%,var(--c-gold) 100%);border:.5px solid #A88636;border-radius:6px;padding:8px 14px;color:#5D4616;font-size:13px;cursor:var(--cursor-sword-btn);white-space:nowrap;box-shadow:inset 0 1px 0 rgba(255,255,255,.72),0 1px 2px rgba(43,38,32,.12)}
 .btn-clear:hover{background:linear-gradient(180deg,#FFF0BC 0%,#E8D18A 42%,#C9AA54 100%);border-color:#8A7330;color:#44320F}
 /* 顶部「收起目录」按钮：走描边风格，跟金色主按钮区分开，避免跟「清空」看成一类 */
 .btn-rail-toggle{background:linear-gradient(180deg,#FFFFFF 0%,var(--c-cream-box) 100%);color:var(--c-teal-ink);border-color:#BFD3D0;
@@ -47,7 +54,7 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
 .btn-rail-toggle:hover{background:linear-gradient(180deg,#FFFFFF 0%,var(--c-teal-soft) 100%);border-color:var(--c-teal);color:#24494F}
 
 /* 右下角「回到顶部」：滚动一段距离才出现，直角金印风格；层级压在弹窗之下 */
-.to-top{position:fixed;right:26px;bottom:26px;z-index:40;padding:9px 14px;font-size:13px;font-weight:600;cursor:pointer;
+.to-top{position:fixed;right:26px;bottom:26px;z-index:40;padding:9px 14px;font-size:13px;font-weight:600;cursor:var(--cursor-sword-btn);
   color:#4E3A10;border:.5px solid #A88636;border-radius:0;
   background:linear-gradient(180deg,#F8EFCC 0%,#E9D69A 100%);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.66),0 2px 6px rgba(43,38,32,.16);
@@ -70,7 +77,7 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
 .content-inner{max-width:1080px;margin:0 auto}
 .nav{list-style:none;margin:0;padding:0}
 /* 一级卷目：做成直角按钮；展开且选中时整块金色填充，一眼看出在哪一卷 */
-.nav-row{display:flex;align-items:center;padding:9px 11px;margin:0 0 5px;cursor:pointer;
+.nav-row{display:flex;align-items:center;padding:9px 11px;margin:0 0 5px;cursor:var(--cursor-sword-btn);
   color:var(--c-ink-2);font-weight:600;letter-spacing:.02em;
   background:linear-gradient(180deg,var(--c-cream) 0%,var(--c-cream-box) 100%);
   border:.5px solid var(--c-line);border-left:3px solid var(--c-gold-pale);border-radius:0;
@@ -88,7 +95,7 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
 .nav-sub{list-style:none;margin:0 0 10px;padding:0;overflow:hidden;max-height:0;transition:max-height .22s ease}
 /* 二级条目：选中时白底 + 3px 金边 + 加粗 + 菱形标记，比原来只有变蓝明显得多 */
 .nav-sub a{position:relative;display:block;padding:6px 12px 6px 24px;margin:0 0 2px;font-size:13px;
-  color:var(--c-ink-2);cursor:pointer;text-decoration:none;overflow-wrap:anywhere;
+  color:var(--c-ink-2);cursor:var(--cursor-sword-btn);text-decoration:none;overflow-wrap:anywhere;
   border-left:3px solid transparent;border-radius:0;
   transition:background .14s ease,color .14s ease,border-color .14s ease}
 .nav-sub a:hover{color:var(--c-teal-link);background:rgba(255,255,255,.66)}
@@ -98,7 +105,7 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
   transform:rotate(45deg);background:linear-gradient(135deg,var(--c-gold-soft),var(--c-gold))}
 /* 侧边栏底部 + 顶部菜单栏：加入 mod 讨论群（直角，不用圆角） */
 .rail-foot{margin-top:16px;padding:14px 12px 0;border-top:1px dashed var(--c-gold-pale);display:grid;gap:8px}
-.btn-qq{padding:9px 12px;font-size:14px;font-weight:600;color:#5D4616;cursor:pointer;
+.btn-qq{padding:9px 12px;font-size:14px;font-weight:600;color:#5D4616;cursor:var(--cursor-sword-btn);
   border:.5px solid #A88636;border-radius:0;
   background:linear-gradient(180deg,#F5E6AF 0%,var(--c-gold-soft) 42%,var(--c-gold) 100%);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.72),0 1px 2px rgba(43,38,32,.12)}
@@ -109,7 +116,7 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
 .btn-qq:active{transform:translateY(1px)}
 .qq-hint{margin:0;display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:12.5px;color:var(--c-ink-2)}
 .qq-hint b{color:var(--c-teal-ink);letter-spacing:.4px;font-variant-numeric:tabular-nums}
-.btn-copy{padding:3px 10px;font-size:12px;color:var(--c-teal-ink);cursor:pointer;
+.btn-copy{padding:3px 10px;font-size:12px;color:var(--c-teal-ink);cursor:var(--cursor-sword-btn);
   background:var(--c-white);border:.5px solid var(--c-line);border-radius:999px}
 .btn-copy:hover{border-color:var(--c-teal);color:var(--c-teal-link)}
 
@@ -149,7 +156,7 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
 .card-preview-desc{font-weight:600;color:rgba(47,90,98,.9);margin-top:22px}
 .card-recipe{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:8px 0 12px;padding:8px 10px;background:rgba(255,255,255,.42);border:.5px solid var(--c-teal-line);border-radius:8px;font-size:13px;overflow-wrap:anywhere}
 .recipe-icon{height:20px;max-width:28px;object-fit:contain;vertical-align:-4px;background:var(--c-surface);border:.5px solid var(--c-line);border-radius:4px}
-.btn-detail{background:linear-gradient(180deg,rgba(255,247,211,.94),rgba(224,203,134,.74));border:.5px solid rgba(138,115,48,.48);border-radius:8px;padding:8px 22px;color:#6B5520;font-size:13px;cursor:pointer;box-shadow:inset 0 1px 0 rgba(255,255,255,.75),0 2px 8px rgba(47,90,98,.1)}
+.btn-detail{background:linear-gradient(180deg,rgba(255,247,211,.94),rgba(224,203,134,.74));border:.5px solid rgba(138,115,48,.48);border-radius:8px;padding:8px 22px;color:#6B5520;font-size:13px;cursor:var(--cursor-sword-btn);box-shadow:inset 0 1px 0 rgba(255,255,255,.75),0 2px 8px rgba(47,90,98,.1)}
 .btn-detail:hover{border-color:rgba(138,115,48,.72);background:linear-gradient(180deg,rgba(255,250,224,.98),rgba(224,203,134,.88))}
 .card-foot{display:flex;justify-content:flex-end;position:absolute;right:28px;bottom:24px;z-index:2}
 .sections-nav{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px}
@@ -169,7 +176,7 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
 .dot{width:9px;height:9px;padding:0;background:var(--c-surface);border:.5px solid var(--c-line);border-radius:50%}
 .dot.active{background:var(--c-gold)}
 
-.xref{color:var(--c-teal-link);font-weight:500;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.xref{color:var(--c-teal-link);font-weight:500;text-decoration:underline;text-underline-offset:3px;cursor:var(--cursor-sword-btn)}
 /* 详情正文里提到别的条目时，名字前面挂一张小图标（配方用的那种 64×64 图标）。
    ⚠️ 必须写成 .modal-body img.xref-icon：`.modal-body img{height:auto}` 比单类选择器
    更具体，只写 .xref-icon 的话 height 会被它顶掉，图标会以原图 64px 撑大整行。 */
