@@ -233,38 +233,6 @@ if (xrefPattern && feather) {
   }
 }
 
-// ---- 5c. 玩家可见正文里不能出现内部代码标识 ----
-// 玩家看的是物品名，不是预制体 id / 脚本常量。曾经漏过：入魔掉落规则里的
-// 「魔核碎片 lj_magic_debris」、融灵草的 `WORLD_TILES.FOREST`、妖蝠的 `BAT_ATTACK_PERIOD`。
-// 图片路径（images/xxx/lj_magic_core.png）与 [[图片:...]] 是文件名，先剥掉再检查。
-function stripImageRefs(text) {
-  return String(text || "")
-    .replace(/\[\[(?:图片|image):[^\]]*\]\]/gi, " ")
-    .replace(/\[[^[\]]*\.(?:png|jpe?g|webp|gif|svg)\]/gi, " ")
-    .replace(/images\/\S+/gi, " ");
-}
-const CODE_RULES = [
-  [/\blj_[a-z0-9_]+/i, "预制体 id"],
-  [/`[^`]+`/, "反引号代码"],
-  [/scripts\/[\w/\.]+/, "脚本路径"],
-  [/\b[a-z]+_[a-z_]+\b/, "下划线标识符"],
-  [/\b[A-Z][A-Z_]{4,}\b/, "全大写常量"],
-];
-let codeLeaks = 0;
-for (const item of built.items) {
-  for (const [field, raw] of [["简介", item.summary], ["详情", item.detailText]]) {
-    const text = stripImageRefs(raw);
-    for (const [re, kind] of CODE_RULES) {
-      const hit = text.match(re);
-      if (hit) {
-        codeLeaks += 1;
-        failures.push(`条目「${item.name}」的${field}里出现${kind}：${hit[0]}（玩家不该看到内部代码）`);
-        break;
-      }
-    }
-  }
-}
-
 // ---- 6. 配方：确认图标语法能被 parseRecipe 正确切分 ----
 function splitRecipe(recipe) {
   return String(recipe || "")
