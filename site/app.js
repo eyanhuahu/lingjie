@@ -77,6 +77,10 @@ function ensureShell() {
         <div class="rail-inner">
           <div class="rail-title">卷目</div>
           <ul class="nav" id="nav"></ul>
+          <div class="rail-foot">
+            <button class="btn-qq" type="button" id="joinGroupBtn">加入 mod 讨论群</button>
+            <p class="qq-hint" id="qqHint" hidden>QQ 群 <b id="qqNumber">767318372</b><button class="btn-copy" type="button" id="copyQqBtn">复制群号</button></p>
+          </div>
         </div>
       </aside>
       <main class="content" id="main" tabindex="-1">
@@ -721,6 +725,50 @@ function handleAction(action) {
   }
 }
 
+// 侧边栏底部的加群按钮。
+// 桌面浏览器没装 QQ 时，唤起 scheme 是不会有反应的，所以点完同时把群号露出来，
+// 旁边配一个「复制群号」，让玩家能自己去 QQ 搜群。
+// 想更稳（全平台一步到位）就把 QQ 群设置里「分享群链接」复制的地址填到下面，
+// 那种链接在任何浏览器里都能打开加群页面（含二维码）。
+const QQ_GROUP_NUMBER = "767318372";
+const QQ_GROUP_INVITE_URL = ""; // 形如 https://qm.qq.com/q/xxxxxxx，填了就优先用它
+const QQ_GROUP_SCHEME = "mqqapi://card/show_pslcard?src_type=internal&version=1&card_type=group"
+  + `&uin=${QQ_GROUP_NUMBER}&source=qrcode`;
+
+function wireJoinGroup() {
+  const btn = $("#joinGroupBtn");
+  const hint = $("#qqHint");
+  const copy = $("#copyQqBtn");
+  if (!btn) return;
+
+  btn.addEventListener("click", () => {
+    if (hint) hint.hidden = false;
+    if (QQ_GROUP_INVITE_URL) {
+      window.open(QQ_GROUP_INVITE_URL, "_blank", "noopener");
+      return;
+    }
+    try {
+      window.location.href = QQ_GROUP_SCHEME;
+    } catch (err) {
+      // 浏览器不支持这个 scheme 时忽略即可，群号已经在下面显示出来了
+    }
+  });
+
+  if (!copy) return;
+  copy.addEventListener("click", () => {
+    const done = () => {
+      copy.textContent = "已复制";
+      window.setTimeout(() => { copy.textContent = "复制群号"; }, 1600);
+    };
+    const fail = () => { copy.textContent = "请手动复制"; };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(QQ_GROUP_NUMBER).then(done).catch(fail);
+    } else {
+      fail();
+    }
+  });
+}
+
 function wireEvents() {
   $("#searchForm").addEventListener("submit", (event) => event.preventDefault());
   $("#searchInput").addEventListener("input", debounce((event) => {
@@ -730,6 +778,7 @@ function wireEvents() {
   }));
   $("#clearSearchBtn").addEventListener("click", clearSearch);
   $("#emptyClearBtn").addEventListener("click", clearSearch);
+  wireJoinGroup();
 
   document.addEventListener("click", (event) => {
     const close = event.target.closest("[data-close='modal']");
