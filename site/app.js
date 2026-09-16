@@ -28,6 +28,7 @@ const state = {
   lockTimer: 0,
   ticking: false
 };
+let spyCards = null;
 
 // ---------------------------------------------------------------------------
 // 侧边栏底部的「加入 mod 讨论群」按钮（要换群 / 换链接改这里就行）
@@ -473,6 +474,40 @@ function setActiveItemById(itemId) {
   if (a) setActiveItemByAnchor(a);
 }
 
+function sectionSpyCards(sectionId) {
+  if (!spyCards) spyCards = new Map();
+  if (!spyCards.has(sectionId)) {
+    spyCards.set(sectionId, $$(`#sec-${CSS.escape(sectionId)} .card[data-item-id]`));
+  }
+  return spyCards.get(sectionId);
+}
+
+// 滚动时定位当前读到哪一条：卡片按 DOM 顺序自上而下排列，用二分找最后一张越过分隔线的卡片
+function currentItemId(sectionId) {
+  const cards = sectionSpyCards(sectionId);
+  if (!cards.length) return null;
+  const trigger = scrollTrigger();
+  let lo = 0;
+  let hi = cards.length - 1;
+  let found = -1;
+  while (lo <= hi) {
+    const mid = (lo + hi) >> 1;
+    if (cards[mid].getBoundingClientRect().top - trigger <= 0) {
+      found = mid;
+      lo = mid + 1;
+    } else {
+      hi = mid - 1;
+    }
+  }
+  return found < 0 ? null : cards[found].dataset.itemId || null;
+}
+
+function setActiveSubItem(itemId) {
+  $$(".nav-sub a.on").forEach((el) => el.classList.remove("on"));
+  if (!itemId) return;
+  $(`.nav-sub a[data-item="${CSS.escape(itemId)}"]`)?.classList.add("on");
+}
+
 function renderNav(sections) {
   const nav = $("#nav");
   const signature = sections.map((section) => {
@@ -528,6 +563,7 @@ function renderSections() {
     return `<section class="section" id="sec-${escapeHtml(section.id)}" data-section="${escapeHtml(section.id)}"><div class="sec-head"><h2 class="sec-title serif">${escapeHtml(section.name)}</h2></div>${body}</section>`;
   }).join("");
   $("#sectionsRoot").innerHTML = html;
+  spyCards = null;
   $("#emptyState").hidden = Boolean(visibleCount || !state.query);
   $("#searchInput").value = state.query;
   renderEditorPanel();
@@ -604,6 +640,7 @@ function updateSpy() {
   } else {
     setActiveSection(gid);
   }
+  setActiveSubItem(currentItemId(sectionId));
 }
 
 function scheduleScrollSpy() {
