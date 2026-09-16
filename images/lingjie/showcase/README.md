@@ -41,31 +41,39 @@ python tools/extract_mod_showcase.py <mod目录或zip>
 > Get-Process dst-app -ErrorAction SilentlyContinue | Stop-Process -Force
 > ```
 
-## 幽灵符号（导出踩过的坑）
+## 串图（导出踩过的坑）
 
-dst-app 找符号是**跨 build 按名字解析**的：某个动画里引用了自己 build 里并不存在的符号时，
-只要同一次导入的其它 build 里有同名符号，就会被画上去。两个实例：
+dst-app 找符号是**跨 build 按名字解析**的。这引出两类问题：
 
-- `lj_cuiju_box` 的 `closed` 帧里有一个遗留的 `swap_object` 元件 → 批量导入时从灵韵（弓）的
-  build 解析出来，匣子图上**多画了一把弓**
-- `lj_wudao_chair` 的 `idle` 帧同理 → 石台上**浮着一个蓝瓶子**（别处的 `swap_object`）
+**① 幽灵符号**：动画里引用了自己 build 里并不存在的符号，只要同一次导入的其它 build 里有同名
+符号就会被画上去。实例：`lj_cuiju_box` 的 `closed` 帧里有一个遗留的 `swap_object` 元件 →
+从灵韵（弓）的 build 解析出来，匣子图上**多画了一把弓**；`lj_wudao_chair` 同理，
+石台上浮着一个蓝瓶子。
 
-脚本因此会在导出前逐个检查帧内元件：**元素符号不在该条目自己的 build 里**时，把它所在的
-Layer 加进 `hide_layers` 一起导出（丹药那种刻意用 `override_symbols` 替换的会被排除）。
-dry-run 报告里的 `hide=` 一列就是被隐藏的 Layer，`build 未找到，跳过幽灵检查` 表示那条
-无法判断（此时不会乱隐藏）。
+**② 符号被别的包抢走**（更常见）：符号在两边都合法存在，但取错了图集。实例：
+`lj_soul_banner` 的 `head` 拿到了**蝎子的头**、`lj_demon_bat` 的 `bat_body` 粘上了蝎龙的灰色部件、
+`lj_reiki_gourd` 少了火焰光环。
 
-还有一条更隐蔽的坑：**导入过的资源会留在 dst-app 的文档里，跨多次调用都不清空**。
-所以做「只导某一个包」的隔离导出时，一定要先清空，否则上一个包还赖在文档里，
-符号会被它抢走。清空用的 Lua：
+### 现在的处理（两道防线）
 
-```lua
-tool:reset_workspace()   -- 命令会排队，脚本提交后执行
-```
+1. **导出时显式指定 `builds`**：`opts.builds = { 该条目自己的 build }`，
+   渲染器就只查这一套图集，跨包串图从根上没了。
+2. 仍然逐个检查帧内元件，把**符号不在自己 build 里**的元件所在 Layer 加进 `hide_layers`
+   （丹药那种刻意用 `override_symbols` 替换的会被排除）。
 
-实例：境界徽章 `realm_value_ui` 与灵力徽章 `spirit_value_ui` 的符号名完全一样
-（`bg`、`frame_circle`、`brain`…），不清空就连着导两次，两张图会渲染成**一模一样**
-（详见 `../anim/README.md`）。
+dry-run 报告里的 `build=` 是判定出的 build，`hide=` 是被隐藏的 Layer，
+`build 未找到，跳过幽灵检查` 表示那条两条防线都没生效——**这类条目要人工看一眼**
+（当前 13 条：5 本线索日志 + 日志 + 星陨 + 虚空戒 + 4 个线索物品，都是造型简单的物品）。
+
+> 追加的历史坑：**导入过的资源会留在 dst-app 的文档里，跨多次调用都不清空**。
+> 所以做「只导某一个包」的隔离导出时，一定要先清空，否则上一个包还赖在文档里：
+>
+> ```lua
+> tool:reset_workspace()   -- 命令会排队，脚本提交后执行
+> ```
+>
+> 实例：境界徽章 `realm_value_ui` 与灵力徽章 `spirit_value_ui` 的符号名完全一样，
+> 不清空就连着导两次，两张图会渲染成**一模一样**（详见 `../anim/README.md`）。
 
 ## 已知特例
 
@@ -78,10 +86,11 @@ tool:reset_workspace()   -- 命令会排队，脚本提交后执行
 | `lj_blood_bat` / `lj_demon_bat` | 飞行生物，没有 `idle`，取 `fly_loop_side` |
 | 5 本线索日志 | 借用 `lj_log` 的 bank（同一个模型） |
 | `lj_soul_devouring_snake` | 借用 `lj_three_headed_snake` 的 bank（模型名不同） |
-| 蝴蝶岛 / 融灵草根 / 彼岸花根 | 没有动画，卡片沿用图标 |
+| `lj_reiki_dug_grass` / `lj_red_magic_dug_flower` | 挖出来的根没有自己的包，借用父本植物 `lj_reiki_grass` / `lj_red_magic_flower` 的 bank，取 `dug`（挖出来那一帧）。**不加这条会回退成 64×64 图标放大，很虚** |
+| 蝴蝶岛 | 没有动画，卡片无图（本来就没有展示图） |
 | 炼丹炉 / 灵虚光盏 / 残骸祭坛 / 月狮 / 毒蝎幼虫 / 噬魂蛇 | 都没有精确的 `idle`，脚本兜底取该 bank 里第一个 `idle*`（dry-run 报告会标 `(fallback)`） |
 
-目前共 78 张（61 个独立动画的物品 + 17 种丹药的符号覆盖图，**17 张丹药图内容各不相同**）。
+目前共 80 张（63 个独立动画的物品 + 17 种丹药的符号覆盖图，**17 张丹药图内容各不相同**）。
 
 ## 与 `icons/` 的区别
 

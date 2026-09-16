@@ -70,7 +70,12 @@ PILL_IDS = (
     "lj_disaster_pill", "lj_juling_pill",
 )
 LOG_IDS = ("lj_ice_log", "lj_dragon_log", "lj_mighty_log", "lj_dust_log", "lj_purplemonster_log")
-BANK_ALIAS = {"lj_soul_devouring_snake": "lj_three_headed_snake"}
+BANK_ALIAS = {
+    "lj_soul_devouring_snake": "lj_three_headed_snake",
+    # 挖出来的根没有自己的包，动画在父本植物里（dug = 挖出来那一帧）
+    "lj_reiki_dug_grass": "lj_reiki_grass",
+    "lj_red_magic_dug_flower": "lj_red_magic_flower",
+}
 ANIM_OVERRIDE = {
     "lj_chiyan_scorpion_dragon": "idle_loop_side",
     "lj_crystalcrown": "anim",
@@ -78,6 +83,8 @@ ANIM_OVERRIDE = {
     "lj_huangjie_box": "closed",
     "lj_blood_bat": "fly_loop_side",
     "lj_demon_bat": "fly_loop_side",
+    "lj_reiki_dug_grass": "dug",
+    "lj_red_magic_dug_flower": "dug",
 }
 
 
@@ -211,6 +218,10 @@ for _, e in ipairs(plan) do
             checked and "" or "  (build 未找到，跳过幽灵检查)"))
         if EXPORT then
             local opts = { max_dimension = 512 }
+            -- 关键：只允许用该条目自己的 build 渲染。
+            -- dst-app 找符号是跨 build 按名字来的，批量导入时同名符号（head、body、shadow…）
+            -- 会被别的包抢走 —— 魂幡图上因此多过一个蝎子头。显式给 builds 就只查这一套图集。
+            if build ~= nil then opts.builds = { build } end
             if #phlist > 0 then opts.hide_layers = phlist end
             if e.sym then opts.override_symbols = { [e.sym] = e.id } end
             frame:export_png(OUT .. e.id .. ".png", opts)
