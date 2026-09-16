@@ -39,7 +39,13 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
 /* 顶栏底部这条金线兼作「标题区 / 内容区」的分界，1px 在米白底上看不出边界，加粗到 3px */
 .masthead{position:fixed;top:0;left:0;right:0;z-index:30;background:linear-gradient(180deg,rgb(217,241,227) 0%,rgb(154,211,220) 100%);border-bottom:3px solid var(--c-gold);min-height:var(--mast-h-base);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 28px 28px}
 .mast-center{text-align:center;padding-top:18px}
-.site-name{font-size:32px;color:rgb(70,147,153);line-height:1.05;font-family:var(--font-serif);font-weight:500}
+/* 站名要一眼抓住：字号 32 → 44、颜色由浅青改成深青、再加一点白色高光。
+   ⚠️ 字体必须走 --font-sans：中文衬线回退到宋体后**没有真粗体**，
+   font-weight:700 加不粗，44px 下看着还是发虚（卡片标题也踩过同一个坑）。
+   --font-sans 里有微软雅黑 Bold / NotoSansSC 可变字体，是真加粗。
+   顶栏变高没关系：app.js 的 syncMastHeight() 会把真实高度写回 --mast-h。 */
+.site-name{font-size:44px;color:#2C5F67;line-height:1.08;font-family:var(--font-sans);font-weight:800;
+  letter-spacing:.08em;text-shadow:0 1px 0 rgba(255,255,255,.55)}
 .site-ver{font-size:11px;letter-spacing:.2em;color:rgb(97,173,189);margin-top:7px;text-transform:uppercase}
 .ornament{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:12px}
 .ornament i{display:block;width:56px;height:2px;background:var(--c-gold-soft)}
@@ -279,7 +285,7 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
 }
 
 @media (max-width:420px){
-  .site-name{font-size:28px}
+  .site-name{font-size:36px}
   .ornament i{width:42px}
   /* 顶栏只剩加群按钮一枚，右对齐；搜索已经在侧栏里了，不再挤 */
   .mast-tools{gap:8px;justify-content:flex-end}
