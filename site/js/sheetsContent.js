@@ -619,8 +619,11 @@
 
   // 自动跳转词表。
   // 规则：**每个条目都按自己的名称自动登记**，于是任何卡片正文里写到别的条目名都会变成链接；
-  //       `tele` 表只用来登记别名（例如「魔兽森林」→ 蝴蝶岛），登记时覆盖同名条目。
+  //       `tele` 表只用来登记别名（例如「魔兽森林」→ 蝴蝶岛），登记时覆盖同名条目；
+  //       名字带括号说明的条目再额外登记「括号前的简称」（见下）。
   // 返回 [{ term, id }]，按词长从长到短排序——保证「魔核碎片」不会被「魔核」抢先匹配。
+  const BASE_NAME_SUFFIX_RE = /\s*[（(][^）)]*[）)]\s*$/;
+
   function buildXrefTerms(items, tele) {
     const byId = new Map();
     const byName = new Map();
@@ -644,6 +647,17 @@
         || (list.length === 1 ? byName.get(list[0]) : null);
       if (!target) return;
       list.forEach((term) => terms.set(term.toLowerCase().trim(), target.id));
+    });
+
+    // 条目名带括号说明的（「超凡丹（丹劫）」「噬魂蛇（隐藏 Boss）」「玄灵培育池（未实装）」），
+    // 正文里一般只写括号前的简称，只登记全名的话这些引用全都链不上。
+    // 简称放在最后登记，且已被占用（同名条目或 tele 别名）时不覆盖，
+    // 匹配是「长词优先」，所以「噬魂蛇皮」不会被「噬魂蛇」抢走。
+    (items || []).forEach((item) => {
+      const name = String(item.name || "").trim();
+      const base = name.replace(BASE_NAME_SUFFIX_RE, "").trim().toLowerCase();
+      if (!base || base === name.toLowerCase()) return;
+      if (!terms.has(base)) terms.set(base, item.id);
     });
 
     return Array.from(terms, ([term, id]) => ({ term, id }))
