@@ -69,6 +69,13 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
   text-transform:capitalize;color:rgba(40,86,94,.78);vertical-align:.2em;text-shadow:none}
 .site-name-sep{display:inline-block;width:1.5px;height:.62em;margin:0 .5em;vertical-align:.02em;
   background:linear-gradient(180deg,rgba(194,162,78,.15),var(--c-gold) 45%,rgba(194,162,78,.15))}
+/* 站名 + 版本徽章同一行：徽章样式照 DSH 那个「HARNESS」小牌子做的
+   —— 深色底、浅色大写字母、圆角小牌子，跟在站名右边 */
+.site-title-row{display:flex;align-items:center;justify-content:center;gap:.55em}
+.site-ver-badge{font-family:"DST Bellefair",var(--font-sans);font-size:14px;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;color:#F6F1E2;
+  background:linear-gradient(180deg,#33626B,#274F57);border-radius:7px;padding:3px 11px 4px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 1px 3px rgba(43,38,32,.22);white-space:nowrap}
 .site-ver{font-size:11px;letter-spacing:.2em;color:rgb(97,173,189);margin-top:7px;text-transform:uppercase}
 .ornament{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:12px}
 .ornament i{display:block;width:56px;height:2px;background:var(--c-gold-soft)}

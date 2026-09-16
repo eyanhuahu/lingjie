@@ -90,8 +90,11 @@ function ensureShell() {
     <a class="skip-link" href="#main">跳到主内容</a>
     <header class="masthead">
       <div class="mast-center">
-        <div class="serif site-name" id="siteName">灵界</div>
-        <div class="site-ver" id="siteMeta">V0.1.0 · 预留作者</div>
+        <div class="site-title-row">
+          <div class="serif site-name" id="siteName">灵界</div>
+          <span class="site-ver-badge" id="siteVersion">V0.1.0</span>
+        </div>
+        <div class="site-ver" id="siteMeta">预留作者</div>
         <div class="ornament" aria-hidden="true"><i></i><b></b><i></i></div>
       </div>
       <div class="mast-tools">
@@ -471,7 +474,9 @@ function renderHeader() {
     ? `${escapeHtml(name)}<span class="site-name-sep" aria-hidden="true"></span><span class="site-name-en">${escapeHtml(enName)}</span>`
     : escapeHtml(name);
   document.title = enName ? `${name} ${enName}` : name;
-  $("#siteMeta").textContent = `${String(site.version || "v0.1.0").toUpperCase()} · ${site.author || "预留作者"}`;
+  // 版本号做成站名右边的小徽章（作者名留在下面一行）
+  $("#siteVersion").textContent = String(site.version || "v0.1.0").toUpperCase();
+  $("#siteMeta").textContent = site.author || "预留作者";
 }
 
 function validItems() {
