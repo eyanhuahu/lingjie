@@ -103,7 +103,7 @@ MATERIAL_ICON = {
     "唤星法杖": "yellowstaff",
     "唤月法杖": "opalstaff",
     "仙人掌肉": "cactus_meat",
-    # —— mod 自己的物品：暂无图标（zip 里只有图集定义 XML，没有图集本体图片）——
+    # —— mod 自己的物品：图标来自 ethereal_realm_icons 图集（见 MOD_MATERIAL_ID）——
     "融灵草": None,
     "采下的融灵草": None,
     "融灵草根": None,
@@ -112,7 +112,8 @@ MATERIAL_ICON = {
     "彼岸花根": None,
     "紫晶塑体花": None,
     "紫晶塑体花瓣": None,
-    "花瓣": None,
+    # 花瓣是**原版**物品（petals），不是 mod 物品，走原版图标
+    "花瓣": "petals",
     "魔核碎片": None,
     "魔核": None,
     "魔晶": None,
@@ -1960,6 +1961,61 @@ DATA = {
 RECIPE_LABEL_RE = re.compile(r"^\s*[^：:\n]{1,22}[：:]\s*")
 
 
+# ---------------------------------------------------------------------------
+# 正文里的材料自动补图标
+# ---------------------------------------------------------------------------
+# R() 拼出来的配方行本来就带图标，但正文里**手写的清单**（击杀掉落、摧毁返还…）经常只有名字，
+# 于是同一行里 mod 物品有图标（前台自动加）、原版材料没有，看着一高一低。
+# 这里在生成 data.json 时就补上：名字紧挨着数量（`蝎龙骨 1` / `返还 2 木板` / `5 个木炭`）
+# 才补图标，纯叙述里的名字不动；前面已经有图标的不重复补；
+# 本身是 wiki 条目的名字跳过（前台会自动加链接和小图标，不用写死路径）。
+_QUANTITY_AFTER = re.compile(r"^\s*\d")
+_QUANTITY_BEFORE = re.compile(r"\d+\s*个?\s*$")
+_ICON_BEFORE = re.compile(r"\]\s*$")
+
+
+def material_name_re(extra_names=()):
+    """材料名正则：**最长的名字优先**，并且把 wiki 条目名一起放进去。
+
+    后者是为了「吃掉」更长的匹配：正文里的「融灵草 1」如果不放进去，
+    就会在「融」后面匹配到短名「草」并插一个草图标，变成「融灵[图标] 草 1」。
+    """
+    names = sorted(
+        set(MATERIAL_ICON) | set(MOD_MATERIAL_ID) | set(extra_names),
+        key=len,
+        reverse=True,
+    )
+    return re.compile("|".join(re.escape(n) for n in names))
+
+
+def decorate_material_icons(text, rx, skip_names):
+    """给正文里「名字 + 数量」形式的材料补上 [图标路径]，返回新文本。"""
+    if not text:
+        return text
+    out = []
+    last = 0
+    for m in rx.finditer(text):
+        name = m.group(0)
+        if name in skip_names:
+            continue
+        before, after = text[: m.start()], text[m.end():]
+        if _ICON_BEFORE.search(before):
+            continue
+        if not (_QUANTITY_AFTER.match(after) or _QUANTITY_BEFORE.search(before)):
+            continue
+        path = icon_path(icon_for(name))
+        if not path:
+            continue
+        out.append(text[last:m.start()])
+        out.append("[%s] " % path)
+        last = m.start()
+    if not out:
+        return text
+    out.append(text[last:])
+    return "".join(out)
+
+
+
 def strip_recipe_from_detail(detail, recipe):
     """详情里不要再重复一遍材料清单。
 
@@ -1987,6 +2043,11 @@ def strip_recipe_from_detail(detail, recipe):
 def main():
     for _it in DATA["items"]:
         _it["详情"] = strip_recipe_from_detail(_it["详情"], _it["制作配方"])
+
+    _wiki_names = {_it["名称"] for _it in DATA["items"] if _it.get("名称")}
+    _material_rx = material_name_re(_wiki_names)
+    for _it in DATA["items"]:
+        _it["详情"] = decorate_material_icons(_it["详情"], _material_rx, _wiki_names)
 
     if WARNINGS:
         sys.stderr.write("警告 %d 条：\n" % len(WARNINGS))
