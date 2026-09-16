@@ -115,6 +115,8 @@ function ensureShell() {
       </main>
     </div>
 
+    <button class="to-top" type="button" id="toTopBtn" aria-label="回到顶部">回到顶部</button>
+
     <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
       <pattern id="yun" width="40" height="34" patternUnits="userSpaceOnUse">
         <path d="M0,34 V22 Q10,8 20,22 Q30,8 40,22 V34 Z" fill="var(--c-white)"/>
@@ -651,7 +653,22 @@ function scheduleScrollSpy() {
   state.ticking = true;
   requestAnimationFrame(() => {
     state.ticking = false;
+    syncToTopBtn();
     updateSpy();
+  });
+}
+
+// 右下角「回到顶部」：往下滚过一屏的一半才出现，回到顶部后自己淡出
+const TO_TOP_AT = 400;
+
+function syncToTopBtn() {
+  $("#toTopBtn")?.classList.toggle("show", window.scrollY > TO_TOP_AT);
+}
+
+function wireToTop() {
+  syncToTopBtn();
+  $("#toTopBtn")?.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: state.reducedMotion ? "auto" : "smooth" });
   });
 }
 
@@ -948,6 +965,7 @@ function wireEvents() {
 async function init() {
   ensureShell();
   wireRailToggle();
+  wireToTop();
   parseHash();
   state.data = await loadData();
   buildIndex();
