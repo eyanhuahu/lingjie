@@ -26,20 +26,22 @@
 python tools/extract_mod_showcase.py <mod目录或zip>
 
 # ② 先看配对结果（不写文件）：选了哪个动画、查出哪些幽灵符号
-"<dst-app路径>" script --bypass --file .work/batch_dryrun.lua
+pwsh -File tools/run_dst_app.ps1 -LuaFile .work/batch_dryrun.lua
 
 # ③ 正式导出到本目录，文件名 = 物品预制体 id
-"<dst-app路径>" script --bypass --file .work/batch_export.lua
+pwsh -File tools/run_dst_app.ps1 -LuaFile .work/batch_export.lua
 ```
 
 导出参数：`max_dimension = 512`（最长边不超过 512 像素，保持透明背景）。
 
-> ⚠️ **跑完记得检查残留进程。** `dst-app script` 打完一行 JSON 后**不会自己退出**，
-> 它的常驻主实例还会继续活着（并会重建 `.work/` 里的输出文件）。收尾用：
->
-> ```powershell
-> Get-Process dst-app -ErrorAction SilentlyContinue | Stop-Process -Force
-> ```
+`tools/run_dst_app.ps1` 是给 dst-app 包的一层壳，帮你处理两件事：
+
+- **断网**：把更新清单和代理全指到 9 号 discard 端口，脚本发不出任何外部请求
+- **收尾**：`dst-app script` 打完 JSON 报告**不会自己退出**，常驻实例还会保留文档、
+  下次运行带着上次导入的资源（串图的元凶）。脚本跑完统一 `Stop-Process`
+- 顺便把报告里的 `print` 输出解析出来，省得自己 parse JSON
+
+它默认 `-DstApp C:\Users\huan\Downloads\dst-app.exe`，换机器用 `-DstApp` 指定。
 
 ## 串图（导出踩过的坑）
 
@@ -75,15 +77,30 @@ dry-run 报告里的 `build=` 是判定出的 build，`hide=` 是被隐藏的 La
 > 实例：境界徽章 `realm_value_ui` 与灵力徽章 `spirit_value_ui` 的符号名完全一样，
 > 不清空就连着导两次，两张图会渲染成**一模一样**（详见 `../anim/README.md`）。
 
+## 朝向：生物一律取**正面**
+
+DST 的动画按 8 个方向各有一套（`..._down` / `_side` / `_up`，蝎龙是 `downside` / `side` / `upside`）。
+展示图**优先用正面**（`down` / `downside`），看着最完整：
+
+| 生物 | 用哪套 |
+| --- | --- |
+| 妖蝠 / 暗影血蝠 | `fly_loop_down` |
+| 炽岩蝎龙 | `idle_loop_downside` |
+| 月蚀晶翼狮 / 毒蝎幼虫 | 兜底取到 `idle_down`（正好是正面）|
+| 噬魂蛇 | 兜底取到 `idle_loop_down`（正面）|
+
+> 注意：蝎龙早期版本用正面时**头部看不见**，一度改成侧面。那是跨包串图造成的假象，
+> 指定 `builds` 之后正面完全正常 —— 所以别再用「侧面才看得见」这个理由改回去。
+
 ## 已知特例
 
 | 物品 | 情况 |
 | --- | --- |
 | 17 种丹药 | 共用 `lj_pill` 的 `idle` 动画，靠 **符号覆盖** 区分：导出时带 `override_symbols = { swap_food = "<丹药 id>" }`，对应代码 `lj_pill.lua:142` 的 `OverrideSymbol("swap_food", "lj_pill", name)` |
 | `lj_crystalcrown` | 动画名是 `anim`，不是 `idle` |
-| `lj_chiyan_scorpion_dragon` | 该 bank **没有 `idle`**，只有 `idle_loop_side/upside/downside`；兜底会选到 `downside`（俯视角度，**头部被身体挡住看不见**），必须指定 `idle_loop_side` |
+| `lj_chiyan_scorpion_dragon` | 该 bank **没有 `idle`**，只有 `idle_loop_side/upside/downside`，必须显式指定，否则兜底会挑错朝向 |
 | `lj_cuiju_box` / `lj_huangjie_box` | 没有 `idle`，取 `closed`（关闭状态） |
-| `lj_blood_bat` / `lj_demon_bat` | 飞行生物，没有 `idle`，取 `fly_loop_side` |
+| `lj_blood_bat` / `lj_demon_bat` | 飞行生物，没有 `idle`，取 `fly_loop_down`（正面） |
 | 5 本线索日志 | 借用 `lj_log` 的 bank（同一个模型） |
 | `lj_soul_devouring_snake` | 借用 `lj_three_headed_snake` 的 bank（模型名不同） |
 | `lj_reiki_dug_grass` / `lj_red_magic_dug_flower` | 挖出来的根没有自己的包，借用父本植物 `lj_reiki_grass` / `lj_red_magic_flower` 的 bank，取 `dug`（挖出来那一帧）。**不加这条会回退成 64×64 图标放大，很虚** |

@@ -77,12 +77,14 @@ BANK_ALIAS = {
     "lj_red_magic_dug_flower": "lj_red_magic_flower",
 }
 ANIM_OVERRIDE = {
-    "lj_chiyan_scorpion_dragon": "idle_loop_side",
+    # 生物一律优先取**正面**朝向（-downside / -down），看着最完整；
+    # 注意：蝎龙之前用 downside 时头看不见，那是跨包串图造成的，指定 builds 之后正面就正常了。
+    "lj_chiyan_scorpion_dragon": "idle_loop_downside",
     "lj_crystalcrown": "anim",
     "lj_cuiju_box": "closed",
     "lj_huangjie_box": "closed",
-    "lj_blood_bat": "fly_loop_side",
-    "lj_demon_bat": "fly_loop_side",
+    "lj_blood_bat": "fly_loop_down",
+    "lj_demon_bat": "fly_loop_down",
     "lj_reiki_dug_grass": "dug",
     "lj_red_magic_dug_flower": "dug",
 }
