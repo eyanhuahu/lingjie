@@ -211,14 +211,16 @@ for (const item of built.items) {
   }
 }
 
-// ---- 7. 详情正文里的行内图片：必须真实存在，且必须真的渲染成图标 ----
-// 详情正文写法与制作配方一致：[images/xxx.png] 名称 数量
-// 曾经的问题：详情走的渲染函数只认 [[...]]，导致这类引用在前台显示成裸路径文本。
-// 这里用与站点相同的切分方式取引用，[[图片:xxx.png]] 那种整段插图不会被算进来。
+// ---- 7. 详情正文里的图片：必须真实存在，且必须真的渲染出来 ----
+// 两种写法都要照顾到：
+//   行内小图标  [images/xxx.png]        与制作配方同款，渲染成 <img class="recipe-icon">
+//   整段插图    [[图片:images/xxx.png|说明]]  独立成段，渲染成 .detail-image-block 的 <img>
+// 曾经的问题：详情走的渲染函数只认 [[...]]，导致行内那种在前台显示成裸路径文本。
 const INLINE_PART_SPLIT_RE = /(\[\[[^\]]+\]\]|\[[^[\]]+\.(?:png|jpe?g|webp|gif|svg)\])/gi;
 const INLINE_PART_RE = /^\[([^[\]]+\.(?:png|jpe?g|webp|gif|svg))\]$/i;
 // 只在「漏渲染」检查里用：排除 [[图片:xxx.png]] 这种双中括号写法
 const INLINE_LEFTOVER_RE = /(?<!\[)\[[^[\]]+\.(?:png|jpe?g|webp|gif|svg)\](?!\])/i;
+const BLOCK_IMAGE_RE = /^\[\[(?:图片|image):([^|\]]+)(?:\|[^\]]*)?\]\]$/i;
 
 function inlineImageRefs(text) {
   return String(text || "")
@@ -228,15 +230,27 @@ function inlineImageRefs(text) {
     .map((m) => m[1].trim());
 }
 
+// 整段插图必须独占一段（前后留空行），与站点 parseDetailBlocks 的判定一致
+function blockImageRefs(text) {
+  return String(text || "")
+    .split(/\n{2,}/)
+    .map((part) => part.trim().match(BLOCK_IMAGE_RE))
+    .filter(Boolean)
+    .map((m) => m[1].trim());
+}
+
 let detailRefs = 0;
+let detailBlockRefs = 0;
 let detailRefsMissing = 0;
 let detailIconsRendered = 0;
 let detailItemsWithRefs = 0;
 for (const item of built.items) {
   const refs = inlineImageRefs(item.detailText);
+  const blockRefs = blockImageRefs(item.detailText);
   detailRefs += refs.length;
-  if (refs.length) detailItemsWithRefs += 1;
-  for (const ref of refs) {
+  detailBlockRefs += blockRefs.length;
+  if (refs.length || blockRefs.length) detailItemsWithRefs += 1;
+  for (const ref of refs.concat(blockRefs)) {
     const fsPath = path.join(ROOT, ref.split("/").join(path.sep));
     if (!fs.existsSync(fsPath)) {
       detailRefsMissing += 1;
@@ -244,7 +258,7 @@ for (const item of built.items) {
     }
   }
 
-  // 用真实渲染函数跑一遍，确认引用变成了 <img class="recipe-icon">，且正文不留裸路径
+  // 用真实渲染函数跑一遍，确认引用真的变成了 <img>，且正文不留裸路径
   const root = sandbox.document.createElement("div");
   const blocks = Sheets.parseDetailBlocks(item.detailText || "");
   Sheets.renderDetailBlocks(blocks, root, {
@@ -258,8 +272,9 @@ for (const item of built.items) {
     if (el.tagName === "#TEXT" && INLINE_LEFTOVER_RE.test(el.textContent || "")) leftovers.push(el.textContent);
   });
   detailIconsRendered += iconsHere;
-  if (iconsHere !== refs.length) {
-    failures.push(`条目 ${item.id} 详情正文的图标渲染数量不符：引用 ${refs.length} 个，渲染出 ${iconsHere} 个`);
+  const expected = refs.length + blockRefs.length;
+  if (iconsHere !== expected) {
+    failures.push(`条目 ${item.id} 详情正文的图片渲染数量不符：引用 ${expected} 个（行内 ${refs.length} + 整段 ${blockRefs.length}），渲染出 ${iconsHere} 个`);
   }
   if (leftovers.length) {
     failures.push(`条目 ${item.id} 详情正文仍有未渲染的图片路径文本：${leftovers[0].slice(0, 60)}`);
@@ -290,7 +305,7 @@ for (const item of built.items) {
   console.log(`  条目 ${built.items.length} 个（data.json 可见 ${rawVisible.length} 个）`);
   console.log(`  词条自动跳转 ${xrefOk} / ${built.tele.length} 条生效`);
   console.log(`  配方法 ${recipes} 条，其中图标 ${icons} 个，缺失 ${missingIconFiles} 个`);
-  console.log(`  详情正文图片：${detailItemsWithRefs} 个条目共 ${detailRefs} 处引用，渲染出图标 ${detailIconsRendered} 个，缺失 ${detailRefsMissing} 个`);
+  console.log(`  详情正文图片：${detailItemsWithRefs} 个条目共 ${detailRefs} 处行内图标 + ${detailBlockRefs} 处整段插图，渲染出 ${detailIconsRendered} 个，缺失 ${detailRefsMissing} 个`);
   console.log(`  卡片图片：${withImages.length} 个条目带图，缺失 ${missingCardImages} 个`);
   console.log(`  加载入口：${loaded ? "loadContentJson() 正常" : "loadContentJson() 失败"}`);
   if (built.sections.length) {
