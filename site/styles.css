@@ -6,7 +6,7 @@
   --c-crimson:#8C1C12; --c-crimson-bg:#F4E4DF;
   --c-bg:#F5F1E7; --c-band:#EFE8D7; --c-cream:#FBF6EC; --c-cream-box:#FBF7EE; --c-white:#FFFFFF;
   --c-surface:#FCFAF3; --c-line:#E0D7C2; --c-ink:#2B2620; --c-ink-2:#524E47; --c-ink-3:#9A8F7D; --c-hl:#F6E4A8;
-  --font-serif:"Noto Serif SC","Source Han Serif SC","Songti SC",STSong,serif;
+  --font-serif:"Noto Serif SC","Source Han Serif SC","Source Han Serif CN","Songti SC",STSong,"SimSun","宋体",serif;
   --font-sans:"Noto Sans SC","Source Han Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
 }
 
@@ -19,7 +19,7 @@ a{color:var(--c-teal-link)}
 a:hover{color:var(--c-teal-ink)}
 mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px}
 [hidden]{display:none!important}
-.serif{font-family:var(--font-serif);font-weight:500}
+.serif{font-family:var(--font-serif);font-weight:700}
 :focus-visible{outline:3px solid #2F86C9;outline-offset:2px}
 
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
@@ -96,8 +96,16 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
 .card-summary{padding:14px 4px 0}
 .card-head{display:flex;align-items:flex-start;gap:12px;margin:0 0 8px;position:relative}
 .card-main{min-width:0}
-.card-title{margin:0 0 6px;font-size:19px;line-height:1.25;color:var(--c-teal-ink);overflow-wrap:anywhere}
-.card-title-preview{font-size:23px;color:rgba(47,90,98,.68);margin-bottom:10px}
+.card-title{margin:0 0 6px;font-size:19px;line-height:1.3;color:var(--c-teal-ink);font-weight:700;letter-spacing:.2px;overflow-wrap:anywhere}
+/* 卡片列表里的标题：原来是 68% 透明度的青灰 + font-weight:500，
+   在中文衬线回退字体（宋体没有粗体）上会发虚。
+   现在改成：黑体栈 + 实字重 800（这台机器上有 NotoSansSC-VF 可变字体，是真加粗）
+   + 实色 + 金色菱形点缀，一眼能抓住。 */
+.card-title-preview{font-family:var(--font-sans);font-size:24px;color:var(--c-teal-ink);
+  font-weight:800;letter-spacing:.6px;margin-bottom:10px;text-shadow:0 1px 0 rgba(255,255,255,.55)}
+.card-title-preview::before{content:"";display:inline-block;width:.34em;height:.34em;margin-right:.42em;
+  transform:rotate(45deg);vertical-align:.1em;
+  background:linear-gradient(135deg,var(--c-gold-pale),var(--c-gold));box-shadow:0 0 0 .5px rgba(138,115,48,.45)}
 .card-tags{display:flex;flex-wrap:wrap;gap:0 14px}
 .tag{font-size:12px;letter-spacing:.08em;color:rgba(138,115,48,.68);border-bottom:1px solid rgba(194,162,78,.56);margin-right:0;overflow-wrap:anywhere}
 .card-desc{font-size:14px;line-height:1.8;color:var(--c-teal-ink);margin:10px 0 12px;overflow-wrap:anywhere}
@@ -136,7 +144,10 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
 .modal-mask{position:fixed;inset:0;background:rgba(43,38,32,.45);display:flex;align-items:center;justify-content:center;padding:24px;z-index:50}
 .modal-backdrop{position:absolute;inset:0}
 .modal-card{position:relative;background:var(--c-surface);border:.5px solid var(--c-line);border-top:2px solid var(--c-gold);border-radius:12px;max-width:640px;width:100%;max-height:80vh;overflow:auto;padding:24px 26px;box-shadow:0 12px 40px rgba(43,38,32,.22)}
-.modal-card h3{margin:0 44px 14px 0;color:var(--c-teal-ink);font-family:var(--font-serif);font-weight:500}
+.modal-card h3{margin:0 44px 14px 0;color:var(--c-teal-ink);font-family:var(--font-serif);font-weight:700;letter-spacing:.3px}
+.modal-card h3::before{content:"";display:inline-block;width:.3em;height:.3em;margin-right:.45em;
+  transform:rotate(45deg);vertical-align:.12em;
+  background:linear-gradient(135deg,var(--c-gold-pale),var(--c-gold))}
 .modal-close{position:absolute;top:10px;right:12px;width:34px;height:34px;color:var(--c-ink-2);background:transparent;border:.5px solid var(--c-line);border-radius:50%;font-size:24px;line-height:1}
 .modal-body{overflow:auto}
 .modal-body img{max-width:100%;height:auto}
