@@ -6,13 +6,14 @@
 
 | 文件 | 内容 | 来源（dst-app 导出） | 用在哪张卡 |
 | --- | --- | --- | --- |
-| `poison_swamp.png` | 毒沼喷涌特效 | `fx_poison_swamp_erupt` / `level4_loop_90s` 第 19 帧 | 噬魂蛇 |
-| `moon_lion_missile.png` | 鳞粉飞弹的弹体 | `lj_moon_lion_fx` / `missile` 第 5 帧 | 月蚀晶翼狮 |
-| `moon_lion_blast.png` | 鳞粉飞弹的爆炸特效 | `lj_moon_lion_fx` / `blast` 第 8 帧 | 月蚀晶翼狮 |
 | `star_sword_charge.png` | 满充能时的剑身特效 | `swap_lj_star_sword` / `sword_charge4` 第 31 帧 | 星陨 |
 | `star_sword_hit.png` | 星陨命中特效 | `fx_sword_hit` / `fx_sword_hit` 第 3 帧 | 星陨 |
-| `realm_badge.png` | 境界徽章（绿色打坐人形图标） | `realm_value_ui` / `anim` 第 1 帧，默认 `brain` 符号 | 境界体系 |
-| `spirit_badge.png` | 灵力徽章（火焰 + 液面进度） | `spirit_value_ui` / `anim` 第 10 帧 | 灵力值 |
+| `realm_badge.png` | 境界徽章（绿色打坐人形图标） | `realm_value_ui` / `anim` 第 1 帧，默认 `brain` 符号 | 境界体系（兼卡片图）|
+| `spirit_badge.png` | 灵力徽章（火焰 + 液面进度） | `spirit_value_ui` / `anim` 第 10 帧 | 灵力值（兼卡片图）|
+
+> 尺寸：正文插图**长边一律不超过 200px**。技能特效那种按原尺寸导出会有 400px 高，
+> 在详情里显得又大又占地方（试过毒沼喷涌 / 鳞粉飞弹弹体 / 爆炸特效三张，
+> 又大又没多大意义，已经删掉了）。
 
 ## ⚠️ 两个徽章**必须各自单独导入**
 
