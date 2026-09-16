@@ -23,7 +23,7 @@ from PIL import Image
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEFAULT_SRC = os.path.join(ROOT, ".work", "sword_build.png")
 DEFAULT_OUT = os.path.join(ROOT, "images", "cursor_sword.png")
-DEFAULT_LEN = 52          # 剑的像素长度（转 45° 后的对角线长）
+DEFAULT_LEN = 76          # 剑的像素长度（转 45° 后的对角线长）；52 太细看不清，76 正好
 ANGLE = 45                # 逆时针 45°：剑尖从正上方转到左上方
 PAD = 2                   # 画布四周留白，免得剑尖正好贴在边缘
 ALPHA_MIN = 40            # 认为「有像素」的 alpha 阈值
