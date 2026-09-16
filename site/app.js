@@ -758,6 +758,7 @@ function openItemModal(itemId, trigger = document.activeElement, write = true) {
   }
   body.appendChild(detail);
   openModal();
+  requestAnimationFrame(() => positionModalCard(trigger));
   if (write) writeHash({ item: itemId });
 }
 
@@ -773,6 +774,7 @@ function openChangelogModal(trigger = document.activeElement) {
     </section>
   `).join("") || "<p>暂无更新记录。</p>";
   openModal();
+  requestAnimationFrame(() => positionModalCard(trigger));
 }
 
 function openModal() {
@@ -781,6 +783,36 @@ function openModal() {
   modal.setAttribute("aria-hidden", "false");
   document.body.style.overflow = "hidden";
   $(".modal-card").focus();
+}
+
+// 详情弹窗跟着「点开它的那张卡片」走：横向对齐卡片中轴、纵向对齐卡片上沿，
+// 超出视口就往回收。以前它按整个浏览器窗口居中，而卡片在菜单栏右边那一列，
+// 所以看起来总是偏左一点（用户反馈「点了是歪的」）。
+// 没有来源卡片时（深链 #item=xxx 直接打开、更新日志弹窗）保持窗口居中。
+function positionModalCard(trigger) {
+  const mask = $("#modal");
+  const card = $(".modal-card", mask);
+  if (!mask || !card) return;
+  const anchor = trigger && trigger.closest ? trigger.closest(".card") : null;
+  if (!anchor || mask.hidden) {
+    mask.classList.remove("anchored");
+    return;
+  }
+  const rect = anchor.getBoundingClientRect();
+  if (!rect.width && !rect.height) {
+    mask.classList.remove("anchored");
+    return;
+  }
+  const pad = 16;
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
+  const cw = card.offsetWidth;
+  const ch = card.offsetHeight;
+  const left = Math.max(pad, Math.min(rect.left + rect.width / 2 - cw / 2, vw - cw - pad));
+  const top = Math.max(pad, Math.min(rect.top, vh - ch - pad));
+  mask.classList.add("anchored");
+  mask.style.setProperty("--modal-left", `${Math.round(left)}px`);
+  mask.style.setProperty("--modal-top", `${Math.round(top)}px`);
 }
 
 function closeModal() {
@@ -1001,6 +1033,8 @@ function wireEvents() {
   window.addEventListener("resize", () => {
     syncOpenHeights();
     scheduleScrollSpy();
+    // 弹窗开着时窗口尺寸变了，重新贴回卡片
+    if (!$("#modal").hidden) positionModalCard(state.lastFocus);
   });
 }
 
