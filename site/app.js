@@ -85,6 +85,7 @@ function ensureShell() {
         <label class="sr-only" for="searchInput">搜索</label>
         <div class="search"><i class="ti ti-search" aria-hidden="true"></i><input id="searchInput" type="search" autocomplete="off" placeholder="搜索"></div>
         <button class="btn-clear" type="button" id="clearSearchBtn">清空</button>
+        <button class="btn-qq btn-qq-flat" type="button" id="joinGroupTopBtn">加入 mod 讨论群</button>
       </form>
     </header>
 
@@ -743,13 +744,10 @@ function handleAction(action) {
 
 // 点一下就能申请入群：优先打开 QQ 的分享链接（全平台都能用），
 // 万一链接失效则退回用 scheme 唤起 QQ；两种情况下都把群号显示出来 + 复制按钮兜底。
+// 侧边栏与顶部菜单栏各有一个按钮，共用这一段逻辑。
 function wireJoinGroup() {
-  const btn = $("#joinGroupBtn");
-  const hint = $("#qqHint");
-  const copy = $("#copyQqBtn");
-  if (!btn) return;
-
-  btn.addEventListener("click", () => {
+  const openGroup = () => {
+    const hint = $("#qqHint");
     if (hint) hint.hidden = false;
     if (QQ_GROUP_INVITE_URL) {
       window.open(QQ_GROUP_INVITE_URL, "_blank", "noopener");
@@ -758,10 +756,16 @@ function wireJoinGroup() {
     try {
       window.location.href = QQ_GROUP_SCHEME;
     } catch (err) {
-      // 浏览器不支持这个 scheme 时忽略即可，群号已经在下面显示出来了
+      // 浏览器不支持这个 scheme 时忽略即可，群号已经在侧边栏显示出来了
     }
+  };
+
+  ["#joinGroupBtn", "#joinGroupTopBtn"].forEach((selector) => {
+    const btn = $(selector);
+    if (btn) btn.addEventListener("click", openGroup);
   });
 
+  const copy = $("#copyQqBtn");
   if (!copy) return;
   copy.addEventListener("click", () => {
     const done = () => {

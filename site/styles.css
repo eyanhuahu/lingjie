@@ -60,12 +60,15 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
 .nav-sub a{display:block;padding:5px 12px 5px 30px;font-size:13px;color:var(--c-ink-2);cursor:pointer;border-left:2px solid transparent;text-decoration:none;overflow-wrap:anywhere}
 .nav-sub a:hover{color:var(--c-teal-link)}
 .nav-sub a.on{color:var(--c-teal-link);border-left-color:var(--c-gold)}
-/* 侧边栏底部：加入 mod 讨论群 */
+/* 侧边栏底部 + 顶部菜单栏：加入 mod 讨论群（直角，不用圆角） */
 .rail-foot{margin-top:16px;padding:14px 12px 0;border-top:1px dashed var(--c-gold-pale);display:grid;gap:8px}
-.btn-qq{width:100%;padding:9px 12px;font-size:14px;font-weight:600;color:#5D4616;cursor:pointer;
-  border:.5px solid #A88636;border-radius:8px;
+.btn-qq{padding:9px 12px;font-size:14px;font-weight:600;color:#5D4616;cursor:pointer;
+  border:.5px solid #A88636;border-radius:0;
   background:linear-gradient(180deg,#F5E6AF 0%,var(--c-gold-soft) 42%,var(--c-gold) 100%);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.72),0 1px 2px rgba(43,38,32,.12)}
+.rail-foot .btn-qq{width:100%}
+/* 顶部菜单栏里的那个：跟旁边「清空」同高同宽度的横排按钮 */
+.btn-qq-flat{width:auto;padding:8px 14px;font-size:13px;white-space:nowrap}
 .btn-qq:hover{filter:brightness(1.04)}
 .btn-qq:active{transform:translateY(1px)}
 .qq-hint{margin:0;display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:12.5px;color:var(--c-ink-2)}
@@ -181,7 +184,7 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
   .nav{display:flex;gap:6px}
   /* 窄屏时侧边栏变成横向条：加群按钮跟着排成一枚小按钮，群号提示只留按钮本身 */
   .rail-foot{flex:0 0 auto;margin:0;padding:0;border-top:0;display:block}
-  .btn-qq{width:auto;white-space:nowrap;padding:7px 12px;font-size:13px}
+  .rail-foot .btn-qq{width:auto;white-space:nowrap;padding:7px 12px;font-size:13px}
   .qq-hint{display:none}
   .nav-row{flex:0 0 auto;border-left:0;border-bottom:2px solid transparent;border-radius:6px;white-space:nowrap}
   .nav-row.on{border-left-color:transparent;border-bottom-color:transparent}
@@ -198,6 +201,8 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
   .ornament i{width:42px}
   .mast-tools{gap:8px}
   .btn-clear{padding:8px 10px}
+  /* 手机上顶栏太挤：加群按钮只留侧边栏那一枚（横向条里也能点到） */
+  .btn-qq-flat{display:none}
   .card{padding:16px 16px 58px;border-radius:14px}
   .card::before{inset:5px;border-radius:10px}
   .card::after{inset:10px;border-radius:7px}
