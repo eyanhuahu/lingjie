@@ -56,40 +56,28 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
    · 楷体的笔画有起伏、收放自然，才配这两个字
    楷体没有真粗体，所以**不加 font-weight**（合成加粗会糊），靠字号 + 字距 +
    金色微光 + 白色高光撑气势。字体缺失时退回衬线栈（Mac 有 STKaiti，安卓/手机退回宋体）。 */
-.site-name{font-size:var(--title-size,48px);color:#28565E;line-height:1.1;font-weight:500;
+.site-name{font-size:48px;color:#28565E;line-height:1.1;font-weight:500;
   font-family:"KaiTi","楷体",STKaiti,"Kaiti SC",var(--font-serif);
   letter-spacing:.12em;text-indent:.12em;
   text-shadow:0 1px 0 rgba(255,255,255,.75),0 0 14px rgba(194,162,78,.35),0 2px 10px rgba(47,90,98,.16)}
 /* 站名后面的英文名：小一号、字距放开、颜色淡一些，中间一条金色竖线隔开。
    竖线用渐变做（上下淡出），比直接写一个「|」字符更贴合中式的细气。 */
-/* 站名后面的英文名：用「饥荒」那款 Bellefair，小一号、字距放开、颜色淡一些，
-   中间一条金色竖线隔开。text-transform:capitalize 保证首字母大写
+/* 站名后面的英文名：用「饥荒」那款 Bellefair。text-transform:capitalize 保证首字母大写
    （就算 data.json 里手写成小写，显示出来也是 Spirit Realm）。
    陛下反馈「看不清」：原来用的是 78% 透明度的青，压在浅青底上必然发虚 ——
-   改成**实色深青**、字号 .44 → .5em、字距 .14 → .1em（收紧了更实），
-   再加一道白色高光把字形从背景上托起来。 */
-.site-name-en{font-family:"DST Bellefair",var(--font-sans);font-size:.5em;font-weight:400;letter-spacing:.1em;
-  text-transform:capitalize;color:#24535C;vertical-align:.18em;
+   现在改成**实色深青 #24535C**、字号放大一档、字距收紧，再加白色高光托起字形。
+   现在它在站名下方独立一行，字号不再用 em（父元素不是 48px 了），直接给 px。 */
+.site-name-en{font-family:"DST Bellefair",var(--font-sans);font-size:23px;font-weight:400;letter-spacing:.1em;
+  text-transform:capitalize;color:#24535C;line-height:1;
   text-shadow:0 1px 0 rgba(255,255,255,.7),0 1px 4px rgba(255,255,255,.45)}
-.site-name-sep{display:inline-block;width:1.5px;height:.62em;margin:0 .5em;vertical-align:.02em;
-  background:linear-gradient(180deg,rgba(194,162,78,.15),var(--c-gold) 45%,rgba(194,162,78,.15))}
-/* 站名 / 竖线 / 英文名+版本徽章 三列网格：左右两列都是 1fr，
-   所以**中间那条竖线永远落在整行的正中**，跟下面装饰线的菱形同一条中轴。
-   （之前竖线只是夹在左右文字之间，位置由两边文字宽度决定，必然偏。）
-   字号写在行上（--title-size）：竖线的 .62em 高度、英文名的 .44em 都以标题字号为基准 ——
-   拆成独立元素后它们不再继承标题的 48px，不写就会缩成一小撮。 */
-.site-title-row{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:.5em;
-  --title-size:48px;font-size:var(--title-size)}
-.site-title-right{justify-self:start;display:flex;align-items:center;gap:.35em}
-.site-title-row .site-name{justify-self:end;text-indent:.12em}
-/* 版本徽章（照 DSH 顶栏那个「HARNESS」小牌子的样式）：
-   陛下反馈原来太大、四周留白太多，所以字号 14→11px、内边距 3/11→2/8、
-   圆角 7→5px、字距 .14→.1em，并且不再随标题行撑高（align-self:center）。 */
+/* 站名下面那一行：英文名 + 版本徽章（陛下要求从「并排」改回「上下两行」）。
+   原来夹在中间的竖线是为了隔开中英文，现在两行分开就撤掉了。 */
+.site-sub-row{display:flex;align-items:center;justify-content:center;gap:.6em;margin-top:6px}
 .site-ver-badge{font-family:"DST Bellefair",var(--font-sans);font-size:11px;font-weight:600;
   letter-spacing:.1em;text-transform:uppercase;color:#F6F1E2;
   background:linear-gradient(180deg,#33626B,#274F57);border-radius:5px;padding:2px 8px;
   box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 1px 2px rgba(43,38,32,.2);
-  white-space:nowrap;align-self:center;line-height:1.5}
+  white-space:nowrap;line-height:1.5}
 .site-ver{font-size:11px;letter-spacing:.2em;color:rgb(97,173,189);margin-top:3px;text-transform:uppercase}
 .ornament{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:12px}
 .ornament i{display:block;width:56px;height:2px;background:var(--c-gold-soft)}
@@ -331,7 +319,8 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
 }
 
 @media (max-width:420px){
-  .site-title-row{--title-size:36px}
+  .site-name{font-size:36px}
+  .site-name-en{font-size:20px}
   .ornament i{width:42px}
   /* 顶栏只剩加群按钮一枚，右对齐；搜索已经在侧栏里了，不再挤 */
   .mast-tools{gap:8px;justify-content:flex-end}

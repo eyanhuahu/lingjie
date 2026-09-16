@@ -90,13 +90,10 @@ function ensureShell() {
     <a class="skip-link" href="#main">跳到主内容</a>
     <header class="masthead">
       <div class="mast-center">
-        <div class="site-title-row">
-          <span class="serif site-name" id="siteName">灵界</span>
-          <span class="site-name-sep" aria-hidden="true"></span>
-          <span class="site-title-right">
-            <span class="site-name-en" id="siteNameEn"></span>
-            <span class="site-ver-badge" id="siteVersion">V0.1.0</span>
-          </span>
+        <div class="serif site-name" id="siteName">灵界</div>
+        <div class="site-sub-row">
+          <span class="site-name-en" id="siteNameEn"></span>
+          <span class="site-ver-badge" id="siteVersion">V0.1.0</span>
         </div>
         <div class="site-ver" id="siteMeta">预留作者</div>
         <div class="ornament" aria-hidden="true"><i></i><b></b><i></i></div>
@@ -472,8 +469,7 @@ function renderHeader() {
   const site = state.data.site || {};
   const name = site.name || "灵界";
   const enName = String(site.en_name || "").trim();
-  // 站名 / 竖线 / 英文名 + 版本徽章 是三个并排元素（见 .site-title-row），
-  // 竖线由网格钉在正中间，跟下面装饰线的菱形同一条中轴（用户要求的对齐）。
+  // 站名一行、英文名 + 版本徽章一行（陛下要求英文与版本号放到中文下面）
   $("#siteName").textContent = name;
   $("#siteNameEn").textContent = enName;
   document.title = enName ? `${name} ${enName}` : name;
