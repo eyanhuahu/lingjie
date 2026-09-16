@@ -936,8 +936,15 @@ function wireEvents() {
     }
     const row = event.target.closest(".nav-row");
     if (row) {
+      const li = row.closest(".nav-group");
       const gid = row.dataset.sec;
-      openGroup(row.closest(".nav-group"));
+      // 已经展开、而且点的就是当前这一卷 → 再点一次把它收起来（以前这里只会 openGroup，
+      // 所以点标题永远收不回去，只有右边的小箭头能收）。收起时不跳转，避免"收菜单还把页面拉走"。
+      if (li.classList.contains("open") && state.activeSec === gid) {
+        closeGroup(li);
+        return;
+      }
+      openGroup(li);
       state.activeSec = gid;
       setActiveSection(gid);
       clickJump(`sec-${gid}`);
