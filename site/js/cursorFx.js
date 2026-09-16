@@ -20,24 +20,25 @@
   if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
   var CFG = {
-    spacing: 9,          // 鼠标每走多少像素撒一颗星（越小越密）
-    maxParticles: 420,   // 粒子总数上限
-    maxPerMove: 26,      // 单次移动最多补几颗（防瞬移时炸出几百颗）
-    life: [0.9, 2.1],    // 星星寿命（秒）
-    size: [3.2, 8.2],    // 星星半径（像素）
-    drift: 0.28,         // 散开速度
+    spacing: 16,         // 鼠标每走多少像素撒一颗星（越大越稀）
+    maxParticles: 300,   // 粒子总数上限
+    maxPerMove: 18,      // 单次移动最多补几颗（防瞬移时炸出几百颗）
+    life: [0.9, 2.0],    // 星星寿命（秒）
+    size: [3.2, 8.0],    // 星星半径（像素）
+    drift: 0.26,         // 散开速度
     rise: 0.18,          // 轻微上浮
-    burstCount: 14,      // 点击迸发的星星数
+    burstCount: 10,      // 点击迸发的星星数
     jitter: 5            // 撒点时的随机偏移，免得排成一条死板的直线
   };
 
-  // 每颗星一组颜色：亮心 / 实色 / 暗边。白星用金色暗边，浅底上才有轮廓。
+  // 每颗星一组颜色：亮心（接近白）/ 实色（低饱和的淡色）/ 边缘。
+  // 边缘一律用白色描边 —— 不用金色（陛下指定）。底色是浅色，白色边缘压在淡色星体上
+  // 刚好勾出轮廓，又不会像金色那样跳。
   var STARS = [
-    { core: "#FBEBB8", body: "#DFA43A", edge: "#B87F1F" },   // 金
-    { core: "#FBD3E6", body: "#DE6FA6", edge: "#B8487C" },   // 粉
-    { core: "#CDEFF9", body: "#49B2D4", edge: "#2E86A6" },   // 青
-    { core: "#FFFFFF", body: "#F3E7C6", edge: "#C9A64E" },   // 乳白
-    { core: "#FBEBB8", body: "#E8B84E", edge: "#BF8A22" }    // 暗金
+    { core: "#FFFFFF", body: "#E7A9C4", halo: "#E7A9C4" },   // 淡粉
+    { core: "#FFFFFF", body: "#9CCFE0", halo: "#9CCFE0" },   // 淡青
+    { core: "#FFFFFF", body: "#AEC6E8", halo: "#AEC6E8" },   // 淡蓝
+    { core: "#FFFFFF", body: "#EFEFEF", halo: "#D9E4EA" }    // 白
   ];
 
   var TAU = Math.PI * 2;
@@ -154,20 +155,24 @@
     if (alpha <= 0.01) return;
     var r = p.size * (0.72 + 0.42 * tw);
 
-    // 光晕
-    var halo = glowSprite(p.pal.body);
-    ctx.globalAlpha = alpha * 0.5;
+    // 光晕（用星体自己的淡色）
+    var halo = glowSprite(p.pal.halo);
+    ctx.globalAlpha = alpha * 0.45;
     ctx.drawImage(halo, p.x - r * 3, p.y - r * 3, r * 6, r * 6);
 
-    // 星体：亮心 → 实色 → 暗边
+    // 星体：白心 → 淡色，再描一圈白边
     var g = ctx.createLinearGradient(p.x - r, p.y - r, p.x + r, p.y + r);
-    g.addColorStop(0, p.pal.core);
-    g.addColorStop(0.5, p.pal.body);
-    g.addColorStop(1, p.pal.edge);
+    g.addColorStop(0, "#FFFFFF");
+    g.addColorStop(0.55, p.pal.body);
+    g.addColorStop(1, p.pal.body);
     ctx.globalAlpha = alpha;
     ctx.fillStyle = g;
     starPath(p.x, p.y, r, p.rot);
     ctx.fill();
+    ctx.globalAlpha = alpha * 0.9;
+    ctx.strokeStyle = "#FFFFFF";
+    ctx.lineWidth = Math.max(0.6, r * 0.16);
+    ctx.stroke();
   }
 
   function drawRings() {

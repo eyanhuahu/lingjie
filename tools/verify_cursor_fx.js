@@ -1,4 +1,4 @@
-// 鼠标拖尾特效（site/js/cursorFx.js）的确定性自检
+﻿// 鼠标拖尾特效（site/js/cursorFx.js）的确定性自检
 //
 // 为什么不用浏览器测：无头 Chrome 在虚拟时间下 requestAnimationFrame 几乎不跑
 // （实测 28 次移动只跑了 2 帧），粒子还没画出来就截图，看到的全是假象。
@@ -126,8 +126,8 @@ const check = (ok, msg) => { if (!ok) fails.push(msg); };
   for (let i = 0; i < 20; i++) { y -= 20; env.clock.now += 16; env.fire("mousemove", x, y); }
   const stat = env.frames(1);
   // 路径 800px、间距 9px → 大约 88 颗；转弯处若断了会明显少于这个数
-  console.log("③ 800px 直角路径后一帧：drawImage =", stat.drawImage, "（期望 ≈ 800/9 ≈ 88）");
-  check(stat.drawImage >= 70, "转弯处断了或者没补插值（drawImage=" + stat.drawImage + "）");
+  console.log("③ 800px 直角路径后一帧：drawImage =", stat.drawImage, "（期望 ≈ 800/16 = 50）");
+  check(stat.drawImage >= 44, "转弯处断了或者没补插值（drawImage=" + stat.drawImage + "）");
 
   // 单次瞬移（比如鼠标从屏幕外跳进来）要被上限挡住，不能一口气炸出几百颗
   const env2 = run({ reducedMotion: false });
@@ -136,8 +136,8 @@ const check = (ok, msg) => { if (!ok) fails.push(msg); };
   env2.clock.now += 16;
   env2.fire("mousemove", 900, 400);
   const stat2 = env2.frames(1);
-  console.log("   单次跨 800px 瞬移：drawImage =", stat2.drawImage, "（上限 maxPerMove=26）");
-  check(stat2.drawImage <= 30, "瞬移没有限流（drawImage=" + stat2.drawImage + "）");
+  console.log("   单次跨 800px 瞬移：drawImage =", stat2.drawImage, "（上限 maxPerMove=18）");
+  check(stat2.drawImage <= 22, "瞬移没有限流（drawImage=" + stat2.drawImage + "）");
 }
 
 // ---- 4. 点击要迸发一圈星星 + 涟漪 ----
@@ -159,8 +159,8 @@ const check = (ok, msg) => { if (!ok) fails.push(msg); };
     env.fire("mousemove", 100 + (i % 1000), 200 + (i % 300));
   }
   const stat = env.frames(1);
-  console.log("⑤ 900 次移动后一帧：drawImage =", stat.drawImage, "（上限 420）");
-  check(stat.drawImage <= 420, "粒子数超过上限：" + stat.drawImage);
+  console.log("⑤ 900 次移动后一帧：drawImage =", stat.drawImage, "（上限 300）");
+  check(stat.drawImage <= 300, "粒子数超过上限：" + stat.drawImage);
 }
 
 // ---- 6. 星星会自己消失（不能越积越多）----
@@ -184,3 +184,4 @@ if (fails.length) {
   process.exit(1);
 }
 console.log("全部通过 ✓");
+
