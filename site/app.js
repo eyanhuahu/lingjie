@@ -84,6 +84,7 @@ function ensureShell() {
       </div>
       <form class="mast-tools" id="searchForm" role="search">
         <label class="sr-only" for="searchInput">搜索</label>
+        <button class="btn-clear btn-rail-toggle" type="button" id="railToggleBtn" aria-expanded="true" aria-controls="rail">收起目录</button>
         <div class="search"><i class="ti ti-search" aria-hidden="true"></i><input id="searchInput" type="search" autocomplete="off" placeholder="搜索"></div>
         <button class="btn-clear" type="button" id="clearSearchBtn">清空</button>
         <button class="btn-qq btn-qq-flat" type="button" id="joinGroupTopBtn">加入 mod 讨论群</button>
@@ -91,7 +92,7 @@ function ensureShell() {
     </header>
 
     <div class="shell">
-      <aside class="rail" aria-label="卷目">
+      <aside class="rail" id="rail" aria-label="卷目">
         <div class="rail-inner">
           <div class="rail-title">卷目</div>
           <ul class="nav" id="nav"></ul>
@@ -433,7 +434,9 @@ function openGroup(li) {
   const ul = $(".nav-sub", li);
   if (!ul) return;
   li.classList.add("open");
-  ul.style.maxHeight = `${ul.scrollHeight}px`;
+  // 侧边栏整体收起时量不到高度，这时别把 max-height 写成 0，否则展开后子条目还是扁的
+  const height = ul.scrollHeight;
+  ul.style.maxHeight = height ? `${height}px` : "none";
 }
 
 function closeGroup(li) {
@@ -818,6 +821,43 @@ function wireJoinGroup() {
   });
 }
 
+// 顶部菜单栏的「收起目录」：一次性收起整条左侧菜单，状态存在本地，下次打开保持
+const RAIL_STATE_KEY = "lingjie.railCollapsed";
+
+function railCollapsed() {
+  return Boolean($(".shell")?.classList.contains("rail-collapsed"));
+}
+
+function applyRailState(collapsed, remember = true) {
+  const shell = $(".shell");
+  if (!shell) return;
+  shell.classList.toggle("rail-collapsed", collapsed);
+  const btn = $("#railToggleBtn");
+  if (btn) {
+    btn.textContent = collapsed ? "展开目录" : "收起目录";
+    btn.setAttribute("aria-expanded", String(!collapsed));
+  }
+  if (remember) {
+    try {
+      window.localStorage.setItem(RAIL_STATE_KEY, collapsed ? "1" : "0");
+    } catch (err) {
+      // 隐私模式等不允许写本地存储时忽略，不影响本次收起
+    }
+  }
+  if (!collapsed) requestAnimationFrame(syncOpenHeights);
+}
+
+function wireRailToggle() {
+  let collapsed = false;
+  try {
+    collapsed = window.localStorage.getItem(RAIL_STATE_KEY) === "1";
+  } catch (err) {
+    collapsed = false;
+  }
+  applyRailState(collapsed, false);
+  $("#railToggleBtn")?.addEventListener("click", () => applyRailState(!railCollapsed()));
+}
+
 function wireEvents() {
   $("#searchForm").addEventListener("submit", (event) => event.preventDefault());
   $("#searchInput").addEventListener("input", debounce((event) => {
@@ -907,6 +947,7 @@ function wireEvents() {
 
 async function init() {
   ensureShell();
+  wireRailToggle();
   parseHash();
   state.data = await loadData();
   buildIndex();
