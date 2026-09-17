@@ -630,7 +630,7 @@
       "图片": "images/lingjie/showcase/lj_huangjie_box.png",
       "制作配方": "[images/lingjie/icons/lj_magic_core.png] 魔核 1、[images/inventoryimages1/boards.png] 木板 5、[images/inventoryimages2/papyrus.png] 莎草纸 2、[images/inventoryimages1/cutstone.png] 石砖 5",
       "简介": "3×11 + 1×10 的大箱子，可注入魔核收集、蓝宝石返鲜、魔晶无限堆叠。",
-      "详情": "可使用锤子摧毁，可被火把燃烧，摧毁后返还 [images/inventoryimages1/boards.png] 木板 2、[images/inventoryimages2/papyrus.png] 莎草纸 1、[images/inventoryimages1/cutstone.png] 石砖 2。\n\n存放物品 3×11 + 1×10 格，具备原版箱子效果。\n\n附加功能：\n左上角「整理」——增加整理功能。\n右下角「封」——关闭箱子。\n右下方「安全入库」——箱子内已存在的物品，点击安全入库，自身的东西会一键放入箱子。\n\n注入强化：\n给予魔核，增加收集功能（收集范围可在 mod 设置里改成 10 / 50 / 100 / 200 / 500 / 全部，默认 10）。\n给予蓝宝石，增加返鲜功能。\n给予魔晶，解锁无限堆叠。\n\n可在 <灵界>、<建筑>、<储存方案> 栏位制作。",
+      "详情": "可使用锤子摧毁，可被火把燃烧，摧毁后返还 [images/inventoryimages1/boards.png] 木板 2、[images/inventoryimages2/papyrus.png] 莎草纸 1、[images/inventoryimages1/cutstone.png] 石砖 2。\n\n存放物品 3×11 + 1×10 格，具备原版箱子效果。\n\n[[图片:images/lingjie/anim/huangjie_box_ui.png|箱子界面：上方 3×11 格，下方单独一行 1×10 格]]\n\n附加功能：\n左上角「整理」——增加整理功能。\n右下角「封」——关闭箱子。\n右下方「安全入库」——箱子内已存在的物品，点击安全入库，自身的东西会一键放入箱子。\n\n注入强化：\n给予魔核，增加收集功能（收集范围可在 mod 设置里改成 10 / 50 / 100 / 200 / 500 / 全部，默认 10）。\n给予蓝宝石，增加返鲜功能。\n给予魔晶，解锁无限堆叠。\n\n可在 <灵界>、<建筑>、<储存方案> 栏位制作。",
       "排序值": "46",
       "是否展示": "true"
     },
@@ -642,7 +642,7 @@
       "图片": "images/lingjie/showcase/lj_cuiju_box.png",
       "制作配方": "[images/lingjie/icons/lj_magic_core.png] 魔核 1、[images/inventoryimages1/boards.png] 木板 5、[images/inventoryimages2/papyrus.png] 莎草纸 2、[images/inventoryimages1/cutstone.png] 石砖 5",
       "简介": "7×7 + 1 格的武器防具柜，第一格可展示武器，注入魔晶可缓慢修复耐久。",
-      "详情": "可使用锤子摧毁，可被火把燃烧，摧毁后返还 [images/inventoryimages1/boards.png] 木板 2、[images/inventoryimages2/papyrus.png] 莎草纸 1、[images/inventoryimages1/cutstone.png] 石砖 2。\n\n存放武器防具，7×7 + 1 格子。第一个格子是可以展示武器的，单独放入武器有展示效果。\n\n给予魔晶，提供缓慢恢复耐久的效​果。\n\n可在 <灵界>、<建筑>、<储存方案> 栏位制作。",
+      "详情": "可使用锤子摧毁，可被火把燃烧，摧毁后返还 [images/inventoryimages1/boards.png] 木板 2、[images/inventoryimages2/papyrus.png] 莎草纸 1、[images/inventoryimages1/cutstone.png] 石砖 2。\n\n存放武器防具，7×7 + 1 格子。第一个格子是可以展示武器的，单独放入武器有展示效果。\n\n[[图片:images/lingjie/anim/cuiju_box_ui.png|淬具匣界面：7×7 格，上方单独一格用来展示武器]]\n\n给予魔晶，提供缓慢恢复耐久的效​果。\n\n可在 <灵界>、<建筑>、<储存方案> 栏位制作。",
       "排序值": "47",
       "是否展示": "true"
     },
