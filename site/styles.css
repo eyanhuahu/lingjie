@@ -217,7 +217,7 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
    @font-face 声明的是 400 900 区间，所以这里的 800 不会被再合成加粗。
    字体没加载出来时退回黑体栈并靠 800 字重撑住。 */
 .card-title-preview{font-family:"Lingjie Titles",var(--font-sans);font-size:24px;color:var(--c-teal-ink);
-  font-weight:800;letter-spacing:.06em;margin-bottom:10px;padding-right:104px;
+  font-weight:800;letter-spacing:.06em;margin-bottom:10px;padding-right:80px;
   text-shadow:0 1px 0 rgba(255,255,255,.55)}
 .card-title-preview::before{content:"";display:inline-block;width:.34em;height:.34em;margin-right:.42em;
   transform:rotate(45deg);vertical-align:.1em;
@@ -237,11 +237,13 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
    两条权重相同（0,2,1），靠先后顺序分胜负，正文那条必须在后面。 */
 .modal-body img.recipe-icon{height:64px;max-width:64px}
 .modal-body .detail-content img.recipe-icon{height:20px;max-width:28px}
-.btn-detail{background:linear-gradient(180deg,rgba(255,247,211,.94),rgba(224,203,134,.74));border:.5px solid rgba(138,115,48,.48);border-radius:8px;padding:8px 22px;color:#6B5520;font-size:13px;cursor:var(--cursor-sword-btn);box-shadow:inset 0 1px 0 rgba(255,255,255,.75),0 2px 8px rgba(47,90,98,.1)}
-.btn-detail:hover{border-color:rgba(138,115,48,.72);background:linear-gradient(180deg,rgba(255,250,224,.98),rgba(224,203,134,.88))}
+/* 「查看详情」小按钮：作者要求**再小一点、跟正文字号差不多、精致一点**。
+   所以字号 13→12px、内边距 8/22 → 4/12、改成全圆角小药丸、边框和阴影都调淡。 */
+.btn-detail{background:linear-gradient(180deg,rgba(255,250,228,.96),rgba(238,222,168,.82));border:.5px solid rgba(138,115,48,.42);border-radius:14px;padding:4px 12px;color:#6B5520;font-size:12px;letter-spacing:.06em;line-height:1.5;cursor:var(--cursor-sword-btn);box-shadow:inset 0 1px 0 rgba(255,255,255,.7),0 1px 3px rgba(47,90,98,.08)}
+.btn-detail:hover{border-color:rgba(138,115,48,.66);background:linear-gradient(180deg,rgba(255,252,238,.99),rgba(238,222,168,.95));box-shadow:inset 0 1px 0 rgba(255,255,255,.8),0 2px 6px rgba(47,90,98,.12)}
 /* 「查看详情」按钮：原来钉在卡片**右下角**，作者要求挪到**右上角**（跟标题同一行）。
    因为是绝对定位，改 top/bottom 即可；标题另加 padding-right 让位，长标题不会被压住。 */
-.card-foot{display:flex;justify-content:flex-end;position:absolute;right:28px;top:34px;z-index:2}
+.card-foot{display:flex;justify-content:flex-end;position:absolute;right:28px;top:36px;z-index:2}
 .sections-nav{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px}
 .section-tab{border:.5px solid rgba(95,154,166,.35);border-radius:8px;background:rgba(255,255,255,.64);padding:7px 12px;color:var(--c-teal-ink)}
 .section-tab.active{background:rgba(194,162,78,.18);border-color:rgba(194,162,78,.58);color:var(--c-gold-ink)}
@@ -364,9 +366,9 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
   .card::before{inset:5px;border-radius:10px}
   .card::after{inset:10px;border-radius:7px}
   .card-media{height:160px}
-  .card-title-preview{font-size:20px;padding-right:92px}
+  .card-title-preview{font-size:20px;padding-right:72px}
   .card-head{gap:10px}
-  .card-foot{right:18px;top:26px}
+  .card-foot{right:18px;top:28px}
   .modal-mask{padding:10px}
 }
 
