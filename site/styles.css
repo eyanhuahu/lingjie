@@ -310,14 +310,19 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
 .editor-panel{margin:0 0 18px;padding:14px;background:var(--c-surface);border:.5px solid var(--c-line);border-left:2px solid var(--c-gold);border-radius:10px}
 .editor-panel h2{margin:0 0 8px;color:var(--c-teal-ink);font-size:18px}
 
-.modal-mask{position:fixed;inset:0;background:rgba(43,38,32,.45);display:flex;align-items:center;justify-content:center;padding:24px;z-index:50}
+/* 遮罩层本身可滚（兜底）：万一卡片仍然比可视区高，整层可以滚动把它带出来，
+   不至于像以前那样卡在屏幕外、滚轮也没反应。 */
+.modal-mask{position:fixed;inset:0;background:rgba(43,38,32,.45);display:flex;align-items:center;justify-content:center;padding:24px;z-index:50;overflow:auto}
 .modal-backdrop{position:absolute;inset:0}
 .modal-card{position:relative;background:var(--c-surface);border:.5px solid var(--c-line);border-top:2px solid var(--c-gold);border-radius:12px;max-width:640px;width:100%;max-height:80vh;overflow:auto;padding:24px 26px;box-shadow:0 12px 40px rgba(43,38,32,.22)}
 /* 详情弹窗跟着点击的那张卡片走（横向对齐卡片中轴、纵向对齐卡片上沿）。
    坐标由 app.js 的 positionModalCard() 算好写进这两个变量；
    没有来源卡片（深链直接打开）时不加 .anchored，退回上面那套窗口居中。 */
 .modal-mask.anchored{align-items:flex-start;justify-content:flex-start}
-.modal-mask.anchored .modal-card{position:absolute;left:var(--modal-left,24px);top:var(--modal-top,24px);margin:0}
+/* 锚定时高度钉死在可视区内（--modal-max-h 由 app.js 按可视高度算好），
+   卡片内部滚动 —— 保证点页面下方的卡片时，弹窗底部也能看到。 */
+.modal-mask.anchored .modal-card{position:absolute;left:var(--modal-left,24px);top:var(--modal-top,24px);margin:0;
+  max-height:var(--modal-max-h,calc(100vh - 32px))}
 .modal-card h3{margin:0 44px 14px 0;color:var(--c-teal-ink);font-family:var(--font-serif);font-weight:700;letter-spacing:.3px}
 .modal-card h3::before{content:"";display:inline-block;width:.3em;height:.3em;margin-right:.45em;
   transform:rotate(45deg);vertical-align:.12em;

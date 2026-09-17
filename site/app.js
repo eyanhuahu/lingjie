@@ -860,9 +860,14 @@ function positionModalCard(trigger) {
   }
   const pad = 16;
   const vw = window.innerWidth;
-  const vh = window.innerHeight;
+  // 用 visualViewport 的高度更准（移动端/带地址栏时 innerHeight 会偏大，
+  // 按它算出来的 top 会让卡片底部被截在屏幕外）
+  const vh = Math.round((window.visualViewport && window.visualViewport.height) || window.innerHeight);
+  // 锚定状态下把卡片最高高度也钉在可视区内：卡片超出屏幕时，
+  // 内容由卡片自身滚动，而不是整块被截掉（作者反馈过滚轮也看不到底部）
+  mask.style.setProperty("--modal-max-h", `${Math.max(240, vh - pad * 2)}px`);
   const cw = card.offsetWidth;
-  const ch = card.offsetHeight;
+  const ch = Math.min(card.offsetHeight, vh - pad * 2);
   const left = Math.max(pad, Math.min(rect.left + rect.width / 2 - cw / 2, vw - cw - pad));
   const top = Math.max(pad, Math.min(rect.top, vh - ch - pad));
   mask.classList.add("anchored");
