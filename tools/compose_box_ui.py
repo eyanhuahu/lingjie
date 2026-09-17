@@ -41,7 +41,7 @@ OUT = os.path.join(ROOT, "images", "lingjie", "anim", "huangjie_box_ui.png")
 PANEL_POS_Y = 250             # 面板上沿对应的控件 y（见文件头推导）
 MARGIN = 6                    # 整组平移后，按钮离面板边缘至少留这么多像素
 # 自动平移之后，用户再要求的**整组**微调（正数 = 往右下）。依旧是整组动，不单独挪。
-GROUP_NUDGE = (0, -10)
+GROUP_NUDGE = (0, -20)
 BUTTONS_LIST = [
     ("lj_huangjie_box_sort_normal.png", -415, 230),    # 整理
     ("lj_huangjie_box_collect.png", -85, 250),         # 收纳
