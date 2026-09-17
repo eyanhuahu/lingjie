@@ -10,8 +10,15 @@
 | `star_sword_hit.png` | 星陨命中特效 | `fx_sword_hit` / `fx_sword_hit` 第 3 帧 | 星陨 |
 | `realm_badge.png` | 境界徽章（深蓝打坐人形图标） | `realm_value_ui` / `anim` 第 1 帧，默认 `brain` 符号 | 境界体系（兼卡片图）|
 | `spirit_badge.png` | 灵力徽章（火焰 + 液面进度） | `spirit_value_ui` / `anim` 第 10 帧 | 灵力值（兼卡片图）|
-| `huangjie_box_ui.png` | 荒界纳物箱的箱子界面（上方 3×11、下方 1×10 的架子） | `lj_huangjie_box_ui` / `open` 最后一帧 | 荒界纳物箱 |
+| `huangjie_box_ui.png` | 荒界纳物箱的箱子界面（上方 3×11、下方 1×10 的架子 **+ 5 个按钮**） | `lj_huangjie_box_ui` / `open` 最后一帧，再用 `tools/compose_box_ui.py` 把按钮合成上去 | 荒界纳物箱 |
 | `cuiju_box_ui.png` | 聚气淬具匣的面板界面（7×7 格 + 上方展示格） | `lj_cuiju_box_ui_7x7` / `open` 最后一帧 | 聚气淬具匣 |
+
+> 纳物箱那张为什么要合成按钮：按钮在游戏里是**独立的 UI 贴图**（来自
+> `images/ethereal_realm_ui` 图集，用 `tools/extract_mod_icons.py` 切出来），
+> 不属于箱体的动画帧，单导出的箱体图上是没有按钮的。
+> 坐标直接取 `lj_mod/scripts/main/ui/containers.lua` 里 `HUANGJIE_BUTTONS` 的 `pos`，
+> 合成脚本见 `tools/compose_box_ui.py`；按钮有几个本来就落在箱体图之外（下方、右侧），
+> 所以画布会自动扩到刚好包住全部内容。
 
 > 两张 UI 图是**例外**：它们天生就大（957×578 与 809×765），上面那条「长边 ≤200px」的规矩
 > 只管技能特效那类，容器界面本来就是要看清格子的，详情里会自动缩到栏宽显示。
