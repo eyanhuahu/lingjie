@@ -4,7 +4,7 @@
 为什么要合成：按钮在游戏里是**独立的 UI 贴图**（来自 images/ethereal_realm_ui 图集），
 不属于箱体的动画帧，所以单独导出的箱体 UI 上没有按钮。
 
-## 坐标怎么来的（踩过三次坑，别改回去）
+## 坐标怎么来的（踩过坑，别改回去）
 
 mod 源码 `lj_mod/scripts/main/ui/containers.lua`：
     · 容器面板 widget.pos = (0, 250)；槽位 11×3 行 + 1 行 10 格：
@@ -21,9 +21,12 @@ mod 源码 `lj_mod/scripts/main/ui/containers.lua`：
 反推依据：按这个映射，4 行槽位落在图上 y = 95 / 175 / 255 / 340，
 跟箱子图上三层架子的实际位置（≈100 / 180 / 255）完全对得上 —— 槽位必须摆在架子上。
 
-**整组平移**：映射出来后有按钮会压在面板上沿之外（游戏里不裁剪，但插图里露出来不好看），
-所以最后把**整组**按最小位移平移一次，让 5 个按钮全部落进面板内、且保留源码里的相对布局
-（绝不单独挪某一个）。平移量在下面打印出来，方便核对。
+**整组平移**：映射出来后有按钮压在面板上沿之外，所以把**整组**平移一次
+（水平居中、竖直按需下移），保留源码里的相对布局，绝不单独挪某一个。
+用户之后可以再用 GROUP_NUDGE 整组微调（正数 = 往右下）。
+
+**画布会向外扩**：整组挪到面板边界之外时，不是裁掉按钮，而是把画布扩到刚好包住
+面板 + 全部按钮 —— 保证插图里按钮永远完整。
 
 用法：
     python tools/compose_box_ui.py [面板图] [按钮目录] [输出]
@@ -41,7 +44,8 @@ OUT = os.path.join(ROOT, "images", "lingjie", "anim", "huangjie_box_ui.png")
 PANEL_POS_Y = 250             # 面板上沿对应的控件 y（见文件头推导）
 MARGIN = 6                    # 整组平移后，按钮离面板边缘至少留这么多像素
 # 自动平移之后，用户再要求的**整组**微调（正数 = 往右下）。依旧是整组动，不单独挪。
-GROUP_NUDGE = (0, -20)
+GROUP_NUDGE = (0, -30)
+PAD = 6                       # 画布向外扩时四周留的白
 BUTTONS_LIST = [
     ("lj_huangjie_box_sort_normal.png", -415, 230),    # 整理
     ("lj_huangjie_box_collect.png", -85, 250),         # 收纳
@@ -72,8 +76,8 @@ def main():
         sprites.append((Image.open(path).convert("RGBA"), to_px(ux, uy), name))
 
     # 整组平移（绝不单独挪某一个）：
-    #   水平 —— 整组居中。源码里按钮本来就是以面板中心对称排布的（如收纳 -85 / 返鲜 +85）。
-    #   竖直 —— 整组下移，刚好让包围盒不超出面板上下边。
+    #   水平 —— 整组居中；源码里按钮本来就以面板中心对称排布（收纳 -85 / 返鲜 +85）。
+    #   竖直 —— 先按需下移让包围盒不超过面板，再叠加用户的人工微调。
     boxes = [(px - img.width / 2, py - img.height / 2, px + img.width / 2, py + img.height / 2)
              for img, (px, py), _ in sprites]
     left = min(b[0] for b in boxes)
@@ -87,17 +91,27 @@ def main():
     if bottom + shift_y > H - MARGIN:
         shift_y -= bottom + shift_y - (H - MARGIN)
     shift_y += GROUP_NUDGE[1]
-    print("整组平移：x %+.1f  y %+.0f（面板 %dx%d，按钮包围盒 x %.0f~%.0f  y %.0f~%.0f；含人工微调 %s）"
+    print("整组平移：x %+.1f  y %+.0f（面板 %dx%d，按钮包围盒 x %.0f~%.0f  y %.0f~%.0f；人工微调 %s）"
           % (shift_x, shift_y, W, H, left, right, top, bottom, GROUP_NUDGE))
 
-    for img, (px, py), name in sprites:
-        nx = px + shift_x
-        ny = py + shift_y
-        panel.alpha_composite(img, (int(round(nx - img.width / 2)), int(round(ny - img.height / 2))))
-        print("  %-34s 中心=(%d,%d)" % (name, round(nx), round(ny)))
+    placed = [(img, px + shift_x, py + shift_y, name) for img, (px, py), name in sprites]
 
-    panel.save(out)
-    print("已合成 -> %s (%dx%d)" % (out, W, H))
+    # 画布向外扩到刚好包住「面板 + 全部按钮」，避免把按钮裁掉
+    xs = [0, W] + [px - img.width / 2 for img, px, _, _ in placed] + [px + img.width / 2 for img, px, _, _ in placed]
+    ys = [0, H] + [py - img.height / 2 for img, _, py, _ in placed] + [py + img.height / 2 for img, _, py, _ in placed]
+    min_x, max_x = min(xs) - PAD, max(xs) + PAD
+    min_y, max_y = min(ys) - PAD, max(ys) + PAD
+    CW, CH = int(round(max_x - min_x)), int(round(max_y - min_y))
+    print("画布 %dx%d（面板左上角落在 (%d,%d)）" % (CW, CH, round(-min_x), round(-min_y)))
+
+    canvas = Image.new("RGBA", (CW, CH), (0, 0, 0, 0))
+    canvas.alpha_composite(panel, (int(round(-min_x)), int(round(-min_y))))
+    for img, px, py, name in placed:
+        canvas.alpha_composite(img, (int(round(px - min_x - img.width / 2)), int(round(py - min_y - img.height / 2))))
+        print("  %-34s 中心=(%d,%d)" % (name, round(px - min_x), round(py - min_y)))
+
+    canvas.save(out)
+    print("已合成 -> %s (%dx%d)" % (out, CW, CH))
 
 
 if __name__ == "__main__":
