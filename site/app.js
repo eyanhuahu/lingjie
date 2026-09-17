@@ -92,11 +92,13 @@ function ensureShell() {
       <div class="mast-center">
         <div class="serif site-name" id="siteName">灵界</div>
         <div class="site-sub-row">
-          <span class="site-name-en" id="siteNameEn"></span>
-          <span class="site-ver-badge" id="siteVersion">V0.1.0</span>
+          <span class="site-name-wrap">
+            <span class="site-name-en" id="siteNameEn"></span>
+            <span class="site-ver-badge" id="siteVersion">V0.1.0</span>
+          </span>
         </div>
-        <div class="site-ver" id="siteMeta">预留作者</div>
         <div class="ornament" aria-hidden="true"><i></i><b></b><i></i></div>
+        <div class="site-ver" id="siteMeta">预留作者</div>
       </div>
       <div class="mast-tools">
         <button class="btn-qq btn-qq-flat" type="button" id="joinGroupTopBtn">加入 mod 讨论群</button>
