@@ -233,15 +233,6 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
 /* 配方材料行：原来占**整张卡片的宽度**（在卡图下方），作者要求挪进右侧文字栏、
    跟在简介文字下面；材料多的时候靠 flex-wrap 自动换行（放不下一排就两排）。 */
 .card-recipe{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:2px 0 0;padding:7px 9px;background:rgba(255,255,255,.42);border:.5px solid var(--c-teal-line);border-radius:8px;font-size:13px;overflow-wrap:anywhere}
-/* 宽屏（左图右文双栏）：文字栏跟卡图一样高，材料行用 margin-top:auto 贴到列底 ——
-   于是**材料行的底边与左边卡图的底边对齐**（author 要求「蓝色框跟图片底对齐」）。
-   文字比图高时按内容自然撑开，不会留缝；无图的卡片不受影响。 */
-@media (min-width:1024px){
-  .card-top{align-items:stretch}
-  .card-summary{display:flex;flex-direction:column}
-  .card:not(.no-media) .card-summary{min-height:172px}
-  .card-recipe{margin-top:auto}
-}
 .recipe-icon{height:20px;max-width:28px;object-fit:contain;vertical-align:-4px;background:var(--c-surface);border:.5px solid var(--c-line);border-radius:4px}
 /* ⚠️ 弹窗里要靠这两条把尺寸掰回来：`.modal-body img{max-width:100%;height:auto}` 比单类
    选择器更具体，不写就会被顶掉、按原图 63/64px 渲染。两类位置要求的尺寸不一样：
@@ -256,7 +247,7 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
 .btn-detail:hover{border-color:rgba(138,115,48,.66);background:linear-gradient(180deg,rgba(255,252,238,.99),rgba(238,222,168,.95));box-shadow:inset 0 1px 0 rgba(255,255,255,.8),0 2px 6px rgba(47,90,98,.12)}
 /* 「查看详情」按钮：原来钉在卡片**右下角**，作者要求挪到**右上角**（跟标题同一行）。
    因为是绝对定位，改 top/bottom 即可；标题另加 padding-right 让位，长标题不会被压住。 */
-.card-foot{display:flex;justify-content:flex-end;position:absolute;right:28px;top:36px;z-index:2}
+.card-foot{display:flex;justify-content:flex-end;position:absolute;right:28px;top:26px;z-index:2}
 .sections-nav{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px}
 .section-tab{border:.5px solid rgba(95,154,166,.35);border-radius:8px;background:rgba(255,255,255,.64);padding:7px 12px;color:var(--c-teal-ink)}
 .section-tab.active{background:rgba(194,162,78,.18);border-color:rgba(194,162,78,.58);color:var(--c-gold-ink)}
@@ -382,7 +373,7 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
   .card-title-preview{font-size:20px}
   .card-head-row{padding-right:72px}
   .card-head{gap:10px}
-  .card-foot{right:18px;top:28px}
+  .card-foot{right:18px;top:20px}
   .modal-mask{padding:10px}
 }
 
