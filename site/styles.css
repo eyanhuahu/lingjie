@@ -190,7 +190,7 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
 .cards{display:flex;flex-direction:column;align-items:center;gap:18px}
 .sec-empty{color:var(--c-ink-3);font-size:14px;padding:4px 2px 0;text-align:center}
 
-.card{position:relative;overflow:hidden;width:min(760px,100%);border:2px solid rgba(183,154,84,.78);border-radius:18px;padding:22px 26px 30px;background:linear-gradient(135deg,rgba(255,252,245,.98) 0%,rgba(250,255,248,.96) 54%,rgba(239,248,243,.94) 100%);min-width:0;color:var(--c-ink-2);box-shadow:0 10px 22px rgba(47,90,98,.14),inset 0 0 0 1px rgba(255,255,255,.72)}
+.card{position:relative;overflow:hidden;width:min(760px,100%);border:2px solid rgba(183,154,84,.78);border-radius:18px;padding:22px 26px 20px;background:linear-gradient(135deg,rgba(255,252,245,.98) 0%,rgba(250,255,248,.96) 54%,rgba(239,248,243,.94) 100%);min-width:0;color:var(--c-ink-2);box-shadow:0 10px 22px rgba(47,90,98,.14),inset 0 0 0 1px rgba(255,255,255,.72)}
 .card::before{content:"";position:absolute;inset:7px;border:2px solid rgba(95,154,166,.48);border-radius:13px;pointer-events:none}
 .card::after{content:"";position:absolute;inset:14px;border:.5px solid rgba(224,203,134,.45);border-radius:9px;pointer-events:none}
 .card>*{position:relative;z-index:1}
@@ -384,7 +384,7 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
   /* 顶栏只剩加群按钮一枚，右对齐；搜索已经在侧栏里了，不再挤 */
   .mast-tools{gap:8px;justify-content:flex-end}
   .to-top{right:14px;bottom:14px;padding:8px 12px}
-  .card{padding:16px 16px 24px;border-radius:14px}
+  .card{padding:16px 16px 14px;border-radius:14px}
   .card::before{inset:5px;border-radius:10px}
   .card::after{inset:10px;border-radius:7px}
   .card-media{height:160px}
