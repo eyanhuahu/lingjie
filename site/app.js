@@ -459,9 +459,9 @@ function renderCard(item) {
           <h3 class="card-title card-title-preview serif">${renderTextWithXrefs(item.name, { auto: false })}</h3>
           <div class="card-tags">${tags}</div>
           <p class="card-desc card-preview-desc">${renderTextWithXrefs(item.summary)}</p>
+          ${recipe}
         </div>
       </div>
-      ${recipe}
       <div class="card-foot"><button class="btn-detail" type="button" data-action="detail" data-id="${escapeHtml(item.id)}">查看详情</button></div>
     </article>
   `;
