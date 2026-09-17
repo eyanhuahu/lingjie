@@ -633,6 +633,14 @@ function renderNav(sections) {
   syncOpenHeights();
 }
 
+// 各卷目为空时的提示文案：默认「暂无条目」；
+// 「人物」还没实装，作者要求写成「敬请期待！」。
+const EMPTY_SECTION_TEXT = { renwu: "敬请期待！" };
+
+function emptySectionText(sectionId) {
+  return EMPTY_SECTION_TEXT[sectionId] || "暂无条目";
+}
+
 function renderChangelog(section) {
   const logs = [...(state.data.changelog || [])].reverse();
   const body = logs.length ? `<div class="cards">${logs.map((log) => `
@@ -642,7 +650,7 @@ function renderChangelog(section) {
       <div class="card-foot"><button class="btn-detail" type="button" data-action="changelog">完整更新</button></div>
       ${yunFoot()}
     </article>
-  `).join("")}</div>` : `<p class="sec-empty">暂无条目</p>`;
+  `).join("")}</div>` : `<p class="sec-empty">${escapeHtml(emptySectionText(section.id))}</p>`;
   return `<section class="section" id="sec-${escapeHtml(section.id)}" data-section="${escapeHtml(section.id)}"><div class="sec-head"><h2 class="sec-title serif">${escapeHtml(section.name)}</h2></div>${body}</section>`;
 }
 
@@ -655,7 +663,7 @@ function renderSections() {
     const items = sectionItems(section.id).filter(matchesQuery);
     if (!items.length && state.query) return "";
     visibleCount += items.length;
-    const body = items.length ? `<div class="cards">${items.map(renderCard).join("")}</div>` : `<p class="sec-empty">暂无条目</p>`;
+    const body = items.length ? `<div class="cards">${items.map(renderCard).join("")}</div>` : `<p class="sec-empty">${escapeHtml(emptySectionText(section.id))}</p>`;
     return `<section class="section" id="sec-${escapeHtml(section.id)}" data-section="${escapeHtml(section.id)}"><div class="sec-head"><h2 class="sec-title serif">${escapeHtml(section.name)}</h2></div>${body}</section>`;
   }).join("");
   $("#sectionsRoot").innerHTML = html;
