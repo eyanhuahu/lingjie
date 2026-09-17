@@ -204,8 +204,13 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
    dst-app 的 max_dimension 是上限、不会放大），拉到图区 172px 会放大 1.5 倍而发虚。
    这两张按接近原始尺寸显示，并在图区里居中（absolute + inset:0 + margin:auto）。 */
 .card-media img[src*="badge"]{position:absolute;inset:0;width:auto;height:auto;max-width:100%;max-height:118px;margin:auto}
-/* 文字栏不再往上留 14px：标题顶端跟左边卡图的顶端对齐（author 要求「红框往上」） */
+/* 材料行：作者要求**描述与材料跟标题的第一个字对齐**（不是跟金色菱形对齐），
+   所以文字栏统一缩进一个菱形的宽度（菱形 .34em + 右间距 .42em ≈ 18px）。 */
 .card-summary{padding:0 4px 0}
+.card-desc,.card-recipe{margin-left:18px}
+@media (max-width:420px){
+  .card-desc,.card-recipe{margin-left:15px}
+}
 .card-head{display:flex;align-items:flex-start;gap:12px;margin:0 0 8px;position:relative}
 .card-main{min-width:0}
 .card-title{margin:0 0 6px;font-size:19px;line-height:1.3;color:var(--c-teal-ink);font-weight:700;letter-spacing:.2px;overflow-wrap:anywhere}
@@ -233,6 +238,10 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
 /* 配方材料行：原来占**整张卡片的宽度**（在卡图下方），作者要求挪进右侧文字栏、
    跟在简介文字下面；材料多的时候靠 flex-wrap 自动换行（放不下一排就两排）。 */
 .card-recipe{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:2px 0 0;padding:7px 9px;background:rgba(255,255,255,.42);border:.5px solid var(--c-teal-line);border-radius:8px;font-size:13px;overflow-wrap:anywhere}
+/* 一份材料（图标 + 名字 + 数量）是一个整体：放不下就整份挪到下一行，绝不拆开。
+   条目之间靠 flex 的 gap 分隔，所以分隔符「、」放在条目内部末尾并置灰。 */
+.recipe-entry{display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
+.recipe-entry>.recipe-sep{color:var(--c-ink-3);margin-left:-1px}
 .recipe-icon{height:20px;max-width:28px;object-fit:contain;vertical-align:-4px;background:var(--c-surface);border:.5px solid var(--c-line);border-radius:4px}
 /* ⚠️ 弹窗里要靠这两条把尺寸掰回来：`.modal-body img{max-width:100%;height:auto}` 比单类
    选择器更具体，不写就会被顶掉、按原图 63/64px 渲染。两类位置要求的尺寸不一样：

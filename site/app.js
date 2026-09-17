@@ -381,12 +381,20 @@ function renderTextWithXrefs(text, options = {}) {
 function parseRecipe(recipe) {
   const raw = String(recipe ?? "");
   if (!raw.trim()) return "";
-  return raw.split(/(\[\[[^\]]+\]\]|\[[^\]]+\])/g).filter(Boolean).map((part) => {
-    const xref = part.match(/^\[\[([^\]]+)\]\]$/);
-    if (xref) return xrefHtml(xref[1].trim());
-    const image = part.match(/^\[([^\]]+)\]$/);
-    if (image) return `<img class="recipe-icon" src="${escapeHtml(image[1].trim())}" alt="" loading="lazy" onerror="this.style.display='none'">`;
-    return `<span>${highlightEscaped(part)}</span>`;
+  // 材料之间用「、」分隔；每一份材料（图标 + 名字 + 数量）各自包一个 .recipe-entry，
+  // 靠 CSS 的 white-space:nowrap 让它**整体换行** —— 不然会出现图标留在上一行、
+  // 名字和数量掉到下一行的断裂（作者反馈过）。
+  return raw.split("、").filter((chunk) => chunk.trim()).map((chunk, index, all) => {
+    const html = chunk.split(/(\[\[[^\]]+\]\]|\[[^\]]+\])/g).filter(Boolean).map((part) => {
+      const xref = part.match(/^\[\[([^\]]+)\]\]$/);
+      if (xref) return xrefHtml(xref[1].trim());
+      const image = part.match(/^\[([^\]]+)\]$/);
+      if (image) return `<img class="recipe-icon" src="${escapeHtml(image[1].trim())}" alt="" loading="lazy" onerror="this.style.display='none'">`;
+      return `<span>${highlightEscaped(part)}</span>`;
+    }).join("");
+    // 最后一份不带顿号，免得行尾挂一个孤零零的「、」
+    const sep = index === all.length - 1 ? "" : `<span class="recipe-sep">、</span>`;
+    return `<span class="recipe-entry">${html}${sep}</span>`;
   }).join("");
 }
 
