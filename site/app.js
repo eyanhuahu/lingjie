@@ -378,8 +378,17 @@ function renderTextWithXrefs(text, options = {}) {
   }).join("");
 }
 
-function parseRecipe(recipe) {
-  const raw = String(recipe ?? "");
+// 卡片标题：尾部括号里的补充说明（如「合婴丹（丹劫）」「噬魂蛇（隐藏 Boss）」）按作者要求
+// **去掉括号、前面加一个「·」、字号小一号** —— 主名保持大标题，补充说明退到旁边。
+function renderCardTitle(name) {
+  const raw = String(name ?? "");
+  const m = raw.match(/^(.*?)\s*[（(]([^（()）]+)[)）]\s*$/);
+  if (!m || !m[1].trim()) return renderTextWithXrefs(raw, { auto: false });
+  return renderTextWithXrefs(m[1].trim(), { auto: false })
+    + `<span class="card-title-sub">·${escapeHtml(m[2].trim())}</span>`;
+}
+
+function parseRecipe(recipe) {  const raw = String(recipe ?? "");
   if (!raw.trim()) return "";
   // 材料之间用「、」分隔；每一份材料（图标 + 名字 + 数量）各自包一个 .recipe-entry，
   // 靠 CSS 的 white-space:nowrap 让它**整体换行** —— 不然会出现图标留在上一行、
@@ -468,7 +477,7 @@ function renderCard(item) {
         ${renderCarousel(item)}
         <div class="card-summary">
           <div class="card-head-row">
-            <h3 class="card-title card-title-preview serif">${renderTextWithXrefs(item.name, { auto: false })}</h3>
+            <h3 class="card-title card-title-preview serif">${renderCardTitle(item.name)}</h3>
             <div class="card-tags">${tags}</div>
           </div>
           <p class="card-desc card-preview-desc">${renderTextWithXrefs(item.summary)}</p>

@@ -238,6 +238,9 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
 .card-title-preview{font-family:"Lingjie Titles",var(--font-sans);font-size:24px;color:var(--c-teal-ink);
   font-weight:800;letter-spacing:.06em;margin:0;
   text-shadow:0 1px 0 rgba(255,255,255,.55)}
+/* 标题尾部的补充说明（原「（丹劫）」）：括号已去掉，改成一个「·」+ 小一号的字 */
+.card-title-sub{font-family:var(--font-sans);font-size:.56em;font-weight:500;letter-spacing:.04em;
+  color:rgba(47,90,98,.72);margin-left:.22em;text-shadow:none}
 .card-title-preview::before{content:"";display:inline-block;width:.34em;height:.34em;margin-right:.42em;
   transform:rotate(45deg);vertical-align:.1em;
   background:linear-gradient(135deg,var(--c-gold-pale),var(--c-gold));box-shadow:0 0 0 .5px rgba(138,115,48,.45)}
