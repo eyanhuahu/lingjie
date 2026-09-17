@@ -385,7 +385,7 @@
           while (line.charAt(level) === "　") level += 1;
           const item = document.createElement("div");
           item.className = `detail-sub detail-sub-${Math.min(level, 3)}`;
-          appendInlineText(item, line.slice(level), options);
+          appendWithLeadLabel(item, line.slice(level), options);
           wrap.appendChild(item);
         });
         container.appendChild(wrap);
@@ -393,7 +393,7 @@
       }
 
       const p = document.createElement("p");
-      appendInlineText(p, block.text, options);
+      appendWithLeadLabel(p, block.text, options);
       container.appendChild(p);
     });
   }
@@ -401,6 +401,31 @@
   // 供校验脚本使用：只分类、不渲染，方便统计各类块的数量
   function classifyDetailText(detailText) {
     return parseDetailBlocks(detailText).map((block) => block.type);
+  }
+
+  // 正文里「短标签：内容」开头的短标签（技能名、字段名：晶爪猛击： / 生成范围：）单独包一层，
+  // CSS 里加粗上色 —— 不然整段一个粗细，眼睛抓不住重点。
+  // 规则保守：只在段落或条目**开头**认，长度 2~14，且不含句读符号；拿不准就当普通文字。
+  const LEAD_LABEL_RE = /^([^。，、；：！？\n]{2,14})[：:]\s*/;
+
+  function splitLeadLabel(text) {
+    const source = String(text ?? "");
+    const m = source.match(LEAD_LABEL_RE);
+    if (!m) return null;
+    return [m[1], source.slice(m[0].length)];
+  }
+
+  function appendWithLeadLabel(container, text, options) {
+    const lead = splitLeadLabel(text);
+    if (!lead) {
+      appendInlineText(container, text, options);
+      return;
+    }
+    const label = document.createElement("b");
+    label.className = "detail-lead";
+    appendInlineText(label, `${lead[0]}：`, options);
+    container.appendChild(label);
+    appendInlineText(container, lead[1], options);
   }
 
   function readU16(view, offset) {

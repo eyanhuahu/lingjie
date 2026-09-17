@@ -258,11 +258,13 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
 .modal-body img{max-width:100%;height:auto}
 .detail-content{display:grid;gap:14px;color:var(--c-ink-2)}
 .detail-content p{margin:0;white-space:pre-line;line-height:1.9}
+/* 正文里「短标签：内容」的短标签（技能名、字段名）加粗上色：整段一个粗细时眼睛抓不住重点 */
+.detail-lead{color:var(--c-teal-ink);font-weight:700;letter-spacing:.02em}
 /* 小标题：详情正文里的层级，让眼睛有落脚点 */
 .detail-content .detail-h{margin:6px 0 -2px;padding-left:9px;border-left:3px solid var(--c-gold);
   color:var(--c-teal-ink);font-family:var(--font-serif);font-size:15.5px;font-weight:600;line-height:1.5}
 /* 缩进条目：全角空格缩进的行，用竖线标出层级 */
-.detail-sub-group{display:grid;gap:4px;margin:-6px 0 0;padding-left:2px}
+.detail-sub-group{display:grid;gap:6px;margin:-6px 0 0;padding-left:2px}
 .detail-sub{position:relative;padding-left:14px;line-height:1.8}
 .detail-sub::before{content:"";position:absolute;left:4px;top:.72em;width:4px;height:4px;border-radius:50%;background:var(--c-gold-mut)}
 .detail-sub-2{padding-left:28px}
