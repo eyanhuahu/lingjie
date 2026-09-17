@@ -230,8 +230,11 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
 .card-title-preview::before{content:"";display:inline-block;width:.34em;height:.34em;margin-right:.42em;
   transform:rotate(45deg);vertical-align:.1em;
   background:linear-gradient(135deg,var(--c-gold-pale),var(--c-gold));box-shadow:0 0 0 .5px rgba(138,115,48,.45)}
-.card-tags{display:flex;flex-wrap:wrap;gap:0 14px}
-.tag{font-size:12px;letter-spacing:.08em;color:rgba(138,115,48,.68);border-bottom:1px solid rgba(194,162,78,.56);margin-right:0;overflow-wrap:anywhere}
+/* 卡片的标签（丹药 / 中阶 / 保命…）：原来每个词下面有一条金色下划线，
+   作者要求去掉下划线，改成**词与词之间一个金色竖线「|」**。 */
+.card-tags{display:flex;flex-wrap:wrap;gap:0}
+.card-tags .tag+.tag::before{content:"|";color:var(--c-gold);margin:0 9px;font-weight:400}
+.tag{font-size:12px;letter-spacing:.08em;color:rgba(138,115,48,.68);border-bottom:0;margin-right:0;overflow-wrap:anywhere}
 .card-desc{font-size:14px;line-height:1.6;color:var(--c-teal-ink);margin:6px 0 6px;overflow-wrap:anywhere}
 /* 简介：上面加一条金色分割线（作者要求把「标题+标签」与正文分开），
    线用渐变做、两端淡出，跟顶栏金线、卷目装饰线同一个调子。
