@@ -378,14 +378,23 @@ function renderTextWithXrefs(text, options = {}) {
   }).join("");
 }
 
-// 卡片标题：尾部括号里的补充说明（如「合婴丹（丹劫）」「噬魂蛇（隐藏 Boss）」）按作者要求
-// **去掉括号、前面加一个「·」、字号小一号** —— 主名保持大标题，补充说明退到旁边。
-function renderCardTitle(name) {
+// 标题里尾部括号的补充说明（「合婴丹（丹劫）」「噬魂蛇（隐藏 Boss）」）：
+// 卡片标题 —— 作者要求**整个去掉**：标签里已经有「丹劫」了，标题上再挂一遍重复。
+// 详情弹窗标题 —— 作者要求**去掉括号、改成一个圆点「·」，字号不变**。
+function splitTitleSuffix(name) {
   const raw = String(name ?? "");
   const m = raw.match(/^(.*?)\s*[（(]([^（()）]+)[)）]\s*$/);
-  if (!m || !m[1].trim()) return renderTextWithXrefs(raw, { auto: false });
-  return renderTextWithXrefs(m[1].trim(), { auto: false })
-    + `<span class="card-title-sub">·${escapeHtml(m[2].trim())}</span>`;
+  if (!m || !m[1].trim()) return [raw, ""];
+  return [m[1].trim(), m[2].trim()];
+}
+
+function renderCardTitle(name) {
+  return renderTextWithXrefs(splitTitleSuffix(name)[0], { auto: false });
+}
+
+function renderModalTitle(name) {
+  const [main, suffix] = splitTitleSuffix(name);
+  return suffix ? `${main}·${suffix}` : main;
 }
 
 function parseRecipe(recipe) {  const raw = String(recipe ?? "");
@@ -778,7 +787,7 @@ function openItemModal(itemId, trigger = document.activeElement, write = true) {
   if (!item) return;
   state.lastFocus = trigger;
   state.modalMode = "item";
-  $("#modalTitle").textContent = item.name;
+  $("#modalTitle").textContent = renderModalTitle(item.name);
   const body = $("#modalBody");
   body.textContent = "";
   if (item.recipe) {
