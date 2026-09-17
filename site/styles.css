@@ -23,12 +23,12 @@
    OFL 授权，许可证随字体一起放在同目录 OFL.txt。 */
 @font-face{font-family:"DST Bellefair";src:url("fonts/bellefair.ttf") format("truetype");
   font-weight:400;font-style:normal;font-display:swap}
-/* 站名「灵界」用的标题字体：思源宋体（Noto Serif SC 与思源宋体是同一套字）。
-   作者先给了 Heavy（最粗那档），后来要求「正常粗细、不要加粗」，所以换成 **Regular**：
-   · 原文件 14.8MB → 子集化后 9.6KB（只留标题用得到的 76 个字符）
-   · Heavy 那份子集留在同目录，想换回去改这一行 src 即可
-   权重写 400 900 区间：这样即使别处写了 font-weight:700 也不会被浏览器合成加粗。 */
-@font-face{font-family:"Lingjie Title";src:url("fonts/source-han-serif-regular.woff2") format("woff2");
+/* 站名「灵界」用的标题字体：思源宋体 SC Heavy（作者提供）。
+   原文件 22.9MB，标题只用得到「灵界」两个字，所以做了**子集化** —— 现在 10KB。
+   子集里保留：灵界 + 拉丁字母 + 数字 + 常用标点（万一改站名/加英文也能显示）。
+   ⚠️ 换站名（data.json 的「网站标题」）时要重新子集化，命令见 注释.md。
+   权重写 400 900 这个区间，避免浏览器把 Heavy 再合成加粗。 */
+@font-face{font-family:"Lingjie Title";src:url("fonts/source-han-serif-heavy.woff2") format("woff2");
   font-weight:400 900;font-style:normal;font-display:swap}
 html{scroll-padding-top:156px;cursor:var(--cursor-sword)}
 /* 输入框还是留 I 形光标，不然打字时找不到插入点 */
@@ -57,12 +57,11 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
   background-size:100% 3px,100% 100%;background-position:0 100%,0 0;background-repeat:no-repeat;
   min-height:var(--mast-h-base);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 28px 28px}
 .mast-center{text-align:center;padding-top:18px}
-/* 站名「灵界」用**思源宋体 Regular**（正常粗细，不加粗）：
-   · 黑体太硬没仙气；宋体(SimSun)笔画太干；楷体那版也试过
-   · Heavy 那版被作者否掉（太粗），现在用同一套字的 Regular
-   · font-weight 固定 400，配合 @font-face 的 400 900 区间 → 绝不会被合成加粗
+/* 站名「灵界」用**思源宋体 SC Heavy**（作者提供的字体，已子集化到 10KB）：
+   · 黑体太硬没仙气（被否掉）；宋体笔画太干太细，44px 还是发虚；楷体用过一版
+   · 现在用思源宋体的 Heavy 字重，笔锋厚实又有宋体的骨架
    字体缺失时依次退回楷体 → 衬线栈。 */
-.site-name{font-size:48px;color:#28565E;line-height:1.1;font-weight:400;
+.site-name{font-size:48px;color:#28565E;line-height:1.1;font-weight:500;
   font-family:"Lingjie Title","KaiTi","楷体",STKaiti,"Kaiti SC",var(--font-serif);
   letter-spacing:.12em;text-indent:.12em;
   text-shadow:0 1px 0 rgba(255,255,255,.75),0 0 14px rgba(194,162,78,.35),0 2px 10px rgba(47,90,98,.16)}
