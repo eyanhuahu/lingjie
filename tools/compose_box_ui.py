@@ -42,7 +42,9 @@ BUTTONS_LIST = [
     ("lj_huangjie_box_collect.png", -85, 250),         # 收纳：上沿偏左
     ("lj_huangjie_box_fresh.png", 85, 250),            # 返鲜：上沿偏右
     ("lj_huangjie_box_store_normal.png", 250, -185),   # 安全入库：右下
-    ("lj_huangjie_box_close_normal.png", 400, -85),    # 封：右侧偏下
+    # 「封」源码里是 (400,-85)，按映射算会压在箱子右沿外面（用户要求「不许露出来」），
+    # 所以往下、往里挪一点：(372,-150) ≈ 面板坐标 (850,400)。这是唯一一处手工微调。
+    ("lj_huangjie_box_close_normal.png", 372, -150),   # 封：右侧偏下（手工微调过）
 ]
 
 
