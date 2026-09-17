@@ -379,12 +379,13 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
   .rail-inner .nav-sub,.rail-divider,.nav-chev{display:none}
   .rail-search{flex:1 1 100%;min-width:0;margin:0}
   .rail-search .search{flex:1 1 auto;width:auto}
-  .nav{flex:1 1 100%;min-width:0;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
-  .nav::-webkit-scrollbar{display:none}
-  /* 加群按钮交给顶栏那一枚，侧栏底部的收起来，免得挤出第三行 */
+  /* 窄屏菜单：原来是一整排横向滚动（滚动条还隐藏了），窗口一窄后面的卷目就被切掉。
+     改成 flex-wrap 换行 —— 放不下自动往下一行，所有卷目都能看到。 */
+  .nav{flex:1 1 100%;min-width:0;display:flex;flex-wrap:wrap;gap:6px;overflow:visible}
+  /* 加群按钮交给顶栏那一枚，侧栏底部的收起来 */
   .rail-foot{display:none}
   .qq-hint{display:none}
-  /* 横向卷目条：保持直角按钮样子，选中依然是金色填充；li 不压缩，标签才不会被挤掉 */
+  /* 卷目按钮：保持直角按钮样子，选中依然是金色填充；li 不压缩，标签才不会被挤掉 */
   .nav-group{flex:0 0 auto}
   .nav-row{white-space:nowrap;margin:0;padding:7px 12px;font-size:13px}
   .nav-row.on{box-shadow:inset 0 1px 0 rgba(255,255,255,.6)}
