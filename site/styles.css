@@ -250,11 +250,12 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
 .card-tags .tag+.tag::before{content:"|";color:var(--c-gold);margin:0 9px;font-weight:400}
 .tag{font-size:12px;letter-spacing:.08em;color:rgba(138,115,48,.68);border-bottom:0;margin-right:0;overflow-wrap:anywhere}
 .card-desc{font-size:14px;line-height:1.6;color:var(--c-teal-ink);margin:6px 0 6px;overflow-wrap:anywhere}
-/* 简介：上面加一条金色分割线（作者要求把「标题+标签」与正文分开），
-   线用渐变做、两端淡出，跟顶栏金线、卷目装饰线同一个调子。
-   margin-top 留 12px，线画在中间（-6px），线上、线下各约 6px，跟其它间距一致。 */
-.card-preview-desc{position:relative;font-weight:600;color:rgba(47,90,98,.9);margin-top:12px}
-.card-preview-desc::before{content:"";position:absolute;left:0;right:0;top:-6px;height:1px;
+/* 简介：上面那条金色分割线（把「标题+标签」与正文分开）。
+   margin-top 22px：把「简介 + 配方」这一整块往下压一点（原来 12px），
+   这样没有配方的卡片不会上紧下空（作者反馈）；分割线用 top:-16px 留在原位、
+   仍然贴着标签下方约 6px。 */
+.card-preview-desc{position:relative;font-weight:600;color:rgba(47,90,98,.9);margin-top:22px}
+.card-preview-desc::before{content:"";position:absolute;left:0;right:0;top:-16px;height:1px;
   background:linear-gradient(90deg,rgba(194,162,78,0) 0%,var(--c-gold-pale) 14%,var(--c-gold) 50%,var(--c-gold-pale) 86%,rgba(194,162,78,0) 100%)}
 /* 配方材料行：原来占**整张卡片的宽度**（在卡图下方），作者要求挪进右侧文字栏、
    跟在简介文字下面；材料多的时候靠 flex-wrap 自动换行（放不下一排就两排）。 */
