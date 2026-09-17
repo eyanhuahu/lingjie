@@ -23,12 +23,13 @@
    OFL 授权，许可证随字体一起放在同目录 OFL.txt。 */
 @font-face{font-family:"DST Bellefair";src:url("fonts/bellefair.ttf") format("truetype");
   font-weight:400;font-style:normal;font-display:swap}
-/* 站名「灵界」用的标题字体：思源宋体 SC Heavy（作者提供）。
-   原文件 22.9MB，标题只用得到「灵界」两个字，所以做了**子集化** —— 现在 10KB。
+/* 站名「灵界」用的标题字体：**字魂探月手书**（作者提供）。
+   原文件 12.1MB，标题只用得到「灵界」两个字，所以做了**子集化** → 现在 18KB。
    子集里保留：灵界 + 拉丁字母 + 数字 + 常用标点（万一改站名/加英文也能显示）。
    ⚠️ 换站名（data.json 的「网站标题」）时要重新子集化，命令见 注释.md。
-   权重写 400 900 这个区间，避免浏览器把 Heavy 再合成加粗。 */
-@font-face{font-family:"Lingjie Title";src:url("fonts/source-han-serif-heavy.woff2") format("woff2");
+   权重写 400 900 区间：手书字体只有一档，这样别处写 700 也不会被浏览器合成加粗。
+   之前用过的两套（思源宋体 Heavy / Regular）也留在同目录，想换回去改 src 即可。 */
+@font-face{font-family:"Lingjie Title";src:url("fonts/zihun-tanyue-shoushu.woff2") format("woff2");
   font-weight:400 900;font-style:normal;font-display:swap}
 html{scroll-padding-top:156px;cursor:var(--cursor-sword)}
 /* 输入框还是留 I 形光标，不然打字时找不到插入点 */
