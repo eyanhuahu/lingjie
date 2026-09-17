@@ -384,7 +384,12 @@ function parseRecipe(recipe) {
   // 材料之间用「、」分隔；每一份材料（图标 + 名字 + 数量）各自包一个 .recipe-entry，
   // 靠 CSS 的 white-space:nowrap 让它**整体换行** —— 不然会出现图标留在上一行、
   // 名字和数量掉到下一行的断裂（作者反馈过）。
-  return raw.split("、").filter((chunk) => chunk.trim()).map((chunk, index, all) => {
+  // 材料之间用「、」分隔；每一份材料（图标 + 名字 + 数量）各自包一个 .recipe-entry，
+  // 靠 CSS 的 white-space:nowrap 让它**整体换行** —— 不然会出现图标留在上一行、
+  // 名字和数量掉到下一行的断裂（作者反馈过）。
+  // 顿号一律不输出：换行时行尾会挂一个孤零零的「、」，而 CSS 判断不出哪一份在行尾，
+  // 所以改用间距分隔（每份材料自带图标，本来就不需要顿号）。
+  return raw.split("、").filter((chunk) => chunk.trim()).map((chunk) => {
     const html = chunk.split(/(\[\[[^\]]+\]\]|\[[^\]]+\])/g).filter(Boolean).map((part) => {
       const xref = part.match(/^\[\[([^\]]+)\]\]$/);
       if (xref) return xrefHtml(xref[1].trim());
@@ -392,9 +397,7 @@ function parseRecipe(recipe) {
       if (image) return `<img class="recipe-icon" src="${escapeHtml(image[1].trim())}" alt="" loading="lazy" onerror="this.style.display='none'">`;
       return `<span>${highlightEscaped(part)}</span>`;
     }).join("");
-    // 最后一份不带顿号，免得行尾挂一个孤零零的「、」
-    const sep = index === all.length - 1 ? "" : `<span class="recipe-sep">、</span>`;
-    return `<span class="recipe-entry">${html}${sep}</span>`;
+    return `<span class="recipe-entry">${html}</span>`;
   }).join("");
 }
 

@@ -237,11 +237,11 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
 .card-preview-desc{font-weight:600;color:rgba(47,90,98,.9);margin-top:22px}
 /* 配方材料行：原来占**整张卡片的宽度**（在卡图下方），作者要求挪进右侧文字栏、
    跟在简介文字下面；材料多的时候靠 flex-wrap 自动换行（放不下一排就两排）。 */
-.card-recipe{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:2px 0 0;padding:7px 9px;background:rgba(255,255,255,.42);border:.5px solid var(--c-teal-line);border-radius:8px;font-size:13px;overflow-wrap:anywhere}
-/* 一份材料（图标 + 名字 + 数量）是一个整体：放不下就整份挪到下一行，绝不拆开。
-   条目之间靠 flex 的 gap 分隔，所以分隔符「、」放在条目内部末尾并置灰。 */
+/* 材料行：不再输出顿号（换行时行尾会挂着没意义的「、」），
+   改由 .card-recipe 的 gap 分隔各份材料，所以 gap 从 6px 放大到 12px。 */
+.card-recipe{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;margin:2px 0 0;padding:7px 9px;background:rgba(255,255,255,.42);border:.5px solid var(--c-teal-line);border-radius:8px;font-size:13px;overflow-wrap:anywhere}
+/* 一份材料（图标 + 名字 + 数量）是一个整体：放不下就整份挪到下一行，绝不拆开。 */
 .recipe-entry{display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
-.recipe-entry>.recipe-sep{color:var(--c-ink-3);margin-left:-1px}
 .recipe-icon{height:20px;max-width:28px;object-fit:contain;vertical-align:-4px;background:var(--c-surface);border:.5px solid var(--c-line);border-radius:4px}
 /* ⚠️ 弹窗里要靠这两条把尺寸掰回来：`.modal-body img{max-width:100%;height:auto}` 比单类
    选择器更具体，不写就会被顶掉、按原图 63/64px 渲染。两类位置要求的尺寸不一样：
