@@ -91,7 +91,9 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
   background:linear-gradient(180deg,#33626B,#274F57);border-radius:4px;padding:1px 6px;
   box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 1px 2px rgba(43,38,32,.2);
   white-space:nowrap;line-height:1.5}
-.site-ver{font-size:11px;letter-spacing:.2em;color:rgb(97,173,189);margin-top:9px;text-transform:uppercase}
+/* 作者名原样显示（不加 text-transform:uppercase）：
+   作者写的是「犹如黑夜星光JinYan」，大写化会变成 JINYAN，跟本人写法不符 */
+.site-ver{font-size:11px;letter-spacing:.2em;color:rgb(97,173,189);margin-top:9px}
 .ornament{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:9px}
 .ornament i{display:block;width:56px;height:2px;background:var(--c-gold-soft)}
 .ornament b{display:block;width:9px;height:9px;background:var(--c-cream);transform:rotate(45deg)}

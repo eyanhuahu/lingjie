@@ -393,7 +393,7 @@
       }
 
       const p = document.createElement("p");
-      appendWithLeadLabel(p, block.text, options);
+      appendTextBlock(p, block.text, options);
       container.appendChild(p);
     });
   }
@@ -426,6 +426,18 @@
     appendInlineText(label, `${lead[0]}：`, options);
     container.appendChild(label);
     appendInlineText(container, lead[1], options);
+  }
+
+  // 普通文字块里**逐行**套短标签规则。
+  // 连续的非空行会被合并成一个 text 块，只在整块开头匹配的话，
+  // 只有第一行会加粗（「魔气环绕」粗了、「饥饿诅咒」没粗），所以必须按行处理。
+  // 行间的换行单独作为文本节点塞进去，靠 CSS 的 white-space:pre-line 断行。
+  function appendTextBlock(container, text, options) {
+    const lines = String(text ?? "").split("\n");
+    lines.forEach((line, index) => {
+      if (index > 0) container.appendChild(document.createTextNode("\n"));
+      appendWithLeadLabel(container, line, options);
+    });
   }
 
   function readU16(view, offset) {
