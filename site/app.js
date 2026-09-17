@@ -456,8 +456,10 @@ function renderCard(item) {
       <div class="card-top">
         ${renderCarousel(item)}
         <div class="card-summary">
-          <h3 class="card-title card-title-preview serif">${renderTextWithXrefs(item.name, { auto: false })}</h3>
-          <div class="card-tags">${tags}</div>
+          <div class="card-head-row">
+            <h3 class="card-title card-title-preview serif">${renderTextWithXrefs(item.name, { auto: false })}</h3>
+            <div class="card-tags">${tags}</div>
+          </div>
           <p class="card-desc card-preview-desc">${renderTextWithXrefs(item.summary)}</p>
           ${recipe}
         </div>
