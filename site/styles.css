@@ -195,7 +195,9 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
 .card::after{content:"";position:absolute;inset:14px;border:.5px solid rgba(224,203,134,.45);border-radius:9px;pointer-events:none}
 .card>*{position:relative;z-index:1}
 .card:hover{border-color:rgba(183,154,84,.95);box-shadow:0 12px 26px rgba(47,90,98,.18),inset 0 0 0 1px rgba(255,255,255,.78)}
-.card-top{display:grid;grid-template-columns:minmax(220px,42%) minmax(0,1fr);gap:28px;align-items:start;margin:0 0 16px}
+/* 左边卡图列：原来占 42% 宽，作者要求窄一点、两侧收一收，把宽度让给右侧文字。
+   42% → 36%（栏间距 28 → 24px）。 */
+.card-top{display:grid;grid-template-columns:minmax(200px,36%) minmax(0,1fr);gap:24px;align-items:start;margin:0 0 16px}
 .card-media{position:relative;height:172px;background:linear-gradient(135deg,rgba(191,227,232,.72),rgba(255,252,245,.74));border:.5px solid rgba(95,154,166,.34);border-radius:9px;overflow:hidden;margin:0;box-shadow:inset 0 0 18px rgba(95,154,166,.08)}
 .card.no-media .card-media{display:none}
 .card.no-media .card-top{grid-template-columns:1fr}
@@ -204,6 +206,10 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
    dst-app 的 max_dimension 是上限、不会放大），拉到图区 172px 会放大 1.5 倍而发虚。
    这两张按接近原始尺寸显示，并在图区里居中（absolute + inset:0 + margin:auto）。 */
 .card-media img[src*="badge"]{position:absolute;inset:0;width:auto;height:auto;max-width:100%;max-height:118px;margin:auto}
+/* 宽屏双栏时卡图左右各收一点（作者要求「左右缩进一点」）——窄屏单栏不缩，免得图片变小 */
+@media (min-width:1024px){
+  .card-media{margin:0 10px 0 6px}
+}
 /* 文字栏：简介与材料行**跟金色菱形对齐**（也就是文字栏左缘），不做缩进 ——
    试过缩进 18px 跟标题首字对齐，作者觉得左边空一条很奇怪，已改回。 */
 .card-summary{padding:0 4px 0}
