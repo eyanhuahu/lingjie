@@ -40,6 +40,8 @@ OUT = os.path.join(ROOT, "images", "lingjie", "anim", "huangjie_box_ui.png")
 
 PANEL_POS_Y = 250             # 面板上沿对应的控件 y（见文件头推导）
 MARGIN = 6                    # 整组平移后，按钮离面板边缘至少留这么多像素
+# 自动平移之后，用户再要求的**整组**微调（正数 = 往右下）。依旧是整组动，不单独挪。
+GROUP_NUDGE = (0, -5)
 BUTTONS_LIST = [
     ("lj_huangjie_box_sort_normal.png", -415, 230),    # 整理
     ("lj_huangjie_box_collect.png", -85, 250),         # 收纳
@@ -78,14 +80,15 @@ def main():
     right = max(b[2] for b in boxes)
     top = min(b[1] for b in boxes)
     bottom = max(b[3] for b in boxes)
-    shift_x = (W - (left + right)) / 2
+    shift_x = (W - (left + right)) / 2 + GROUP_NUDGE[0]
     shift_y = 0.0
     if top < MARGIN:
         shift_y += MARGIN - top
     if bottom + shift_y > H - MARGIN:
         shift_y -= bottom + shift_y - (H - MARGIN)
-    print("整组平移：x %+.1f  y %+.0f（面板 %dx%d，按钮包围盒 x %.0f~%.0f  y %.0f~%.0f）"
-          % (shift_x, shift_y, W, H, left, right, top, bottom))
+    shift_y += GROUP_NUDGE[1]
+    print("整组平移：x %+.1f  y %+.0f（面板 %dx%d，按钮包围盒 x %.0f~%.0f  y %.0f~%.0f；含人工微调 %s）"
+          % (shift_x, shift_y, W, H, left, right, top, bottom, GROUP_NUDGE))
 
     for img, (px, py), name in sprites:
         nx = px + shift_x
