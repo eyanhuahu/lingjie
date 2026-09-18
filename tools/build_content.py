@@ -545,6 +545,119 @@ Materials must be placed in the Alchemy Furnace in the listed amounts — more i
 Refining with an exotic flame raises the success chance to 100%.
 """,
     },
+    "pill_tiers": {
+        "tags": "Alchemy,Pills,Tribulation,Stats",
+        "summary": "Refining time, output and tribulation parameters for the four tiers: low (yellow), moderate (mystic), high (earth) and heaven (sky).",
+        "detail": """
+Pills come in four tiers: low (yellow), moderate (mystic), high (earth) and heaven (sky).
+
+Low (refining time 2 minutes)
+Refined with a Wasteland Flame, pills that do not trigger a tribulation have a 50% chance; with an exotic flame the chance is 100%.
+99% chance to make 3 at a time, 1% chance to make 5.
+
+Moderate (refining time 4 minutes)
+Refined with a Wasteland Flame the chance is 50%, and a failure produces a Failed Pill; with an exotic flame the chance is 100%.
+99% chance to make 1 at a time, 1% chance to make 2.
+Moderate pill tribulation: a lightning strike every 10 seconds that kills outright, always telegraphed; the marker shows at second 9 and the bolt lands 1 second later, lasting 120 seconds. Dodge it or the refinement fails. Failing to dodge destroys the furnace and leaves 5 [images/inventoryimages1/charcoal.png] Charcoal and 1 Failed Pill.
+
+High (refining time 8 minutes)
+Refined with a Wasteland Flame the chance is 20%, and a failure produces a Failed Pill; with an exotic flame the chance is 100%.
+Only 1 can be made at a time.
+High pill tribulation: a lightning strike every 8 seconds that kills outright, always telegraphed; the marker shows at second 7 and the bolt lands 1 second later, lasting 120 seconds. Dodge it or the refinement fails. Failing to dodge destroys the furnace and leaves 5 [images/inventoryimages1/charcoal.png] Charcoal and 1 Failed Pill.
+
+Heaven (sky)
+Not implemented yet.
+""",
+    },
+    "lj_moon_vase": {
+        "tags": "Artifact,Special Refining,Alchemy",
+        "summary": "No pill tribulation and a 100% success rate; used on the Spirit Jade Table to absorb world reiki at night.",
+        "detail": """
+Special refining (no pill tribulation, 100% success)
+
+Refining time 4 minutes.
+
+Cannot be destroyed normally, but can be deconstructed with a Deconstruction Staff.
+""",
+    },
+    "lj_reiki_gourd": {
+        "tags": "Artifact,Storage,Flames",
+        "summary": "An 8-slot gourd that absorbs exotic flames and stores pills; it follows the player and automatically absorbs ownerless exotic flames within 16 range.",
+        "detail": """
+Special refining (no pill tribulation, 100% success)
+
+Refining time 4 minutes.
+
+Cannot be destroyed, and cannot be deconstructed with a Deconstruction Staff.
+
+Absorbs exotic flames and stores pills, 8 slots.
+Right-click in the inventory to open or close it (there is only one container — the one opened from a following gourd is the same one). While open it stays open; opening other chest-like items will not close the gourd.
+Pick it up with the mouse, drop it on the ground and it follows you. While following, any ownerless exotic flame within 16 range flies into the gourd on its own, and once absorbed it belongs to the gourd's owner.
+While following: left-click opens or closes the gourd, right-click recalls it.
+""",
+    },
+    "lj_soul_banner": {
+        "tags": "Artifact,Shadow Creatures,Soul Refining",
+        "summary": "Plant it in the ground to absorb shadow creatures and turn them into Magic Cores; giving it a Purple Scale Demon Flame unlocks Soul Refining.",
+        "detail": """
+Special refining (no pill tribulation, 100% success)
+
+Cannot be destroyed, can be deconstructed.
+
+Giving it a Purple Scale Demon Flame unlocks the Soul Refining skill.
+Planted in the ground it automatically absorbs the 4 vanilla shadow creatures, plus the shadow clones produced by deep demonization; each one absorbed becomes a Magic Core dropped right below the banner.
+　Other shadow creatures (Shadow Knight, Shadow Bishop, Shadow Rook and so on) are not absorbed.
+""",
+    },
+    "lj_failed_pill": {
+        "tags": "Pills,Low,Penalty",
+        "summary": "The product of a failed refinement. Using it costs 30 sanity and 30 health, and restores 30 hunger.",
+        "detail": """
+A pill that failed to refine.
+
+Using it costs 30 sanity and 30 health, and restores 30 hunger.
+
+A failed refinement always yields a Failed Pill and never returns the materials, so open the furnace with care.
+""",
+    },
+    "lj_ningqi_pill": {
+        "tags": "Pills,Low,Food",
+        "summary": "A low-tier pill that restores 50 hunger; werepigs like it too.",
+        "detail": """
+Low-tier pill (yellow), refining time 2 minutes.
+
+Effect: restores 50 hunger, and werepigs like it too.
+""",
+    },
+    "lj_warming_pill": {
+        "tags": "Pills,Low,Temperature",
+        "summary": "A low-tier pill that warms you and keeps you from freezing for 2 days.",
+        "detail": """
+Low-tier pill (yellow), refining time 2 minutes.
+
+Effect: warming, prevents freezing cold, lasts 2 days.
+""",
+    },
+    "lj_cooling_pill": {
+        "tags": "Pills,Low,Temperature",
+        "summary": "A low-tier pill that cools you and keeps you from overheating for 2 days.",
+        "detail": """
+Low-tier pill (yellow), refining time 2 minutes.
+
+Effect: cooling, prevents overheating, lasts 2 days.
+""",
+    },
+    "lj_stillness_pill": {
+        "tags": "Pills,Low,Realm",
+        "summary": "Take it after losing a realm stage to steady your mind and keep cultivating.",
+        "detail": """
+Low-tier pill (yellow), refining time 2 minutes.
+
+Effect: taken after losing a stage on death, it steadies your mind and lets you keep cultivating.
+
+This is the pill required to regain the ability to cultivate after a death penalty — without it you stay stuck.
+""",
+    },
 }
 
 SITE = [
@@ -942,7 +1055,7 @@ item(
 
 item(
     "fabao", "lj_soul_banner", "魂幡", "法宝,影怪,炼魂",
-    "插入地面自动吸收影怪并转化为魔晶；给予紫鳞妖焰可解锁「炼魂」。",
+    "插入地面自动吸收影怪并转化为魔核；给予紫鳞妖焰可解锁「炼魂」。",
     """
 特殊炼制（不触发丹劫，炼制概率 100%）
 
