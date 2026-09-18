@@ -623,7 +623,7 @@ function renderNav(sections) {
     return `
       <li class="nav-group${state.activeSec === section.id ? " open" : ""}" data-g="${escapeHtml(section.id)}">
         <div class="nav-row${state.activeSec === section.id ? " on" : ""}" data-sec="${escapeHtml(section.id)}">
-          <span class="nav-lbl">${escapeHtml(section.name)}</span>
+          <span class="nav-lbl"><span class="nav-lbl-full">${escapeHtml(section.name)}</span><span class="nav-lbl-short">${escapeHtml(section.shortName || section.name)}</span></span>
           <i class="ti ti-chevron-right nav-chev" aria-hidden="true"></i>
         </div>
         <ul class="nav-sub">${subs}</ul>

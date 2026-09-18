@@ -144,6 +144,9 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
   background:linear-gradient(180deg,#F8EFCC 0%,#E9D69A 100%);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.62),0 1px 2px rgba(43,38,32,.08)}
 .nav-lbl{flex:1;min-width:0;font-size:15px;overflow-wrap:anywhere}
+/* 窄屏用短名（data 里的「短名」字段）：整排卷目按钮放不下时省一半宽度。
+   宽屏显示全名、隐藏短名；窄屏反过来。 */
+.nav-lbl-short{display:none}
 .nav-chev{font-size:16px;color:var(--c-gold-mut);transition:transform .18s;font-style:normal;line-height:1;margin-left:8px;flex:0 0 auto}
 .nav-chev::before{content:"›"}
 .nav-row.on .nav-chev{color:#7A6427}
@@ -387,7 +390,10 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
   .qq-hint{display:none}
   /* 卷目按钮：保持直角按钮样子，选中依然是金色填充；li 不压缩，标签才不会被挤掉 */
   .nav-group{flex:0 0 auto}
-  .nav-row{white-space:nowrap;margin:0;padding:7px 12px;font-size:13px}
+  .nav-row{white-space:nowrap;margin:0;padding:6px 10px;font-size:13px}
+  /* 窄屏换短名，并把内边距收紧一点 —— 原来是 3 行，现在两三行内排下 */
+  .nav-lbl-full{display:none}
+  .nav-lbl-short{display:inline}
   .nav-row.on{box-shadow:inset 0 1px 0 rgba(255,255,255,.6)}
   .content{padding:16px 16px 48px}
   .content-inner{max-width:none}

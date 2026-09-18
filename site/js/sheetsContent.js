@@ -16,6 +16,7 @@
     sections: {
       "分类id": "id", "分类ID": "id", "id": "id",
       "分类名": "name", "分类名称": "name", "name": "name",
+      "短名": "shortName", "简称": "shortName", "shortName": "shortName",
       "排序值": "sort_order", "排序": "sort_order", "sort_order": "sort_order",
       "是否展示": "visible", "展示": "visible", "visible": "visible"
     },
@@ -581,7 +582,7 @@
     return normalizeSheetRows("sections", rows)
       .filter((row) => row.id && !isHidden(row.visible))
       .sort((a, b) => sortValue(a) - sortValue(b))
-      .map((row) => ({ id: row.id, name: row.name || row.id }));
+      .map((row) => ({ id: row.id, name: row.name || row.id, shortName: row.shortName || "" }));
   }
 
   function normalizeImages(rows) {
