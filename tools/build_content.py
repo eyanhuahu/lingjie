@@ -1414,6 +1414,137 @@ How to get it: right-click the log to open it, and the note reads "dusk is comin
 Use: it crafts the Soul Banner, and giving it to the banner unlocks the "Soul Refining" skill.
 """,
     },
+    "lj_log": {
+        "tags": "Flames,Clues",
+        "summary": "The journal used for exotic flame clues. Clue items refresh every 20 days.",
+        "detail": """
+The collective name for exotic flame clue items.
+
+Clue bosses roll their demonization level from the world day like anything else (see "Demonization Overview") and are not limited by season.
+
+Clue items refresh every 20 days.
+
+The clue item for each exotic flame: Frozen Log, Charred Scales, Rotten Backpack, Dried Camel Feathers and Swollen Scroll.
+""",
+    },
+    "lj_frozen_log": {
+        "tags": "Clue,Flames,Frost Karma Flame",
+        "summary": "Spawns at random in birch forests and is unlocked by smashing it with a pickaxe. Points to the Frost Karma Flame.",
+        "detail": """
+Clue item pointing to the Frost Karma Flame.
+
+Location: spawns at random in birch forests.
+How to unlock: smash it with a pickaxe.
+
+Right-clicking it open reveals the note 'a giant shadow under the moonlight; when it shatters the ice, a dancing light hides in the cold'. A large suspicious mound then spawns at random on the ground, and searching every clue mound spawns Deerclops.
+""",
+    },
+    "lj_charred_scales": {
+        "tags": "Clue,Flames,Dragon Flame Heartfire",
+        "summary": "Spawns beside lava ponds and is unlocked by dousing it with a watering can. Points to the Dragon Flame Heartfire.",
+        "detail": """
+Clue item pointing to the Dragon Flame Heartfire.
+
+Location: spawns beside lava ponds.
+How to unlock: douse it with a watering can.
+
+Right-clicking it open reveals the note 'the rock nest stirs; a great beast guards its ground. Its rage burns the grass to ash; its shell hides a fire core that a sudden strike can crack'. A Dragonfly spawns beside the pet nest.
+""",
+    },
+    "lj_rotten_backpack": {
+        "tags": "Clue,Flames,Wildmane Flame",
+        "summary": "Spawns at random on forest terrain and is unlocked by splitting it with an axe. Points to the Wildmane Flame.",
+        "detail": """
+Clue item pointing to the Wildmane Flame.
+
+Location: spawns at random on forest terrain.
+How to unlock: split it with an axe.
+
+Right-clicking it open reveals the note 'when it pushes over a pine, sparks rise from the roots; it fears water but loves honey'. A Bee Queen hive is picked somewhere on the map and a bee box spawns near it, with the Bearger right beside the box.
+""",
+    },
+    "lj_dried_camel_feathers": {
+        "tags": "Clue,Flames,Spirit Dust Flame",
+        "summary": "Picked up near the oasis. Points to the Spirit Dust Flame.",
+        "detail": """
+Clue item pointing to the Spirit Dust Flame.
+
+Location: picked up near the oasis.
+
+Right-clicking it open reveals the note 'there is a halo at the centre of the sandstorm — that is his breath'. Going there shows the Antlion.
+
+It is also used as an Alchemy Furnace recipe material, to refine the 'Dustflame Log' (see that entry).
+""",
+    },
+    "lj_swollen_scroll": {
+        "tags": "Clue,Flames,Purple Scale Demon Flame",
+        "summary": "Spawns at random beside swamp tentacles and is unlocked by baking it with fire. Points to the Purple Scale Demon Flame.",
+        "detail": """
+Clue item pointing to the Purple Scale Demon Flame.
+
+Location: spawns at random beside swamp tentacles.
+How to unlock: bake it with fire.
+
+Right-clicking it open reveals the note 'dusk is coming; purple firelight will be mirrored on the spirit vein's water'. After reading the log the boss appears at dusk beside a pond on Butterfly Island, and going there shows the Soul-devouring Hydra.
+""",
+    },
+    "lj_ice_log": {
+        "tags": "Logs,Flame Clues",
+        "summary": "The clue obtained from the 'Frozen Log', pointing to Deerclops.",
+        "detail": """
+Matching exotic flame: Frost Karma Flame.
+Clue item: Frozen Log.
+Follow-up boss: Deerclops.
+
+Reading it requires the Subtle realm.
+""",
+    },
+    "lj_dragon_log": {
+        "tags": "Logs,Flame Clues",
+        "summary": "The clue obtained from the 'Charred Scales', pointing to the Dragonfly.",
+        "detail": """
+Matching exotic flame: Dragon Flame Heartfire.
+Clue item: Charred Scales.
+Follow-up boss: Dragonfly.
+
+Reading it requires the Subtle realm.
+""",
+    },
+    "lj_mighty_log": {
+        "tags": "Logs,Flame Clues",
+        "summary": "The clue obtained from the 'Rotten Backpack', pointing to the Bearger.",
+        "detail": """
+Matching exotic flame: Wildmane Flame.
+Clue item: Rotten Backpack.
+Follow-up boss: Bearger.
+
+Reading it requires the Subtle realm.
+""",
+    },
+    "lj_dust_log": {
+        "tags": "Logs,Flame Clues",
+        "summary": "The log that points to the Antlion; it can also be refined directly in the Alchemy Furnace.",
+        "detail": """
+Matching exotic flame: Spirit Dust Flame.
+Clue item: Dried Camel Feathers.
+Follow-up boss: Antlion.
+
+Refining (high tier, refining time 2 minutes)
+
+Reading it requires the Subtle realm.
+""",
+    },
+    "lj_purplemonster_log": {
+        "tags": "Logs,Flame Clues",
+        "summary": "The clue obtained from the 'Swollen Scroll', pointing to the Soul-devouring Snake.",
+        "detail": """
+Matching exotic flame: Purple Scale Demon Flame.
+Clue item: Swollen Scroll.
+Follow-up boss: Soul-devouring Snake.
+
+Reading it requires the Subtle realm.
+""",
+    },
 }
 
 SITE = [
