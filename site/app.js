@@ -117,6 +117,7 @@ function pickRecipe(item) {
 const state = {
   data: null,
   lang: "zh",
+  modalItemId: "",
   query: "",
   activeSec: "",
   pendingItem: "",
@@ -708,7 +709,9 @@ function setActiveSubItem(itemId) {
 
 function renderNav(sections) {
   const nav = $("#nav");
-  const signature = sections.map((section) => {
+  // 签名里必须带上语言：侧栏文案随语言变，不带的话切中英时签名不变，
+  // 这里会直接 return，侧栏就停在旧语言（作者报的「切换没同步」就是这个）。
+  const signature = `${state.lang}|` + sections.map((section) => {
     const count = isLogSection(section) ? (state.data.changelog || []).length : sectionItems(section.id).length;
     return `${section.id}:${count}`;
   }).join("|");
@@ -899,6 +902,7 @@ function openItemModal(itemId, trigger = document.activeElement, write = true) {
   if (!item) return;
   state.lastFocus = trigger;
   state.modalMode = "item";
+  state.modalItemId = itemId;   // 记住当前弹窗是哪一条，切换语言时照新语言重画
   $("#modalTitle").textContent = renderModalTitle(pickName(item));
   const body = $("#modalBody");
   body.textContent = "";
@@ -996,6 +1000,7 @@ function closeModal() {
   document.body.style.overflow = "";
   if (state.modalMode === "item") writeHash({ item: "", sec: state.activeSec });
   state.modalMode = "";
+  state.modalItemId = "";
   if (state.lastFocus && typeof state.lastFocus.focus === "function") state.lastFocus.focus();
 }
 
@@ -1078,6 +1083,52 @@ function wireJoinGroup() {
   });
 }
 
+// 刷新「外壳」里写死的界面文案。
+// 侧栏卷目名与条目名由 renderSections() → renderNav() 负责，这里只管：
+// 跳过链接、侧栏 aria-label、搜索框 placeholder、清空、两个加群按钮、
+// 空搜索结果提示、回到顶部、弹窗关闭 aria、QQ 提示的「QQ 群」前缀。
+// 切换语言时必须调用，否则会出现「正文变英文了、侧栏还是中文」的错位。
+function applyShellText() {
+  const skip = $(".skip-link");
+  if (skip) skip.textContent = t("skip");
+  const rail = $("#rail");
+  if (rail) rail.setAttribute("aria-label", t("railLabel"));
+  const input = $("#searchInput");
+  if (input) {
+    input.placeholder = t("search");
+    const label = $('label[for="searchInput"]');
+    if (label) label.textContent = t("search");
+  }
+  const clear = $("#clearSearchBtn");
+  if (clear) clear.textContent = t("clear");
+  ["#joinGroupTopBtn", "#joinGroupBtn"].forEach((sel) => {
+    const el = $(sel);
+    if (el) el.textContent = t("joinGroup");
+  });
+  const copy = $("#copyQqBtn");
+  if (copy) copy.textContent = t("copyQq");
+  const hint = $("#qqHint");
+  if (hint && hint.firstChild && hint.firstChild.nodeType === 3) {
+    hint.firstChild.textContent = `${t("qqGroup")}「`;
+  }
+  const empty = $("#emptyState");
+  if (empty) {
+    const strong = empty.querySelector("strong");
+    if (strong) strong.textContent = t("emptySearch");
+    const span = empty.querySelector("span");
+    if (span) span.textContent = t("emptySearchHint");
+  }
+  const emptyClear = $("#emptyClearBtn");
+  if (emptyClear) emptyClear.textContent = t("clearSearch");
+  const toTop = $("#toTopBtn");
+  if (toTop) {
+    toTop.textContent = t("toTop");
+    toTop.setAttribute("aria-label", t("toTop"));
+  }
+  const modalClose = $(".modal-close");
+  if (modalClose) modalClose.setAttribute("aria-label", t("closeModal"));
+}
+
 // 切换语言：只改显示用的语言，内容数据一行不动。
 // 记住选择（localStorage），并把 <html lang> 一起改掉（利于无障碍与浏览器翻译提示）。
 function setLang(lang) {
@@ -1093,8 +1144,14 @@ function setLang(lang) {
     btn.textContent = t("langButton");
     btn.title = t("langTitle");
   }
+  applyShellText();
   renderHeader();
+  // renderSections() 里会连带 renderNav()，所以侧栏卷目名与条目名一起换掉
   renderSections();
+  // 详情弹窗开着的话，按新语言重画一遍（否则弹窗正文会停在旧语言）
+  if (!$("#modal").hidden && state.modalItemId) {
+    openItemModal(state.modalItemId, state.lastFocus || document.body, false);
+  }
 }
 
 function readStoredLang() {
