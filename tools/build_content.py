@@ -1236,6 +1236,184 @@ Core: Constant Temperature Nucleus ([images/inventoryimages3/yellowstaff.png] St
 Effect: extreme temperatures are fully neutralised inside the area (no freezing or overheating); freeze and fire damage are cancelled, and nothing inside catches fire or freezes; the player's sanity slowly recovers, 30 sanity every 60 seconds.
 """,
     },
+    "lj_seasons_nucleus": {
+        "tags": "Formations,Core,Magic",
+        "summary": "The formation core of the Four Seasons Harmony Formation.",
+        "detail": """
+Formation core / pivot.
+
+Used in the Four Seasons Harmony Formation: every farm crop inside the area grows normally in all four seasons.
+
+Craftable in the <Ethereal Realm> and <Magic> tabs.
+""",
+    },
+    "lj_plant_nucleus": {
+        "tags": "Formations,Core,Magic",
+        "summary": "The formation core of the Vitality Rejuvenation Formation.",
+        "detail": """
+Formation core / pivot.
+
+Used in the Vitality Rejuvenation Formation: lights the area so plants never wither and crops grow at night too.
+
+Craftable in the <Ethereal Realm> and <Magic> tabs.
+""",
+    },
+    "lj_subdue_demons_nucleus": {
+        "tags": "Formations,Core,Magic",
+        "summary": "The formation core of the Spirit-Banishing Demon-Locking Formation.",
+        "detail": """
+Formation core / pivot.
+
+Used in the Spirit-Banishing Demon-Locking Formation: blocks creatures but not players, locking hostile creatures both inside and outside the area.
+
+Craftable in the <Ethereal Realm> and <Magic> tabs.
+""",
+    },
+    "lj_constant_temperature_nucleus": {
+        "tags": "Formations,Core,Magic",
+        "summary": "The formation core of the Extreme Temperature Ward Formation.",
+        "detail": """
+Formation core / pivot.
+
+Used in the Extreme Temperature Ward Formation: neutralises extreme temperatures, cancels freeze and fire damage and slowly restores sanity.
+
+Craftable in the <Ethereal Realm> and <Magic> tabs.
+""",
+    },
+    "lj_reiki_grass": {
+        "tags": "Spirit Plants,Materials",
+        "summary": "The basic herb of many pills. Grows on forest turf near spider nests, and on Butterfly Island beside Night Bat Nests.",
+        "detail": """
+Spawn (two sets, with different turf conditions)
+　Mainland: grows on forest turf beside spider nests.
+　Butterfly Island: grows on guano / cave turf beside Night Bat Nests, 1 to 3 per nest.
+
+Harvesting: gives 1 [images/inventoryimages1/cutgrass.png] Cut Grass and 1 Spirit-Melting Grass, with a 5% chance of an extra Spirit-Melting Grass Root.
+
+Its growth cycle matches vanilla saplings and it can be fertilised to speed it up.
+⚠️ It does not grow in winter.
+
+Can be burned and dug up; harvesting leaves the root behind, like vanilla grass.
+
+Use: the basic herb of nearly every pill.
+""",
+    },
+    "lj_red_magic_flower": {
+        "tags": "Spirit Plants,Materials",
+        "summary": "Grows beside predecessor skeletons; a skeleton left by a dead player also grows one after 1 day.",
+        "detail": """
+Spawn: beside predecessor skeletons, only 1 per skeleton. A skeleton left behind when a player dies grows a Spider Lily nearby after 1 day.
+
+Harvesting: gives 1 [images/inventoryimages2/petals.png] Petals and 1 Spider Lily, with a 5% chance of an extra Spider Lily Root.
+
+Its growth cycle matches vanilla saplings, it can be fertilised to speed it up, and it grows in every season.
+
+Can be burned and dug up; harvesting leaves the root behind, like vanilla grass.
+
+Use: Invincible Pill, Nascent Union Pill.
+""",
+    },
+    "yihuo_rules": {
+        "tags": "Flames,Wasteland Flame,Mechanics",
+        "summary": "A full flame can only be kept in the Spirit Void Gourd or the Void Ring; more than 10 seconds in a backpack burns items up.",
+        "detail": """
+Storage limits: a full Wasteland Flame / exotic flame can only be stored properly in the Spirit Void Gourd or the Void Ring. A split flame is a single-use item and cannot stack.
+
+Burn risk: kept in the inventory or a backpack for more than 10 seconds it automatically devours and destroys a random item (world-unique items excepted). If there are stacks, after 10 seconds it consumes 1 every 2 seconds starting from the first inventory slot; with several exotic flames in the inventory the devouring runs at multiplied speed.
+
+Light and fire-fighting: a full Wasteland Flame / exotic flame placed on the ground provides 20 range of light and puts out every ordinary fire nearby (exotic flames do not repel each other — two on the ground each give light and heat while still putting out other fires). A split flame placed on the ground simply disappears.
+
+Splitting: an exotic flame absorbed by the Spirit Void Gourd can be split with a right-click, costing 10 Reiki. A split flame can go into a Reiki Table Lamp for light, adds 50% fuel, burns burnables and buildings, and can be put in the Alchemy Furnace to fuse.
+
+Igniting with the Void Ring: with a full exotic flame inside, equipping the Void Ring and right-clicking a target ignites it at range (the same fireball as a Fire Staff, range 8 to 10), costing 10 Reiki; against burnable fuel devices it tops up fuel, and it deals no damage itself.
+
+Flame ownership: strong exotic flames (Frost Karma Flame, Dragon Flame Heartfire, Wildmane Flame, Spirit Dust Flame, Purple Scale Demon Flame) cannot be picked up by hand once they land — only their owner can. After a full day on the ground (8 minutes) they become "Lose Owner", and from then on any Spirit Void Gourd can absorb them. Picking a strong exotic flame up into the inventory or a container makes the picker its new owner. The Wasteland Flame is not a strong flame, so anyone can pick it up by hand.
+
+Absorption cost: absorbing with the Spirit Void Gourd sets the flame burning through you, costing 1 Reiki and 2 health per second for 60 seconds.
+""",
+    },
+    "lj_ordinary_flame": {
+        "tags": "Wasteland Flame,Starting Gift,Flame",
+        "summary": "The flame every character starts with, held inside the Void Ring.",
+        "detail": """
+Every character starts with it, held inside the Void Ring.
+
+The Wasteland Flame is the starting flame; it can go into the furnace for alchemy, or be split to light a Reiki Table Lamp.
+
+See "Flame Usage Rules" for the general storage, lighting and burn rules.
+""",
+    },
+    "lj_ice_flame": {
+        "tags": "Flames,Flame,Frost",
+        "summary": "The exotic flame obtained by summoning Deerclops through the 'Frozen Log' clue; required to craft the Reiki Bow.",
+        "detail": """
+Exotic flame. Clue bosses roll their demonization level from the world day like anything else (see "Demonization Overview") and are not limited by season; the clue item refreshes every 20 days.
+
+Clue item: the "Frozen Log" (spawns at random in birch forests, unlocked by smashing it with a pickaxe).
+
+How to get it: right-click the log to open it, and the note reads "a giant shadow under the moonlight; when it shatters the ice, a dancing light hides in the cold". A large suspicious mound then spawns somewhere on the ground; search every clue mound to spawn Deerclops. Killing it drops its normal loot plus the Frost Karma Flame.
+
+Use: crafting the Reiki Bow needs a full Frost Karma Flame.
+""",
+    },
+    "lj_dragon_flame": {
+        "tags": "Flames,Flame,Fire",
+        "summary": "The exotic flame obtained by summoning the Dragonfly through the 'Charred Scales' clue; required to craft Starfall.",
+        "detail": """
+Exotic flame.
+
+Clue item: the "Charred Scales" (spawn near lava ponds, unlocked by dousing them with a watering can).
+
+How to get it: right-click the log to open it, and the note reads "the rock nest stirs; a great beast guards its ground. Its rage burns the grass to ash; its shell hides a fire core that a sudden strike can crack". A Dragonfly spawns beside the pet nest; killing it drops its normal loot plus the Dragon Flame Heartfire.
+
+Use: crafting Starfall needs a full Dragon Flame Heartfire.
+""",
+    },
+    "lj_mighty_flame": {
+        "tags": "Flames,Flame,Empower",
+        "summary": "The exotic flame obtained by summoning the Bearger through the 'Rotten Backpack' clue; it empowers armour.",
+        "detail": """
+Exotic flame.
+
+Clue item: the "Rotten Backpack" (spawns at random on forest terrain, unlocked by splitting it with an axe).
+
+How to get it: right-click the log to open it, and the note reads "when it pushes over a pine, sparks rise from the roots; it fears water but loves honey". A Bee Queen hive is picked somewhere on the map and a bee box spawns near it, with the Bearger right beside the box; killing it drops its normal loot plus the Wildmane Flame.
+
+Empower effects
+Split Wildmane Flame: empowers any armour, doubling its durability.
+Full Wildmane Flame: empowers any armour, granting 15 extra damage reduction and doubling its durability.
+
+That extra 15 damage reduction applies after the armour's own defence.
+For example: armour with 80 defence takes a 100 damage hit, so 20 damage gets through, minus 15 more, leaving 17 damage.
+""",
+    },
+    "lj_dust_flame": {
+        "tags": "Flames,Flame,Techniques",
+        "summary": "The exotic flame obtained by summoning the Antlion through the 'Dried Camel Feathers' clue.",
+        "detail": """
+Exotic flame.
+
+Clue item: the "Dried Camel Feathers" (picked up near the oasis).
+
+How to get it: right-click the log to open it, and the note reads "there is a halo at the centre of the sandstorm — that is his breath". Going there shows the Antlion; killing it drops its normal loot plus the Spirit Dust Flame.
+
+Use: put it in the Void Ring.
+⚠️ Putting it in the Void Ring does not unlock anything yet (the technique gameplay is still in development — coming soon).
+""",
+    },
+    "lj_purplemonster_flame": {
+        "tags": "Flames,Flame,Soul Banner",
+        "summary": "The exotic flame obtained by summoning the Soul-devouring Hydra through the 'Swollen Scroll' clue; used to craft the Soul Banner.",
+        "detail": """
+Exotic flame.
+
+Clue item: the "Swollen Scroll" (spawns at random beside swamp tentacles, unlocked by baking it with fire).
+
+How to get it: right-click the log to open it, and the note reads "dusk is coming; purple firelight will be mirrored on the spirit vein's water". After reading the log the boss appears at dusk beside a pond on Butterfly Island. Going there shows the Soul-devouring Hydra; killing it drops its normal loot plus the Purple Scale Demon Flame.
+
+Use: it crafts the Soul Banner, and giving it to the banner unlocks the "Soul Refining" skill.
+""",
+    },
 }
 
 SITE = [
