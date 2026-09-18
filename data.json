@@ -211,9 +211,9 @@
     },
     {
       "id": "lj_moon_vase",
-      "分类id": "danyao",
+      "分类id": "fabao",
       "名称": "月魄凝液瓶",
-      "标签": "特殊炼制,炼制",
+      "标签": "法宝,特殊炼制,炼制",
       "图片": "images/lingjie/showcase/lj_moon_vase.png",
       "制作配方": "[images/inventoryimages1/dragon_scales.png] 鳞片 1、[images/inventoryimages2/moonglass.png] 玻璃碎片 5、[images/inventoryimages2/greengem.png] 绿宝石 1、[images/lingjie/icons/lj_magic_crystal.png] 魔晶 1",
       "简介": "不触发丹劫、100% 成功；用于灵玉台夜晚吸收天地灵气。",
