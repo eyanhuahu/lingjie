@@ -1545,6 +1545,185 @@ Follow-up boss: Soul-devouring Snake.
 Reading it requires the Subtle realm.
 """,
     },
+    "lj_butterfly_island": {
+        "tags": "Terrain,Seasons,Demon Beasts,Demon Beast Forest",
+        "summary": "A region split into four seasonal blocks, with the winter block open in the first release; a gathering place for the exotic flame clue bosses and demonic beasts.",
+        "detail": """
+You can also search for this place as "Demon Beast Forest" — the tag carries that alias, so either name finds it.
+
+Inside it is split into four blocks matching the four seasons. In this first release the winter block is winter all year round; the other three blocks will have seasonal effects too, with content coming later. (Region barrier: you only feel the regional season once you are on the island.)
+
+Winter region block
+Core area (swamp turf): a frozen swamp pond (where the clue boss spawns); two perfectly ordinary trees surrounded by evil flowers; three gloomy thistles; several spiky trees and spiky bushes.
+Satellite area (guano turf): in the corners of the region, 4 Night Bat Nests, each with 1 to 3 Spirit-Melting Grass spawning beside it.
+Vanilla winter content: a few ice patches spawn at random (breaking some leaves a puddle of water behind), plus one penguin colony.
+
+Easter egg
+Each block spawns a predecessor skeleton at random, with items left over from the fall beside it.
+　1. 1 to 5 Magic Cores (70% chance)
+　2. 1 to 2 Magic Crystals (30% chance)
+
+Several Night Bat Nests.
+
+How Butterfly Island generates can be set in the mod settings: new and existing worlds / new worlds only / off.
+""",
+    },
+    "lj_remains_altar": {
+        "tags": "Terrain,Special Crafting",
+        "summary": "A small island of remains in the shallow sea that spawns the Blazing Rock Scorpion Dragon; restoring the altar unlocks high-tier crafting, and every craft needs you nearby.",
+        "detail": """
+The restored altar
+
+A small landform (Remains Island) that spawns the Remains Altar and the Blazing Rock Scorpion Dragon, in the shallow sea.
+
+You need at least the Fasting realm to repair it, and finishing the repair costs one whole realm (nine stages) — that is the price of the repair, not a reward. Your realm keeps whatever death lock it already had.
+
+Crafting unlocks nearby: every craft still needs you to be near the Remains Altar, so a recipe is never permanently unlocked just because you made it once.
+Reiki Bow, Starfall, Soul Banner, Keel Armour, Crystal Crown, Seasons Nucleus, Plant Nucleus, Demon Subduing Nucleus, Constant Temperature Nucleus, Spirit Formation Pivot, Void Ring.
+
+Science station: the Remains Altar is the Ethereal Realm's own science station. Basic cultivation facilities use tier-2 science (the Alchemy Engine) and unlock permanently; the high-tier recipes above must be crafted beside the Remains Altar.
+
+The restored altar
+
+[[图片:images/lingjie/showcase/lj_remains_altar_complete.png|Once repaired it turns from broken remains into a complete altar, and the high-tier constructs are all finished here]]
+""",
+    },
+    "lj_chiyan_scorpion_dragon": {
+        "tags": "Boss,Epic,Remains Altar",
+        "summary": "The epic boss of the Remains Altar. 30000 health, 30 armour; immune to freeze, stagger and knockback, and it summons Venomous Scorpion Larvae after half health.",
+        "detail": """
+Spawns at the Remains Altar (an ancient ruins islet). Epic boss.
+
+Base stats
+30000 health, 30 armour, medium movement speed.
+
+Core mechanics
+Immune to freeze, stagger and knockback.
+Every 10000 health lost summons 4 Venomous Scorpion Larvae (250 health, 40 attack, 3 poison damage per second for 8 seconds), with a 30-second cooldown. The larvae stay around forever, and whether they die does not affect the next summon of 4.
+
+Skills
+Sweep (basic attack): a pincer swipe, 60 damage per pincer, 8-second cooldown. Attack range about 1 turf (4 units; 1 turf = 4 units). After 4 attacks the tail sweeps for 90 AOE damage and knocks players back 2 turf.
+
+Meteor Crash: calls down a meteor that hurtles at the player, much like the rocks falling in a meteor field (destroying buildings and trees, same as a vanilla meteor field). 18-second cooldown. Deals 120 damage and knocks the player down (sending them flying and sprawling).
+
+Grit Eruption: a 5-turf cone of sand in front of it, lasting 3 seconds, 20-second cooldown.
+　The eruption lasts 3 seconds, covering a 5-turf cone 3 turf wide in front of it, continuously spawning grit that corrodes the terrain; the terrain lingers for 2 seconds after the eruption ends.
+　⚠️ The grit's slow and damage come from the vanilla sand spikes themselves.
+
+Scorpion Dragon Charge: charges up for 1 second, then charges in a straight line for 8 turf, dealing 100 damage and destroying buildings along the way, ending with a 2-second stagger; 30-second cooldown. Maximum straight-line distance is 8 turf.
+　Building destruction: every wooden or stone wall, harvestable and small structure in the path is destroyed outright.
+
+Drops on kill
+Scorpion Dragon Bone 1, [images/inventoryimages2/monstermeat.png] Monster Meat 4, Magic Crystal 2, Magic Core 6, Magic Core Shard 10, [images/inventoryimages2/orangegem.png] Orange Gem 2, [images/inventoryimages2/greengem.png] Green Gem 2, [images/inventoryimages3/yellowgem.png] Yellow Gem 2.
+""",
+    },
+    "lj_little_scorpion": {
+        "tags": "Boss,Summon,Remains Altar",
+        "summary": "Summoned 4 at a time whenever the Blazing Rock Scorpion Dragon loses 10000 health. 250 health, 40 attack, with poison damage.",
+        "detail": """
+Summoned 4 at a time by the Blazing Rock Scorpion Dragon every 10000 health it loses.
+
+250 health, 40 attack, 3 poison damage per second for 8 seconds.
+
+The larvae stay around forever, and whether they die does not affect the next summon of 4.
+""",
+    },
+    "lj_bat_nest": {
+        "tags": "Terrain,Butterfly Island,Spawns",
+        "summary": "Each nest spawns 6 Demon Bats and 1 Shadow Blood Bat, active at dusk and at night.",
+        "detail": """
+Several spawn on Butterfly Island. Each nest spawns 6 Demon Bats (1 respawns every 5 minutes, up to 6) and 1 Shadow Blood Bat (1 respawns every 45 minutes, up to 1).
+
+Active at dusk and at night (behaving much like vanilla bats).
+
+1 to 3 Spirit-Melting Grass spawns at random beside each nest.
+""",
+    },
+    "lj_blood_bat": {
+        "tags": "Demon Beast,Butterfly Island,Bat",
+        "summary": "A lesser demonic beast. 300 health and 25 damage, and it always drops Monster Meat.",
+        "detail": """
+300 health, 25 attack damage, 1-second attack period.
+
+Attacks: it bites within 1 turf, and charges when you are further away. A charge hit staggers you briefly, which you can dodge by moving up or down early.
+
+On death it always drops [images/inventoryimages2/monstermeat.png] Monster Meat 1 (Magic Core Shards, Magic Cores and Magic Crystals drop according to its current demonization tier). It is not a large demonic beast.
+
+Spawned by Night Bat Nests, 6 per nest, 1 respawning every 5 minutes, up to 6.
+""",
+    },
+    "lj_demon_bat": {
+        "tags": "Demon Beast,Butterfly Island,Bat,Elite",
+        "summary": "An elite demonic beast with 2000 health. Its sound wave staggers in an area, and below half health it keeps summoning Demon Bats.",
+        "detail": """
+2000 health, medium movement speed.
+
+Attacks: bite and sound wave.
+55 attack damage; it bites within 1 turf and uses the sound wave at longer range.
+
+Sound wave: releases a dark red wave, an area attack centred on itself with radius 8, pulsing every 0.5 seconds, staggering anyone inside continuously for 9 seconds. Step out of the area to end it. 30-second cooldown.
+
+Summoning: below 50% health it starts summoning 1 Demon Bat every 15 seconds with no limit. Out of combat they all return to the nest; the cap is 6, and any extra ones that enter the nest count as dead.
+
+On death it always drops Blood Bat Essence 1 and [images/inventoryimages2/monstermeat.png] Monster Meat 2 (Magic Core Shards, Magic Cores and Magic Crystals drop according to its current demonization tier).
+
+Spawned by Night Bat Nests, 1 per nest, 1 respawning every 45 minutes, up to 1.
+""",
+    },
+    "lj_soul_devouring_snake": {
+        "tags": "Boss,Epic,Hidden,Butterfly Island",
+        "summary": "A hidden boss with 12000 health. It drops scales every 2000 damage taken, and below half health it eats them to heal 1000.",
+        "detail": """
+Hidden boss, epic tier.
+
+Base stats
+12000 health, a 50 damage bite as its basic attack with a poison effect, 15% armour, medium movement speed.
+
+Core mechanics
+Every 2000 health of damage taken it drops Soul Snake Scales, which players cannot pick up but can burn with an exotic flame.
+Once the two-headed Soul-devouring Snake first falls to 50% health it actively seeks out and eats the scales to heal itself, 1000 health each.
+
+Skills
+Bite: a snake head bite for 50 damage, non-stacking, and it can refresh the poison timer.
+Venom Bog: spits venom at the target to create a poison bog that lasts 4 minutes, slowing anyone inside by 60% and poisoning them on contact; 15-second cooldown.
+Petrifying Bind: within a circle of radius 16 centred on itself, binds the target in place for 3 seconds; 30-second cooldown. (Circular area.)
+Venom Lock: slams its tail into the ground and spawns a snake body like a shadow creature that coils around the target for 5 seconds, during which the boss closes in and basic-attacks the bound target.
+
+Drops on kill
+Soul Snake Skin 3, [images/inventoryimages2/monstermeat.png] Monster Meat 5, Magic Crystal 2, Magic Core 6, Magic Core Shard 10, [images/inventoryimages3/redgem.png] Red Gem 2, Purple Scale Demon Flame 1.
+""",
+    },
+    "lj_moon_lion": {
+        "tags": "Boss,Epic,Amethyst Form Flower",
+        "summary": "An epic boss with 24000 health. It heals from nearby flowers, and standing near a Mandrake puts it to sleep.",
+        "detail": """
+Spawns beside an Amethyst Form Flower. Epic boss.
+
+Base stats
+24000 health, 15% armour, medium movement speed.
+
+Core mechanics
+With flowers within 5 turf it heals 60 health per flower every 10 seconds (an Amethyst Form Flower counts as one flower unit and spawns butterflies like petals do).
+Destroying or harvesting nearby flowers interrupts the healing and forces a Lion's Roar within 10 seconds (harvesting petals within those 10 seconds still triggers it only once).
+Standing near a Mandrake puts it to sleep for 8 seconds, and that sleep can only trigger once per minute.
+
+Skills
+Crystal Claw Smash: a single-target melee heavy blow. 70 damage, 8-second cooldown, range about 1 turf (3 units), knocks small creatures down, and staggers a hit player for 0.6 seconds. If the player is closer than 1 turf, there is a 60% chance of one swing with each claw for 70 damage each (140 total), and a 40% chance of a single swing.
+Scale Powder Missiles (ranged): fans one wing to fire 3 scale powder orbs in a triangular spread. 40 damage each, 120 for all three. Blast radius about 0.4 turf (1.5 units), and each blast leaves a petal at the impact point. 18-second cooldown, 8 turf flight distance, exploding on contact with an obstacle.
+Lion's Roar (control): a screen-wide sound wave with 6 turf of range. No damage, but it staggers the player for 1.2 seconds and forces their weapon to drop.
+Earth-Rending Step: the lion raises one front paw, sinks its body to gather power, the ground trembles faintly and dust kicks up at its feet, with a small screen shake warning players to move.
+　Spawn area: centred on itself with 8 turf (32 units) of radius, it spawns one temporary pit under every player in range; pits never overlap, and no pit spawns where the ground is impassable.
+　The pit does not destroy buildings, turf, walls or crops, and when it first appears only cracks show as a warning for 1 second.
+　It then advances one collapse stage per second, 3 stages in all: stages 1 and 3 each deal 60 area damage, and stage 2 is effects only.
+　From the second second on it deals an extra 1 area damage per second; the collapse and damage radius are both 2.5 units (about 0.6 turf).
+　When stage 3 ends the pit is removed immediately, so it exists for about 3 seconds in total (unlike the Antlion's permanent sinkholes).
+　⚠️ The pit only deals damage and does not slow you.
+　18-second cooldown.
+
+Drops on kill
+Amethyst Shell 1, Lion Bone 1, [images/inventoryimages2/monstermeat.png] Monster Meat 4, Magic Crystal 2, Magic Core 6, Magic Core Shard 10, [images/inventoryimages3/redgem.png] Red Gem 2, [images/inventoryimages1/bluegem.png] Blue Gem 2, [images/inventoryimages2/purplegem.png] Purple Gem 2.
+""",
+    },
 }
 
 SITE = [
