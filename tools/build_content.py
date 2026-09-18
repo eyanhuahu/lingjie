@@ -393,6 +393,158 @@ When Reiki runs dry (below 5) you enter a 10-second weakened state: vanilla drow
 Reiki is spent by many techniques and artifacts — for example the Reiki Bow's ice infusion costs 20, and Starfall's meteor thrust costs 10.
 """,
     },
+    "corruption_overview": {
+        "tags": "Demonization,Mechanics,World",
+        "summary": "Creatures demonize at random as the world runs, and the threshold day is configurable. Past that day, epic bosses always demonize deeply.",
+        "detail": """
+Creatures roll a demonization level when they spawn. The threshold day can be set to 30 / 60 / 90 days; the default is 60.
+
+Roll chances
+　Before the threshold day: light 47.5%, moderate 47.5%, deep 5%.
+　From the threshold day on: epic bosses always demonize deeply; other creatures get light 50%, moderate 25%, deep 25%.
+
+Regeneration: 10 seconds after losing every valid target, the creature regenerates 2% of its maximum health every 5 seconds (being attacked resets that out-of-combat timer).
+
+Every demonized creature is hostile (neutral creatures such as Chester are excluded, as are special player relationships — spiders still will not attack Webber).
+
+Demonization has three tiers, shown in game as "Demonization: Light / Moderate / Deep":
+Light Demonization, Moderate Demonization, Deep Demonization.
+
+Never demonized: shadow creatures (Crawling Horror, Terrorbeak, Shadow creatures, Ruins shadow creatures, Shadow Knight, Shadow Bishop, Shadow Rook and so on), passive critters, players, followers, walls, and equipment display models. Creatures hired by a player lose every demonization effect immediately.
+""",
+    },
+    "corruption_light": {
+        "tags": "Demonization,Light",
+        "summary": "Demonized health uses a 1.60× discounted multiplier (the higher the base health, the closer to full); it applies Demonic Aura, Curse of Hunger and Shadow Slow to players.",
+        "detail": """
+Shown in game as "Light".
+
+Core buff — Health
+　Max health = max health before demonization × (1.60 − 65 ÷ (max health before demonization + 110))
+
+Actual results:
+
+　Base 100 → 129.05 (×1.290)
+　Base 500 → 746.72 (×1.493)
+　Base 2000 → 3138.39 (×1.569)
+　Base 24000 → 38335.30 (×1.597)
+
+The multiplier is fixed at 1.60; the lower the health, the more the 65 ÷ (health + 110) term takes away, so small creatures lose out while large ones approach the full multiplier. There is no adjustable decay threshold.
+
+Player debuffs
+Demonic Aura: within 5 range, players lose 1 sanity every 5 seconds.
+Curse of Hunger: 30% chance when the player is hit by a creature; hunger drains 20% faster for 30 seconds.
+Shadow Slow: 20% chance when the player is hit by a creature; movement speed −20% for 10 seconds.
+
+On death it drops 1 to 3 Magic Core Shards plus the creature's own loot.
+Creatures with 149 or less base health keep the light buff only and gain no demonization materials at all.
+""",
+    },
+    "corruption_medium": {
+        "tags": "Demonization,Moderate",
+        "summary": "Demonized health uses a 1.95× discounted multiplier (the higher the base health, the closer to full); 12% damage reduction, an invulnerable shield at half health and 5% demonic reflection.",
+        "detail": """
+Shown in game as "Moderate".
+
+Core buff — Health
+　Max health = max health before demonization × (1.95 − 65 ÷ (max health before demonization + 110))
+
+Actual results:
+
+　Base 100 → 164.05 (×1.640)
+　Base 500 → 921.72 (×1.843)
+　Base 2000 → 3838.39 (×1.919)
+　Base 24000 → 46735.30 (×1.947)
+
+Core buff — Armour
+All incoming external damage ×0.88 (a 12% physical damage reduction).
+
+Player debuffs
+Demonic Aura: within 10 range, players lose 3 sanity every 5 seconds.
+Curse of Hunger: 30% chance when the player is hit by a creature; hunger drains 20% faster for 30 seconds.
+Shadow Slow: 20% chance when the player is hit by a creature; movement speed −20% for 10 seconds.
+Demonic Reflection: 10% chance when the creature takes damage from a player; reflects 5% of the damage.
+
+Creature buffs
+Conditional Vulnerability: dropping to 50% health or below triggers a shield; the creature takes no damage for 25 seconds, with a 5-minute cooldown.
+
+On death it drops 1 to 2 Magic Cores and 1 to 3 Magic Core Shards plus the creature's own loot.
+""",
+    },
+    "corruption_deep": {
+        "tags": "Demonization,Deep",
+        "summary": "Demonized health uses a 2.35× discounted multiplier (the higher the base health, the closer to full); ignores every slow, plus Bone-Deep Poison, Mirror Confusion, Demonic Frenzy and Heaven's Judgment.",
+        "detail": """
+Shown in game as "Deep".
+
+Core buff — Health
+　Max health = max health before demonization × (2.35 − 65 ÷ (max health before demonization + 110))
+
+Actual results:
+
+　Base 100 → 204.05 (×2.040)
+　Base 500 → 1121.72 (×2.243)
+　Base 2000 → 4638.39 (×2.319)
+　Base 24000 → 56335.30 (×2.347)
+
+Core buff — Armour and size
+All incoming external damage ×0.8 (a 20% physical damage reduction), plus +5 insulation / planar defense.
+Movement speed +10%, and the creature is scaled up to 1.2×. (The three epic bosses — Eclipsed Crystalwing Lion, Blazing Rock Scorpion Dragon and Soul-devouring Snake — keep their original look and are not enlarged.)
+
+Core buff — Slow immunity
+Ignores every slow: it only accepts movement multipliers greater than 1.
+
+Player debuffs
+Demonic Aura: within 10 range, players lose 5 sanity every 5 seconds.
+Curse of Hunger: 30% chance when the player is hit by a creature; hunger drains 20% faster for 30 seconds.
+Shadow Slow: 20% chance when the player is hit by a creature; movement speed −20% for 10 seconds.
+Demonic Reflection: 10% chance when the creature takes damage from a player; reflects 2% of the damage.
+Mirror Confusion: 10% chance on attack; the player's movement direction flips 180° for the next 5 seconds.
+
+Creature buffs
+Conditional Vulnerability: while health is between 30% and 50% (>30% and ≤50%) it triggers a 25-second invulnerable shield, with a 5-minute cooldown.
+Bone-Deep Poison: normal attacks carry bone-eating poison. One poisoning lasts 240 seconds and does not stack (the timer can be refreshed, capped at 240 seconds), and the first tick lands the moment it hits.
+　0 to 80 seconds: 6 damage every 10 seconds
+　80 to 160 seconds: 10 damage every 10 seconds
+　160 to 240 seconds: 14 damage every 10 seconds
+　Antidote: a Stillness Pill works, and so does a gland. A gland antidote actually deducts "50 + the gland's normal healing"; if that would drop you below 5 health you keep 5.
+Shadow Familiar: when it wakes up it summons one extra shadow with half the creature's base max health. The shadow carries no demonization effects and no armour, and a Soul Banner can refine it directly. Each body only summons it once.
+Feeding on Remains: whenever a player dies, any deeply demonized boss within 40 of the death spot heals 10% of the health it has lost.
+Demonic Frenzy: dropping to 30% health or below triggers a frenzy — damage +30%, its damage reduction and planar defense stop working (the damage multiplier and the +5 planar defense are removed), and it cannot heal at all while frenzied (every heal is blocked).
+　Only epic bosses also get their skill cooldowns halved.
+　The frenzy lasts 300 seconds (5 minutes) and can only trigger again once it has ended.
+Heaven's Judgment: on death it calls down a tribulation for 60 seconds, striking lightning every 6 seconds that kills outright (9999 damage, ignoring invulnerability and damage absorption). The landing spot is marked first and the bolt lands 1.5 seconds later.
+
+On death it adds 1 Magic Crystal plus the creature's own loot, and doubles the vanilla drop amounts.
+　Exception: the three epic bosses with their own complete loot tables — Eclipsed Crystalwing Lion, Blazing Rock Scorpion Dragon and Soul-devouring Snake — are neither doubled nor given a Magic Crystal.
+""",
+    },
+    "corruption_drops": {
+        "tags": "Demonization,Drops,Materials",
+        "summary": "Light demonization drops Magic Core Shards, moderate drops Magic Cores, deep drops a Magic Crystal; vanilla creatures drop according to their demonization tier.",
+        "detail": """
+Magic Core Shard: killing a lightly demonized creature drops 1 to 3 shards (creatures with 149 or less base health get no extra materials).
+
+Magic Core: dropped by bosses and demonic beasts; 99 Magic Core Shards craft one; moderately demonized creatures drop 1 to 2. Cannot be destroyed, can be deconstructed.
+
+Magic Crystal: dropped by demonic beasts; 20 Magic Cores craft one; deeply demonized creatures drop 1. Cannot be destroyed, can be deconstructed.
+
+Vanilla creatures drop Magic Core Shards and Magic Cores according to their demonization tier. A vanilla creature at deep demonization drops only 1 Magic Crystal, while large demonic beasts drop 2.
+""",
+    },
+    "alchemy_rules": {
+        "tags": "Alchemy,Pills,Rules",
+        "summary": "Refining with a Wasteland Flame has a base 50% success rate; an exotic flame raises it to 100%. Failures become a Failed Pill and materials are not returned.",
+        "detail": """
+Refining uses a Wasteland Flame. Pills that do not trigger a tribulation have a 50% success chance either way, and refining time never changes.
+
+Pills that can trigger a pill tribulation: 50% chance of no tribulation, in which case refining always fails and produces a Failed Pill; 50% chance of a lightning tribulation, and if you dodge it successfully the pill is refined. Taking a Disaster Breaking Pill skips the tribulation check.
+
+Materials must be placed in the Alchemy Furnace in the listed amounts — more is fine, less is not. A failed refinement becomes a Failed Pill and the materials are not returned, so refine carefully.
+
+Refining with an exotic flame raises the success chance to 100%.
+""",
+    },
 }
 
 SITE = [
