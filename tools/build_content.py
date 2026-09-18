@@ -863,6 +863,172 @@ Source: the Soul-devouring Snake drops one every 2000 health of damage taken; pl
 Mechanic: once the two-headed Soul-devouring Snake first falls to 50% health it actively seeks out and eats the scales to heal itself, 1000 health each. So burn the scales lying on the ground with an exotic flame as soon as possible.
 """,
     },
+    "lj_reiki_cutgrass": {
+        "tags": "Materials,Spirit Plants,Alchemy",
+        "summary": "The part harvested from Spirit-Melting Grass; the base material of nearly every pill.",
+        "detail": """
+Source: harvesting "Spirit-Melting Grass" gives 1 [images/inventoryimages1/cutgrass.png] Cut Grass plus 1 Harvested Spirit-Melting Grass.
+
+Use: almost every pill needs it — Qi Condensing Pill, Flame Warming Pill, Cold Flame Pill, Stillness Pill, Reiki Pill, Drying Pill, Invincible Pill, Bigu Pill and Restore Spirit Pill — as well as repairing the Remains Altar.
+
+Note: in game "Spirit-Melting Grass" is the plant growing in the ground, while "Harvested Spirit-Melting Grass" is the material you put in the furnace — they are two different items.
+""",
+    },
+    "lj_reiki_dug_grass": {
+        "tags": "Materials,Spirit Plants",
+        "summary": "The root left behind when Spirit-Melting Grass is dug up; it can be replanted.",
+        "detail": """
+Source: 5% chance of an extra one when harvesting "Spirit-Melting Grass".
+
+Use: transplanting Spirit-Melting Grass elsewhere.
+""",
+    },
+    "lj_red_magic_cutflower": {
+        "tags": "Materials,Spirit Plants,Alchemy",
+        "summary": "The part harvested from a Spider Lily; used in moderate and high-tier pills.",
+        "detail": """
+Source: harvesting a "Spider Lily" gives 1 [images/inventoryimages2/petals.png] Petals plus 1 Harvested Spider Lily.
+
+Use: Invincible Pill, Nascent Union Pill.
+""",
+    },
+    "lj_red_magic_dug_flower": {
+        "tags": "Materials,Spirit Plants",
+        "summary": "The root left behind when a Spider Lily is dug up.",
+        "detail": """
+Source: 5% chance of an extra one when harvesting a "Spider Lily".
+
+Use: transplanting Spider Lilies elsewhere.
+""",
+    },
+    "lj_purple_magic_bloom": {
+        "tags": "Materials,Spirit Plants,Repair",
+        "summary": "Petals chopped from an Amethyst Form Flower; used to repair the Remains Altar.",
+        "detail": """
+Source: chopping an "Amethyst Form Flower". An Eclipsed Crystalwing Lion usually guards it, and nothing drops while the lion is alive.
+
+Use: repairing the Remains Altar needs 1.
+""",
+    },
+    "lj_purple_magic_flower": {
+        "tags": "Spirit Plants,Materials,Boss",
+        "summary": "Grows near the Mandrake plains and spawns one flower within 4 range every day; an Eclipsed Crystalwing Lion always guards it.",
+        "detail": """
+Spawn: near the Mandrake plains, only one per world.
+
+Behaviour: spawns one flower within 4 range of itself every day.
+
+Cannot be burned and must be chopped with an axe. An Eclipsed Crystalwing Lion stands beside it. It cannot be transplanted.
+It regrows 10 days after being harvested.
+
+While the lion is alive the Amethyst Form Flower cannot be chopped for loot, so deal with the Eclipsed Crystalwing Lion first.
+Once the lion dies the flower can be harvested immediately, once; the lion respawns on its own 20-day timer (the panel shows "Moon Lion respawn remaining"), and when it comes back the flower is restored.
+
+Use: repairing the Remains Altar.
+""",
+    },
+    "lj_alchemy_furnace": {
+        "tags": "Structures,Alchemy",
+        "summary": "The core alchemy structure. 5 slots: 4 for materials and 1 for fuel.",
+        "detail": """
+Can be destroyed with a hammer, returning 2 [images/inventoryimages1/boards.png] Boards, 2 [images/inventoryimages1/cutstone.png] Cut Stone and 5 [images/inventoryimages2/nitre.png] Nitre.
+
+5 slots: 4 for materials and 1 for fuel (Wasteland Flame / exotic flame), plus a refine button.
+
+Craftable in the <Ethereal Realm> and <Structures> tabs.
+""",
+    },
+    "lj_wudao_chair": {
+        "tags": "Structures,Realm,Meditation",
+        "summary": "The dedicated building for secluded meditation. It steadies your realm, restores sanity and Reiki, stops hunger drain and grants 1 experience every 10 seconds.",
+        "detail": """
+Can be destroyed with a hammer, returning 6 [images/inventoryimages1/cutgrass.png] Cut Grass, 6 [images/inventoryimages3/rocks.png] Rocks and 3 [images/inventoryimages2/nightmarefuel.png] Nightmare Fuel.
+
+The dedicated meditation structure needed to raise stages and realms. Meditating steadies your realm, restores 1 sanity and 1 Reiki every 3 seconds, and stops hunger drain.
+
+An idle-time favourite: 1 experience every 10 seconds.
+
+Stages 3 / 6 / 9 of every realm need meditation; from the Guiding realm onward you also need the matching pill alongside the meditation.
+
+Craftable in the <Ethereal Realm> and <Structures> tabs.
+""",
+    },
+    "lj_reiki_table": {
+        "tags": "Structures,Reiki",
+        "summary": "A tier-2 science structure. Put a Moonlight Condensing Vase in it at night to absorb world reiki (at least 30 seconds).",
+        "detail": """
+Can be destroyed with a hammer; crafted with tier-2 science, and destroyed it returns 2 [images/inventoryimages2/goldnugget.png] Gold Nuggets, 2 [images/inventoryimages2/log.png] Logs and 5 [images/inventoryimages1/cutstone.png] Cut Stone.
+
+Put a Moonlight Condensing Vase in it at night to absorb world reiki; note that it needs at least 30 seconds.
+""",
+    },
+    "lj_reiki_tablelamp": {
+        "tags": "Structures,Light",
+        "summary": "A 2-slot light source. A split flame adds 10 range of light for 8 minutes; an exotic flame lights the area permanently.",
+        "detail": """
+Can be destroyed with a hammer, returning no materials.
+
+2 slots. A split flame increases the lit radius by 10 each and lasts 8 minutes; a full exotic flame provides light permanently.
+
+Craftable in the <Ethereal Realm>, <Structures> and <Light> tabs.
+""",
+    },
+    "lj_reiki_cultivatepool": {
+        "tags": "Structures,Spirit Plants,Unreleased",
+        "summary": "Not implemented in the mod source, so it is hidden from the site for now.",
+        "detail": """
+⚠️ This content is not implemented in the mod source, so the entry is hidden and never shown on the site.
+
+How this was checked (against the lj_mod source):
+- A full code search finds no prefab called lj_reiki_cultivatepool
+- It is not registered in the structures group of scripts/main/config/prefab_groups.lua
+- scripts/main/localization/language_zh.lua has no matching Chinese name
+- Only scripts/prefabs/alchemy/lj_moon_vase.lua carries a comment: the demon-tree cultivation use is not wired up yet, and the consumption ratio is still to be decided.
+
+The originally planned description (for when it ships):
+
+Can be destroyed with a hammer.
+Put a Soul Tree Root in it to let it grow.
+""",
+    },
+    "lj_huangjie_box": {
+        "tags": "Structures,Storage",
+        "summary": "A large 3×11 + 1×10 chest; Magic Cores add collection, sapphires add freshness and Magic Crystals unlock infinite stacking.",
+        "detail": """
+Can be destroyed with a hammer and burned by torches; destroying it returns 2 [images/inventoryimages1/boards.png] Boards, 1 [images/inventoryimages2/papyrus.png] Papyrus and 2 [images/inventoryimages1/cutstone.png] Cut Stone.
+
+Stores 3×11 + 1×10 slots and behaves like a vanilla chest.
+
+Extra features:
+Top left "Sort" — adds a sorting function.
+Bottom right "Seal" — closes the chest.
+Lower right "Safe Deposit" — for items the chest already holds, clicking safe deposit puts everything of yours into the chest in one go.
+
+Infusions:
+Giving it a Magic Core adds collection (the range can be set to 10 / 50 / 100 / 200 / 500 / All in the mod settings; the default is 10).
+Giving it a sapphire adds freshness.
+Giving it a Magic Crystal unlocks infinite stacking.
+
+Craftable in the <Ethereal Realm>, <Structures> and <Containers> tabs.
+
+[[图片:images/lingjie/anim/huangjie_box_ui.png|Chest interface: 3×11 slots on top plus a single 1×10 row below; the buttons are Sort, Collect, Fresh, Safe Deposit and Seal]]
+""",
+    },
+    "lj_cuiju_box": {
+        "tags": "Structures,Storage,Weapons",
+        "summary": "A 7×7 + 1 weapon and armour cabinet; the first slot displays a weapon, and a Magic Crystal slowly repairs durability.",
+        "detail": """
+Can be destroyed with a hammer and burned by torches; destroying it returns 2 [images/inventoryimages1/boards.png] Boards, 1 [images/inventoryimages2/papyrus.png] Papyrus and 2 [images/inventoryimages1/cutstone.png] Cut Stone.
+
+Stores weapons and armour, 7×7 + 1 slots. The first slot displays a weapon — putting a weapon in on its own shows it off.
+
+Giving it a Magic Crystal slowly restores durability.
+
+Craftable in the <Ethereal Realm>, <Structures> and <Containers> tabs.
+
+[[图片:images/lingjie/anim/cuiju_box_ui.png|Weapon case interface: a 7×7 grid with a separate slot above it for displaying a weapon]]
+""",
+    },
 }
 
 SITE = [
