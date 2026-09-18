@@ -43,6 +43,11 @@ const I18N = {
     noDetail: "暂无详情。",
     langButton: "EN",
     langTitle: "切换成英文",
+    qqGroup: "QQ 群",
+    copyQq: "复制群号",
+    copied: "已复制",
+    toTop: "回到顶部",
+    closeModal: "关闭弹窗",
   },
   en: {
     skip: "Skip to content",
@@ -59,6 +64,11 @@ const I18N = {
     noDetail: "No details yet.",
     langButton: "中",
     langTitle: "Switch to Chinese",
+    qqGroup: "QQ group",
+    copyQq: "Copy group ID",
+    copied: "Copied",
+    toTop: "Back to top",
+    closeModal: "Close dialog",
   },
 };
 
@@ -200,7 +210,7 @@ function ensureShell() {
           <ul class="nav" id="nav"></ul>
           <div class="rail-foot">
             <button class="btn-qq" type="button" id="joinGroupBtn">${t("joinGroup")}</button>
-            <p class="qq-hint" id="qqHint" hidden>QQ 群「${QQ_GROUP_NAME}」<b id="qqNumber">${QQ_GROUP_NUMBER}</b><button class="btn-copy" type="button" id="copyQqBtn">复制群号</button></p>
+            <p class="qq-hint" id="qqHint" hidden>${t("qqGroup")}「${QQ_GROUP_NAME}」<b id="qqNumber">${QQ_GROUP_NUMBER}</b><button class="btn-copy" type="button" id="copyQqBtn">${t("copyQq")}</button></p>
           </div>
         </div>
       </aside>
@@ -217,7 +227,7 @@ function ensureShell() {
       </main>
     </div>
 
-    <button class="to-top" type="button" id="toTopBtn" aria-label="回到顶部">回到顶部</button>
+    <button class="to-top" type="button" id="toTopBtn" aria-label="${t("toTop")}">${t("toTop")}</button>
 
     <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
       <pattern id="yun" width="40" height="34" patternUnits="userSpaceOnUse">
@@ -228,7 +238,7 @@ function ensureShell() {
     <div class="modal-mask" id="modal" hidden aria-hidden="true">
       <div class="modal-backdrop" data-close="modal"></div>
       <section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1">
-        <button class="modal-close" type="button" data-close="modal" aria-label="关闭弹窗">×</button>
+        <button class="modal-close" type="button" data-close="modal" aria-label="${t("closeModal")}">×</button>
         <h3 id="modalTitle"></h3>
         <div class="modal-body" id="modalBody"></div>
       </section>
@@ -1057,7 +1067,7 @@ function wireJoinGroup() {
   copy.addEventListener("click", () => {
     const done = () => {
       copy.textContent = "已复制";
-      window.setTimeout(() => { copy.textContent = "复制群号"; }, 1600);
+      window.setTimeout(() => { copy.textContent = t("copyQq"); }, 1600);
     };
     const fail = () => { copy.textContent = "请手动复制"; };
     if (navigator.clipboard && navigator.clipboard.writeText) {
