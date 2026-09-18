@@ -962,7 +962,7 @@ Use: Extraordinary Pill.
         "detail": """
 Source: the Soul-devouring Snake drops one every 2000 health of damage taken; players cannot pick them up, and they can be burned with an exotic flame.
 
-Mechanic: once the two-headed Soul-devouring Snake first falls to 50% health it actively seeks out and eats the scales to heal itself, 1000 health each. So burn the scales lying on the ground with an exotic flame as soon as possible.
+Mechanic: once the Soul-devouring Snake first falls to 50% health it actively seeks out and eats the scales to heal itself, 1000 health each. So burn the scales lying on the ground with an exotic flame as soon as possible.
 """,
     },
     "lj_reiki_cutgrass": {
@@ -1783,7 +1783,7 @@ Base stats
 
 Core mechanics
 Every 2000 health of damage taken it drops Soul Snake Scales, which players cannot pick up but can burn with an exotic flame.
-Once the two-headed Soul-devouring Snake first falls to 50% health it actively seeks out and eats the scales to heal itself, 1000 health each.
+Once the Soul-devouring Snake first falls to 50% health it actively seeks out and eats the scales to heal itself, 1000 health each.
 
 Skills
 Bite: a snake head bite for 50 damage, non-stacking, and it can refresh the poison timer.
@@ -2568,7 +2568,7 @@ item(
     """
 来源：噬魂蛇每受 2000 血量伤害会掉落，玩家无法拾取，可用异火烧毁。
 
-机制相关：噬魂双头蛇血量首次掉到 50% 后，会主动找寻并吞食鳞片恢复自身血量，每个回复 1000 血量。所以要及时用异火烧掉地上的鳞片。
+机制相关：噬魂蛇血量首次掉到 50% 后，会主动找寻并吞食鳞片恢复自身血量，每个回复 1000 血量。所以要及时用异火烧掉地上的鳞片。
 """,
 )
 
@@ -3532,7 +3532,7 @@ item(
 
 核心机制
 每受 2000 血量伤害会掉落噬魂蛇鳞片，玩家无法拾取，可用异火烧毁。
-噬魂双头蛇血量首次掉到 50% 后，会主动找寻吞食鳞片恢复自身血量，每个回复 1000 血量。
+噬魂蛇血量首次掉到 50% 后，会主动找寻吞食鳞片恢复自身血量，每个回复 1000 血量。
 
 技能
 撕咬：蛇头咬击，50 伤害，不可叠加，可重置中毒时间。
