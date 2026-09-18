@@ -335,6 +335,40 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
 .modal-body img{max-width:100%;height:auto}
 .detail-content{display:grid;gap:14px;color:var(--c-ink-2)}
 .detail-content p{margin:0;white-space:pre-line;line-height:1.9}
+/* ===========================================================================
+   英文版视觉微调
+   ---------------------------------------------------------------------------
+   中文那套行距（正文 1.9）、字距（标题 .12em / .06em）是给方块字调的，
+   直接套到英文上会显得松、散、断词难看。这里用 <html lang="en"> 挂一套英文规则
+   （lang 由 app.js 的 setLang() 同步：中文 zh-CN、英文 en，切换时自动生效）。
+   =========================================================================== */
+html[lang="en"]{
+  /* 英文正文用更干净的拉丁无衬线栈，不再走中文字体（雅黑等的拉丁字形偏窄挤） */
+  --font-sans:"Segoe UI","Inter","Helvetica Neue",Arial,"Noto Sans",sans-serif;
+  /* 英文标题（卷目标题、详情弹窗标题等 .serif）改用站里已自托管的 Bellefair ——
+     它本来就是「饥荒」在用的那款，拉丁字形完整（中文子集只有「灵界」两字，
+     但英文模式下这块只出现英文，不会缺字） */
+  --font-serif:"DST Bellefair",Georgia,"Times New Roman",serif;
+}
+/* 正文行距收紧：英文没有方块字那种行距需求，1.9 会显得松散 */
+html[lang="en"] .detail-content p{line-height:1.72}
+html[lang="en"] .detail-sub{line-height:1.66}
+html[lang="en"] .detail-content .detail-h{letter-spacing:.01em}
+html[lang="en"] .detail-table .detail-row-val{line-height:1.65}
+/* 卡片简介 */
+html[lang="en"] .card-desc{line-height:1.6}
+/* 标题字距收小：.06em 是给中文的，英文拉这么开会显散 */
+html[lang="en"] .card-title-preview{letter-spacing:.005em;overflow-wrap:break-word;word-break:normal}
+html[lang="en"] .sec-title{letter-spacing:.02em}
+html[lang="en"] .modal-card h3{letter-spacing:.01em}
+html[lang="en"] .site-ver{letter-spacing:.12em}
+/* 侧栏与按钮：英文单行更宽，字距归零、允许按词换行 */
+html[lang="en"] .nav-lbl{letter-spacing:0;overflow-wrap:break-word}
+html[lang="en"] .nav-row{letter-spacing:0}
+html[lang="en"] .card-recipe{letter-spacing:.005em}
+html[lang="en"] .tag{letter-spacing:.03em}
+/* 标签行：分隔符「|」跟在词后面，不要孤零零跑到下一行开头 */
+html[lang="en"] .card-tags .tag+.tag{white-space:nowrap}
 /* 中英切换小按钮（顶栏右侧、加群按钮左边）：跟「查看详情」同一套小药丸样式，
    按钮上写的是**目标语言**（中文界面显示 EN，英文界面显示「中文」）。 */
 .btn-lang{background:linear-gradient(180deg,rgba(255,250,228,.96),rgba(238,222,168,.82));border:.5px solid rgba(138,115,48,.42);border-radius:14px;padding:4px 12px;color:#6B5520;font-size:12px;letter-spacing:.06em;line-height:1.5;cursor:var(--cursor-sword-btn);box-shadow:inset 0 1px 0 rgba(255,255,255,.7),0 1px 3px rgba(47,90,98,.08)}
