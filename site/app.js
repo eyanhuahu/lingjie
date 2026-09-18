@@ -97,6 +97,13 @@ function pickSummary(item) {
   return item.summary || "";
 }
 
+// 配方：英文模式优先用英文配方（材料名已由 build_content.py 的 MATERIAL_EN 转好）
+function pickRecipe(item) {
+  if (!item) return "";
+  if (state.lang === "en" && item.recipeEn) return item.recipeEn;
+  return item.recipe || "";
+}
+
 const state = {
   data: null,
   lang: "zh",
@@ -559,7 +566,8 @@ function yunFoot() {
 
 function renderCard(item) {
   const tags = pickTags(item).map((tag) => `<span class="tag">${highlightEscaped(tag)}</span>`).join("");
-  const recipe = item.recipe ? `<div class="card-recipe">${parseRecipe(item.recipe)}</div>` : "";
+  const recipeText = pickRecipe(item);
+  const recipe = recipeText ? `<div class="card-recipe">${parseRecipe(recipeText)}</div>` : "";
   const hasImages = Array.isArray(item.images) && item.images.filter(Boolean).length > 0;
   return `
     <article class="card${hasImages ? "" : " no-media"}" id="${escapeHtml(item.id)}" data-item-id="${escapeHtml(item.id)}" tabindex="0">
@@ -884,10 +892,10 @@ function openItemModal(itemId, trigger = document.activeElement, write = true) {
   $("#modalTitle").textContent = renderModalTitle(pickName(item));
   const body = $("#modalBody");
   body.textContent = "";
-  if (item.recipe) {
+  if (pickRecipe(item)) {
     const recipe = document.createElement("div");
     recipe.className = "card-recipe";
-    recipe.innerHTML = parseRecipe(item.recipe);
+    recipe.innerHTML = parseRecipe(pickRecipe(item));
     body.appendChild(recipe);
   }
   const detail = document.createElement("div");

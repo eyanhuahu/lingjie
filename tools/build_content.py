@@ -190,6 +190,108 @@ CODE_MATERIAL_NAME = {
     "仙人掌": "仙人掌肉",
 }
 
+# 配方里的材料名 → 英文（用于卡片的「英文配方」）。
+# 原版材料用原版英文名，mod 材料用 NAME_EN 里既有的官方英文名。
+# 没收录的名字会在构建时报告出来，不会静默留中文。
+MATERIAL_EN = {
+    "魔晶": "Magic Crystal",
+    "魔核": "Magic Core",
+    "魔核碎片": "Magic Core Shard",
+    "采下的融灵草": "Harvested Spirit-Melting Grass",
+    "采下的彼岸花": "Harvested Spider Lily",
+    "紫晶塑体花瓣": "Amethyst Form Petals",
+    "蝎龙骨": "Scorpion Dragon Bone",
+    "紫晶壳": "Amethyst Shell",
+    "血蝠精血": "Blood Bat Essence",
+    "噬魂蛇皮": "Soul Snake Skin",
+    "风干的羽毛": "Dried Camel Feathers",
+    "噩梦燃料": "Nightmare Fuel",
+    "木板": "Boards",
+    "绿宝石": "Green Gem",
+    "铥矿": "Thulecite",
+    "硝石": "Nitre",
+    "活木": "Living Log",
+    "石砖": "Cut Stone",
+    "砖块": "Cut Stone",
+    "蓝宝石": "Blue Gem",
+    "红宝石": "Red Gem",
+    "树枝": "Twigs",
+    "绳子": "Rope",
+    "莎草纸": "Papyrus",
+    "鳞片": "Scales",
+    "橙宝石": "Orange Gem",
+    "黄宝石": "Yellow Gem",
+    "紫宝石": "Purple Gem",
+    "金块": "Gold Nugget",
+    "木头": "Log",
+    "燧石": "Flint",
+    "巨鹿眼球": "Deerclops Eyeball",
+    "玻璃碎片": "Moon Glass",
+    "芦苇": "Cut Reeds",
+    "蜂蜜": "Honey",
+    "橡果": "Acorn",
+    "松果": "Pine Cone",
+    "蝴蝶翅膀": "Butterfly Wings",
+    "月娥翅膀": "Moon Moth Wings",
+    "腺体": "Spider Gland",
+    "格罗姆粘液": "Glommer's Goop",
+    "格罗姆翅膀": "Glommer's Wings",
+    "绿蘑菇": "Green Cap",
+    "高脚鸟蛋": "Tallbird Egg",
+    "辣椒": "Pepper",
+    "蜂刺": "Stinger",
+    "告密的心": "Telltale Heart",
+    "猪皮": "Pig Skin",
+    "蕨类植物": "Foliage",
+    "兔毛": "Bunny Puff",
+    "藤壶": "Barnacle",
+    "饼干切割机壳": "Cookie Cutter Shell",
+    "犀牛角": "Guardian's Horn",
+    "蘑菇皮": "Shroom Skin",
+    "发光浆果": "Glow Berry",
+    "羊奶": "Electric Milk",
+    "黄油": "Butter",
+    "蜂王浆": "Royal Jelly",
+    "彩虹宝石": "Rainbow Gem",
+    "草": "Cut Grass",
+    "石头": "Rocks",
+    "电子元件": "Electrical Doodad",
+    "伏特羊角": "Volt Goat Horn",
+    "一角鲸的角": "Gnarwail Horn",
+    "暗影心房": "Shadow Atrium",
+    "唤星法杖": "Star Caller's Staff",
+    "唤月法杖": "Moon Caller's Staff",
+    "仙人掌肉": "Cactus Flesh",
+    "化石碎片": "Fossil Fragments",
+    "克劳斯袋钥匙": "Klaus Sack Key",
+    "冰霜业火本体": "Frost Karma Flame (full)",
+    "龙炎心火本体": "Dragon Flame Heartfire (full)",
+}
+
+
+def recipe_en(recipe):
+    """把中文配方串里的材料名换成英文（图标路径原样保留，分隔符仍是「、」）。
+
+    做法是**按名字长度的降序做整串替换**，这样：
+    · 「魔核碎片」不会被「魔核」先吃掉
+    · 「橡果 3 或 [图标] 松果」这种一段里塞两个名字的写法也能各自换掉
+    认不出的中文会记进 WARNINGS，方便维护者补 MATERIAL_EN。
+    """
+    if not recipe or not recipe.strip():
+        return ""
+    out = recipe
+    for zh in sorted(MATERIAL_EN, key=len, reverse=True):
+        if zh in out:
+            out = out.replace(zh, MATERIAL_EN[zh])
+    out = out.replace(" 或 ", " or ")
+    # 换完之后还残留中文的，报告出来（可能名字带「本体」「或」这类前后缀）
+    for chunk in out.split("、"):
+        for ch in chunk:
+            if "\u4e00" <= ch <= "\u9fff":
+                WARNINGS.append("配方英文残留中文：%s" % chunk.strip())
+                break
+    return out
+
 
 def R(*parts):
     """把配方拼成 '图标 名称 数量、图标 名称 数量' 形式。
@@ -1820,6 +1922,7 @@ def item(sec, iid, name, tags, summary, detail, recipe="", image="", visible=Tru
         "英文标签": en.get("tags", ""),
         "图片": image,
         "制作配方": recipe,
+        "英文配方": recipe_en(recipe),
         "简介": summary,
         "英文简介": en.get("summary", ""),
         "详情": detail.strip(),
