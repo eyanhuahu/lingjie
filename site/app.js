@@ -57,7 +57,7 @@ const I18N = {
     detail: "View details",
     fullLog: "Full changelog",
     noDetail: "No details yet.",
-    langButton: "中文",
+    langButton: "中",
     langTitle: "Switch to Chinese",
   },
 };
@@ -82,6 +82,19 @@ function pickSectionShortName(section) {
   if (!section) return "";
   if (state.lang === "en") return section.shortNameEn || section.nameEn || section.name || "";
   return section.shortName || section.name || "";
+}
+
+// 取条目的标签 / 简介 / 详情：英文模式优先用英文，没翻就退回中文
+function pickTags(item) {
+  if (!item) return [];
+  if (state.lang === "en" && (item.tagsEn || []).length) return item.tagsEn;
+  return item.tags || [];
+}
+
+function pickSummary(item) {
+  if (!item) return "";
+  if (state.lang === "en" && item.summaryEn) return item.summaryEn;
+  return item.summary || "";
 }
 
 const state = {
@@ -291,11 +304,16 @@ function sectionIds() {
 }
 
 function itemSearchText(item) {
+  // 中英都进索引：切到英文时搜英文名 / 英文简介也能命中
   return normalize([
     item.name,
+    item.nameEn,
     ...(item.tags || []),
+    ...(item.tagsEn || []),
     item.summary,
+    item.summaryEn,
     item.detailText,
+    item.detailTextEn,
     stripHtml(item.detailHtml)
   ].join(" "));
 }
@@ -540,7 +558,7 @@ function yunFoot() {
 }
 
 function renderCard(item) {
-  const tags = (item.tags || []).map((tag) => `<span class="tag">${highlightEscaped(tag)}</span>`).join("");
+  const tags = pickTags(item).map((tag) => `<span class="tag">${highlightEscaped(tag)}</span>`).join("");
   const recipe = item.recipe ? `<div class="card-recipe">${parseRecipe(item.recipe)}</div>` : "";
   const hasImages = Array.isArray(item.images) && item.images.filter(Boolean).length > 0;
   return `
@@ -552,7 +570,7 @@ function renderCard(item) {
             <h3 class="card-title card-title-preview serif">${renderCardTitle(pickName(item))}</h3>
             <div class="card-tags">${tags}</div>
           </div>
-          <p class="card-desc card-preview-desc">${renderTextWithXrefs(item.summary)}</p>
+          <p class="card-desc card-preview-desc">${renderTextWithXrefs(pickSummary(item))}</p>
           ${recipe}
         </div>
       </div>
@@ -874,9 +892,10 @@ function openItemModal(itemId, trigger = document.activeElement, write = true) {
   }
   const detail = document.createElement("div");
   detail.className = "detail-content";
-  const detailText = item.detailText
+  const detailText = (state.lang === "en" ? item.detailTextEn : "")
+    || item.detailText
     || (item.detailHtml ? (Sheets.plainTextFromHtml ? Sheets.plainTextFromHtml(item.detailHtml) : stripHtml(item.detailHtml)) : "")
-    || item.summary
+    || pickSummary(item)
     || t("noDetail");
   const blocks = Sheets.parseDetailBlocks ? Sheets.parseDetailBlocks(detailText) : [{ type: "paragraph", text: detailText }];
   if (Sheets.renderDetailBlocks) {

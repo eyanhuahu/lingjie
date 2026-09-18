@@ -320,6 +320,81 @@ NAME_EN = {
     "lj_butterfly_island": "Butterfly Island",
 }
 
+# ---------------------------------------------------------------------------
+# 英文内容（站点中英切换用）：按条目 id 归档，翻译到哪一条一目了然
+# ---------------------------------------------------------------------------
+# 结构：{"条目id": {"tags": "英文标签", "summary": "英文简介", "detail": """英文详情"""}}
+# - 三段都可以留空；留空的段英文模式下自动退回中文
+# - 详情沿用与中文一致的约定：小标题单独一行、行首全角空格表示缩进、
+#   「标签　内容」两行以上会渲染成表格（标签 ≤8 字符且不含空格才会被认成表格）、
+#   [[图片:路径|说明]] 独占一段、[路径] 表示行内小图标
+EN_CONTENT = {
+    "realm_system": {
+        "tags": "Realm,Cultivation,Breakthrough,Experience,Attributes",
+        "summary": "Nine realms, nine stages each. Kill creatures to earn experience and advance; dying costs one stage. Includes per-stage experience thresholds and per-realm stat bonuses.",
+        "detail": """
+Adds Realm and Reiki values, shown alongside the three vanilla stats.
+
+[[图片:images/lingjie/anim/realm_badge.png|In-game realm badge (the icon in the middle switches to the matching number as you advance)]]
+
+There are 9 realms: Mortal, Tempered, Sinew, Fasting, Guiding, Subtle, Exalted, Nascent, Manifest. Each realm has 9 stages — Tempered 1, Tempered 2 … Tempered 9.
+
+How to advance
+　Earn experience by killing creatures. You count as a participant if you attacked within the last 30 seconds and within 15 turf of the kill.
+　Experience gained = target's maximum health before demonization × 5% (5% / 8% / 12% selectable in mod settings).
+
+Bottlenecks and meditation
+　Stages 1 to 3 have no bottleneck. Stage 3 → 4, stage 6 → 7, and stage 9 → the next realm all require meditation.
+　A bottleneck parks your experience just below the threshold: at Guiding 3 with 8000 experience, even a boss worth 4000 experience only takes you to 8499 — the last point has to come from meditating.
+
+Breakthrough
+　From Sinew → Fasting onward, every realm breakthrough (Fasting, Guiding, Subtle, Exalted, Nascent, Manifest) needs the matching pill plus 10 seconds of meditation. 6 breakthrough pills in total.
+
+Death penalty
+　Every death costs one stage. After losing a stage you must take a Stillness Pill before you can cultivate again, otherwise you stay stuck.
+
+Experience threshold per stage (stage 1 → 9; the number is the cumulative threshold)
+Mortal　50 · 100 · 150 · 200 · 250 · 300 · 350 · 450 · 500
+Tempered　500 · 600 · 700 · 800 · 900 · 1000 · 1100 · 1200 · 1300
+Sinew　1300 · 1500 · 1700 · 1900 · 2100 · 2300 · 2500 · 2700 · 2900
+Fasting　2900 · 3300 · 3700 · 4100 · 4500 · 4900 · 5300 · 5700 · 6100
+Guiding　6100 · 6900 · 7700 · 8500 · 9300 · 10100 · 10900 · 11700 · 12500
+Subtle　12500 · 14000 · 15500 · 17000 · 18500 · 20000 · 21500 · 23000 · 24500
+Exalted　24500 · 27000 · 29500 · 32000 · 34500 · 37000 · 39500 · 42000 · 44500
+Nascent　44500 · 48500 · 52500 · 56500 · 60500 · 64500 · 68500 · 72500 · 76500
+Manifest　76500 · 82500 · 88500 · 94500 · 100500 · 106500 · 112500 · 118500 · 124500
+　Within Mortal the first seven stages add +50 each, with 450 and 500 for stages 8 and 9. Inside every other realm the step is fixed: Tempered +100, Sinew +200, Fasting +400, Guiding +800, Subtle +1500, Exalted +2500, Nascent +4000, Manifest +6000.
+
+Per-realm stat bonus (applies once you reach that realm)
+Mortal　HP +0, Speed ×1.00, Reiki +0, Attack ×1.00
+Tempered　HP +10, Speed ×1.05, Reiki +5, Attack ×1.25
+Sinew　HP +15, Speed ×1.10, Reiki +10, Attack ×1.50
+Fasting　HP +25, Speed ×1.15, Reiki +15, Attack ×1.75
+Guiding　HP +40, Speed ×1.20, Reiki +20, Attack ×2.00
+Subtle　HP +55, Speed ×1.25, Reiki +30, Attack ×2.25
+Exalted　HP +70, Speed ×1.30, Reiki +40, Attack ×2.50
+Nascent　HP +80, Speed ×1.35, Reiki +50, Attack ×2.75
+Manifest　HP +100, Speed ×1.40, Reiki +70, Attack ×3.00
+　Bonuses do not stack — reaching a new realm simply replaces the old values. HP and Reiki are flat additions to the cap; Speed and Attack are multipliers (Attack ×1.25 means +25% damage).
+""",
+    },
+    "reiki_value": {
+        "tags": "Realm,Reiki,Stats",
+        "summary": "Starts at 50 and caps at 120; regenerates 3.3 per minute; below 5 you are weakened for 10 seconds.",
+        "detail": """
+[[图片:images/lingjie/anim/spirit_badge.png|In-game Reiki badge (flame icon, and the liquid level shows your current Reiki)]]
+
+Reiki starts at 50 and grows as you advance realms, up to a maximum of 120.
+
+Regenerates 3.3 Reiki per minute.
+
+When Reiki runs dry (below 5) you enter a 10-second weakened state: vanilla drowsiness and grogginess stack up and you may fall asleep outright. When the weakness ends you regain 10 Reiki.
+
+Reiki is spent by many techniques and artifacts — for example the Reiki Bow's ice infusion costs 20, and Starfall's meteor thrust costs 10.
+""",
+    },
+}
+
 SITE = [
     # modinfo.lua 里是 name = "灵界"，author = "犹如黑夜星光、喵大仙BigXian"。
     # 顶栏作者名按作者要求单独写（跟 modinfo 不必一致）。
@@ -394,6 +469,9 @@ def item(sec, iid, name, tags, summary, detail, recipe="", image="", visible=Tru
     """visible=False 的条目仍保留在 data.json 里供维护者查阅，但前台不显示。
 
     用于「文档写了、mod 里没实装」的内容，避免玩家查到用不了的东西。
+
+    英文版内容（标签 / 简介 / 详情）统一写在文件开头的 EN_CONTENT 里，
+    按条目 id 归档；哪一段没翻就留空，英文模式下自动退回中文。
     """
     if iid in _ORDER:
         raise SystemExit("重复 id: %s" % iid)
@@ -401,16 +479,20 @@ def item(sec, iid, name, tags, summary, detail, recipe="", image="", visible=Tru
     if not image:
         # 卡片图优先用「展示图」（idle 动画第一帧），没有才退回物品图标。
         image = SHOWCASE_INDEX.get(iid) or icon_path(iid) or ""
+    en = EN_CONTENT.get(iid, {})
     ITEMS.append({
         "id": iid,
         "分类id": sec,
         "名称": name,
         "英文名": NAME_EN.get(iid, ""),
         "标签": tags,
+        "英文标签": en.get("tags", ""),
         "图片": image,
         "制作配方": recipe,
         "简介": summary,
+        "英文简介": en.get("summary", ""),
         "详情": detail.strip(),
+        "英文详情": en.get("detail", "").strip(),
         "排序值": str(len(_ORDER)),
         "是否展示": "true" if visible else "false",
     })

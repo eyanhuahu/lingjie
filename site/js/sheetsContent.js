@@ -27,10 +27,13 @@
       "名称": "name", "标题": "name", "name": "name",
       "英文名": "nameEn",
       "标签": "tags", "tags": "tags",
+      "英文标签": "tagsEn", "tagsEn": "tagsEn",
       "图片": "image", "图片地址": "image", "image": "image",
       "制作配方": "recipe", "配方": "recipe", "recipe": "recipe",
       "简介": "summary", "摘要": "summary", "summary": "summary",
+      "英文简介": "summaryEn", "summaryEn": "summaryEn",
       "详情": "detail", "detail": "detail",
+      "英文详情": "detailEn", "detailEn": "detailEn",
       "排序值": "sort_order", "排序": "sort_order", "sort_order": "sort_order",
       "是否展示": "visible", "展示": "visible", "visible": "visible"
     },
@@ -611,12 +614,15 @@
           name: row.name || row.id,
           nameEn: row.nameEn || "",
           tags: splitList(row.tags),
+          tagsEn: splitList(row.tagsEn),
           images,
           resolved_image: resolveImage({ image: images[0] || "" }),
           recipe: row.recipe || "",
           summary: row.summary || "",
+          summaryEn: row.summaryEn || "",
           detailText: row.detail || "",
-          detailHtml: row.detail || ""
+          detailHtml: row.detail || "",
+          detailTextEn: row.detailEn || "",
         };
       });
   }
