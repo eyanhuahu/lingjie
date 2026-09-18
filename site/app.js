@@ -23,8 +23,70 @@ function syncMastHeight() {
   document.documentElement.style.scrollPaddingTop = `${h + 24}px`;
 }
 
+// ===== 中英切换 =====
+// 界面文案的两套词；条目名/卷目名走 data.json 里的「英文名」字段（见 build_content.py）。
+// 中文是默认语言，切到英文只影响显示，不改任何内容数据。
+const LANG_KEY = "lj-wiki-lang";
+const I18N = {
+  zh: {
+    skip: "跳到主内容",
+    railLabel: "卷目",
+    joinGroup: "加入 mod 讨论群",
+    search: "搜索",
+    clear: "清空",
+    clearSearch: "清空搜索",
+    emptySearch: "没有匹配的条目。",
+    emptySearchHint: "可以清空搜索后再试。",
+    emptySection: "暂无条目",
+    detail: "查看详情",
+    fullLog: "完整更新",
+    noDetail: "暂无详情。",
+    langButton: "EN",
+    langTitle: "切换成英文",
+  },
+  en: {
+    skip: "Skip to content",
+    railLabel: "Sections",
+    joinGroup: "Join the mod group",
+    search: "Search",
+    clear: "Clear",
+    clearSearch: "Clear search",
+    emptySearch: "No matching entries.",
+    emptySearchHint: "Try clearing the search and browsing all sections.",
+    emptySection: "No entries yet",
+    detail: "View details",
+    fullLog: "Full changelog",
+    noDetail: "No details yet.",
+    langButton: "中文",
+    langTitle: "Switch to Chinese",
+  },
+};
+
+function t(key) {
+  const table = I18N[state.lang] || I18N.zh;
+  return table[key] || I18N.zh[key] || key;
+}
+
+// 取条目/卷目的显示名：英文模式下优先用「英文名」，没有就退回中文
+function pickName(obj) {
+  if (!obj) return "";
+  return state.lang === "en" ? (obj.nameEn || obj.name || "") : (obj.name || "");
+}
+
+function pickSectionName(section) {
+  if (!section) return "";
+  return state.lang === "en" ? (section.nameEn || section.name || "") : (section.name || "");
+}
+
+function pickSectionShortName(section) {
+  if (!section) return "";
+  if (state.lang === "en") return section.shortNameEn || section.nameEn || section.name || "";
+  return section.shortName || section.name || "";
+}
+
 const state = {
   data: null,
+  lang: "zh",
   query: "",
   activeSec: "",
   pendingItem: "",
@@ -87,7 +149,7 @@ function debounce(fn, delay = 160) {
 
 function ensureShell() {
   document.body.innerHTML = `
-    <a class="skip-link" href="#main">跳到主内容</a>
+    <a class="skip-link" href="#main">${t("skip")}</a>
     <header class="masthead">
       <div class="mast-center">
         <div class="serif site-name" id="siteName">灵界</div>
@@ -101,22 +163,23 @@ function ensureShell() {
         <div class="site-ver" id="siteMeta">预留作者</div>
       </div>
       <div class="mast-tools">
-        <button class="btn-qq btn-qq-flat" type="button" id="joinGroupTopBtn">加入 mod 讨论群</button>
+        <button class="btn-lang" type="button" id="langToggle" title="${t("langTitle")}">${t("langButton")}</button>
+        <button class="btn-qq btn-qq-flat" type="button" id="joinGroupTopBtn">${t("joinGroup")}</button>
       </div>
     </header>
 
     <div class="shell">
-      <aside class="rail" id="rail" aria-label="卷目">
+      <aside class="rail" id="rail" aria-label="${t("railLabel")}">
         <div class="rail-inner">
           <form class="rail-search" id="searchForm" role="search">
-            <label class="sr-only" for="searchInput">搜索</label>
-            <div class="search"><i class="ti ti-search" aria-hidden="true"></i><input id="searchInput" type="search" autocomplete="off" placeholder="搜索"></div>
-            <button class="btn-clear" type="button" id="clearSearchBtn">清空</button>
+            <label class="sr-only" for="searchInput">${t("search")}</label>
+            <div class="search"><i class="ti ti-search" aria-hidden="true"></i><input id="searchInput" type="search" autocomplete="off" placeholder="${t("search")}"></div>
+            <button class="btn-clear" type="button" id="clearSearchBtn">${t("clear")}</button>
           </form>
           <div class="rail-divider" aria-hidden="true"></div>
           <ul class="nav" id="nav"></ul>
           <div class="rail-foot">
-            <button class="btn-qq" type="button" id="joinGroupBtn">加入 mod 讨论群</button>
+            <button class="btn-qq" type="button" id="joinGroupBtn">${t("joinGroup")}</button>
             <p class="qq-hint" id="qqHint" hidden>QQ 群「${QQ_GROUP_NAME}」<b id="qqNumber">${QQ_GROUP_NUMBER}</b><button class="btn-copy" type="button" id="copyQqBtn">复制群号</button></p>
           </div>
         </div>
@@ -125,9 +188,9 @@ function ensureShell() {
         <div class="content-inner">
           <section class="editor-panel" id="editorPanel" hidden></section>
           <div class="empty-state" id="emptyState" hidden>
-            <strong>没有找到匹配条目。</strong>
-            <span>可以清空搜索后再试。</span>
-            <button class="btn-clear" type="button" id="emptyClearBtn">清空搜索</button>
+            <strong>${t("emptySearch")}</strong>
+            <span>${t("emptySearchHint")}</span>
+            <button class="btn-clear" type="button" id="emptyClearBtn">${t("clearSearch")}</button>
           </div>
           <div id="sectionsRoot"></div>
         </div>
@@ -468,7 +531,7 @@ function renderCarousel(item) {
       ${images.map((_, index) => `<button class="dot ${index === current ? "active" : ""}" type="button" data-action="dot" data-id="${escapeHtml(item.id)}" data-index="${index}" aria-label="第 ${index + 1} 张"></button>`).join("")}
     </div>
   ` : "";
-  return `<div class="card-media">${imageTag(images[current], `${item.name} 展示图 ${current + 1}`, "")}${controls}</div>`;
+  return `<div class="card-media">${imageTag(images[current], `${pickName(item)} ${current + 1}`, "")}${controls}</div>`;
 }
 
 function yunFoot() {
@@ -486,14 +549,14 @@ function renderCard(item) {
         ${renderCarousel(item)}
         <div class="card-summary">
           <div class="card-head-row">
-            <h3 class="card-title card-title-preview serif">${renderCardTitle(item.name)}</h3>
+            <h3 class="card-title card-title-preview serif">${renderCardTitle(pickName(item))}</h3>
             <div class="card-tags">${tags}</div>
           </div>
           <p class="card-desc card-preview-desc">${renderTextWithXrefs(item.summary)}</p>
           ${recipe}
         </div>
       </div>
-      <div class="card-foot"><button class="btn-detail" type="button" data-action="detail" data-id="${escapeHtml(item.id)}">查看详情</button></div>
+      <div class="card-foot"><button class="btn-detail" type="button" data-action="detail" data-id="${escapeHtml(item.id)}">${t("detail")}</button></div>
     </article>
   `;
 }
@@ -505,7 +568,10 @@ function renderHeader() {
   // 站名一行、英文名 + 版本徽章一行（陛下要求英文与版本号放到中文下面）
   $("#siteName").textContent = name;
   $("#siteNameEn").textContent = enName;
-  document.title = enName ? `${name} ${enName}` : name;
+  // 英文模式下标题用「Spirit Realm · 灵界」，中文模式还是「灵界 Spirit Realm」
+  document.title = state.lang === "en"
+    ? (enName ? `${enName} · ${name}` : name)
+    : (enName ? `${name} ${enName}` : name);
   $("#siteVersion").textContent = String(site.version || "v0.1.0").toUpperCase();
   $("#siteMeta").textContent = site.author || "预留作者";
 }
@@ -619,11 +685,11 @@ function renderNav(sections) {
   nav.innerHTML = sections.map((section) => {
     const subs = isLogSection(section)
       ? (state.data.changelog || []).slice().reverse().map((log) => `<li><a data-log="${escapeHtml(log.version)}">${escapeHtml(log.version)} · ${escapeHtml(log.date || "")}</a></li>`).join("")
-      : sectionItems(section.id).map((item) => `<li><a data-item="${escapeHtml(item.id)}">${escapeHtml(item.name)}</a></li>`).join("");
+      : sectionItems(section.id).map((item) => `<li><a data-item="${escapeHtml(item.id)}">${escapeHtml(pickName(item))}</a></li>`).join("");
     return `
       <li class="nav-group${state.activeSec === section.id ? " open" : ""}" data-g="${escapeHtml(section.id)}">
         <div class="nav-row${state.activeSec === section.id ? " on" : ""}" data-sec="${escapeHtml(section.id)}">
-          <span class="nav-lbl"><span class="nav-lbl-full">${escapeHtml(section.name)}</span><span class="nav-lbl-short">${escapeHtml(section.shortName || section.name)}</span></span>
+          <span class="nav-lbl"><span class="nav-lbl-full">${escapeHtml(pickSectionName(section))}</span><span class="nav-lbl-short">${escapeHtml(pickSectionShortName(section))}</span></span>
           <i class="ti ti-chevron-right nav-chev" aria-hidden="true"></i>
         </div>
         <ul class="nav-sub">${subs}</ul>
@@ -634,11 +700,13 @@ function renderNav(sections) {
 }
 
 // 各卷目为空时的提示文案：默认「暂无条目」；
-// 「人物」还没实装，作者要求写成「敬请期待！」。
+// 「人物」还没实装，作者要求写成「敬请期待！」；英文模式下走 I18N。
 const EMPTY_SECTION_TEXT = { renwu: "敬请期待！" };
+const EMPTY_SECTION_TEXT_EN = { renwu: "Coming soon!" };
 
 function emptySectionText(sectionId) {
-  return EMPTY_SECTION_TEXT[sectionId] || "暂无条目";
+  if (state.lang === "en") return EMPTY_SECTION_TEXT_EN[sectionId] || t("emptySection");
+  return EMPTY_SECTION_TEXT[sectionId] || t("emptySection");
 }
 
 function renderChangelog(section) {
@@ -647,11 +715,11 @@ function renderChangelog(section) {
     <article class="card no-media log-card">
       <div class="card-head"><div class="card-main"><h3 class="card-title serif">${escapeHtml(log.version)}</h3><div class="card-tags"><span class="tag">${escapeHtml(log.date || "")}</span></div></div></div>
       <p class="card-desc">${(log.entries || []).map((entry) => renderTextWithXrefs(entry)).join("；")}</p>
-      <div class="card-foot"><button class="btn-detail" type="button" data-action="changelog">完整更新</button></div>
+      <div class="card-foot"><button class="btn-detail" type="button" data-action="changelog">${t("fullLog")}</button></div>
       ${yunFoot()}
     </article>
   `).join("")}</div>` : `<p class="sec-empty">${escapeHtml(emptySectionText(section.id))}</p>`;
-  return `<section class="section" id="sec-${escapeHtml(section.id)}" data-section="${escapeHtml(section.id)}"><div class="sec-head"><h2 class="sec-title serif">${escapeHtml(section.name)}</h2></div>${body}</section>`;
+  return `<section class="section" id="sec-${escapeHtml(section.id)}" data-section="${escapeHtml(section.id)}"><div class="sec-head"><h2 class="sec-title serif">${escapeHtml(pickSectionName(section))}</h2></div>${body}</section>`;
 }
 
 function renderSections() {
@@ -664,7 +732,7 @@ function renderSections() {
     if (!items.length && state.query) return "";
     visibleCount += items.length;
     const body = items.length ? `<div class="cards">${items.map(renderCard).join("")}</div>` : `<p class="sec-empty">${escapeHtml(emptySectionText(section.id))}</p>`;
-    return `<section class="section" id="sec-${escapeHtml(section.id)}" data-section="${escapeHtml(section.id)}"><div class="sec-head"><h2 class="sec-title serif">${escapeHtml(section.name)}</h2></div>${body}</section>`;
+    return `<section class="section" id="sec-${escapeHtml(section.id)}" data-section="${escapeHtml(section.id)}"><div class="sec-head"><h2 class="sec-title serif">${escapeHtml(pickSectionName(section))}</h2></div>${body}</section>`;
   }).join("");
   $("#sectionsRoot").innerHTML = html;
   spyCards = null;
@@ -795,7 +863,7 @@ function openItemModal(itemId, trigger = document.activeElement, write = true) {
   if (!item) return;
   state.lastFocus = trigger;
   state.modalMode = "item";
-  $("#modalTitle").textContent = renderModalTitle(item.name);
+  $("#modalTitle").textContent = renderModalTitle(pickName(item));
   const body = $("#modalBody");
   body.textContent = "";
   if (item.recipe) {
@@ -809,7 +877,7 @@ function openItemModal(itemId, trigger = document.activeElement, write = true) {
   const detailText = item.detailText
     || (item.detailHtml ? (Sheets.plainTextFromHtml ? Sheets.plainTextFromHtml(item.detailHtml) : stripHtml(item.detailHtml)) : "")
     || item.summary
-    || "暂无详情。";
+    || t("noDetail");
   const blocks = Sheets.parseDetailBlocks ? Sheets.parseDetailBlocks(detailText) : [{ type: "paragraph", text: detailText }];
   if (Sheets.renderDetailBlocks) {
     Sheets.renderDetailBlocks(blocks, detail, {
@@ -828,7 +896,7 @@ function openItemModal(itemId, trigger = document.activeElement, write = true) {
 function openChangelogModal(trigger = document.activeElement) {
   state.lastFocus = trigger;
   state.modalMode = "changelog";
-  $("#modalTitle").textContent = "完整更新";
+  $("#modalTitle").textContent = t("fullLog");
   const logs = [...(state.data.changelog || [])].reverse();
   $("#modalBody").innerHTML = logs.map((log) => `
     <section class="log-detail">
@@ -973,6 +1041,40 @@ function wireJoinGroup() {
   });
 }
 
+// 切换语言：只改显示用的语言，内容数据一行不动。
+// 记住选择（localStorage），并把 <html lang> 一起改掉（利于无障碍与浏览器翻译提示）。
+function setLang(lang) {
+  state.lang = lang === "en" ? "en" : "zh";
+  try {
+    window.localStorage.setItem(LANG_KEY, state.lang);
+  } catch (error) {
+    // 隐私模式下 localStorage 可能不可用，忽略即可
+  }
+  document.documentElement.lang = state.lang === "en" ? "en" : "zh-CN";
+  const btn = $("#langToggle");
+  if (btn) {
+    btn.textContent = t("langButton");
+    btn.title = t("langTitle");
+  }
+  renderHeader();
+  renderSections();
+}
+
+function readStoredLang() {
+  // 优先认地址里的 #lang=zh / #lang=en（方便直接分享某一语言的链接，也便于截图核对），
+  // 其次读上次的选择，最后默认中文。
+  const raw = String(location.hash || "").replace(/^#/, "");
+  const fromHash = new URLSearchParams(raw).get("lang");
+  if (fromHash === "en" || fromHash === "zh") return fromHash;
+  try {
+    const saved = window.localStorage.getItem(LANG_KEY);
+    if (saved === "en" || saved === "zh") return saved;
+  } catch (error) {
+    // 同上，读不到就用默认中文
+  }
+  return "zh";
+}
+
 function wireEvents() {
   $("#searchForm").addEventListener("submit", (event) => event.preventDefault());
   $("#searchInput").addEventListener("input", debounce((event) => {
@@ -982,6 +1084,9 @@ function wireEvents() {
   }));
   $("#clearSearchBtn").addEventListener("click", clearSearch);
   $("#emptyClearBtn").addEventListener("click", clearSearch);
+  $("#langToggle")?.addEventListener("click", () => {
+    setLang(state.lang === "en" ? "zh" : "en");
+  });
   wireJoinGroup();
 
   document.addEventListener("click", (event) => {
@@ -1071,6 +1176,9 @@ function wireEvents() {
 }
 
 async function init() {
+  // 语言要在建外壳之前定下来：外壳里的界面文案就是按语言渲染的
+  state.lang = readStoredLang();
+  document.documentElement.lang = state.lang === "en" ? "en" : "zh-CN";
   ensureShell();
   syncMastHeight();
   wireToTop();

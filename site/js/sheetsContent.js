@@ -17,6 +17,7 @@
       "分类id": "id", "分类ID": "id", "id": "id",
       "分类名": "name", "分类名称": "name", "name": "name",
       "短名": "shortName", "简称": "shortName", "shortName": "shortName",
+      "英文名": "nameEn", "英文短名": "shortNameEn",
       "排序值": "sort_order", "排序": "sort_order", "sort_order": "sort_order",
       "是否展示": "visible", "展示": "visible", "visible": "visible"
     },
@@ -24,6 +25,7 @@
       "id": "id",
       "分类id": "section", "分类ID": "section", "section": "section",
       "名称": "name", "标题": "name", "name": "name",
+      "英文名": "nameEn",
       "标签": "tags", "tags": "tags",
       "图片": "image", "图片地址": "image", "image": "image",
       "制作配方": "recipe", "配方": "recipe", "recipe": "recipe",
@@ -582,7 +584,13 @@
     return normalizeSheetRows("sections", rows)
       .filter((row) => row.id && !isHidden(row.visible))
       .sort((a, b) => sortValue(a) - sortValue(b))
-      .map((row) => ({ id: row.id, name: row.name || row.id, shortName: row.shortName || "" }));
+      .map((row) => ({
+        id: row.id,
+        name: row.name || row.id,
+        shortName: row.shortName || "",
+        nameEn: row.nameEn || "",
+        shortNameEn: row.shortNameEn || "",
+      }));
   }
 
   function normalizeImages(rows) {
@@ -601,6 +609,7 @@
           id: row.id,
           section: row.section || "uncategorized",
           name: row.name || row.id,
+          nameEn: row.nameEn || "",
           tags: splitList(row.tags),
           images,
           resolved_image: resolveImage({ image: images[0] || "" }),
