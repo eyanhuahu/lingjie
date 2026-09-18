@@ -1505,13 +1505,13 @@ Use: put it in the Void Ring.
     },
     "lj_purplemonster_flame": {
         "tags": "Flames,Flame,Soul Banner",
-        "summary": "The exotic flame obtained by summoning the Soul-devouring Hydra through the 'Swollen Scroll' clue; used to craft the Soul Banner.",
+        "summary": "The exotic flame obtained by summoning the Soul-devouring Snake through the 'Swollen Scroll' clue; used to craft the Soul Banner.",
         "detail": """
 Exotic flame.
 
 Clue item: the "Swollen Scroll" (spawns at random beside swamp tentacles, unlocked by baking it with fire).
 
-How to get it: right-click the log to open it, and the note reads "dusk is coming; purple firelight will be mirrored on the spirit vein's water". After reading the log the boss appears at dusk beside a pond on Butterfly Island. Going there shows the Soul-devouring Hydra; killing it drops its normal loot plus the Purple Scale Demon Flame.
+How to get it: right-click the log to open it, and the note reads "dusk is coming; purple firelight will be mirrored on the spirit vein's water". After reading the log the boss appears at dusk beside a pond on Butterfly Island. Going there shows the Soul-devouring Snake; killing it drops its normal loot plus the Purple Scale Demon Flame.
 
 Use: it crafts the Soul Banner, and giving it to the banner unlocks the "Soul Refining" skill.
 """,
@@ -1587,7 +1587,7 @@ Clue item pointing to the Purple Scale Demon Flame.
 Location: spawns at random beside swamp tentacles.
 How to unlock: bake it with fire.
 
-Right-clicking it open reveals the note 'dusk is coming; purple firelight will be mirrored on the spirit vein's water'. After reading the log the boss appears at dusk beside a pond on Butterfly Island, and going there shows the Soul-devouring Hydra.
+Right-clicking it open reveals the note 'dusk is coming; purple firelight will be mirrored on the spirit vein's water'. After reading the log the boss appears at dusk beside a pond on Butterfly Island, and going there shows the Soul-devouring Snake.
 """,
     },
     "lj_ice_log": {
@@ -3226,13 +3226,13 @@ item(
 
 item(
     "yihuo", "lj_purplemonster_flame", "紫鳞妖焰", "异火,火焰,魂幡",
-    "通过「泡胀的卷轴」线索召唤噬魂三头蛇获得的异火，可用于制作魂幡。",
+    "通过「泡胀的卷轴」线索召唤噬魂蛇获得的异火，可用于制作魂幡。",
     """
 异火。
 
 线索物品：「泡胀的卷轴」（沼泽触手旁随机刷新，需要火焰烘烤解锁）。
 
-获取流程：获取日志后右键打开，纸条记载着「薄暮将至，灵脉水面会倒映出紫色火光」。查看日志后，Boss 会在黄昏时分出现在蝴蝶岛的池塘旁边。过去会看到噬魂三头蛇，击杀会掉落正常掉落物，并额外掉落紫鳞妖焰。
+获取流程：获取日志后右键打开，纸条记载着「薄暮将至，灵脉水面会倒映出紫色火光」。查看日志后，Boss 会在黄昏时分出现在蝴蝶岛的池塘旁边。过去会看到噬魂蛇，击杀会掉落正常掉落物，并额外掉落紫鳞妖焰。
 
 用途：可制作魂幡；给予魂幡可解锁技能「炼魂」。
 """,
@@ -3314,7 +3314,7 @@ item(
 位置：沼泽触手旁随机刷新。
 解锁方式：需要火焰烘烤。
 
-右键打开后纸条记载着「薄暮将至，灵脉水面会倒映出紫色火光」。查看日志后，Boss 会在黄昏时分出现在蝴蝶岛的池塘旁边，过去会看到噬魂三头蛇。
+右键打开后纸条记载着「薄暮将至，灵脉水面会倒映出紫色火光」。查看日志后，Boss 会在黄昏时分出现在蝴蝶岛的池塘旁边，过去会看到噬魂蛇。
 """,
 )
 
