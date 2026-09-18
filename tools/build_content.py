@@ -759,6 +759,110 @@ High pill (earth), refining time 8 minutes. Can trigger a pill tribulation.
 Effect: take it and meditate 10 seconds on the Enlightenment Tempering Seat — extremely rare, it breaks through to the Manifest realm.
 """,
     },
+    "lj_reiki_pill": {
+        "tags": "Pills,Moderate,Reiki",
+        "summary": "A moderate pill that restores 30 Reiki.",
+        "detail": """
+Moderate pill (mystic), refining time 4 minutes.
+
+Effect: restores 30 Reiki.
+""",
+    },
+    "lj_magic_debris": {
+        "tags": "Materials,Demonic Energy",
+        "summary": "The lowest-grade demonic crystal, dropped by lightly demonized creatures; it can be crafted into Magic Cores.",
+        "detail": """
+Source: killing lightly demonized creatures drops 1 to 3.
+
+Advanced use: 99 Magic Core Shards craft 1 Magic Core, and they are also the main material of the Tempered Iron Spirit Sword.
+
+Cannot be destroyed or deconstructed.
+""",
+    },
+    "lj_magic_core": {
+        "tags": "Materials,Demonic Energy,Crafting",
+        "summary": "Crafted from 99 Magic Core Shards. Dropped by bosses, demonic beasts and moderately demonized creatures.",
+        "detail": """
+Crafting: 99 Magic Core Shards craft one.
+
+Source: killing bosses and demonic beasts drops them; moderately demonized creatures drop 1 to 2.
+
+Cannot be destroyed, can be deconstructed.
+
+Craftable in the <Ethereal Realm> and <Refine> tabs.
+
+Advanced use: 20 Magic Cores craft 1 Magic Crystal, and they are the core material of many pills, structures and artifacts.
+""",
+    },
+    "lj_magic_crystal": {
+        "tags": "Materials,Demonic Energy,Crafting",
+        "summary": "Crafted from 20 Magic Cores. Dropped by demonic beasts and deeply demonized creatures; essential for high-tier pills and armour.",
+        "detail": """
+Crafting: 20 Magic Cores craft one.
+
+Source: killing demonic beasts drops them; deeply demonized creatures drop 1.
+
+Cannot be destroyed, can be deconstructed.
+
+A vanilla creature at deep demonization drops only 1 Magic Crystal, while large demonic beasts drop 2.
+
+Craftable in the <Ethereal Realm> and <Refine> tabs.
+""",
+    },
+    "lj_scorpion_dragon_bone": {
+        "tags": "Materials,Boss Drop",
+        "summary": "The bones of the Blazing Rock Scorpion Dragon, the epic boss of the ancient ruins (Remains Island); used to craft Keel Armour and the Spirit Manifesting Pill.",
+        "detail": """
+Source: killing the epic boss "Blazing Rock Scorpion Dragon" at the Remains Altar (ancient ruins) drops 1.
+
+Use: core material of Keel Armour and the Spirit Manifesting Pill.
+""",
+    },
+    "lj_amethyst_shell": {
+        "tags": "Materials,Boss Drop",
+        "summary": "The crystal shell of the Eclipsed Crystalwing Lion; used to craft the Crystal Crown and the Nascent Union Pill.",
+        "detail": """
+Source: killing the epic boss "Eclipsed Crystalwing Lion" drops 1.
+
+Use: core material of the Crystal Crown and the Nascent Union Pill.
+""",
+    },
+    "lj_lion_bone": {
+        "tags": "Materials,Boss Drop",
+        "summary": "The bones of the Eclipsed Crystalwing Lion.",
+        "detail": """
+Source: killing the epic boss "Eclipsed Crystalwing Lion" drops 1.
+""",
+    },
+    "lj_bat_blood": {
+        "tags": "Materials,Demon Beast Drop",
+        "summary": "Essence blood of the Shadow Blood Bat; used to craft Keel Armour, the Crystal Crown and the Extraordinary Pill, and it can also refill armour durability outright.",
+        "detail": """
+Source: killing a Shadow Blood Bat on Butterfly Island always drops 1.
+
+Use: Keel Armour, Crystal Crown, Extraordinary Pill.
+
+1 Blood Bat Essence restores Keel Armour / Crystal Crown to full durability.
+""",
+    },
+    "lj_soul_snake_skin": {
+        "tags": "Materials,Boss Drop",
+        "summary": "The hide of the Soul-devouring Snake; used to craft the Extraordinary Pill.",
+        "detail": """
+Source: killing the hidden boss "Soul-devouring Snake" drops 3.
+
+Use: Extraordinary Pill.
+""",
+    },
+    "lj_snake_skin": {
+        "tags": "Materials,Boss Mechanic",
+        "summary": "Scales the Soul-devouring Snake drops every 2000 damage taken; players cannot pick them up, but they can be burned with an exotic flame.",
+        "detail": """
+Source: the Soul-devouring Snake drops one every 2000 health of damage taken; players cannot pick them up, and they can be burned with an exotic flame.
+
+Mechanic: once the two-headed Soul-devouring Snake first falls to 50% health it actively seeks out and eats the scales to heal itself, 1000 health each. So burn the scales lying on the ground with an exotic flame as soon as possible.
+""",
+    },
 }
 
 SITE = [
@@ -1402,7 +1506,7 @@ item(
     "cailiao", "lj_magic_debris", "魔核碎片", "材料,魔气",
     "最低阶的魔气结晶，轻度入魔生物掉落，可合成魔核。",
     """
-来源：击杀轻度入魔生物掉落，1 到 10 不等。
+来源：击杀轻度入魔生物掉落，1 到 3 不等。
 
 高阶用途：99 个魔核碎片可合成 1 个魔核；也是淬铁灵剑的主要材料。
 
