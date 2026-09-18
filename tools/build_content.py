@@ -232,12 +232,12 @@ NAME_EN = {
     "lj_invincible_pill": "Invincible Pill",
     "lj_bigu_pill": "Bigu Pill",
     "lj_yinqi_pill": "Qi Guiding Pill",
-    "lj_ruwei_pill": "Subtle Realm Pill",
-    "lj_restore_pill": "Restore Spirit Pill",
-    "lj_extraordinary_pill": "Extraordinary Pill",
-    "lj_heying_pill": "Nascent Union Pill",
-    "lj_disaster_pill": "Disaster Breaking Pill",
-    "lj_juling_pill": "Spirit Manifesting Pill",
+    "lj_ruwei_pill": "Subtle Realm Pill（Tribulation）",
+    "lj_restore_pill": "Restore Spirit Pill（Tribulation）",
+    "lj_extraordinary_pill": "Extraordinary Pill（Tribulation）",
+    "lj_heying_pill": "Nascent Union Pill（Tribulation）",
+    "lj_disaster_pill": "Disaster Breaking Pill（Tribulation）",
+    "lj_juling_pill": "Spirit Manifesting Pill（Tribulation）",
     "lj_scorpion_dragon_bone": "Scorpion Dragon Bone",
     "lj_amethyst_shell": "Amethyst Shell",
     "lj_lion_bone": "Lion Bone",
@@ -274,7 +274,7 @@ NAME_EN = {
     "lj_bat_nest": "Night Bat Nest",
     "lj_demon_bat": "Shadow Blood Bat",
     "lj_blood_bat": "Demon Bat",
-    "lj_soul_devouring_snake": "Soul-devouring Snake",
+    "lj_soul_devouring_snake": "Soul-devouring Snake（Hidden Boss）",
     "lj_moon_lion": "Eclipsed Crystalwing Lion",
     # ↓ 以下为 wiki 侧翻译（mod 英文表里没有对应项）
     "realm_system": "Realm System",
@@ -299,7 +299,7 @@ NAME_EN = {
     "lj_huangjie_box": "Wild Realm Storage Box",
     "lj_cuiju_box": "Qi-Gathering Weapon Case",
     "lj_reiki_table": "Spirit Jade Table",
-    "lj_reiki_cultivatepool": "Mystic Spirit Cultivation Pool (Unreleased)",
+    "lj_reiki_cultivatepool": "Mystic Spirit Cultivation Pool（Unreleased）",
     "lj_void_ring": "Void Ring",
     "zhenfa_overview": "Formations Overview",
     "zhen_siji": "Four Seasons Harmony Formation",
@@ -656,6 +656,107 @@ Low-tier pill (yellow), refining time 2 minutes.
 Effect: taken after losing a stage on death, it steadies your mind and lets you keep cultivating.
 
 This is the pill required to regain the ability to cultivate after a death penalty — without it you stay stuck.
+""",
+    },
+    "lj_restore_pill": {
+        "tags": "Pills,Moderate,Reiki,Tribulation",
+        "summary": "A moderate tribulation pill: reiki surges, restoring 1 Reiki every 2 seconds for 1 day.",
+        "detail": """
+Moderate pill (mystic), refining time 4 minutes. Can trigger a pill tribulation.
+
+Effect: reiki surges, restoring 1 Reiki every 2 seconds for 1 day.
+""",
+    },
+    "lj_explosion_pill": {
+        "tags": "Pills,Moderate,Damage",
+        "summary": "A moderate pill that raises damage by 30% for 3 minutes.",
+        "detail": """
+Moderate pill (mystic), refining time 4 minutes.
+
+Effect: +30% damage for a short time, lasting 3 minutes.
+""",
+    },
+    "lj_drying_pill": {
+        "tags": "Pills,Moderate,Moisture",
+        "summary": "A moderate pill that makes you immune to wetness for 5 days.",
+        "detail": """
+Moderate pill (mystic), refining time 4 minutes.
+
+Effect: immune to wetness for 5 days.
+""",
+    },
+    "lj_invincible_pill": {
+        "tags": "Pills,Moderate,Survival",
+        "summary": "A moderate pill: for 30 seconds your health cannot drop below 1.",
+        "detail": """
+Moderate pill (mystic), refining time 4 minutes.
+
+Effect: a 30-second "invincible" state — your health cannot drop below 1 for 30 seconds, and nothing else changes.
+""",
+    },
+    "lj_bigu_pill": {
+        "tags": "Pills,Moderate,Realm",
+        "summary": "A moderate pill: meditate 10 seconds on the Enlightenment Tempering Seat to advance from Sinew to Fasting.",
+        "detail": """
+Moderate pill (mystic), refining time 4 minutes.
+
+Effect: take it and meditate 10 seconds on the Enlightenment Tempering Seat to advance from the Sinew realm to Fasting.
+""",
+    },
+    "lj_yinqi_pill": {
+        "tags": "Pills,Moderate,Realm",
+        "summary": "A moderate pill: meditate 10 seconds on the Enlightenment Tempering Seat to advance a realm.",
+        "detail": """
+Moderate pill (mystic), refining time 4 minutes.
+
+Effect: take it and meditate 10 seconds on the Enlightenment Tempering Seat to advance from Fasting to Subtle.
+""",
+    },
+    "lj_ruwei_pill": {
+        "tags": "Pills,Moderate,Realm,Tribulation",
+        "summary": "A moderate tribulation pill that helps a Guiding cultivator break through to Subtle.",
+        "detail": """
+Moderate pill (mystic), refining time 4 minutes. Can trigger a pill tribulation.
+
+Effect: take it and meditate 10 seconds on the Enlightenment Tempering Seat to break the boundary from Guiding to Subtle and grow stronger.
+""",
+    },
+    "lj_extraordinary_pill": {
+        "tags": "Pills,High,Realm,Tribulation",
+        "summary": "A high tribulation pill that raises a Subtle cultivator to Exalted.",
+        "detail": """
+High pill (earth), refining time 8 minutes. Can trigger a pill tribulation.
+
+Effect: take it and meditate 10 seconds on the Enlightenment Tempering Seat to raise a Subtle cultivator to the Exalted level.
+""",
+    },
+    "lj_heying_pill": {
+        "tags": "Pills,High,Realm,Tribulation",
+        "summary": "A high tribulation pill: meditate 10 seconds on the Enlightenment Tempering Seat to empower a Nascent cultivator.",
+        "detail": """
+High pill (earth), refining time 8 minutes. Can trigger a pill tribulation.
+
+Effect: take it and meditate 10 seconds on the Enlightenment Tempering Seat to empower a Nascent-level cultivator.
+""",
+    },
+    "lj_disaster_pill": {
+        "tags": "Pills,High,Tribulation,Survival",
+        "summary": "A high pill that makes you immune to pill tribulation lightning until it ends.",
+        "detail": """
+High pill (earth), refining time 8 minutes.
+
+Effect: immune to pill tribulation lightning until it ends.
+
+It is used to skip the lightning check when refining other pills — with no tribulation the refinement always fails and produces a Failed Pill, so taking a Disaster Breaking Pill skips the check and succeeds outright.
+""",
+    },
+    "lj_juling_pill": {
+        "tags": "Pills,High,Realm,Tribulation",
+        "summary": "A high tribulation pill, extremely rare, that breaks through to the Manifest realm.",
+        "detail": """
+High pill (earth), refining time 8 minutes. Can trigger a pill tribulation.
+
+Effect: take it and meditate 10 seconds on the Enlightenment Tempering Seat — extremely rare, it breaks through to the Manifest realm.
 """,
     },
 }
