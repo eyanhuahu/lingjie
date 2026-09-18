@@ -1029,6 +1029,213 @@ Craftable in the <Ethereal Realm>, <Structures> and <Containers> tabs.
 [[图片:images/lingjie/anim/cuiju_box_ui.png|Weapon case interface: a 7×7 grid with a separate slot above it for displaying a weapon]]
 """,
     },
+    "lj_ordinary_sword": {
+        "tags": "Weapons,Melee,Early Game",
+        "summary": "45 attack and +10% movement speed while held; a transitional blade repaired with Magic Core Shards.",
+        "detail": """
+45 attack and +10% movement speed while held; its attack range matches other ordinary weapons.
+
+100 durability (100 hits), repairable with Magic Core Shards — 1 shard restores 10 durability.
+
+Role: an early-game portable melee cultivation weapon, the basic blade that carries you to mid-game artifacts, covering self-defence and light exploration.
+
+Craftable in the <Ethereal Realm> and <Weapons> tabs.
+""",
+    },
+    "lj_reiki_bow": {
+        "tags": "Weapons,Ranged,Freeze,Artifact",
+        "summary": "78 attack, 20% crit, plus Ice Erosion and 10 planar damage; right-click Ice Infusion deals 300 damage and freezes.",
+        "detail": """
+Cannot be destroyed, can be deconstructed. Exotic flames are awkward to keep in the inventory or a backpack, so open the Spirit Void Gourd while crafting — the game only needs to be able to see it.
+
+Base stats
+78 attack, 20% crit chance, crit damage ×1.8.
+Hits apply the "Ice Erosion" debuff: 8 seconds, 16 damage every 0.5 seconds, refreshed on another hit. Adds 10 planar damage.
+Range 10, durability 200. Attack interval matches ordinary weapons such as the spear. Each attack costs 1 durability.
+At 0 durability it does not disappear and you can keep attacking, but damage drops to 10. Durability can be refilled with Magic Cores — 1 core fills 100.
+
+Ice Erosion debuff: each hit adds one stack of freeze, and reaching the creature's freeze resistance threshold triggers Frozen.
+　Small creatures: 2 stacks = frozen for 2 seconds
+　Medium creatures: 3 stacks = frozen for 1.5 seconds
+　Large creatures: 5 stacks = frozen for 1 second
+
+Skill: Ice Infusion (right-click)
+Costs 20 Reiki, fires one huge arrow for 300 damage and freezes the target for 3 seconds. 12-second cooldown.
+
+Killing any creature restores 5 Reiki.
+
+Craftable in the <Ethereal Realm> and <Weapons> tabs.
+""",
+    },
+    "lj_star_sword": {
+        "tags": "Weapons,Melee,Fire,Artifact",
+        "summary": "88 attack, 22% crit, plus Scorch; it hits harder the longer you swing, and right-click Meteor Thrust dashes invulnerably for 150 damage.",
+        "detail": """
+Cannot be destroyed, can be deconstructed. Exotic flames are awkward to keep in the inventory or a backpack, so open the Spirit Void Gourd while crafting — the game only needs to be able to see it.
+
+Base stats
+88 attack, 22% crit chance, crit damage ×2.
+Hits apply the "Scorch" debuff: 8 seconds, 16 fire damage every 0.5 seconds, refreshed on another hit. Adds 10 planar damage.
+300 durability. Attack interval and attack range both match ordinary weapons such as the spear. Each attack costs 1 durability.
+At 0 durability it does not disappear and you can keep attacking, but damage drops to 10. Durability can be refilled with Magic Cores — 1 core fills 100.
+
+Charge mechanic
+The weapon charges itself as you attack (25% every 5 attacks), and at 100% it enters the "Starfall state".
+Stop attacking for 10 seconds and the charge drops back to 0.
+In the Starfall state attacks hit harder, gaining 5 damage per hit.
+
+Skill: Meteor Thrust (right-click)
+Costs 10 Reiki and dashes forward a short distance (borrowed from the Wigfrid's charged spear), immune to damage during the dash (about 0.8 seconds of invulnerability), dealing 150 damage (140 base + 10 planar damage), with a 2-second cooldown.
+
+[[图片:images/lingjie/anim/star_sword_charge.png|Blade effect at full charge]]
+
+[[图片:images/lingjie/anim/star_sword_hit.png|Starfall hit effect]]
+
+Killing any creature restores 5 Reiki.
+
+Craftable in the <Ethereal Realm> and <Weapons> tabs.
+""",
+    },
+    "lj_keel_armour": {
+        "tags": "Armour,Defense,Durability",
+        "summary": "1500 durability and 80% defence to start; out of combat it mends itself via Blood Mending.",
+        "detail": """
+Special crafting: unlocked near the restored Remains Altar, and every craft still needs you to be near it.
+
+Base stats
+1500 durability, 80% defence to start.
+Each Magic Crystal given raises defence by 1%, up to 90.
+1 planar defence, up to 10.
+1 Blood Bat Essence restores full durability.
+
+Blood Mending
+Only triggers out of combat — that is, only when the player has taken no damage for 5 seconds.
+Above 30% health: costs 1 health every 2 seconds and restores 10 durability.
+Below 30% health: no health is spent and no durability is restored.
+At 0 durability it does not disappear, but it offers no protection at all.
+
+Craftable in the <Ethereal Realm> and <Armour> tabs.
+""",
+    },
+    "lj_crystalcrown": {
+        "tags": "Armour,Defense,Durability",
+        "summary": "A head piece built to the same spec as Keel Armour; wearing both makes you immune to Mirror Confusion.",
+        "detail": """
+Special crafting: unlocked near the restored Remains Altar, and every craft still needs you to be near it.
+
+Base stats
+1500 durability, 80% defence to start.
+Each Magic Crystal given raises defence by 1%, up to 90.
+1 planar defence, up to 10.
+1 Blood Bat Essence restores full durability.
+
+Blood Mending
+Only triggers out of combat — that is, only when the player has taken no damage for 5 seconds.
+Above 30% health: costs 1 health every 2 seconds and restores 10 durability.
+Below 30% health: no health is spent and no durability is restored.
+At 0 durability it does not disappear, but it offers no protection at all.
+
+Set bonus: wearing Keel Armour and the Crystal Crown together makes you immune to Mirror Confusion.
+
+Craftable in the <Ethereal Realm> and <Armour> tabs.
+""",
+    },
+    "lj_void_ring": {
+        "tags": "Artifact,Tool,Starting Gift",
+        "summary": "A ring you start with; one slot holds a Wasteland Flame or an exotic flame, and once equipped you can ignite targets from a distance.",
+        "detail": """
+Special crafting: unlocked near the restored Remains Altar, and every craft still needs you to be near it.
+
+Cannot be destroyed, and cannot be deconstructed with a Deconstruction Staff.
+
+You start with it. One slot holds a Wasteland Flame or an exotic flame. With a full exotic flame inside, equipping the ring lets you right-click a target to ignite it at range like a Fire Staff: it fires a fireball, range 8 to 10, costing 10 Reiki.
+The hit works exactly like a Fire Staff: it ignites the target, or tops up a burnable fuel device by one fuel; it also thaws frozen targets, wakes sleeping ones and makes them hate you. It deals no damage of its own, and with no exotic flame inside there is no ignite action at all.
+
+Craftable in the <Ethereal Realm> and <Tools> tabs.
+""",
+    },
+    "zhenfa_overview": {
+        "tags": "Formations,Mechanics",
+        "summary": "A formation is made of flags and a pivot; the flags mark the area and the pivot takes a core to start it.",
+        "detail": """
+Design: a formation is made of a number of flags plus a pivot, and provides some practical effect inside its area.
+
+Area (1 turf = 4 game units)
+　At least 4 flags are needed to form a formation.
+　Flags must be at least 3 turf (12 units) apart and at most 6 turf (24 units) apart.
+　The bounding rectangle of the whole formation may not exceed 12 turf (48 units) on either side.
+　The area follows how the flags connect — a circle, a square, a rectangle — like a dashed ring drawn on the map showing roughly where it reaches.
+
+Starting it: the pivot needs a core to start it. The Spirit Formation Pivot has 4 slots, so several cores can be placed for multiple effects.
+Duplicates of the same core do not stack their numbers; they just union the different effect slots.
+
+There are currently 4 formations: Four Seasons Harmony, Vitality Rejuvenation, Spirit-Banishing Demon-Locking and Extreme Temperature Ward.
+""",
+    },
+    "lj_flag": {
+        "tags": "Structures,Formations",
+        "summary": "Marks out a formation's area. Connects up to 3 tiles away.",
+        "detail": """
+Can be destroyed with a hammer, returning no materials.
+
+Marks out a formation's area, connecting up to 3 tiles away.
+
+The area follows how the flags connect — a circle, a square, a rectangle — like a dashed ring drawn on the map showing roughly where it reaches.
+
+Craftable in the <Ethereal Realm> and <Structures> tabs.
+""",
+    },
+    "lj_supernatural_power_pivot": {
+        "tags": "Structures,Formations",
+        "summary": "Powers a formation. 4 slots, so several cores can be placed for multiple effects.",
+        "detail": """
+Special crafting: unlocked near the restored Remains Altar, and every craft still needs you to be near it.
+
+Can be destroyed with a hammer, returning every material; any core inside also drops on the ground.
+
+Powers a formation — place a core in it to start the formation. 4 slots, so several cores can be placed for multiple effects.
+
+Craftable in the <Ethereal Realm> and <Structures> tabs.
+""",
+    },
+    "zhen_siji": {
+        "tags": "Formations,Seasons,Farming",
+        "summary": "Farm crops inside the area grow normally in all four seasons.",
+        "detail": """
+Area: at least 4 flags; the bounding rectangle may not exceed 12×12 turf.
+
+Core: Seasons Nucleus ([images/inventoryimages1/deerclops_eyeball.png] Deerclops Eyeball 1, [images/inventoryimages3/thulecite.png] Thulecite 2, [images/inventoryimages2/greengem.png] Green Gem 1, [images/lingjie/icons/lj_magic_core.png] Magic Core 1).
+
+Effect: season adaptation. Every farm crop inside the area grows normally in all four seasons; anything that is not a crop grows by the vanilla rules and is unaffected by the formation.
+""",
+    },
+    "zhen_huichun": {
+        "tags": "Formations,Farming,Light",
+        "summary": "Lights the area so plants never wither and crops grow at night too.",
+        "detail": """
+Core: Plant Nucleus ([images/inventoryimages2/klaussackkey.png] Klaus Sack Key, [images/inventoryimages2/greengem.png] Green Gem 1, [images/inventoryimages2/nightmarefuel.png] Nightmare Fuel 5, [images/inventoryimages2/goldnugget.png] Gold Nugget 5, [images/lingjie/icons/lj_magic_core.png] Magic Core 1).
+
+Effect: provides light inside the area; every plant and crop in the formation never withers, and withered ones come back to life; crops also grow normally at night.
+""",
+    },
+    "zhen_quling": {
+        "tags": "Formations,Defense",
+        "summary": "Blocks creatures but not players: hostile creatures cannot get in, and ones inside cannot get out.",
+        "detail": """
+Core: Demon Subduing Nucleus ([images/inventoryimages3/shadowheart.png] Shadow Atrium 1, [images/inventoryimages3/thulecite.png] Thulecite 5, [images/inventoryimages2/nightmarefuel.png] Nightmare Fuel 10, [images/inventoryimages2/purplegem.png] Purple Gem 1, [images/inventoryimages2/livinglog.png] Living Log 2, [images/lingjie/icons/lj_magic_crystal.png] Magic Crystal 2).
+
+Effect: blocks creatures but not players. No hostile creatures can spawn inside the area, or they are kept outside it; creatures already inside cannot leave.
+""",
+    },
+    "zhen_jiwen": {
+        "tags": "Formations,Temperature,Sanity",
+        "summary": "Fully neutralises extreme temperatures, cancels freeze and fire damage and slowly restores sanity.",
+        "detail": """
+Core: Constant Temperature Nucleus ([images/inventoryimages3/yellowstaff.png] Star Caller's Staff 1, [images/inventoryimages2/opalstaff.png] Moon Caller's Staff 1, [images/inventoryimages1/deerclops_eyeball.png] Deerclops Eyeball 1, [images/inventoryimages1/dragon_scales.png] Scales 1, [images/inventoryimages2/nightmarefuel.png] Nightmare Fuel 10, [images/lingjie/icons/lj_magic_crystal.png] Magic Crystal 2).
+
+Effect: extreme temperatures are fully neutralised inside the area (no freezing or overheating); freeze and fire damage are cancelled, and nothing inside catches fire or freezes; the player's sanity slowly recovers, 30 sanity every 60 seconds.
+""",
+    },
 }
 
 SITE = [
