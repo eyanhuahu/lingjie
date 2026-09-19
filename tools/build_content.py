@@ -1449,7 +1449,7 @@ See "Flame Usage Rules" for the general storage, lighting and burn rules.
         "tags": "Flames,Flame,Frost",
         "summary": "The exotic flame obtained by summoning Deerclops through the 'Frozen Log' clue; required to craft the Reiki Bow.",
         "detail": """
-Exotic flame. Clue bosses roll their demonization level from the world day like anything else (see "Demonization Overview") and are not limited by season; the clue item refreshes every 20 days.
+Exotic flame. Clue bosses roll their demonization level from the world day like anything else (see "Demonization Overview") and are not limited by season; clue items refresh every 20 days (each of the five keeps its own timer, see "Log").
 
 Clue item: the "Frozen Log" (spawns at random in birch forests, unlocked by smashing it with a pickaxe).
 
@@ -1518,13 +1518,18 @@ Use: it crafts the Soul Banner, and giving it to the banner unlocks the "Soul Re
     },
     "lj_log": {
         "tags": "Flames,Clues",
-        "summary": "The journal used for exotic flame clues. Clue items refresh every 20 days.",
+        "summary": "The journal used for exotic flame clues. Each of the five clues keeps its own timer and refreshes 20 game days after you take it.",
         "detail": """
 The collective name for exotic flame clue items.
 
 Clue bosses roll their demonization level from the world day like anything else (see "Demonization Overview") and are not limited by season.
 
-Clue items refresh every 20 days.
+Refresh rules
+　The five clues each keep their own independent timer and never block one another.
+　The timer starts the moment you take one: smashing, splitting, dousing, picking up and destroying all count.
+　The next clue appears after a full 20 game days (the count includes the current day's progress).
+　Only one clue of each kind exists in the world at a time; once you have taken it, even sitting in your backpack, it no longer affects the refresh timer.
+　All five are placed when the world starts; your realm only gates reading them (Subtle), not their placement.
 
 The clue item for each exotic flame: Frozen Log, Charred Scales, Rotten Backpack, Dried Camel Feathers and Swollen Scroll.
 """,
@@ -3166,7 +3171,7 @@ item(
     "yihuo", "lj_ice_flame", "冰霜业火", "异火,火焰,冰霜",
     "通过「冻僵的日志」线索召唤独眼巨鹿获得的异火，是制作灵韵的必需材料。",
     """
-异火。线索 Boss 的入魔等级同样按世界天数抽取（见「入魔总览」），不受季节限制；线索物品 20 天一刷新。
+异火。线索 Boss 的入魔等级同样按世界天数抽取（见「入魔总览」），不受季节限制；线索物品 20 天一刷新（五种各自计时，详见「日志」）。
 
 线索物品：「冻僵的日志」（桦树林随机刷新，需要用镐子敲碎解锁）。
 
@@ -3240,13 +3245,18 @@ item(
 
 item(
     "yihuo", "lj_log", "日志", "异火,线索",
-    "异火线索所用的日志。线索物品 20 天一刷新。",
+    "异火线索所用的日志。五种线索各自独立计时，拿到后满 20 个游戏日刷新下一件。",
     """
 异火线索物品的统称。
 
 线索 Boss 的入魔等级同样按世界天数抽取（见「入魔总览」），不受季节限制。
 
-线索物品 20 天一刷新。
+刷新规则
+　五种线索各自独立计时，互不影响。
+　从「拿到」那一刻起算：敲碎、劈开、浇灭、拾取、损毁都算拿到。
+　满 20 个游戏日后刷新下一件（算上当天进度，是完整的 20 天）。
+　同一时间世界上只会有一件同种线索；拿到手之后（哪怕放在背包里）也不会影响后续刷新计时。
+　五种线索开局各自投放一件；境界只卡「阅读」（入微），不卡投放。
 
 各类异火对应的具体线索物品：冻僵的日志、焦黑鳞片、腐烂的背包、风干的羽毛、泡胀的卷轴。
 """,
