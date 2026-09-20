@@ -1689,7 +1689,7 @@ You can also search for this place as "Demon Beast Forest" — the tag carries t
 Inside it is split into four blocks matching the four seasons. In this first release the winter block is winter all year round; the other three blocks will have seasonal effects too, with content coming later. (Region barrier: you only feel the regional season once you are on the island.)
 
 Winter region block
-Core area (swamp turf): a frozen swamp pond (where the clue boss spawns); one perfectly ordinary tree surrounded by evil flowers; several ancient night-vision trees; several marsh trees and spiky bushes.
+Core area (swamp turf): a frozen swamp pond (where the clue boss spawns); one perfectly ordinary tree surrounded by evil flowers; several gloomy thistles; several spiky trees and spiky bushes.
 Satellite area (guano turf): in the corners of the region, 3 Night Bat Nests, each with 1 to 3 Spirit-Melting Grass spawning beside it.
 Vanilla winter content: a few ice patches spawn at random (breaking some leaves a puddle of water behind), plus one penguin colony.
 
@@ -3464,7 +3464,7 @@ item(
 进入后分为四个板块，对应四个季节（春夏秋冬）。首版冬季板块为全天数冬天，剩下三个板块一样会有季节效应，内容后续更新。（地域结界：上岛才可以感受地域季节）
 
 冬季地域板块
-核心区域（沼泽地皮）：有一个冰封沼泽池塘（线索 Boss 刷新处）；一棵完全正常的树，围着一些邪恶花；若干远古夜视树；若干沼泽树，若干尖刺灌木。
+核心区域（沼泽地皮）：有一个冰封沼泽池塘（线索 Boss 刷新处）；一棵完全正常的树，围着一些邪恶花；若干阴郁之棘；若干针刺树，若干尖刺灌木。
 附属区域（鸟粪地皮）：在地域的边角地块，3 处夜蝠巢穴，每个巢穴旁随机生成 1 到 3 个融灵草。
 原版冬季小内容：随机生成几处冰矿（敲了一些也会留存在一滩水，然后再慢慢生成冰矿），再有一处企鹅的地盘。
 
@@ -3680,7 +3680,7 @@ DATA = {
              "噬魂蛇毒与毒沼对同类无效（多个首领不会互相中毒减速）\n"
              "荒界纳物箱：升级改用专属动作——把材料拿在手上左键点箱子，一次只消耗 1 份，不再整组存入\n"
              "灵虚葫：异火焚身倒计时显示在 HUD 的负面状态里，只给当前持有者看，葫芦掉在地上时暂停\n"
-             "蝴蝶岛：地图换成新存档的四翼布局，48×57 格、陆地 1503 格（约为原来的一半），固定实体数量也随之减少（夜蝠巢穴 4 → 3、正常的树 2 → 1；岛上的邪恶花、尖刺灌木、沼泽树、远古夜视树等花木也一并减少）\n"
+             "蝴蝶岛：地图换成新存档的四翼布局，48×57 格、陆地 1503 格（约为原来的一半），固定实体数量也随之减少（夜蝠巢穴 4 → 3、正常的树 2 → 1；岛上的邪恶花、尖刺灌木、针刺树、阴郁之棘等花木也一并减少）\n"
              "清心丸配方：格罗姆粘液 3 → 1\n"
              "入微丹配方：犀牛角 → 暗影心房\n"
              "灵韵弓：箭矢改为地面朝向，出手位置微调\n"
@@ -3705,7 +3705,7 @@ DATA = {
              "Its venom and bog no longer affect its own kind, so several bosses on the field will not poison or slow each other\n"
              "Wild Realm Storage Box: upgrading now uses a dedicated action — hold the material and left-click the chest, consuming a single item instead of storing the whole stack\n"
              "Spirit Void Gourd: the Flame Backlash countdown now shows in the HUD's negative effects, only for the current holder, and pauses while the gourd lies on the ground\n"
-             "Butterfly Island: the map now uses the four-wing layout from the new world save — 48×57 tiles with 1503 land tiles (about half the land); and its fixed props were trimmed accordingly (Night Bat Nests 4 → 3, ordinary trees 2 → 1; the island's evil flowers, spiky bushes, marsh trees and ancient night-vision trees were thinned out as well)\n"
+             "Butterfly Island: the map now uses the four-wing layout from the new world save — 48×57 tiles with 1503 land tiles (about half the land); and its fixed props were trimmed accordingly (Night Bat Nests 4 → 3, ordinary trees 2 → 1; the island's evil flowers, spiky bushes, spiky trees and gloomy thistles were thinned out as well)\n"
              "Stillness Pill recipe: Glommer's Goop 3 → 1\n"
              "Subtle Realm Pill recipe: Guardian's Horn → Shadow Atrium\n"
              "Reiki Bow: the arrow now uses ground orientation, with a slightly adjusted launch position\n"
