@@ -3477,7 +3477,6 @@ item(
 　炽岩蝎龙（见「炽岩蝎龙」）。
 　一些矿石。
 """,
-    image="images/lingjie/showcase/lj_remains_altar_complete.png",
 )
 
 item(
