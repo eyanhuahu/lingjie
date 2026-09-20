@@ -1706,13 +1706,14 @@ How Butterfly Island generates can be set in the mod settings: new and existing 
     },
     "lj_remains_island": {
         "tags": "Terrain,Shallow Sea,Remains,Boss",
-        "summary": "A small landform in the shallow sea where both the Remains Altar and the Blazing Rock Scorpion Dragon spawn.",
+        "summary": "A small landform in the shallow sea; ancient remains, the Blazing Rock Scorpion Dragon and some ore spawn on it.",
         "detail": """
 A small landform that generates in the shallow sea.
 
-Two things always spawn on it:
-　Remains Altar: once repaired it becomes the Ethereal Realm's own science station and unlocks high-tier crafting (see "Remains Altar").
-　Blazing Rock Scorpion Dragon: the epic boss that guards the altar (see "Blazing Rock Scorpion Dragon").
+The island spawns:
+　Ancient remains (which repair into the Remains Altar — see "Remains Altar").
+　The Blazing Rock Scorpion Dragon (see "Blazing Rock Scorpion Dragon").
+　Some ore.
 """,
     },
     "lj_remains_altar": {
@@ -3489,13 +3490,14 @@ item(
 
 item(
     "ditu", "lj_remains_island", "残骸小岛", "地形,浅海,残骸,Boss",
-    "浅海区的小地形，残骸祭坛与炽岩蝎龙都在这里。",
+    "浅海区的小地形，岛上生成远古残骸、炽岩蝎龙与一些矿石。",
     """
-生成在浅海区的小地形。
+小地形，生成在浅海区。
 
-岛上固定生成两样东西：
-　残骸祭坛：修复后成为灵界专属科技站，解锁高阶制作（见「残骸祭坛」）。
-　炽岩蝎龙：守在祭坛旁的史诗级 Boss（见「炽岩蝎龙」）。
+岛上生成：
+　远古残骸（修复后成为残骸祭坛，见「残骸祭坛」）。
+　炽岩蝎龙（见「炽岩蝎龙」）。
+　一些矿石。
 """,
     image="images/lingjie/showcase/lj_remains_altar_complete.png",
 )
