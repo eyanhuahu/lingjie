@@ -42,6 +42,7 @@
       "日志版本": "version", "版本": "version", "version": "version",
       "日期": "date", "date": "date",
       "内容": "content", "content": "content",
+      "英文内容": "contentEn", "contentEn": "contentEn",
       "是否展示": "visible", "展示": "visible", "visible": "visible"
     },
     tele: {
@@ -641,7 +642,8 @@
         date: row.date || "",
         entries: byLine(row.content).length > 1
           ? byLine(row.content)
-          : (splitList(row.content).length ? splitList(row.content) : [row.content || ""])
+          : (splitList(row.content).length ? splitList(row.content) : [row.content || ""]),
+        entriesEn: byLine(row.contentEn)
       }));
   }
 

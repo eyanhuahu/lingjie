@@ -3692,6 +3692,31 @@ DATA = {
              "异火线索提示优化：修为不足时保留自定义台词「修为不足,入微境界方可窥探此物」\n"
              "版本号 0.1 → 0.3\n"
              "补充服务器筛选标签\n",
+         "英文内容":
+             "Added the \"Timed Effects\" panel: buffs and negative effects shown separately, right-click drag to move and save the position, follows the HUD scale, visible only to you\n"
+             "The player avatar popup now has an \"Ethereal Realm Guide\" entry\n"
+             "Heaven's Judgment now warns players within 25 of the landing spot with a line of speech and a \"Sacrificial Tribulation\" HUD countdown\n"
+             "While refining, the HUD shows an \"Alchemy Tribulation\" countdown\n"
+             "Dying to the alchemy tribulation now records the death cause as \"Alchemy Tribulation Lightning\"\n"
+             "Moderate demonization: half-health shield 25s → 5s, demonic reflection 5% → 2%\n"
+             "Deep demonization: half-health shield 25s → 12s, demonic reflection 2% → 5%\n"
+             "Eclipsed Crystalwing Lion: skills now rotate in order (claw → scale powder missiles → roar → earth-rending step)\n"
+             "Crystal Claw Smash cooldown 8s → 5s\n"
+             "Scale Powder Missiles maximum range 8 turf → 10 turf\n"
+             "Planted mandrakes now put it to sleep as well\n"
+             "Added disengage and return: it stops chasing and goes home once it leaves the area around its flower\n"
+             "Soul-devouring Snake: Petrifying Bind and Venom Lock now affect players only\n"
+             "Its venom and bog no longer affect its own kind, so several bosses on the field will not poison or slow each other\n"
+             "Wild Realm Storage Box: upgrading now uses a dedicated action — hold the material and left-click the chest, consuming a single item instead of storing the whole stack\n"
+             "Spirit Void Gourd: the Flame Backlash countdown now shows in the HUD's negative effects, only for the current holder, and pauses while the gourd lies on the ground\n"
+             "Butterfly Island: the map now uses the four-wing layout from the new world save — 48×57 tiles with 1503 land tiles (about half the land); the blocks and their contents are unchanged\n"
+             "Stillness Pill recipe: Glommer's Goop 3 → 1\n"
+             "Subtle Realm Pill recipe: Guardian's Horn → Shadow Atrium\n"
+             "Reiki Bow: the arrow now uses ground orientation, with a slightly adjusted launch position\n"
+             "Spider Lilies grown beside remains: the timer now persists through the vanilla timer component and retries every 60 seconds when the spot is blocked\n"
+             "Exotic flame clue hint: an insufficient realm keeps its own line — \"Your cultivation is too shallow; only the Subtle realm may peer into this.\"\n"
+             "Version 0.1 → 0.3\n"
+             "Added server filter tags\n",
          "是否展示": "true"},
     ],
     "tele": [{"导向id": t[0], "字段": t[1], "说明": "", "是否展示": "true"} for t in TELE],

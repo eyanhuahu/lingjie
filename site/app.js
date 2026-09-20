@@ -118,6 +118,12 @@ function pickSummary(item) {
   return item.summary || "";
 }
 
+// 更新日志条目：英文模式优先用英文内容，没翻就退回中文
+function pickLogEntries(log) {
+  if (log && state.lang === "en" && (log.entriesEn || []).length) return log.entriesEn;
+  return (log && log.entries) || [];
+}
+
 // 配方：英文模式优先用英文配方（材料名已由 build_content.py 的 MATERIAL_EN 转好）
 function pickRecipe(item) {
   if (!item) return "";
@@ -764,7 +770,7 @@ function renderChangelog(section) {
   const body = logs.length ? `<div class="cards">${logs.map((log) => `
     <article class="card no-media log-card">
       <div class="card-head"><div class="card-main"><h3 class="card-title serif">${escapeHtml(log.version)}</h3><div class="card-tags"><span class="tag">${escapeHtml(log.date || "")}</span></div></div></div>
-      <p class="card-desc log-list">${(log.entries || []).map((entry) => renderTextWithXrefs(entry)).join("<br>")}</p>
+      <p class="card-desc log-list">${pickLogEntries(log).map((entry) => renderTextWithXrefs(entry)).join("<br>")}</p>
       <div class="card-foot"><button class="btn-detail" type="button" data-action="changelog">${t("fullLog")}</button></div>
       ${yunFoot()}
     </article>
