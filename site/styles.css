@@ -254,6 +254,8 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
 .card-desc{font-size:14px;line-height:1.6;color:var(--c-teal-ink);margin:6px 0 6px;overflow-wrap:anywhere}
 /* 更新日志：一条一行（原来所有条目用「；」接成一大段，十几条挤一起没法看） */
 /* 更新日志卡片：整张都能点开（作者反馈只点「完整更新」按钮不方便） */
+/* 日志卡片末尾那行「共 N 条，点卡片查看完整更新」：弱化处理，别抢正文 */
+.card-desc.log-list .log-more{color:var(--c-ink-2);opacity:.75;font-size:13px}
 .log-card{cursor:var(--cursor-sword-btn)}
 .log-card:hover{border-color:var(--c-gold)}
 .log-card:active{transform:translateY(1px)}

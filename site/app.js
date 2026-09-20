@@ -52,6 +52,7 @@ const I18N = {
     detail: "查看详情",
     fullLog: "完整更新",
     noDetail: "暂无详情。",
+    logMore: "（共 {n} 条，点卡片查看完整更新）",
     langButton: "EN",
     langTitle: "切换成英文",
     qqGroup: "QQ 群",
@@ -73,6 +74,7 @@ const I18N = {
     detail: "View details",
     fullLog: "Full changelog",
     noDetail: "No details yet.",
+    logMore: "({n} entries in total — click the card for the full changelog)",
     langButton: "中",
     langTitle: "Switch to Chinese",
     qqGroup: "QQ group",
@@ -117,6 +119,10 @@ function pickSummary(item) {
   if (state.lang === "en" && item.summaryEn) return item.summaryEn;
   return item.summary || "";
 }
+
+// 更新日志卡片上最多列几条：卡片只给个概要，全部条目在「完整更新」弹窗里看
+// （原来卡片把十几条全列出来，跟弹窗内容一模一样，弹窗就没意义了）
+const LOG_PREVIEW_COUNT = 3;
 
 // 更新日志条目：英文模式优先用英文内容，没翻就退回中文
 function pickLogEntries(log) {
@@ -770,7 +776,13 @@ function renderChangelog(section) {
   const body = logs.length ? `<div class="cards">${logs.map((log) => `
     <article class="card no-media log-card" data-action="changelog" title="点击查看完整更新">
       <div class="card-head"><div class="card-main"><h3 class="card-title serif">${escapeHtml(log.version)}</h3><div class="card-tags"><span class="tag">${escapeHtml(log.date || "")}</span></div></div></div>
-      <p class="card-desc log-list">${pickLogEntries(log).map((entry) => renderTextWithXrefs(entry)).join("<br>")}</p>
+      <p class="card-desc log-list">${(() => {
+        const all = pickLogEntries(log);
+        const shown = all.slice(0, LOG_PREVIEW_COUNT);
+        const body = shown.map((entry) => renderTextWithXrefs(entry)).join("<br>");
+        const rest = all.length - shown.length;
+        return rest > 0 ? `${body}<br><span class="log-more">${escapeHtml(t("logMore").replace("{n}", String(all.length)))}</span>` : body;
+      })()}</p>
       <div class="card-foot"><button class="btn-detail" type="button" data-action="changelog">${t("fullLog")}</button></div>
       ${yunFoot()}
     </article>
