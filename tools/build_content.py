@@ -485,7 +485,7 @@ Manifest　HP +100, Speed ×1.40, Reiki +70, Attack ×3.00
         "tags": "Interface,Status,Buffs,Debuffs",
         "summary": "The HUD panel for timed effects: buffs and negative effects shown separately. Draggable, follows the HUD scale.",
         "detail": """
-Two independent panels are attached to the vanilla HUD root, so the status bar's position and scale do not affect them:
+Two independent panels that do not shift or scale along with the status bar:
 　Negative effects: top-left by default.
 　Buffs: bottom-right by default.
 
@@ -493,7 +493,7 @@ Dragging and saving: hold the right mouse button to drag a panel, and release to
 
 Scaling: follows the vanilla HUD scale setting.
 
-Networking: a panel only reads the data on your own player_classified, so other players never see your timed effects.
+Visibility: a panel only ever shows your own effects, so other players never see them.
 
 Negative effects (9): Starfire Burn, Frost Erosion, Scorpion Venom, Soul Snake Venom, Petrified, Bound, Flame Backlash, Alchemy Tribulation, Sacrificial Tribulation.
 Buffs (6): Blazing Pill, Cold Flame Pill, Drying Pill, Explosion Pill, Invincible Pill, Restore Spirit Pill.
@@ -1686,8 +1686,6 @@ Reading it requires the Subtle realm.
         "detail": """
 You can also search for this place as "Demon Beast Forest" — the tag carries that alias, so either name finds it.
 
-The map has been shrunk: earlier builds used a 69×89 grid with 3003 land tiles; it now uses the four-wing layout from the new world save — 48×57 with 1503 land tiles, roughly half the land. The blocks and their contents are unchanged.
-
 Inside it is split into four blocks matching the four seasons. In this first release the winter block is winter all year round; the other three blocks will have seasonal effects too, with content coming later. (Region barrier: you only feel the regional season once you are on the island.)
 
 Winter region block
@@ -2044,7 +2042,7 @@ item(
     "jingjie", "timed_effects", "限时状态", "界面,状态,增益,负面",
     "HUD 上的限时状态面板：增益与负面分开显示，可按住右键拖动并保存位置，跟随 HUD 缩放。",
     """
-两个独立面板，挂在原版 HUD 根节点上，所以不受状态栏位置与缩放影响：
+两个独立面板，互不影响，也不会跟着状态栏一起移动或缩放：
 
 　负面状态：默认在左上角。
 　增益状态：默认在右下角。
@@ -2053,7 +2051,7 @@ item(
 
 缩放：跟随原版 HUD 缩放设置。
 
-可见范围：面板只读自己 player_classified 上的数据，别的玩家看不到你的限时状态。
+可见范围：只显示自己的状态，别的玩家看不到你的限时状态。
 
 负面状态（9 种）：星火灼烧、冰蚀、蝎毒、蛇毒、石化、束缚、异火焚身、丹劫、祭天雷劫。
 增益状态（6 种）：赤焰丹、冷焰丹、防潮丹、爆裂丸、不灭丹、复灵丹。
@@ -3462,8 +3460,6 @@ item(
     "分四个季节板块的地域，首版开放冬季板块；异火线索 Boss 与魔兽的聚集地。",
     """
 搜索这个位置也可以用「魔兽森林」——标签里放了这个别名，两种叫法都能搜到。
-
-地图已缩小：早期版本是 69×89 的格点、陆地 3003 格；现在换成新存档里的四翼布局，48×57 格、陆地 1503 格，陆地面积约为原来的一半。板块与里面的内容不变。
 
 进入后分为四个板块，对应四个季节（春夏秋冬）。首版冬季板块为全天数冬天，剩下三个板块一样会有季节效应，内容后续更新。（地域结界：上岛才可以感受地域季节）
 
