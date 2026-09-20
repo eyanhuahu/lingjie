@@ -459,18 +459,16 @@ html[lang="en"] .card-tags .tag+.tag{white-space:nowrap}
   .modal-mask{padding:10px}
 }
 
-/* 手机端：顶栏与卷目栏不再钉在屏幕上。
-   作者反馈：手机上顶栏（站名 + 作者 + 按钮）+ 卷目栏（搜索 + 两排卷目）全固定，
-   一屏 600 多像素里一半都被占掉，看正文特别不方便。
-   这里把两者都改成随页面滚动走；顺带把正文顶部留白与锚点偏移一起放开
-   （顶栏不再盖住内容，就不需要给它留位置）。
-   注：app.js 的 syncMastHeight() 会用 getComputedStyle 判断顶栏是不是 fixed，
-   不是 fixed 时把 scroll-padding-top 收到 12px，避免锚点跳转跳偏。 */
+/* 手机端：顶栏随页面滚走，但「搜索 + 卷目」划到屏幕顶就吸住。
+   作者要求：从搜索栏到卷目栏划到屏幕顶的时候固定住，前面的顶栏正常滚走。
+   另外侧栏那个加群按钮在手机上收起来（顶栏已经有一个同样的），
+   不然吸顶块会高出一截；点顶栏那个按钮时群号提示仍会出现在这里。 */
 @media (max-width:640px){
   .masthead{position:static}
   body{padding-top:0}
-  .rail{position:static}
-  .rail-inner{position:static;max-height:none;overflow:visible;padding-top:12px}
+  .rail{position:sticky;top:0;z-index:15}
+  .rail-inner{position:static;max-height:none;overflow:visible;padding-top:10px}
+  .rail-foot .btn-qq{display:none}
   .shell{min-height:0}
 }
 

@@ -14,16 +14,24 @@ function scrollTrigger() {
 // 顶栏是 fixed 的，正文靠 --mast-h 让位。顶栏里文字换行、字体加载完、窗口变窄
 // 都会让它的真实高度和 CSS 里写死的 132px 对不上，于是侧栏第一行会被顶栏盖住。
 // 这里量一次真实高度写回去（min-height 用的是另一个变量，不会自反馈）。
-// 手机端 CSS 把顶栏改成 static（跟着页面滚走），这时不需要留位、
-// 锚点跳转也不需要那么大的偏移，统一收到 12px。
+//
+// 手机端（≤640px）CSS 把顶栏改成 static、把「搜索 + 卷目」改成吸顶，
+// 这时锚点跳转要避开的是**吸顶那条**的高度，不是顶栏高度，所以分开算。
 function syncMastHeight() {
   const mast = $(".masthead");
   if (!mast) return;
   const h = Math.round(mast.getBoundingClientRect().height);
   if (!h) return;
   const fixed = getComputedStyle(mast).position === "fixed";
+  let pad;
+  if (fixed) {
+    pad = h + 24;
+  } else {
+    const rail = $(".rail");
+    pad = rail ? Math.round(rail.getBoundingClientRect().height) + 12 : 12;
+  }
   document.documentElement.style.setProperty("--mast-h", `${fixed ? h : 0}px`);
-  document.documentElement.style.scrollPaddingTop = fixed ? `${h + 24}px` : "12px";
+  document.documentElement.style.scrollPaddingTop = `${pad}px`;
 }
 
 // ===== 中英切换 =====
