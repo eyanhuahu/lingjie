@@ -371,6 +371,7 @@ NAME_EN = {
     "lj_dust_log": "Dustflame Log",
     "lj_purplemonster_log": "Purple Scale Log",
     "lj_remains_altar": "Remains Altar",
+    "lj_remains_island": "Remains Island",
     "lj_chiyan_scorpion_dragon": "Blazing Rock Scorpion Dragon",
     "lj_little_scorpion": "Venomous Scorpion Larva",
     "lj_bat_nest": "Night Bat Nest",
@@ -1703,14 +1704,21 @@ Several Night Bat Nests.
 How Butterfly Island generates can be set in the mod settings: new and existing worlds / new worlds only / off.
 """,
     },
-    "lj_remains_altar": {
-        "tags": "Terrain,Special Crafting",
-        "summary": "A small island of remains in the shallow sea that spawns the Blazing Rock Scorpion Dragon; restoring the altar unlocks high-tier crafting, and every craft needs you nearby.",
+    "lj_remains_island": {
+        "tags": "Terrain,Shallow Sea,Remains,Boss",
+        "summary": "A small landform in the shallow sea where both the Remains Altar and the Blazing Rock Scorpion Dragon spawn.",
         "detail": """
-The restored altar
+A small landform that generates in the shallow sea.
 
-A small landform (Remains Island) that spawns the Remains Altar and the Blazing Rock Scorpion Dragon, in the shallow sea.
-
+Two things always spawn on it:
+　Remains Altar: once repaired it becomes the Ethereal Realm's own science station and unlocks high-tier crafting (see "Remains Altar").
+　Blazing Rock Scorpion Dragon: the epic boss that guards the altar (see "Blazing Rock Scorpion Dragon").
+""",
+    },
+    "lj_remains_altar": {
+        "tags": "Structures,Special Crafting,Science Station",
+        "summary": "The Ethereal Realm's own science station. Repairing it unlocks high-tier crafting, and every craft must be made beside it.",
+        "detail": """
 You need at least the Fasting realm to repair it, and finishing the repair costs one whole realm (nine stages) — that is the price of the repair, not a reward. Your realm keeps whatever death lock it already had.
 
 Crafting unlocks nearby: every craft still needs you to be near the Remains Altar, so a recipe is never permanently unlocked just because you made it once.
@@ -3480,13 +3488,22 @@ item(
 )
 
 item(
-    "ditu", "lj_remains_altar", "残骸祭坛", "地形,特殊制作",
-    "浅海区的残骸小岛，生成炽岩蝎龙；修复祭坛可解锁高阶制作，每次制作都需靠近。",
+    "ditu", "lj_remains_island", "残骸小岛", "地形,浅海,残骸,Boss",
+    "浅海区的小地形，残骸祭坛与炽岩蝎龙都在这里。",
     """
-修复完成的祭坛
+生成在浅海区的小地形。
 
-小地形（残骸小岛），生成残骸祭坛与炽岩蝎龙，生成在浅海区。
+岛上固定生成两样东西：
+　残骸祭坛：修复后成为灵界专属科技站，解锁高阶制作（见「残骸祭坛」）。
+　炽岩蝎龙：守在祭坛旁的史诗级 Boss（见「炽岩蝎龙」）。
+""",
+    image="images/lingjie/showcase/lj_remains_altar_complete.png",
+)
 
+item(
+    "ditu", "lj_remains_altar", "残骸祭坛", "建筑,特殊制作,科技站",
+    "灵界专属科技站。修复后解锁高阶制作，每件都要在祭坛旁制作。",
+    """
 建造修复残骸：""" + R(("木板", 10), ("融灵草", 3), ("紫晶塑体花", 1), ("化石碎片", 3)) + """。
 须至少辟谷境才可以修复；修复完成会下降一个大境界（损失九阶）——这是修复的代价，不是奖励。境界会保留原有的死亡锁定状态。
 
