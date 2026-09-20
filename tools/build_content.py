@@ -1702,6 +1702,8 @@ Each block spawns a predecessor skeleton at random, with items left over from th
 Several Night Bat Nests.
 
 How Butterfly Island generates can be set in the mod settings: new and existing worlds / new worlds only / off.
+
+Console command: c_ljhd() — if the map did not generate Butterfly Island, this command spawns it under your feet. Pick a reasonably open stretch of ocean, because it will displace the terrain there.
 """,
     },
     "lj_remains_island": {
@@ -3561,6 +3563,8 @@ item(
 夜蝠巢穴若干。
 
 蝴蝶岛生成方式可在 mod 设置里调整：新旧世界 / 仅新世界 / 关闭。
+
+指令代码：c_ljhd()　如果地图没有生成蝴蝶岛，可以用这个代码在自己脚下生成，注意找一个空一点的海域，因为会挤掉地形。
 """,
 )
 
