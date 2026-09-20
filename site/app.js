@@ -768,7 +768,7 @@ function emptySectionText(sectionId) {
 function renderChangelog(section) {
   const logs = [...(state.data.changelog || [])].reverse();
   const body = logs.length ? `<div class="cards">${logs.map((log) => `
-    <article class="card no-media log-card">
+    <article class="card no-media log-card" data-action="changelog" title="点击查看完整更新">
       <div class="card-head"><div class="card-main"><h3 class="card-title serif">${escapeHtml(log.version)}</h3><div class="card-tags"><span class="tag">${escapeHtml(log.date || "")}</span></div></div></div>
       <p class="card-desc log-list">${pickLogEntries(log).map((entry) => renderTextWithXrefs(entry)).join("<br>")}</p>
       <div class="card-foot"><button class="btn-detail" type="button" data-action="changelog">${t("fullLog")}</button></div>
