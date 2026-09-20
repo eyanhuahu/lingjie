@@ -959,7 +959,7 @@ function openChangelogModal(trigger = document.activeElement) {
   $("#modalBody").innerHTML = logs.map((log) => `
     <section class="log-detail">
       <h3>${escapeHtml(log.version)} <small>${escapeHtml(log.date || "")}</small></h3>
-      <ul>${(log.entries || []).map((entry) => `<li>${renderTextWithXrefs(entry)}</li>`).join("")}</ul>
+      <ul>${pickLogEntries(log).map((entry) => `<li>${renderTextWithXrefs(entry)}</li>`).join("")}</ul>
     </section>
   `).join("") || "<p>暂无更新记录。</p>";
   openModal();
