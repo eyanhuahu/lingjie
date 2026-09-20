@@ -381,6 +381,7 @@ NAME_EN = {
     # ↓ 以下为 wiki 侧翻译（mod 英文表里没有对应项）
     "realm_system": "Realm System",
     "reiki_value": "Reiki",
+    "timed_effects": "Timed Effects",
     "corruption_overview": "Demonization Overview",
     "corruption_light": "Light Demonization",
     "corruption_medium": "Moderate Demonization",
@@ -480,6 +481,26 @@ Manifest　HP +100, Speed ×1.40, Reiki +70, Attack ×3.00
 　Bonuses do not stack — reaching a new realm simply replaces the old values. HP and Reiki are flat additions to the cap; Speed and Attack are multipliers (Attack ×1.25 means +25% damage).
 """,
     },
+    "timed_effects": {
+        "tags": "Interface,Status,Buffs,Debuffs",
+        "summary": "The HUD panel for timed effects: buffs and negative effects shown separately. Draggable, follows the HUD scale.",
+        "detail": """
+Two independent panels are attached to the vanilla HUD root, so the status bar's position and scale do not affect them:
+　Negative effects: top-left by default.
+　Buffs: bottom-right by default.
+
+Dragging and saving: hold the right mouse button to drag a panel, and release to save its position; positions are stored alongside the vanilla HUD coordinate record.
+
+Scaling: follows the vanilla HUD scale setting.
+
+Networking: a panel only reads the data on your own player_classified, so other players never see your timed effects.
+
+Negative effects (9): Starfire Burn, Frost Erosion, Scorpion Venom, Soul Snake Venom, Petrified, Bound, Flame Backlash, Alchemy Tribulation, Sacrificial Tribulation.
+Buffs (6): Blazing Pill, Cold Flame Pill, Drying Pill, Explosion Pill, Invincible Pill, Restore Spirit Pill.
+
+Also: the player avatar popup now has an "Ethereal Realm Guide" entry.
+""",
+    },
     "reiki_value": {
         "tags": "Realm,Reiki,Stats",
         "summary": "Starts at 50 and caps at 120; regenerates 3.3 per minute; below 5 you are weakened for 10 seconds.",
@@ -544,7 +565,7 @@ Creatures with 149 or less base health keep the light buff only and gain no demo
     },
     "corruption_medium": {
         "tags": "Demonization,Moderate",
-        "summary": "Demonized health uses a 1.95× discounted multiplier (the higher the base health, the closer to full); 12% damage reduction, an invulnerable shield at half health and 5% demonic reflection.",
+        "summary": "Demonized health uses a 1.95× discounted multiplier (the higher the base health, the closer to full); 12% damage reduction, a 5-second invulnerable shield at half health and 2% demonic reflection.",
         "detail": """
 Shown in game as "Moderate".
 
@@ -568,7 +589,7 @@ Shadow Slow: 20% chance when the player is hit by a creature; movement speed −
 Demonic Reflection: 10% chance when the creature takes damage from a player; reflects 5% of the damage.
 
 Creature buffs
-Conditional Vulnerability: dropping to 50% health or below triggers a shield; the creature takes no damage for 25 seconds, with a 5-minute cooldown.
+Conditional Vulnerability: dropping to 50% health or below triggers a shield; the creature takes no damage for 5 seconds, with a 5-minute cooldown.
 
 On death it drops 1 to 2 Magic Cores and 1 to 3 Magic Core Shards plus the creature's own loot.
 """,
@@ -600,11 +621,11 @@ Player debuffs
 Demonic Aura: within 10 range, players lose 5 sanity every 5 seconds.
 Curse of Hunger: 30% chance when the player is hit by a creature; hunger drains 20% faster for 30 seconds.
 Shadow Slow: 20% chance when the player is hit by a creature; movement speed −20% for 10 seconds.
-Demonic Reflection: 10% chance when the creature takes damage from a player; reflects 2% of the damage.
+Demonic Reflection: 10% chance when the creature takes damage from a player; reflects 5% of the damage.
 Mirror Confusion: 10% chance on attack; the player's movement direction flips 180° for the next 5 seconds.
 
 Creature buffs
-Conditional Vulnerability: while health is between 30% and 50% (>30% and ≤50%) it triggers a 25-second invulnerable shield, with a 5-minute cooldown.
+Conditional Vulnerability: while health is between 30% and 50% (>30% and ≤50%) it triggers a 12-second invulnerable shield, with a 5-minute cooldown.
 Bone-Deep Poison: normal attacks carry bone-eating poison. One poisoning lasts 240 seconds and does not stack (the timer can be refreshed, capped at 240 seconds), and the first tick lands the moment it hits.
 　0 to 80 seconds: 6 damage every 10 seconds
 　80 to 160 seconds: 10 damage every 10 seconds
@@ -616,6 +637,7 @@ Demonic Frenzy: dropping to 30% health or below triggers a frenzy — damage +30
 　Only epic bosses also get their skill cooldowns halved.
 　The frenzy lasts 300 seconds (5 minutes) and can only trigger again once it has ended.
 Heaven's Judgment: on death it calls down a tribulation for 60 seconds, striking lightning every 6 seconds that kills outright (9999 damage, ignoring invulnerability and damage absorption). The landing spot is marked first and the bolt lands 1.5 seconds later.
+　Warning: players within 25 of the landing spot hear "The heavens have sensed it. A tribulation is coming!" and see a "Sacrificial Tribulation" countdown on the HUD; it disappears once they leave the area.
 
 On death it adds 1 Magic Crystal plus the creature's own loot, and doubles the vanilla drop amounts.
 　Exception: the three epic bosses with their own complete loot tables — Eclipsed Crystalwing Lion, Blazing Rock Scorpion Dragon and Soul-devouring Snake — are neither doubled nor given a Magic Crystal.
@@ -666,6 +688,8 @@ High (refining time 8 minutes)
 Refined with a Wasteland Flame the chance is 20%, and a failure produces a Failed Pill; with an exotic flame the chance is 100%.
 Only 1 can be made at a time.
 High pill tribulation: a lightning strike every 8 seconds that kills outright, always telegraphed; the marker shows at second 7 and the bolt lands 1 second later, lasting 120 seconds. Dodge it or the refinement fails. Failing to dodge destroys the furnace and leaves 5 [images/inventoryimages1/charcoal.png] Charcoal and 1 Failed Pill.
+
+Tribulation readout: while refining, the HUD shows an "Alchemy Tribulation" countdown (driven by the furnace's remaining time); dying to it records the death cause as "Alchemy Tribulation Lightning".
 
 Heaven (sky)
 Not implemented yet.
@@ -1107,6 +1131,8 @@ Bottom right "Seal" — closes the chest.
 Lower right "Safe Deposit" — for items the chest already holds, clicking safe deposit puts everything of yours into the chest in one go.
 
 Infusions:
+Upgrading: hold the material and left-click the chest — one material is consumed per upgrade.
+
 Giving it a Magic Core adds collection (the range can be set to 10 / 50 / 100 / 200 / 500 / All in the mod settings; the default is 10).
 Giving it a sapphire adds freshness.
 Giving it a Magic Crystal unlocks infinite stacking.
@@ -1432,6 +1458,8 @@ Igniting with the Void Ring: with a full exotic flame inside, equipping the Void
 Flame ownership: strong exotic flames (Frost Karma Flame, Dragon Flame Heartfire, Wildmane Flame, Spirit Dust Flame, Purple Scale Demon Flame) cannot be picked up by hand once they land — only their owner can. After a full day on the ground (8 minutes) they become "Lose Owner", and from then on any Spirit Void Gourd can absorb them. Picking a strong exotic flame up into the inventory or a container makes the picker its new owner. The Wasteland Flame is not a strong flame, so anyone can pick it up by hand.
 
 Absorption cost: absorbing with the Spirit Void Gourd sets the flame burning through you, costing 1 Reiki and 2 health per second for 60 seconds.
+
+The remaining "Flame Backlash" time is shown on the HUD's negative effects panel, and only to whoever is holding the gourd; it pauses and disappears while the gourd lies on the ground.
 """,
     },
     "lj_ordinary_flame": {
@@ -1658,6 +1686,8 @@ Reading it requires the Subtle realm.
         "detail": """
 You can also search for this place as "Demon Beast Forest" — the tag carries that alias, so either name finds it.
 
+The map has been shrunk: earlier builds used a 69×89 grid with 3003 land tiles; it now uses the four-wing layout from the new world save — 48×57 with 1503 land tiles, roughly half the land. The blocks and their contents are unchanged.
+
 Inside it is split into four blocks matching the four seasons. In this first release the winter block is winter all year round; the other three blocks will have seasonal effects too, with content coming later. (Region barrier: you only feel the regional season once you are on the island.)
 
 Winter region block
@@ -1787,14 +1817,15 @@ Base stats
 12000 health, a 50 damage bite as its basic attack with a poison effect, 15% armour, medium movement speed.
 
 Core mechanics
+Venom immunity: the Soul-devouring Snake's own kind is unaffected by its venom and bog, so several bosses on the field will not poison or slow each other.
 Every 2000 health of damage taken it drops Soul Snake Scales, which players cannot pick up but can burn with an exotic flame.
 Once the Soul-devouring Snake first falls to 50% health it actively seeks out and eats the scales to heal itself, 1000 health each.
 
 Skills
 Bite: a snake head bite for 50 damage, non-stacking, and it can refresh the poison timer.
 Venom Bog: spits venom at the target to create a poison bog that lasts 4 minutes, slowing anyone inside by 60% and poisoning them on contact; 15-second cooldown.
-Petrifying Bind: within a circle of radius 16 centred on itself, binds the target in place for 3 seconds; 30-second cooldown. (Circular area.)
-Venom Lock: slams its tail into the ground and spawns a snake body like a shadow creature that coils around the target for 5 seconds, during which the boss closes in and basic-attacks the bound target.
+Petrifying Bind: within a circle of radius 16 centred on itself, binds the target in place for 3 seconds; 30-second cooldown. (Circular area, players only.)
+Venom Lock: slams its tail into the ground and spawns a snake body like a shadow creature that coils around the target for 5 seconds, during which the boss closes in and basic-attacks the bound target. (Players only.)
 
 Drops on kill
 Soul Snake Skin 3, [images/inventoryimages2/monstermeat.png] Monster Meat 5, Magic Crystal 2, Magic Core 6, Magic Core Shard 10, [images/inventoryimages3/redgem.png] Red Gem 2, Purple Scale Demon Flame 1.
@@ -1810,13 +1841,14 @@ Base stats
 24000 health, 15% armour, medium movement speed.
 
 Core mechanics
+Disengage and return: once it leaves the area around its flower it stops chasing and goes home, using one roar as the transition; it gives up entirely past 40 distance.
 With flowers within 5 turf it heals 60 health per flower every 10 seconds (an Amethyst Form Flower counts as one flower unit and spawns butterflies like petals do).
 Destroying or harvesting nearby flowers interrupts the healing and forces a Lion's Roar within 10 seconds (harvesting petals within those 10 seconds still triggers it only once).
-Standing near a Mandrake puts it to sleep for 8 seconds, and that sleep can only trigger once per minute.
+Standing near a Mandrake — planted ones included — puts it to sleep for 8 seconds, and that sleep can only trigger once per minute.
 
-Skills
-Crystal Claw Smash: a single-target melee heavy blow. 70 damage, 8-second cooldown, range about 1 turf (3 units), knocks small creatures down, and staggers a hit player for 0.6 seconds. If the player is closer than 1 turf, there is a 60% chance of one swing with each claw for 70 damage each (140 total), and a 40% chance of a single swing.
-Scale Powder Missiles (ranged): fans one wing to fire 3 scale powder orbs in a triangular spread. 40 damage each, 120 for all three. Blast radius about 0.4 turf (1.5 units), and each blast leaves a petal at the impact point. 18-second cooldown, 8 turf flight distance, exploding on contact with an obstacle.
+Skills (used in rotation: claw → scale powder missiles → roar → earth-rending step; anything unavailable or still cooling down is skipped)
+Crystal Claw Smash: a single-target melee heavy blow. 70 damage, 5-second cooldown, range about 1 turf (3 units), knocks small creatures down, and staggers a hit player for 0.6 seconds. If the player is closer than 1 turf, there is a 60% chance of one swing with each claw for 70 damage each (140 total), and a 40% chance of a single swing.
+Scale Powder Missiles (ranged): fans one wing to fire 3 scale powder orbs in a triangular spread. 40 damage each, 120 for all three. Blast radius about 0.4 turf (1.5 units), and each blast leaves a petal at the impact point. 18-second cooldown, up to 10 turf flight distance, exploding on contact with an obstacle.
 Lion's Roar (control): a screen-wide sound wave with 6 turf of range. No damage, but it staggers the player for 1.2 seconds and forces their weapon to drop.
 Earth-Rending Step: the lion raises one front paw, sinks its body to gather power, the ground trembles faintly and dust kicks up at its feet, with a small screen shake warning players to move.
 　Spawn area: centred on itself with 8 turf (32 units) of radius, it spawns one temporary pit under every player in range; pits never overlap, and no pit spawns where the ground is impassable.
@@ -1836,7 +1868,7 @@ Amethyst Shell 1, Lion Bone 1, [images/inventoryimages2/monstermeat.png] Monster
 SITE = [
     # modinfo.lua 里是 name = "灵界"，author = "犹如黑夜星光、喵大仙BigXian"。
     # 顶栏作者名按作者要求单独写（跟 modinfo 不必一致）。
-    {"网站标题": "灵界", "网站英文名": "Spirit Realm", "网站版本": "v0.1", "作者": "犹如黑夜星光JinYan、喵大仙BigXian"},
+    {"网站标题": "灵界", "网站英文名": "Spirit Realm", "网站版本": "v0.3", "作者": "犹如黑夜星光JinYan、喵大仙BigXian"},
 ]
 
 SECTIONS = [
@@ -2008,6 +2040,28 @@ item(
     image="images/lingjie/anim/spirit_badge.png",
 )
 
+item(
+    "jingjie", "timed_effects", "限时状态", "界面,状态,增益,负面",
+    "HUD 上的限时状态面板：增益与负面分开显示，可按住右键拖动并保存位置，跟随 HUD 缩放。",
+    """
+两个独立面板，挂在原版 HUD 根节点上，所以不受状态栏位置与缩放影响：
+
+　负面状态：默认在左上角。
+　增益状态：默认在右下角。
+
+拖动与保存：按住右键拖动面板，松开即保存位置；位置跟原版 HUD 坐标记录一起存档。
+
+缩放：跟随原版 HUD 缩放设置。
+
+可见范围：面板只读自己 player_classified 上的数据，别的玩家看不到你的限时状态。
+
+负面状态（9 种）：星火灼烧、冰蚀、蝎毒、蛇毒、石化、束缚、异火焚身、丹劫、祭天雷劫。
+增益状态（6 种）：赤焰丹、冷焰丹、防潮丹、爆裂丸、不灭丹、复灵丹。
+
+另外：玩家头像弹窗里新增了「灵界介绍页」入口。
+""",
+)
+
 # ===========================================================================
 # 卷目 2：生物入魔
 # ===========================================================================
@@ -2062,7 +2116,7 @@ item(
 
 item(
     "rumo", "corruption_medium", "中度入魔", "入魔,中度",
-    "入魔血量按 1.95 倍打折计算（血量越高越接近满倍率）；带 12% 减伤、半血触发无敌护盾、5% 魔气反弹。",
+    "入魔血量按 1.95 倍打折计算（血量越高越接近满倍率）；带 12% 减伤、半血触发 5 秒无敌护盾、2% 魔气反弹。",
     """
 游戏内显示为「中度」。
 
@@ -2086,7 +2140,7 @@ item(
 魔气反弹：生物受到玩家伤害时 10% 概率触发，反射 5% 伤害。
 
 生物强化
-限定易伤：生命值降到 50% 及以下会触发护盾，期间不受伤害（无敌），持续 25 秒，冷却 5 分钟。
+限定易伤：生命值降到 50% 及以下会触发护盾，期间不受伤害（无敌），持续 5 秒，冷却 5 分钟。
 
 击杀后掉落魔核 1 到 2 个、魔核碎片 1 到 3 个 + 生物原生材料。
 """,
@@ -2119,11 +2173,11 @@ item(
 魔气环绕：10 范围内玩家理智每 5 秒流失 5 点。
 饥饿诅咒：玩家受到生物攻击时 30% 概率触发，饥饿值消耗加快 20%，持续 30 秒。
 暗影迟缓：玩家受到生物攻击时 20% 概率触发，移速 -20%，持续 10 秒。
-魔气反弹：生物受到玩家伤害时 10% 概率触发，反射 2% 伤害。
+魔气反弹：生物受到玩家伤害时 10% 概率触发，反射 5% 伤害。
 镜像混淆：攻击时 10% 概率触发「镜像」，玩家接下来 5 秒内移动方向反转 180°。
 
 生物强化
-限定易伤：生命值在 30% 与 50% 之间（>30% 且 ≤50%）时触发无敌护盾 25 秒，冷却 5 分钟。
+限定易伤：生命值在 30% 与 50% 之间（>30% 且 ≤50%）时触发无敌护盾 12 秒，冷却 5 分钟。
 毒入骨髓：普通攻击附带蚀骨毒。单次中毒 240 秒，不可叠加（可重置时间，上限 240 秒），命中当刻立即结算一跳。
 　0 到 80 秒：每 10 秒造成 6 点伤害
 　80 到 160 秒：每 10 秒造成 10 点伤害
@@ -2135,6 +2189,7 @@ item(
 　　只有史诗 Boss 会额外获得技能冷却减半。
 　　狂暴持续 300 秒（5 分钟），结束后才可能再次触发。
 祭天：死亡后召唤天劫，持续 60 秒，每 6 秒触发一次雷击，一击必杀（9999 点、无视无敌与伤害吸收）。落点会先有标识，1.5 秒后落地。
+　预警：落点 25 范围内的玩家会收到台词「天道有感，雷劫将至！」并在 HUD 上看到「祭天雷劫」倒计时；走出范围自动消失。
 
 击杀后追加 1 个魔晶 + 生物原生材料，且原生掉落量翻倍。
 　　例外：月蚀晶翼狮、炽岩蝎龙、噬魂蛇这三只自带完整掉落的史诗 Boss 不会翻倍、也不会追加魔晶。
@@ -2192,6 +2247,8 @@ item(
 一次只能制作出 1 枚。
 高阶丹劫：每 8 秒触发一次雷击，一击必杀，会有标识；第 7 秒出现标识，1 秒后落地，持续 120 秒，玩家须躲避，否则炼丹失败。丹劫躲避失败会导致丹炉炸毁，留下 5 个木炭、1 个废丹。
 
+丹劫提示：炼丹期间 HUD 上会显示「丹劫」倒计时（按炉子剩余应劫时间走）；被丹劫劈死时死亡原因记为「丹劫天雷」。
+
 天阶（天）
 未实装。
 """,
@@ -2220,6 +2277,8 @@ item(
 不能摧毁，无法用分解法杖分解。
 
 吸收异火、存放丹药，8 格空间。
+
+吸收异火时「异火焚身」的剩余时间会显示在 HUD 的负面状态面板上；只显示给当前持有葫芦的人，葫芦掉在地上时暂停并移除显示。
 在物品栏里就能右键打开 / 关闭（容器只有一份，跟随葫芦打开的也是它）。打开状态下会一直在，不会因打开其他箱子类物品而自动关闭葫芦。
 可鼠标拿起放置地面跟随；跟随状态下 16 码范围内有没有主人的异火，会自动飞进葫芦，吸收后归葫芦主人所有。
 跟随状态下：左键是跟随状态葫芦的打开 / 关闭，右键跟随状态的葫芦就回收。
@@ -2301,13 +2360,13 @@ item(
     """
 低阶丹药（黄），炼制时间 2 分钟。
 
-材料：""" + R(("魔核", 1), ("腺体", 2), ("格罗姆粘液", 3), ("融灵草", 3)) + """。
+材料：""" + R(("魔核", 1), ("腺体", 2), ("格罗姆粘液", 1), ("融灵草", 3)) + """。
 
 效果：死亡后掉阶后服用，可稳固心神，继续修炼。
 
 这是死亡掉阶后恢复修炼资格的必要丹药，否则会止步不前。
 """,
-    recipe=R(("魔核", 1), ("腺体", 2), ("格罗姆粘液", 3), ("融灵草", 3)),
+    recipe=R(("魔核", 1), ("腺体", 2), ("格罗姆粘液", 1), ("融灵草", 3)),
 )
 
 item(
@@ -2394,11 +2453,11 @@ item(
     """
 中阶丹药（玄），炼制时间 4 分钟。可触发丹劫。
 
-材料：""" + R(("藤壶", 5), ("饼干切割机壳", 5), ("犀牛角", 1), ("魔晶", 1)) + """。
+材料：""" + R(("藤壶", 5), ("饼干切割机壳", 5), ("暗影心房", 1), ("魔晶", 1)) + """。
 
 效果：服用此丹药，在悟道淬体台打坐 10 秒，助引气强者突破晋升入微的界限，提升实力。
 """,
-    recipe=R(("藤壶", 5), ("饼干切割机壳", 5), ("犀牛角", 1), ("魔晶", 1)),
+    recipe=R(("藤壶", 5), ("饼干切割机壳", 5), ("暗影心房", 1), ("魔晶", 1)),
 )
 
 item(
@@ -2683,6 +2742,8 @@ item(
 右下方「安全入库」——箱子内已存在的物品，点击安全入库，自身的东西会一键放入箱子。
 
 注入强化：
+升级方式：把材料拿在手上**左键点箱子**即可升级，一次只消耗 1 份材料。
+
 给予魔核，增加收集功能（收集范围可在 mod 设置里改成 10 / 50 / 100 / 200 / 500 / 全部，默认 10）。
 给予蓝宝石，增加返鲜功能。
 给予魔晶，解锁无限堆叠。
@@ -3402,6 +3463,8 @@ item(
     """
 搜索这个位置也可以用「魔兽森林」——标签里放了这个别名，两种叫法都能搜到。
 
+地图已缩小：早期版本是 69×89 的格点、陆地 3003 格；现在换成新存档里的四翼布局，48×57 格、陆地 1503 格，陆地面积约为原来的一半。板块与里面的内容不变。
+
 进入后分为四个板块，对应四个季节（春夏秋冬）。首版冬季板块为全天数冬天，剩下三个板块一样会有季节效应，内容后续更新。（地域结界：上岛才可以感受地域季节）
 
 冬季地域板块
@@ -3541,14 +3604,15 @@ item(
 血量 12000，普攻撕咬 50 伤害，附加中毒效果，护甲 15%，移速中等。
 
 核心机制
+毒性免疫：噬魂蛇同类不会被它自己的毒液与毒沼影响（多个首领同时上场时不会互相中毒减速）。
 每受 2000 血量伤害会掉落噬魂蛇鳞片，玩家无法拾取，可用异火烧毁。
 噬魂蛇血量首次掉到 50% 后，会主动找寻吞食鳞片恢复自身血量，每个回复 1000 血量。
 
 技能
 撕咬：蛇头咬击，50 伤害，不可叠加，可重置中毒时间。
 毒沼喷涌：朝目标喷射毒液生成毒沼，毒沼区域持续 4 分钟，区域内减速 60%，踩中附加中毒效果，冷却 15 秒。
-定身石化：以自身为中心、半径 16 的圆形范围内，定身目标 3 秒，冷却 30 秒。（圆形范围）
-剧毒禁锢：蛇尾猛砸向地面，生成一个影怪一样的蛇身缠住目标 5 秒，期间 Boss 会向禁锢目标靠近普攻。
+定身石化：以自身为中心、半径 16 的圆形范围内，定身目标 3 秒，冷却 30 秒。（圆形范围，只对玩家生效）
+剧毒禁锢：蛇尾猛砸向地面，生成一个影怪一样的蛇身缠住目标 5 秒，期间 Boss 会向禁锢目标靠近普攻。（只对玩家生效）
 
 击杀掉落
 噬魂蛇皮 3、怪物肉 5、魔晶 2、魔核 6、魔核碎片 10、红宝石 2、紫鳞妖焰 1。
@@ -3565,13 +3629,14 @@ item(
 血量 24000，护甲 15%，移速中等。
 
 核心机制
+脱战回归：离开守护花所在范围后会停止追击并返回花旁，用一次狮吼作为过渡；追出 40 距离就彻底放弃。
 周围 5 格地皮内有花朵的状态下，每朵每 10 秒恢复 60 血量（紫晶塑体花属于一个花单位，会跟花瓣一样生成蝴蝶）。
 玩家摧毁、采集附近花朵会打断回血，10 秒内强制触发一次狮吼震慑（10 秒内采集花瓣，只会强制触发一次）。
-靠近曼德拉草会陷入昏睡 8 秒，昏睡状态 1 分钟内只会触发一次。
+靠近曼德拉草会陷入昏睡 8 秒，昏睡状态 1 分钟内只会触发一次（已种下的曼德拉草同样有效）。
 
-技能
-晶爪猛击：单体近战重击。伤害 70，冷却 8 秒，范围约 1 格（3 码），击倒小型生物，玩家受击硬直 0.6 秒。如果玩家距离小于 1 格，则 60% 概率左右手各挥一次、每下 70 伤（合计 140），40% 概率只挥一下。
-鳞粉飞弹（远程消耗）：扇动单侧翅膀发射 3 枚蝶粉光球，呈三角散射。单发伤害 40，三发全中 120。爆炸半径约 0.4 格（1.5 码），爆炸后会在爆炸点生成一个花瓣。冷却 18 秒，飞行距离 8 格，遇障碍物直接爆炸。
+技能（按顺序轮转：爪击 → 鳞粉飞弹 → 狮吼 → 裂地囚步；条件不满足或还在冷却的技能会跳过）
+晶爪猛击：单体近战重击。伤害 70，冷却 5 秒，范围约 1 格（3 码），击倒小型生物，玩家受击硬直 0.6 秒。如果玩家距离小于 1 格，则 60% 概率左右手各挥一次、每下 70 伤（合计 140），40% 概率只挥一下。
+鳞粉飞弹（远程消耗）：扇动单侧翅膀发射 3 枚蝶粉光球，呈三角散射。单发伤害 40，三发全中 120。爆炸半径约 0.4 格（1.5 码），爆炸后会在爆炸点生成一个花瓣。冷却 18 秒，最大飞行距离 10 格，遇障碍物直接爆炸。
 狮吼震慑（控制技能）：全屏 6 格范围声波冲击。无伤害，但玩家僵直 1.2 秒，武器强制掉落地面。冷却 20 秒。
 裂地囚步：狮子抬起单侧前爪，身躯下沉蓄力，地面轻微持续震动，脚下扬起细碎沙尘特效，屏幕小幅抖动提示玩家规避。
 　生成范围：以自身 8 个地皮（32 单位）为中心，给范围内每名玩家在脚下各生成一个临时陷坑；坑与坑之间互不重叠，脚下不可通行的位置不生成。
@@ -3597,11 +3662,38 @@ DATA = {
     "sections": SECTIONS,
     "items": ITEMS,
     # 更新日志 = 游戏（mod）自己的版本更新记录，不是网站的施工记录。
-    # mod 目前没有对外发布更新日志，栏目先留空（前台显示「暂无条目」）。
-    # 有版本记录时按下面格式追加即可，一条日志的「内容」用 ； 或换行可拆成多条：
+    # 一条日志的「内容」用 ； 或换行可拆成多条：
     #   {"日志版本": "v0.2", "日期": "2026-XX-XX",
     #    "内容": "新增 XXX；修复 XXX；调整 XXX", "是否展示": "true"},
-    "changelog": [],
+    "changelog": [
+        {"日志版本": "v0.3", "日期": "2026-09-20",
+         "内容":
+             "新增「限时状态」面板：增益与负面分开显示，可按住右键拖动并保存位置，跟随 HUD 缩放，只对自己可见\n"
+             "玩家头像弹窗新增「灵界介绍页」入口\n"
+             "祭天新增预警：落点 25 范围内的玩家收到台词提示，并在 HUD 上看到「祭天雷劫」倒计时\n"
+             "炼丹期间 HUD 显示「丹劫」倒计时\n"
+             "被丹劫劈死的死亡原因记为「丹劫天雷」\n"
+             "中度入魔：半血护盾 25 秒 → 5 秒，魔气反弹 5% → 2%\n"
+             "深度入魔：半血护盾 25 秒 → 12 秒，魔气反弹 2% → 5%\n"
+             "月蚀晶翼狮：技能改为按顺序轮转释放（爪击 → 鳞粉飞弹 → 狮吼 → 裂地囚步）\n"
+             "晶爪猛击冷却 8 秒 → 5 秒\n"
+             "鳞粉飞弹最大射程 8 格 → 10 格\n"
+             "已种下的曼德拉草同样令其昏睡\n"
+             "新增脱战回归（离开守护花范围即停止追击并返回）\n"
+             "噬魂蛇：定身石化与剧毒禁锢只对玩家生效\n"
+             "噬魂蛇毒与毒沼对同类无效（多个首领不会互相中毒减速）\n"
+             "荒界纳物箱：升级改用专属动作——把材料拿在手上左键点箱子，一次只消耗 1 份，不再整组存入\n"
+             "灵虚葫：异火焚身倒计时显示在 HUD 的负面状态里，只给当前持有者看，葫芦掉在地上时暂停\n"
+             "蝴蝶岛：地图换成新存档的四翼布局，48×57 格、陆地 1503 格（约为原来的一半），板块与里面的内容不变\n"
+             "清心丸配方：格罗姆粘液 3 → 1\n"
+             "入微丹配方：犀牛角 → 暗影心房\n"
+             "灵韵弓：箭矢改为地面朝向，出手位置微调\n"
+             "遗骸旁生长的彼岸花：计时改用官方计时器持久化，落点被挡住时会每 60 秒重试\n"
+             "异火线索提示优化：修为不足时保留自定义台词「修为不足,入微境界方可窥探此物」\n"
+             "版本号 0.1 → 0.3\n"
+             "补充服务器筛选标签\n",
+         "是否展示": "true"},
+    ],
     "tele": [{"导向id": t[0], "字段": t[1], "说明": "", "是否展示": "true"} for t in TELE],
 }
 

@@ -252,6 +252,9 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
 .card-tags .tag+.tag::before{content:"|";color:var(--c-gold);margin:0 9px;font-weight:400}
 .tag{font-size:12px;letter-spacing:.08em;color:rgba(138,115,48,.68);border-bottom:0;margin-right:0;overflow-wrap:anywhere}
 .card-desc{font-size:14px;line-height:1.6;color:var(--c-teal-ink);margin:6px 0 6px;overflow-wrap:anywhere}
+/* 更新日志：一条一行（原来所有条目用「；」接成一大段，十几条挤一起没法看） */
+.card-desc.log-list{line-height:1.85}
+.card-desc.log-list br{content:"";display:block;margin-top:4px}
 /* 简介：上面那条金色分割线（把「标题+标签」与正文分开）。
    margin-top 22px：把「简介 + 配方」这一整块往下压一点（原来 12px），
    这样没有配方的卡片不会上紧下空（作者反馈）；分割线用 top:-16px 留在原位、

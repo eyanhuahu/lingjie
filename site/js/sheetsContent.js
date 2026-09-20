@@ -630,12 +630,18 @@
   }
 
   function normalizeChangelog(rows) {
+    // 更新日志**按换行拆条目**（一条一行）。
+    // 不能直接用通用的 splitList：它连「，」都会切开，一条完整的更新说明会被碎成好几行。
+    // 没有换行时（表格里写成整行）再退回 splitList，保持兼容。
+    const byLine = (value) => String(value || "").split(/\r?\n/).map((line) => line.trim()).filter(Boolean);
     return normalizeSheetRows("changelog", rows)
       .filter((row) => row.version && !isHidden(row.visible))
       .map((row) => ({
         version: row.version,
         date: row.date || "",
-        entries: splitList(row.content).length ? splitList(row.content) : [row.content || ""]
+        entries: byLine(row.content).length > 1
+          ? byLine(row.content)
+          : (splitList(row.content).length ? splitList(row.content) : [row.content || ""])
       }));
   }
 
