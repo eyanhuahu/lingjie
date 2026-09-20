@@ -323,8 +323,12 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
    没有来源卡片（深链直接打开）时不加 .anchored，退回上面那套窗口居中。 */
 .modal-mask.anchored{align-items:flex-start;justify-content:flex-start}
 /* 锚定时高度钉死在可视区内（--modal-max-h 由 app.js 按可视高度算好），
-   卡片内部滚动 —— 保证点页面下方的卡片时，弹窗底部也能看到。 */
+   卡片内部滚动 —— 保证点页面下方的卡片时，弹窗底部也能看到。
+   宽度同样用 app.js 算好的 --modal-w 写死：定位改成 absolute 之后，
+   `.modal-card{width:100%}` 是按遮罩（含内边距）算的，会比视口宽、
+   右边缘被挤出屏幕（作者反馈「弹出的卡片没做自适应」）。 */
 .modal-mask.anchored .modal-card{position:absolute;left:var(--modal-left,24px);top:var(--modal-top,24px);margin:0;
+  width:var(--modal-w,auto);max-width:none;
   max-height:var(--modal-max-h,calc(100vh - 32px))}
 .modal-card h3{margin:0 44px 14px 0;color:var(--c-teal-ink);font-family:var(--font-serif);font-weight:700;letter-spacing:.3px}
 .modal-card h3::before{content:"";display:inline-block;width:.3em;height:.3em;margin-right:.45em;

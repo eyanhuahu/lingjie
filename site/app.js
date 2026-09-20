@@ -991,14 +991,23 @@ function positionModalCard(trigger) {
   // 用 visualViewport 的高度更准（移动端/带地址栏时 innerHeight 会偏大，
   // 按它算出来的 top 会让卡片底部被截在屏幕外）
   const vh = Math.round((window.visualViewport && window.visualViewport.height) || window.innerHeight);
-  // 锚定状态下把卡片最高高度也钉在可视区内：卡片超出屏幕时，
+  const maxH = Math.max(240, vh - pad * 2);
+  const maxW = Math.max(240, vw - pad * 2);
+  // 锚定状态下把卡片的宽高上限都钉在可视区内：卡片超出屏幕时，
   // 内容由卡片自身滚动，而不是整块被截掉（作者反馈过滚轮也看不到底部）
-  mask.style.setProperty("--modal-max-h", `${Math.max(240, vh - pad * 2)}px`);
-  const cw = card.offsetWidth;
-  const ch = Math.min(card.offsetHeight, vh - pad * 2);
+  mask.style.setProperty("--modal-max-h", `${maxH}px`);
+  mask.classList.add("anchored");
+  // ★ 宽度必须显式给死：定位改成 absolute 之后，`.modal-card{width:100%}` 是按
+  //   遮罩（含内边距）算的，会比视口宽，右边缘就被挤出屏幕（作者反馈「弹窗没做自适应」）。
+  const cw = Math.min(640, maxW);
+  mask.style.setProperty("--modal-w", `${Math.round(cw)}px`);
+  // ★ 高度必须在**加完 anchored、宽度定下来之后**再量一次：
+  //   加类前后布局不同，按变化前的高度算 top，底边仍会出屏（实测 497 宽时 bottom 704 > 627）。
+  const ch = Math.min(card.offsetHeight || maxH, maxH);
+  // 左边界夹在 [pad, vw - cw - pad]、上边界夹在 [pad, vh - ch - pad]，
+  // 保证四个边都在屏幕里
   const left = Math.max(pad, Math.min(rect.left + rect.width / 2 - cw / 2, vw - cw - pad));
   const top = Math.max(pad, Math.min(rect.top, vh - ch - pad));
-  mask.classList.add("anchored");
   mask.style.setProperty("--modal-left", `${Math.round(left)}px`);
   mask.style.setProperty("--modal-top", `${Math.round(top)}px`);
 }
