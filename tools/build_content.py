@@ -1456,9 +1456,9 @@ Splitting: an exotic flame absorbed by the Spirit Void Gourd can be split with a
 
 Igniting with the Void Ring: with a full exotic flame inside, equipping the Void Ring and right-clicking a target ignites it at range (the same fireball as a Fire Staff, range 8 to 10), costing 10 Reiki; against burnable fuel devices it tops up fuel, and it deals no damage itself.
 
-Flame ownership: strong exotic flames (Frost Karma Flame, Dragon Flame Heartfire, Wildmane Flame, Spirit Dust Flame, Purple Scale Demon Flame) cannot be picked up by hand once they land — only their owner can. After a full day on the ground (8 minutes) they become "Lose Owner", and from then on any Spirit Void Gourd can absorb them. Picking a strong exotic flame up into the inventory or a container makes the picker its new owner. The Wasteland Flame is not a strong flame, so anyone can pick it up by hand.
+Flame ownership: a freshly dropped strong exotic flame (Frost Karma Flame, Dragon Flame Heartfire, Wildmane Flame, Spirit Dust Flame, Purple Scale Demon Flame) has no owner at all, so nobody can pick it up by hand — it can only be absorbed with a Spirit Void Gourd, and whoever's gourd absorbs it becomes its owner. From then on only the owner can pick it up by hand. A full day on the ground (8 minutes) turns it into "Lose Owner" again, after which any Spirit Void Gourd can absorb it. The Wasteland Flame is not a strong flame, so anyone can pick it up by hand.
 
-Absorption cost: absorbing with the Spirit Void Gourd sets the flame burning through you, costing 1 Reiki and 2 health per second for 60 seconds.
+Absorption cost: absorbing a flame with the Spirit Void Gourd sets you alight — it ignites you once, then costs 2 health per second for 60 seconds. It pauses while the gourd lies on the ground and resumes when picked back up (the remaining time is saved).
 
 The remaining "Flame Backlash" time is shown on the HUD's negative effects panel, and only to whoever is holding the gourd; it pauses and disappears while the gourd lies on the ground.
 """,
@@ -2751,7 +2751,7 @@ item(
 右下方「安全入库」——箱子内已存在的物品，点击安全入库，自身的东西会一键放入箱子。
 
 注入强化：
-升级方式：把材料拿在手上**左键点箱子**即可升级，一次只消耗 1 份材料。
+升级方式：把材料拿在手上，左键点箱子即可升级，一次只消耗 1 份材料。
 
 给予魔核，增加收集功能（收集范围可在 mod 设置里改成 10 / 50 / 100 / 200 / 500 / 全部，默认 10）。
 给予蓝宝石，增加返鲜功能。
@@ -3219,9 +3219,9 @@ item(
 
 虚空戒点燃：戒内放有异火本体时，装备虚空戒右键目标即可远程点燃（火魔杖同款火球，射程 8 到 10），消耗 10 灵力值；对可燃燃料装置是补燃料，本身不造成伤害。
 
-异火主人：强异火（冰霜业火、龙炎心火、狂鬃焰、灵煊尘火、紫鳞妖焰）落地后不能徒手捡起，只有它的主人能徒手拾取；落地满 1 天（8 分钟）会变成「丢失主人」，此后任何灵虚葫都能吸收。把强异火收进物品栏 / 容器时，拾取它的人成为新主人。墟火不属于强异火，任何人都能徒手拿。
+异火主人：刚掉落的强异火（冰霜业火、龙炎心火、狂鬃焰、灵煊尘火、紫鳞妖焰）是无主的，谁都徒手捡不起来，只能用灵虚葫吸收——吸收它的人（也就是葫芦的主人）成为它的主人；之后只有主人能徒手拾取。落地满 1 天（8 分钟）会变成「丢失主人」，此后任何灵虚葫都能吸收。墟火不属于强异火，任何人都能徒手拿。
 
-吸收代价：使用灵虚葫吸收时，火焰焚身，每秒扣除 1 灵力值、2 点生命值，持续 60 秒。
+吸收代价：使用灵虚葫吸收异火时火焰焚身——第一次会点燃你，之后每秒扣 2 点生命值，持续 60 秒；葫芦掉在地上会暂停，收回背包继续计时（剩余秒数会存档）。
 """,
 )
 
