@@ -545,8 +545,6 @@ Roll chances
 　Before the threshold day: light 47.5%, moderate 47.5%, deep 5%.
 　From the threshold day on: epic bosses always demonize deeply; other creatures get light 50%, moderate 25%, deep 25%.
 
-Regeneration: 10 seconds after losing every valid target, the creature regenerates 2% of its maximum health every 5 seconds (being attacked resets that out-of-combat timer).
-
 Every demonized creature is hostile (neutral creatures such as Chester are excluded, as are special player relationships — spiders still will not attack Webber).
 
 Demonization has three tiers, shown in game as "Demonization: Light / Moderate / Deep":
@@ -2115,8 +2113,6 @@ item(
 抽取概率
 　未到设定天数：轻度 47.5%、中度 47.5%、深度 5%。
 　已到设定天数：史诗 Boss 必定深度入魔；其他生物 轻度 50%、中度 25%、深度 25%。
-
-回血：脱离有效目标连续 10 秒后，每 5 秒回复最大生命的 2%（受到攻击会重置这个脱战计时）。
 
 所有入魔生物均为敌对目标（切斯特这类中立生物除外；玩家的特定属性关系也除外，比如蜘蛛不会攻击蜘蛛人）。
 
