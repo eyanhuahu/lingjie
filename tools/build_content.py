@@ -685,7 +685,9 @@ Pills that can trigger a pill tribulation: 50% chance of no tribulation, in whic
 
 Materials must be placed in the Alchemy Furnace in the listed amounts — more is fine, less is not. A failed refinement becomes a Failed Pill and the materials are not returned, so refine carefully.
 
-Refining with an exotic flame raises the success chance to 100%.
+Refining with an exotic flame raises the success chance to 100% — a strong exotic flame always succeeds, and it does not change the tribulation check (a pill that owes a tribulation still gets one).
+
+Using a full exotic flame as fuel does not consume it (it only acts as the furnace fire); only split flames are consumable, and one is used up per batch.
 """,
     },
     "pill_tiers": {
@@ -801,6 +803,8 @@ Low-tier pill (yellow), refining time 2 minutes.
 Effect: taken after losing a stage on death, it steadies your mind and lets you keep cultivating.
 
 This is the pill required to regain the ability to cultivate after a death penalty — without it you stay stuck.
+
+Extra use: it is also an antidote — taking one removes Soul Snake Venom outright (see Bone-Deep Poison under "Deep Demonization").
 """,
     },
     "lj_restore_pill": {
@@ -2259,7 +2263,9 @@ item(
 
 炼制材料须按照数量放入炼丹炉，可多不可少。炼制失败成为废丹，不返还材料，炼丹须谨慎。
 
-使用异火炼丹可把炼制概率提高至 100%。
+使用异火炼丹可把炼制概率提高至 100%——强异火必定成功，而且不会改变丹劫判定（该应劫的照常应劫）。
+
+另外，用异火本体炼丹不会消耗它（异火本体只当炉火）；只有分裂出来的火焰才是消耗品，会消耗 1 个。
 """,
 )
 
@@ -2401,6 +2407,8 @@ item(
 效果：死亡后掉阶后服用，可稳固心神，继续修炼。
 
 这是死亡掉阶后恢复修炼资格的必要丹药，否则会止步不前。
+
+额外用途：可以解毒——服用后直接解除噬魂蛇毒（详见「深度入魔」的毒入骨髓）。
 """,
     recipe=R(("魔核", 1), ("腺体", 2), ("格罗姆粘液", 1), ("融灵草", 3)),
 )

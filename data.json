@@ -284,8 +284,8 @@
       "需祭坛": "",
       "简介": "用墟火炼丹基础成功率 50%，异火可提升至 100%；失败成废丹不返还材料。",
       "英文简介": "Refining with a Wasteland Flame has a base 50% success rate; an exotic flame raises it to 100%. Failures become a Failed Pill and materials are not returned.",
-      "详情": "使用墟火炼丹。不触发雷劫的丹药炼制概率均为 50%，无论成功与否，炼丹时间不变。\n\n能触发丹劫的丹药：50% 概率不触发丹劫，炼丹必然失败成为废丹；50% 概率触发雷劫，躲避成功则炼制成功。服用破劫丹可跳过雷劫判定。\n\n炼制材料须按照数量放入炼丹炉，可多不可少。炼制失败成为废丹，不返还材料，炼丹须谨慎。\n\n使用异火炼丹可把炼制概率提高至 100%。",
-      "英文详情": "Refining uses a Wasteland Flame. Pills that do not trigger a tribulation have a 50% success chance either way, and refining time never changes.\n\nPills that can trigger a pill tribulation: 50% chance of no tribulation, in which case refining always fails and produces a Failed Pill; 50% chance of a lightning tribulation, and if you dodge it successfully the pill is refined. Taking a Disaster Breaking Pill skips the tribulation check.\n\nMaterials must be placed in the Alchemy Furnace in the listed amounts — more is fine, less is not. A failed refinement becomes a Failed Pill and the materials are not returned, so refine carefully.\n\nRefining with an exotic flame raises the success chance to 100%.",
+      "详情": "使用墟火炼丹。不触发雷劫的丹药炼制概率均为 50%，无论成功与否，炼丹时间不变。\n\n能触发丹劫的丹药：50% 概率不触发丹劫，炼丹必然失败成为废丹；50% 概率触发雷劫，躲避成功则炼制成功。服用破劫丹可跳过雷劫判定。\n\n炼制材料须按照数量放入炼丹炉，可多不可少。炼制失败成为废丹，不返还材料，炼丹须谨慎。\n\n使用异火炼丹可把炼制概率提高至 100%——强异火必定成功，而且不会改变丹劫判定（该应劫的照常应劫）。\n\n另外，用异火本体炼丹不会消耗它（异火本体只当炉火）；只有分裂出来的火焰才是消耗品，会消耗 1 个。",
+      "英文详情": "Refining uses a Wasteland Flame. Pills that do not trigger a tribulation have a 50% success chance either way, and refining time never changes.\n\nPills that can trigger a pill tribulation: 50% chance of no tribulation, in which case refining always fails and produces a Failed Pill; 50% chance of a lightning tribulation, and if you dodge it successfully the pill is refined. Taking a Disaster Breaking Pill skips the tribulation check.\n\nMaterials must be placed in the Alchemy Furnace in the listed amounts — more is fine, less is not. A failed refinement becomes a Failed Pill and the materials are not returned, so refine carefully.\n\nRefining with an exotic flame raises the success chance to 100% — a strong exotic flame always succeeds, and it does not change the tribulation check (a pill that owes a tribulation still gets one).\n\nUsing a full exotic flame as fuel does not consume it (it only acts as the furnace fire); only split flames are consumable, and one is used up per batch.",
       "排序值": "9",
       "是否展示": "true"
     },
@@ -446,8 +446,8 @@
       "需祭坛": "",
       "简介": "死亡掉阶后服用，可稳固心神、继续修炼。",
       "英文简介": "Take it after losing a realm stage to steady your mind and keep cultivating.",
-      "详情": "低阶丹药（黄），炼制时间 2 分钟。\n\n效果：死亡后掉阶后服用，可稳固心神，继续修炼。\n\n这是死亡掉阶后恢复修炼资格的必要丹药，否则会止步不前。",
-      "英文详情": "Low-tier pill (yellow), refining time 2 minutes.\n\nEffect: taken after losing a stage on death, it steadies your mind and lets you keep cultivating.\n\nThis is the pill required to regain the ability to cultivate after a death penalty — without it you stay stuck.",
+      "详情": "低阶丹药（黄），炼制时间 2 分钟。\n\n效果：死亡后掉阶后服用，可稳固心神，继续修炼。\n\n这是死亡掉阶后恢复修炼资格的必要丹药，否则会止步不前。\n\n额外用途：可以解毒——服用后直接解除噬魂蛇毒（详见「深度入魔」的毒入骨髓）。",
+      "英文详情": "Low-tier pill (yellow), refining time 2 minutes.\n\nEffect: taken after losing a stage on death, it steadies your mind and lets you keep cultivating.\n\nThis is the pill required to regain the ability to cultivate after a death penalty — without it you stay stuck.\n\nExtra use: it is also an antidote — taking one removes Soul Snake Venom outright (see Bone-Deep Poison under \"Deep Demonization\").",
       "排序值": "18",
       "是否展示": "true"
     },
