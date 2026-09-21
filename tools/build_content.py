@@ -1471,7 +1471,7 @@ Use: Invincible Pill, Nascent Union Pill.
         "detail": """
 Storage limits: a full Wasteland Flame / exotic flame can only be stored properly in the Spirit Void Gourd or the Void Ring. A split flame is a single-use item and cannot stack.
 
-Burn risk: kept in the inventory or a backpack for more than 10 seconds it automatically devours and destroys a random item (world-unique items excepted). If there are stacks, after 10 seconds it consumes 1 every 2 seconds starting from the first inventory slot; with several exotic flames in the inventory the devouring runs at multiplied speed.
+Burn risk: while a full flame sits in your inventory or a backpack it burns up 1 random burnable item every 10 seconds (world-unique items excepted, and other flames are never burned); if that item is a stack, only 1 is consumed. Several exotic flames in the same storage do NOT speed this up — the code rate-limits it to one burn per 10 seconds.
 
 Light and fire-fighting: a full Wasteland Flame / exotic flame placed on the ground provides 20 range of light and puts out every ordinary fire nearby (exotic flames do not repel each other — two on the ground each give light and heat while still putting out other fires). A split flame placed on the ground simply disappears.
 
@@ -3248,7 +3248,7 @@ item(
     """
 存放限制：墟火 / 异火本体只能正常放在灵虚葫、虚空戒中。分裂的火焰为单次消耗物品，无法堆叠。
 
-焚毁危险：放入物品栏 / 背包超过 10 秒，会自动吞噬焚毁（世界唯一物品除外）任意物品。如果有堆叠物，10 秒后以每 2 秒消耗 1，从物品栏第一格开始；如果有多个异火放在物品栏，则以倍速吞噬焚毁物资。
+焚毁危险：放在物品栏 / 背包里，每 10 秒随机焚毁 1 件可烧物品（世界唯一物品除外，异火本体也不会被烧）；如果那件是可堆叠的，一次只消耗 1 个。同一存储空间里放多个异火不会加速——代码里有 10 秒限流，多个异火只算一次。
 
 照明与灭火：墟火 / 异火本体放置地上会提供 20 码范围照明，并熄灭周围所有普通火焰（异火之间不互相排斥，比如两个异火都放在地上，各自发光发热，还是会熄灭其他火焰）。分裂出来的放置地上会消失。
 
