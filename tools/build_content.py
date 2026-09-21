@@ -445,7 +445,7 @@ There are 9 realms: Mortal, Tempered, Sinew, Fasting, Guiding, Subtle, Exalted, 
 
 How to advance
 　Earn experience by killing creatures. You count as a participant if you attacked within the last 30 seconds and within 15 turf of the kill.
-　Experience gained = target's maximum health before demonization × 5% (5% / 8% / 12% selectable in mod settings).
+　Experience gained = the target's maximum health × 5% (5% / 8% / 12% selectable in mod settings); the code reads its current maximum health, so demonization-inflated health counts too.
 
 Bottlenecks and meditation
 　Stages 1 to 3 have no bottleneck. Stage 3 → 4, stage 6 → 7, and stage 9 → the next realm all require meditation.
@@ -2001,7 +2001,7 @@ item(
 
 升阶方式
 　击杀生物获得经验；在 15 个地皮范围内、30 秒内参与过攻击就算参与。
-　经验获取量 = 目标入魔前的最大生命 × 5%（mod 设置里可选 5% / 8% / 12%）。
+　经验获取量 = 目标的最大生命 × 5%（mod 设置里可选 5% / 8% / 12%）；按代码取的是当前最大生命，被入魔抬高的那部分也算在内。
 
 瓶颈与打坐
 　第 1 到 3 阶无瓶颈；第 3 阶升第 4 阶、第 6 阶升第 7 阶、第 9 阶升入下一个境界，都需要打坐。
