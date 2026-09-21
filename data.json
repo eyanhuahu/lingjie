@@ -698,8 +698,8 @@
       "需祭坛": "",
       "简介": "99 个魔核碎片合成。Boss、魔兽与中度入魔生物掉落。",
       "英文简介": "Crafted from 99 Magic Core Shards. Dropped by bosses, demonic beasts and moderately demonized creatures.",
-      "详情": "合成：99 个魔核碎片合成。\n\n来源：击杀 Boss 生物、魔兽掉落；中度入魔生物掉落魔核 1 到 2 不等。\n\n无法摧毁、可分解。\n\n可在 <灵界>、<精炼材料> 栏位制作。\n\n高阶用途：20 个魔核可合成 1 个魔晶；也是多种丹药、建筑与法宝的核心材料。",
-      "英文详情": "Crafting: 99 Magic Core Shards craft one.\n\nSource: killing bosses and demonic beasts drops them; moderately demonized creatures drop 1 to 2.\n\nCannot be destroyed, can be deconstructed.\n\nCraftable in the <Ethereal Realm> and <Refine> tabs.\n\nAdvanced use: 20 Magic Cores craft 1 Magic Crystal, and they are the core material of many pills, structures and artifacts.",
+      "详情": "合成：99 个魔核碎片合成。\n\n来源：击杀 Boss 生物、魔兽掉落；中度入魔生物掉落魔核 1 到 2 不等。\n\n无法摧毁、可分解。\n\n可在 <灵界>、<魔法>、<精炼> 栏位制作。\n\n高阶用途：20 个魔核可合成 1 个魔晶；也是多种丹药、建筑与法宝的核心材料。",
+      "英文详情": "Crafting: 99 Magic Core Shards craft one.\n\nSource: killing bosses and demonic beasts drops them; moderately demonized creatures drop 1 to 2.\n\nCannot be destroyed, can be deconstructed.\n\nCraftable in the <Ethereal Realm>, <Magic> and <Refine> tabs.\n\nAdvanced use: 20 Magic Cores craft 1 Magic Crystal, and they are the core material of many pills, structures and artifacts.",
       "排序值": "32",
       "是否展示": "true"
     },
@@ -716,8 +716,8 @@
       "需祭坛": "",
       "简介": "20 个魔核合成。魔兽与深度入魔生物掉落，高阶丹药与盔甲的必需品。",
       "英文简介": "Crafted from 20 Magic Cores. Dropped by demonic beasts and deeply demonized creatures; essential for high-tier pills and armour.",
-      "详情": "合成：20 个魔核合成。\n\n来源：击杀魔兽掉落；深度入魔生物掉落魔晶 1。\n\n无法摧毁、可分解。\n\n原版生物深度入魔只会掉落魔晶 1，大型魔兽生物掉落魔晶 2。\n\n可在 <灵界>、<精炼材料> 栏位制作。",
-      "英文详情": "Crafting: 20 Magic Cores craft one.\n\nSource: killing demonic beasts drops them; deeply demonized creatures drop 1.\n\nCannot be destroyed, can be deconstructed.\n\nA vanilla creature at deep demonization drops only 1 Magic Crystal, while large demonic beasts drop 2.\n\nCraftable in the <Ethereal Realm> and <Refine> tabs.",
+      "详情": "合成：20 个魔核合成。\n\n来源：击杀魔兽掉落；深度入魔生物掉落魔晶 1。\n\n无法摧毁、可分解。\n\n原版生物深度入魔只会掉落魔晶 1，大型魔兽生物掉落魔晶 2。\n\n可在 <灵界>、<魔法>、<精炼> 栏位制作。",
+      "英文详情": "Crafting: 20 Magic Cores craft one.\n\nSource: killing demonic beasts drops them; deeply demonized creatures drop 1.\n\nCannot be destroyed, can be deconstructed.\n\nA vanilla creature at deep demonization drops only 1 Magic Crystal, while large demonic beasts drop 2.\n\nCraftable in the <Ethereal Realm>, <Magic> and <Refine> tabs.",
       "排序值": "33",
       "是否展示": "true"
     },

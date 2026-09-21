@@ -938,7 +938,7 @@ Source: killing bosses and demonic beasts drops them; moderately demonized creat
 
 Cannot be destroyed, can be deconstructed.
 
-Craftable in the <Ethereal Realm> and <Refine> tabs.
+Craftable in the <Ethereal Realm>, <Magic> and <Refine> tabs.
 
 Advanced use: 20 Magic Cores craft 1 Magic Crystal, and they are the core material of many pills, structures and artifacts.
 """,
@@ -955,7 +955,7 @@ Cannot be destroyed, can be deconstructed.
 
 A vanilla creature at deep demonization drops only 1 Magic Crystal, while large demonic beasts drop 2.
 
-Craftable in the <Ethereal Realm> and <Refine> tabs.
+Craftable in the <Ethereal Realm>, <Magic> and <Refine> tabs.
 """,
     },
     "lj_scorpion_dragon_bone": {
@@ -2596,7 +2596,7 @@ item(
 
 无法摧毁、可分解。
 
-可在 <灵界>、<精炼材料> 栏位制作。
+可在 <灵界>、<魔法>、<精炼> 栏位制作。
 
 高阶用途：20 个魔核可合成 1 个魔晶；也是多种丹药、建筑与法宝的核心材料。
 """,
@@ -2615,7 +2615,7 @@ item(
 
 原版生物深度入魔只会掉落魔晶 1，大型魔兽生物掉落魔晶 2。
 
-可在 <灵界>、<精炼材料> 栏位制作。
+可在 <灵界>、<魔法>、<精炼> 栏位制作。
 """,
     recipe=R(("魔核", 20)),
 )
