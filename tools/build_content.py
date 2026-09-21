@@ -1572,7 +1572,7 @@ Clue item pointing to the Frost Karma Flame.
 Location: spawns at random in birch forests.
 How to unlock: smash it with a pickaxe.
 
-Right-clicking it open reveals the note 'a giant shadow under the moonlight; when it shatters the ice, a dancing light hides in the cold'. A large suspicious mound then spawns at random on the ground, and searching every clue mound spawns Deerclops.
+Breaking it open turns it into the 'Frost Log' — the note and everything that follows are written on the log's own entry (see "Frost Log").
 """,
     },
     "lj_charred_scales": {
@@ -1584,7 +1584,7 @@ Clue item pointing to the Dragon Flame Heartfire.
 Location: spawns beside lava ponds.
 How to unlock: douse it with a watering can.
 
-Right-clicking it open reveals the note 'the rock nest stirs; a great beast guards its ground. Its rage burns the grass to ash; its shell hides a fire core that a sudden strike can crack'. A Dragonfly spawns beside the pet nest.
+Dousing it turns it into the 'Dragonflame Log' — the note and everything that follows are written on the log's own entry (see "Dragonflame Log").
 """,
     },
     "lj_rotten_backpack": {
@@ -1596,7 +1596,7 @@ Clue item pointing to the Wildmane Flame.
 Location: spawns at random on forest terrain.
 How to unlock: split it with an axe.
 
-Right-clicking it open reveals the note 'when it pushes over a pine, sparks rise from the roots; it fears water but loves honey'. A Bee Queen hive is picked somewhere on the map and a bee box spawns near it, with the Bearger right beside the box.
+Splitting it open turns it into the 'Mighty Flame Log' — the note and everything that follows are written on the log's own entry (see "Mighty Flame Log").
 """,
     },
     "lj_dried_camel_feathers": {
@@ -1619,7 +1619,7 @@ Clue item pointing to the Purple Scale Demon Flame.
 Location: spawns at random beside swamp tentacles.
 How to unlock: bake it with fire.
 
-Right-clicking it open reveals the note 'dusk is coming; purple firelight will be mirrored on the spirit vein's water'. After reading the log the boss appears at dusk beside a pond on Butterfly Island, and going there shows the Soul-devouring Snake.
+Baking it turns it into the 'Purple Scale Log' — the note and everything that follows are written on the log's own entry (see "Purple Scale Log").
 """,
     },
     "lj_ice_log": {
@@ -1629,6 +1629,8 @@ Right-clicking it open reveals the note 'dusk is coming; purple firelight will b
 Matching exotic flame: Frost Karma Flame.
 Clue item: Frozen Log.
 Follow-up boss: Deerclops.
+
+The note reads 'a giant shadow under the moonlight; when it shatters the ice, a dancing light hides in the cold'. A large suspicious mound then spawns at random on the ground, and searching every clue mound spawns Deerclops.
 
 Reading it requires the Subtle realm.
 """,
@@ -1641,6 +1643,8 @@ Matching exotic flame: Dragon Flame Heartfire.
 Clue item: Charred Scales.
 Follow-up boss: Dragonfly.
 
+The note reads 'the rock nest stirs; a great beast guards its ground. Its rage burns the grass to ash; its shell hides a fire core that a sudden strike can crack'. A Dragonfly spawns beside the pet nest.
+
 Reading it requires the Subtle realm.
 """,
     },
@@ -1652,6 +1656,8 @@ Matching exotic flame: Wildmane Flame.
 Clue item: Rotten Backpack.
 Follow-up boss: Bearger.
 
+The note reads 'when it pushes over a pine, sparks rise from the roots; it fears water but loves honey'. A Bee Queen hive is picked somewhere on the map and a bee box spawns near it, with the Bearger right beside the box.
+
 Reading it requires the Subtle realm.
 """,
     },
@@ -1662,6 +1668,8 @@ Reading it requires the Subtle realm.
 Matching exotic flame: Spirit Dust Flame.
 Clue item: Dried Camel Feathers.
 Follow-up boss: Antlion.
+
+The note reads 'there is a halo at the centre of the sandstorm — that is his breath'. Going there shows the Antlion.
 
 Refining (high tier, refining time 2 minutes)
 
@@ -1675,6 +1683,8 @@ Reading it requires the Subtle realm.
 Matching exotic flame: Purple Scale Demon Flame.
 Clue item: Swollen Scroll.
 Follow-up boss: Soul-devouring Snake.
+
+The note reads 'dusk is coming; purple firelight will be mirrored on the spirit vein's water'. After reading the log the boss appears at dusk beside a pond on Butterfly Island, and going there shows the Soul-devouring Snake.
 
 Reading it requires the Subtle realm.
 """,
@@ -3339,7 +3349,7 @@ item(
 位置：桦树林随机刷新。
 解锁方式：需要用镐子敲碎。
 
-右键打开后纸条记载着「月光下的巨影，踏碎冰面时，寒气中藏着跳动的光」。随后地面会随机生成一个大型可疑的土堆，翻找所有线索土堆会生成独眼巨鹿。
+弄开后变成「冰霜日志」——纸条内容与后续线索都写在日志条目里（见「冰霜日志」）。
 """,
 )
 
@@ -3352,7 +3362,7 @@ item(
 位置：岩浆池旁边刷新。
 解锁方式：需要用水壶浇灭。
 
-右键打开后纸条记载着「岩巢灵醒，有巨兽守其领地。其怒则焚尽草木，壳藏火核，骤击可破之。」宠物巢穴旁会刷新龙蝇。
+弄开后变成「龙炎日志」——纸条内容与后续线索都写在日志条目里（见「龙炎日志」）。
 """,
 )
 
@@ -3365,7 +3375,7 @@ item(
 位置：森林地形随机刷新。
 解锁方式：需要用斧头劈开。
 
-右键打开后纸条记载着「它推倒松树时，树根下会冒出火星，怕水却爱蜂蜜」。地图上会找一处蜂后巢穴，在它附近生成一个蜂箱，熊獾就在蜂箱旁边。
+弄开后变成「狂鬃日志」——纸条内容与后续线索都写在日志条目里（见「狂鬃日志」）。
 """,
 )
 
@@ -3390,7 +3400,7 @@ item(
 位置：沼泽触手旁随机刷新。
 解锁方式：需要火焰烘烤。
 
-右键打开后纸条记载着「薄暮将至，灵脉水面会倒映出紫色火光」。查看日志后，Boss 会在黄昏时分出现在蝴蝶岛的池塘旁边，过去会看到噬魂蛇。
+弄开后变成「紫鳞日志」——纸条内容与后续线索都写在日志条目里（见「紫鳞日志」）。
 """,
 )
 
@@ -3402,6 +3412,8 @@ item(
 对应异火：冰霜业火。
 线索物品：冻僵的日志。
 后续 Boss：独眼巨鹿。
+
+纸条记载着「月光下的巨影，踏碎冰面时，寒气中藏着跳动的光」。随后地面会随机生成一个大型可疑的土堆，翻找所有线索土堆会生成独眼巨鹿。
 
 阅读需要境界达到 入微。
 """,
@@ -3415,6 +3427,8 @@ item(
 线索物品：焦黑鳞片。
 后续 Boss：龙蝇。
 
+纸条记载着「岩巢灵醒，有巨兽守其领地。其怒则焚尽草木，壳藏火核，骤击可破之。」宠物巢穴旁会刷新龙蝇。
+
 阅读需要境界达到 入微。
 """,
 )
@@ -3427,6 +3441,8 @@ item(
 线索物品：腐烂的背包。
 后续 Boss：熊獾。
 
+纸条记载着「它推倒松树时，树根下会冒出火星，怕水却爱蜂蜜」。地图上会找一处蜂后巢穴，在它附近生成一个蜂箱，熊獾就在蜂箱旁边。
+
 阅读需要境界达到 入微。
 """,
 )
@@ -3438,6 +3454,8 @@ item(
 对应异火：灵煊尘火。
 线索物品：风干的羽毛。
 后续 Boss：蚁狮。
+
+纸条记载着「沙暴中心有一道光晕，那是他的呼吸」。过去会看到蚁狮。
 
 炼制（高阶，炼制时间 2 分钟）
 """ + R(("仙人掌", 3), ("风干的羽毛", 1)) + """
@@ -3454,6 +3472,8 @@ item(
 对应异火：紫鳞妖焰。
 线索物品：泡胀的卷轴。
 后续 Boss：噬魂蛇。
+
+纸条记载着「薄暮将至，灵脉水面会倒映出紫色火光」。查看日志后，Boss 会在黄昏时分出现在蝴蝶岛的池塘旁边，过去会看到噬魂蛇。
 
 阅读需要境界达到 入微。
 """,
