@@ -53,6 +53,8 @@ const I18N = {
     fullLog: "完整更新",
     noDetail: "暂无详情。",
     logMore: "（共 {n} 条，点卡片查看完整更新）",
+    altarChip: "需祭坛",
+    altarChipTitle: "必须站在已修复的残骸祭坛旁制作",
     langButton: "EN",
     langTitle: "切换成英文",
     qqGroup: "QQ 群",
@@ -75,6 +77,8 @@ const I18N = {
     fullLog: "Full changelog",
     noDetail: "No details yet.",
     logMore: "({n} entries in total — click the card for the full changelog)",
+    altarChip: "Altar",
+    altarChipTitle: "Must be crafted beside a repaired Remains Altar",
     langButton: "中",
     langTitle: "Switch to Chinese",
     qqGroup: "QQ group",
@@ -599,7 +603,10 @@ function yunFoot() {
 }
 
 function renderCard(item) {
-  const tags = pickTags(item).map((tag) => `<span class="tag">${highlightEscaped(tag)}</span>`).join("");
+  const altarChip = item.needsAltar
+    ? `<span class="chip-altar" title="${escapeHtml(t("altarChipTitle"))}">${escapeHtml(t("altarChip"))}</span>`
+    : "";
+  const tags = altarChip + pickTags(item).map((tag) => `<span class="tag">${highlightEscaped(tag)}</span>`).join("");
   const recipeText = pickRecipe(item);
   const recipe = recipeText ? `<div class="card-recipe">${parseRecipe(recipeText)}</div>` : "";
   const hasImages = Array.isArray(item.images) && item.images.filter(Boolean).length > 0;
@@ -932,7 +939,9 @@ function openItemModal(itemId, trigger = document.activeElement, write = true) {
   state.lastFocus = trigger;
   state.modalMode = "item";
   state.modalItemId = itemId;   // 记住当前弹窗是哪一条，切换语言时照新语言重画
-  $("#modalTitle").textContent = renderModalTitle(pickName(item));
+  $("#modalTitle").innerHTML = (item.needsAltar
+    ? `<span class="chip-altar" title="${escapeHtml(t("altarChipTitle"))}">${escapeHtml(t("altarChip"))}</span>`
+    : "") + escapeHtml(renderModalTitle(pickName(item)));
   const body = $("#modalBody");
   body.textContent = "";
   if (pickRecipe(item)) {

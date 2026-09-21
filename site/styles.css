@@ -287,6 +287,16 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
 .modal-body .detail-content img.recipe-icon{height:20px;max-width:28px}
 /* 「查看详情」小按钮：作者要求**再小一点、跟正文字号差不多、精致一点**。
    所以字号 13→12px、内边距 8/22 → 4/12、改成全圆角小药丸、边框和阴影都调淡。 */
+/* 「需祭坛」界面标注：挂在标签行最前面 / 详情弹窗标题前。
+   用金色小药丸区分于普通标签，鼠标悬停给出说明。 */
+.chip-altar{display:inline-flex;align-items:center;gap:3px;vertical-align:middle;
+  background:linear-gradient(180deg,rgba(255,250,228,.98),rgba(238,222,168,.9));
+  border:.5px solid rgba(138,115,48,.5);border-radius:9px;
+  padding:1px 7px;margin-right:6px;color:#6B5520;font-size:11.5px;font-weight:600;
+  letter-spacing:.02em;line-height:1.6;white-space:nowrap;cursor:help}
+.chip-altar::before{content:"";width:5px;height:5px;border-radius:1px;
+  transform:rotate(45deg);background:linear-gradient(135deg,var(--c-gold-pale),var(--c-gold))}
+.modal-card h3 .chip-altar{font-size:12px;padding:2px 8px;margin-right:8px;vertical-align:.15em}
 .btn-detail{background:linear-gradient(180deg,rgba(255,250,228,.96),rgba(238,222,168,.82));border:.5px solid rgba(138,115,48,.42);border-radius:14px;padding:4px 12px;color:#6B5520;font-size:12px;letter-spacing:.06em;line-height:1.5;cursor:var(--cursor-sword-btn);box-shadow:inset 0 1px 0 rgba(255,255,255,.7),0 1px 3px rgba(47,90,98,.08)}
 .btn-detail:hover{border-color:rgba(138,115,48,.66);background:linear-gradient(180deg,rgba(255,252,238,.99),rgba(238,222,168,.95));box-shadow:inset 0 1px 0 rgba(255,255,255,.8),0 2px 6px rgba(47,90,98,.12)}
 /* 「查看详情」按钮：原来钉在卡片**右下角**，作者要求挪到**右上角**（跟标题同一行）。

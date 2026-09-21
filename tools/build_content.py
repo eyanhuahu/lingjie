@@ -313,6 +313,24 @@ def R(*parts):
 
 
 # ---------------------------------------------------------------------------
+# 需要在「已修复的残骸祭坛」旁制作的高阶配方。
+# 名单取自 mod 的 scripts/main/crafting/recipes.lua：这些配方挂在
+# TECH.ETHEREAL_REALM_ONE 上，而残骸祭坛就是该科技树的原型站（AddPrototyperDef +
+# inst.components.prototyper.trees = TUNING.PROTOTYPER_TREES.LJ_REMAINS_ALTAR），
+# 所以每次制作都必须站在祭坛旁边。其余配方是二本科技，永久解锁。
+ALTAR_RECIPES = {
+    "lj_void_ring",
+    "lj_star_sword",
+    "lj_reiki_bow",
+    "lj_keel_armour",
+    "lj_crystalcrown",
+    "lj_supernatural_power_pivot",
+    "lj_seasons_nucleus",
+    "lj_plant_nucleus",
+    "lj_subdue_demons_nucleus",
+    "lj_constant_temperature_nucleus",
+}
+
 # 站点信息 / 卷目 / 词条自动跳转
 # ---------------------------------------------------------------------------
 # ---------------------------------------------------------------------------
@@ -1977,6 +1995,7 @@ def item(sec, iid, name, tags, summary, detail, recipe="", image="", visible=Tru
         "图片": image,
         "制作配方": recipe,
         "英文配方": recipe_en(recipe),
+        "需祭坛": "true" if iid in ALTAR_RECIPES else "",
         "简介": summary,
         "英文简介": en.get("summary", ""),
         "详情": detail.strip(),
