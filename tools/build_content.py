@@ -1607,9 +1607,7 @@ Clue item pointing to the Spirit Dust Flame.
 
 Location: picked up near the oasis.
 
-Right-clicking it open reveals the note 'there is a halo at the centre of the sandstorm — that is his breath'. Going there shows the Antlion.
-
-It is also used as an Alchemy Furnace recipe material, to refine the 'Dustflame Log' (see that entry).
+Use: an Alchemy Furnace material for refining the 'Dustflame Log' (high tier, 2 minutes — see that entry). The note's clue is read from the Dustflame Log itself.
 """,
     },
     "lj_swollen_scroll": {
@@ -3379,9 +3377,7 @@ item(
 
 位置：绿洲附近拾取。
 
-右键打开后纸条记载着「沙暴中心有一道光晕，那是他的呼吸」。过去会看到蚁狮。
-
-它还会被用作炼丹炉的配方材料，用于炼制「尘火日志」（见该条目）。
+用途：炼丹炉材料，用于炼制「尘火日志」（高阶，炼制时间 2 分钟；见「尘火日志」）。纸条上的线索要在「尘火日志」里阅读。
 """,
 )
 

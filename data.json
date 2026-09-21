@@ -1533,8 +1533,8 @@
       "英文配方": "",
       "简介": "绿洲附近拾取。指向灵煊尘火。",
       "英文简介": "Picked up near the oasis. Points to the Spirit Dust Flame.",
-      "详情": "线索物品，指向灵煊尘火。\n\n位置：绿洲附近拾取。\n\n右键打开后纸条记载着「沙暴中心有一道光晕，那是他的呼吸」。过去会看到蚁狮。\n\n它还会被用作炼丹炉的配方材料，用于炼制「尘火日志」（见该条目）。",
-      "英文详情": "Clue item pointing to the Spirit Dust Flame.\n\nLocation: picked up near the oasis.\n\nRight-clicking it open reveals the note 'there is a halo at the centre of the sandstorm — that is his breath'. Going there shows the Antlion.\n\nIt is also used as an Alchemy Furnace recipe material, to refine the 'Dustflame Log' (see that entry).",
+      "详情": "线索物品，指向灵煊尘火。\n\n位置：绿洲附近拾取。\n\n用途：炼丹炉材料，用于炼制「尘火日志」（高阶，炼制时间 2 分钟；见「尘火日志」）。纸条上的线索要在「尘火日志」里阅读。",
+      "英文详情": "Clue item pointing to the Spirit Dust Flame.\n\nLocation: picked up near the oasis.\n\nUse: an Alchemy Furnace material for refining the 'Dustflame Log' (high tier, 2 minutes — see that entry). The note's clue is read from the Dustflame Log itself.",
       "排序值": "83",
       "是否展示": "true"
     },
