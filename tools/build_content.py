@@ -1457,7 +1457,8 @@ Spawn: beside predecessor skeletons, only 1 per skeleton. A skeleton left behind
 
 Harvesting: gives 1 [images/inventoryimages2/petals.png] Petals and 1 Spider Lily, with a 5% chance of an extra Spider Lily Root.
 
-Its growth cycle matches vanilla saplings, it can be fertilised to speed it up, and it grows in every season.
+Its growth cycle matches vanilla saplings and it can be fertilised to speed it up.
+⚠️ It does not grow in winter (same as Spirit-Melting Grass).
 
 Can be burned and dug up; harvesting leaves the root behind, like vanilla grass.
 
@@ -3211,7 +3212,8 @@ item(
 
 采摘：可获得 花瓣 1、彼岸花 1；5% 概率额外获得 彼岸花根 1。
 
-生长周期同原版树枝，可催熟，全季节生长。
+生长周期同原版树枝，可催熟。
+⚠️ 冬季不生长（与融灵草一样）。
 
 可烧毁、可挖掘，采集后会留下根部，类似原版草。
 

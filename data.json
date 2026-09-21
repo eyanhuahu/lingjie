@@ -1382,8 +1382,8 @@
       "需祭坛": "",
       "简介": "生长在前辈骨架旁，玩家死亡留下的骨架 1 天后也会长出来。",
       "英文简介": "Grows beside predecessor skeletons; a skeleton left by a dead player also grows one after 1 day.",
-      "详情": "生成：前辈骨架旁，每个骨架只生成 1 朵。玩家死亡后留下的骨架会在 1 天后附近生长彼岸花。\n\n采摘：可获得 [images/inventoryimages2/petals.png] 花瓣 1、彼岸花 1；5% 概率额外获得 彼岸花根 1。\n\n生长周期同原版树枝，可催熟，全季节生长。\n\n可烧毁、可挖掘，采集后会留下根部，类似原版草。\n\n用途：不灭丹、合婴丹。",
-      "英文详情": "Spawn: beside predecessor skeletons, only 1 per skeleton. A skeleton left behind when a player dies grows a Spider Lily nearby after 1 day.\n\nHarvesting: gives 1 [images/inventoryimages2/petals.png] Petals and 1 Spider Lily, with a 5% chance of an extra Spider Lily Root.\n\nIts growth cycle matches vanilla saplings, it can be fertilised to speed it up, and it grows in every season.\n\nCan be burned and dug up; harvesting leaves the root behind, like vanilla grass.\n\nUse: Invincible Pill, Nascent Union Pill.",
+      "详情": "生成：前辈骨架旁，每个骨架只生成 1 朵。玩家死亡后留下的骨架会在 1 天后附近生长彼岸花。\n\n采摘：可获得 [images/inventoryimages2/petals.png] 花瓣 1、彼岸花 1；5% 概率额外获得 彼岸花根 1。\n\n生长周期同原版树枝，可催熟。\n⚠️ 冬季不生长（与融灵草一样）。\n\n可烧毁、可挖掘，采集后会留下根部，类似原版草。\n\n用途：不灭丹、合婴丹。",
+      "英文详情": "Spawn: beside predecessor skeletons, only 1 per skeleton. A skeleton left behind when a player dies grows a Spider Lily nearby after 1 day.\n\nHarvesting: gives 1 [images/inventoryimages2/petals.png] Petals and 1 Spider Lily, with a 5% chance of an extra Spider Lily Root.\n\nIts growth cycle matches vanilla saplings and it can be fertilised to speed it up.\n⚠️ It does not grow in winter (same as Spirit-Melting Grass).\n\nCan be burned and dug up; harvesting leaves the root behind, like vanilla grass.\n\nUse: Invincible Pill, Nascent Union Pill.",
       "排序值": "70",
       "是否展示": "true"
     },
