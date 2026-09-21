@@ -606,7 +606,7 @@ Shadow Slow: 20% chance when the player is hit by a creature; movement speed −
 Demonic Reflection: 10% chance when the creature takes damage from a player; reflects 5% of the damage.
 
 Creature buffs
-Conditional Vulnerability: dropping to 50% health or below triggers a shield; the creature takes no damage for 5 seconds, with a 5-minute cooldown.
+Conditional Vulnerability: dropping to 50% health or below triggers a shield; the creature takes no damage for 5 seconds, with a 5-minute cooldown. The shield shows as a red force field.
 
 On death it drops 1 to 2 Magic Cores and 1 to 3 Magic Core Shards plus the creature's own loot.
 """,
@@ -642,7 +642,7 @@ Demonic Reflection: 10% chance when the creature takes damage from a player; ref
 Mirror Confusion: 10% chance on attack; the player's movement direction flips 180° for the next 5 seconds.
 
 Creature buffs
-Conditional Vulnerability: while health is between 30% and 50% (>30% and ≤50%) it triggers a 12-second invulnerable shield, with a 5-minute cooldown.
+Conditional Vulnerability: while health is between 30% and 50% (>30% and ≤50%) it triggers a 12-second invulnerable shield, with a 5-minute cooldown. The shield shows as a red force field.
 Bone-Deep Poison: normal attacks carry bone-eating poison. One poisoning lasts 240 seconds and does not stack (the timer can be refreshed, capped at 240 seconds), and the first tick lands the moment it hits.
 　0 to 80 seconds: 6 damage every 10 seconds
 　80 to 160 seconds: 10 damage every 10 seconds
@@ -723,6 +723,8 @@ Special refining (no pill tribulation, 100% success)
 Refining time 4 minutes.
 
 Cannot be destroyed normally, but can be deconstructed with a Deconstruction Staff.
+
+Rain prayer: right-click and pick "Pray for Rain" to spend 20 spirit fluid and force continuous rain; it clears itself after 10 minutes, and praying again restarts that timer. Spirit fluid caps at 100, and a vase that is short of it reports "Not enough spirit fluid".
 """,
     },
     "lj_reiki_gourd": {
@@ -2177,7 +2179,7 @@ item(
 魔气反弹：生物受到玩家伤害时 10% 概率触发，反射 5% 伤害。
 
 生物强化
-限定易伤：生命值降到 50% 及以下会触发护盾，期间不受伤害（无敌），持续 5 秒，冷却 5 分钟。
+限定易伤：生命值降到 50% 及以下会触发护盾，期间不受伤害（无敌），持续 5 秒，冷却 5 分钟。护盾表现为红色力场。
 
 击杀后掉落魔核 1 到 2 个、魔核碎片 1 到 3 个 + 生物原生材料。
 """,
@@ -2214,7 +2216,7 @@ item(
 镜像混淆：攻击时 10% 概率触发「镜像」，玩家接下来 5 秒内移动方向反转 180°。
 
 生物强化
-限定易伤：生命值在 30% 与 50% 之间（>30% 且 ≤50%）时触发无敌护盾 12 秒，冷却 5 分钟。
+限定易伤：生命值在 30% 与 50% 之间（>30% 且 ≤50%）时触发无敌护盾 12 秒，冷却 5 分钟。护盾表现为红色力场。
 毒入骨髓：普通攻击附带蚀骨毒。单次中毒 240 秒，不可叠加（可重置时间，上限 240 秒），命中当刻立即结算一跳。
 　0 到 80 秒：每 10 秒造成 6 点伤害
 　80 到 160 秒：每 10 秒造成 10 点伤害
@@ -2301,7 +2303,9 @@ item(
 
 炼丹炉炼制：""" + R(("鳞片", 1), ("玻璃碎片", 5), ("绿宝石", 1), ("魔晶", 1)) + """，炼制时间 4 分钟。
 
-不能正常摧毁，可使用分解法杖分解。""",
+不能正常摧毁，可使用分解法杖分解。
+
+祈雨：右键选择「祈雨」，消耗 20 点灵液，让世界持续下雨；10 分钟后自动恢复，再次祈雨会重新计时。灵液上限 100，不足时会提示「灵液不足。」""",
     recipe=R(("鳞片", 1), ("玻璃碎片", 5), ("绿宝石", 1), ("魔晶", 1)),
 )
 
