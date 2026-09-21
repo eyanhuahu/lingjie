@@ -666,9 +666,9 @@ On death it adds 1 Magic Crystal plus the creature's own loot, and doubles the v
         "detail": """
 Magic Core Shard: killing a lightly demonized creature drops 1 to 3 shards (creatures with 149 or less base health get no extra materials).
 
-Magic Core: dropped by bosses and demonic beasts; 99 Magic Core Shards craft one; moderately demonized creatures drop 1 to 2. Cannot be destroyed, can be deconstructed.
+Magic Core: dropped by bosses and demonic beasts; 99 Magic Core Shards craft one; moderately demonized creatures drop 1 to 2. Cannot be destroyed or deconstructed.
 
-Magic Crystal: dropped by demonic beasts; 20 Magic Cores craft one; deeply demonized creatures drop 1. Cannot be destroyed, can be deconstructed.
+Magic Crystal: dropped by demonic beasts; 20 Magic Cores craft one; deeply demonized creatures drop 1. Cannot be destroyed or deconstructed.
 
 Vanilla creatures drop Magic Core Shards and Magic Cores according to their demonization tier. A vanilla creature at deep demonization drops only 1 Magic Crystal, while large demonic beasts drop 2.
 """,
@@ -747,7 +747,7 @@ While following: left-click opens or closes the gourd, right-click recalls it.
         "detail": """
 Special refining (no pill tribulation, 100% success)
 
-Cannot be destroyed, can be deconstructed.
+Cannot be destroyed or deconstructed.
 
 Giving it a Purple Scale Demon Flame unlocks the Soul Refining skill.
 Planted in the ground it automatically absorbs the 4 vanilla shadow creatures, plus the shadow clones produced by deep demonization; each one absorbed becomes a Magic Core dropped right below the banner.
@@ -934,7 +934,7 @@ Crafting: 99 Magic Core Shards craft one.
 
 Source: killing bosses and demonic beasts drops them; moderately demonized creatures drop 1 to 2.
 
-Cannot be destroyed, can be deconstructed.
+Cannot be destroyed or deconstructed.
 
 Craftable in the <Ethereal Realm>, <Magic> and <Refine> tabs.
 
@@ -949,7 +949,7 @@ Crafting: 20 Magic Cores craft one.
 
 Source: killing demonic beasts drops them; deeply demonized creatures drop 1.
 
-Cannot be destroyed, can be deconstructed.
+Cannot be destroyed or deconstructed.
 
 A vanilla creature at deep demonization drops only 1 Magic Crystal, while large demonic beasts drop 2.
 
@@ -1195,7 +1195,7 @@ Craftable in the <Ethereal Realm> and <Weapons> tabs.
         "tags": "Weapons,Ranged,Freeze,Artifact",
         "summary": "78 attack, 20% crit, plus Ice Erosion and 10 planar damage; right-click Ice Infusion deals 300 damage and freezes.",
         "detail": """
-Cannot be destroyed, can be deconstructed. Exotic flames are awkward to keep in the inventory or a backpack, so open the Spirit Void Gourd while crafting — the game only needs to be able to see it.
+Cannot be destroyed or deconstructed. Exotic flames are awkward to keep in the inventory or a backpack, so open the Spirit Void Gourd while crafting — the game only needs to be able to see it.
 
 Base stats
 78 attack, 20% crit chance, crit damage ×1.8.
@@ -1220,7 +1220,7 @@ Craftable in the <Ethereal Realm> and <Weapons> tabs.
         "tags": "Weapons,Melee,Fire,Artifact",
         "summary": "88 attack, 22% crit, plus Scorch; it hits harder the longer you swing, and right-click Meteor Thrust dashes invulnerably for 150 damage.",
         "detail": """
-Cannot be destroyed, can be deconstructed. Exotic flames are awkward to keep in the inventory or a backpack, so open the Spirit Void Gourd while crafting — the game only needs to be able to see it.
+Cannot be destroyed or deconstructed. Exotic flames are awkward to keep in the inventory or a backpack, so open the Spirit Void Gourd while crafting — the game only needs to be able to see it.
 
 Base stats
 88 attack, 22% crit chance, crit damage ×2.
@@ -2239,9 +2239,9 @@ item(
     """
 魔核碎片：击杀轻度入魔生物掉落魔核碎片 1 到 3 不等（原始生命不超过 149 的弱小生物不追加）。
 
-魔核：击杀 Boss 生物、魔兽掉落；99 个魔核碎片合成；中度入魔生物掉落魔核 1 到 2 不等。无法摧毁、可分解。
+魔核：击杀 Boss 生物、魔兽掉落；99 个魔核碎片合成；中度入魔生物掉落魔核 1 到 2 不等。无法摧毁、分解。
 
-魔晶：击杀魔兽掉落；20 个魔核合成；深度入魔生物掉落魔晶 1。无法摧毁、可分解。
+魔晶：击杀魔兽掉落；20 个魔核合成；深度入魔生物掉落魔晶 1。无法摧毁、分解。
 
 原版生物按入魔程度掉落魔核碎片、魔核。原版生物深度入魔只会掉落魔晶 1，大型魔兽生物掉落魔晶 2。
 """,
@@ -2591,7 +2591,7 @@ item(
 
 来源：击杀 Boss 生物、魔兽掉落；中度入魔生物掉落魔核 1 到 2 不等。
 
-无法摧毁、可分解。
+无法摧毁、分解。
 
 可在 <灵界>、<魔法>、<精炼> 栏位制作。
 
@@ -2608,7 +2608,7 @@ item(
 
 来源：击杀魔兽掉落；深度入魔生物掉落魔晶 1。
 
-无法摧毁、可分解。
+无法摧毁、分解。
 
 原版生物深度入魔只会掉落魔晶 1，大型魔兽生物掉落魔晶 2。
 
@@ -2925,7 +2925,7 @@ item(
     """
 制作：""" + R(("魔晶", 5), ("伏特羊角", 2), ("冰霜业火本体", None), ("活木", 5), ("噩梦燃料", 10)) + """。
 
-无法摧毁、可分解。因异火不好放入物品栏 / 背包，制作时打开灵虚葫，系统能检查到即可。
+无法摧毁、分解。因异火不好放入物品栏 / 背包，制作时打开灵虚葫，系统能检查到即可。
 
 基础属性
 攻击力 78，暴击率 20%，暴击伤害 ×1.8。
@@ -2954,7 +2954,7 @@ item(
     """
 制作：""" + R(("魔晶", 5), ("一角鲸的角", 1), ("龙炎心火本体", None), ("活木", 5), ("噩梦燃料", 10)) + """。
 
-无法摧毁、可分解。因异火不好放入物品栏 / 背包，制作时打开灵虚葫，系统能检查到即可。
+无法摧毁、分解。因异火不好放入物品栏 / 背包，制作时打开灵虚葫，系统能检查到即可。
 
 基础属性
 攻击力 88，暴击率 22%，暴击伤害 ×2。
