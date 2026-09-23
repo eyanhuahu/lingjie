@@ -543,9 +543,10 @@ Refining that never triggers it: using an exotic flame still owes the tribulatio
 
 Trigger: a deeply demonized creature killed by a player calls down a tribulation when it dies.
 Duration: 60 seconds, one strike every 6 seconds, and the first landing marker appears immediately instead of after 6 seconds.
-Target: only the player who killed it is struck; kills credited to followers or the Void Ring count as the player's.
+Landing: the strikes are random, scattered around the corpse within roughly 25 range.
+Target: only the player who killed it can be struck, and only if they are standing near that spot; kills credited to followers or the Void Ring count as the player's.
 Damage: an ordinary deeply demonized creature takes 10% of your maximum health, while an epic boss kills outright (100% of maximum health), ignoring invulnerability and damage absorption.
-Landing: the marker appears first and the bolt lands 1.5 seconds later; players within 25 hear "The heavens have sensed it. A tribulation is coming!" and see a "Sacrificial Tribulation" countdown on the HUD, which disappears once they leave the area.
+Warning: the marker appears first and the bolt lands 1.5 seconds later; players within 25 hear "The heavens have sensed it. A tribulation is coming!" and see a "Sacrificial Tribulation" countdown on the HUD, which disappears once they leave the area.
 
 3. Tribulation Debt (not enabled in this version)
 
@@ -684,7 +685,7 @@ Feeding on Remains: whenever a player dies, any deeply demonized boss within 40 
 Demonic Frenzy: dropping to 30% health or below triggers a frenzy — damage +30%, its damage reduction and planar defense stop working (the damage multiplier and the +5 planar defense are removed), and it cannot heal at all while frenzied (every heal is blocked).
 　Only epic bosses also get their skill cooldowns halved.
 　The frenzy lasts 300 seconds (5 minutes) and can only trigger again once it has ended.
-Sacrificial Tribulation: on death it calls down a tribulation for 60 seconds, striking lightning every 6 seconds. Only the player who killed it is struck (kills credited to followers, the Void Ring and so on count as the player's): an ordinary deeply demonized creature takes 10% of your maximum health, while an epic boss kills outright (100% of maximum health, ignoring invulnerability and damage absorption). The landing spot is marked first and the bolt lands 1.5 seconds later, and the very first mark appears immediately instead of after 6 seconds.
+Sacrificial Tribulation: on death it calls down a tribulation for 60 seconds, striking every 6 seconds. The landing spots are random, scattered around the corpse within roughly 25 range; only the player who killed it can be struck (kills credited to followers, the Void Ring and so on count as the player's), and only if they are standing near that spot. an ordinary deeply demonized creature takes 10% of your maximum health, while an epic boss kills outright (100% of maximum health, ignoring invulnerability and damage absorption). The landing spot is marked first and the bolt lands 1.5 seconds later, and the very first mark appears immediately instead of after 6 seconds.
 　Warning: players within 25 of the landing spot hear "The heavens have sensed it. A tribulation is coming!" and see a "Sacrificial Tribulation" countdown on the HUD; it disappears once they leave the area.
 
 On death it adds 1 Magic Crystal plus the creature's own loot, and doubles the vanilla drop amounts.
@@ -2165,9 +2166,10 @@ item(
 
 触发：被玩家杀死的深度入魔生物，死亡时召唤天劫。
 时长：持续 60 秒，每 6 秒落雷一次；第一轮的落点标识立即出现，不必再等 6 秒。
-目标：只有击杀它的玩家会被劈中；随从、虚空戒等造成的击杀同样算玩家的。
+落点：随机落雷，以尸体为中心散布在约 25 格范围里。
+目标：只有击杀它的玩家会被劈中，而且要正好站在落点附近才会被打到；随从、虚空戒等造成的击杀同样算玩家的。
 伤害：普通深度入魔生物扣 10% 最大生命；史诗 Boss 则是必杀（100% 最大生命），无视无敌与伤害吸收。
-落点：先出现标识，1.5 秒后落地；落点 25 范围内的玩家会收到台词「天道有感，雷劫将至！」，并在 HUD 上看到「祭天雷劫」倒计时，走出范围自动消失。
+预警：落点会先出现标识，1.5 秒后落地；25 范围内的玩家会收到台词「天道有感，雷劫将至！」，并在 HUD 上看到「祭天雷劫」倒计时，走出范围自动消失。
 
 三、雷劫层数（本版尚未启用）
 
@@ -2298,7 +2300,7 @@ item(
 魔化狂暴：生命值降到 30% 及以下时进入狂暴——伤害 +30%、减伤与位面防御加成失效（移除受伤乘数与 +5 位面防御）、期间完全无法回血（任何治疗都被拦下）。
 　　只有史诗 Boss 会额外获得技能冷却减半。
 　　狂暴持续 300 秒（5 分钟），结束后才可能再次触发。
-祭天雷劫：死亡后召唤天劫，持续 60 秒，每 6 秒触发一次雷击。只有击杀它的玩家会被劈中（随从、虚空戒等造成的击杀同样算玩家的）：普通深度入魔扣除 10% 最大生命，史诗 Boss 则必杀（100% 最大生命，无视无敌与伤害吸收）。落点会先有标识，1.5 秒后落地，且第一轮标识立即出现（不必再等 6 秒）。
+祭天雷劫：死亡后召唤天劫，持续 60 秒，每 6 秒落雷一次。落点是随机的，以尸体为中心散布在约 25 格范围里；只有击杀它的玩家会被劈中（随从、虚空戒等造成的击杀同样算玩家的），而且要正好站在落点附近才会被打到。伤害：普通深度入魔扣除 10% 最大生命，史诗 Boss 则必杀（100% 最大生命，无视无敌与伤害吸收）。落点会先有标识，1.5 秒后落地，且第一轮标识立即出现（不必再等 6 秒）。
 　预警：落点 25 范围内的玩家会收到台词「天道有感，雷劫将至！」并在 HUD 上看到「祭天雷劫」倒计时；走出范围自动消失。
 
 击杀后追加 1 个魔晶 + 生物原生材料，且原生掉落量翻倍。
@@ -3841,7 +3843,7 @@ DATA = {
          "内容":
              "版本号更新到 0.6\n"
              "彼岸花改名为龙爪花\n"
-             "祭天雷劫重做：只有击杀它的玩家会被雷劈（随从、虚空戒等击杀也算）；普通深度入魔扣 10% 最大生命，史诗 Boss 必杀；第一轮预警立即出现\n"
+             "祭天雷劫重做：改为随机落雷，只有击杀它的玩家会被劈中（随从、虚空戒等击杀也算）；普通深度入魔扣 10% 最大生命，史诗 Boss 必杀；第一轮预警立即出现\n"
              "炽岩蝎龙：护甲 30% → 15%；改为每损失 5000 点生命召唤一批幼虫；沙砾喷发 1.2 秒；被催眠昏睡 8 秒\n"
              "魂幡炼制时间 4 分钟\n"
              "血蝠精血的堆叠上限改为 20\n"
@@ -3855,7 +3857,7 @@ DATA = {
          "英文内容":
              "Version updated to 0.6\n"
              "Spider Lily renamed to Dragon Claw Flower\n"
-             "Sacrificial Tribulation reworked: only the player who killed it is struck (kills by followers or the Void Ring count too); an ordinary deeply demonized creature costs you 10% of your maximum health, while an epic boss kills outright, and the first warning appears right away\n"
+             "Sacrificial Tribulation reworked: the strikes are now random, and only the player who killed it can be struck (kills by followers or the Void Ring count too); an ordinary deeply demonized creature costs you 10% of your maximum health, while an epic boss kills outright, and the first warning appears right away\n"
              "Blazing Rock Scorpion Dragon: armour 30% → 15%; it now summons a batch of larvae every 5000 health it loses; its grit eruption lasts 1.2 seconds; it sleeps for 8 seconds when put to sleep\n"
              "Soul Banner refining time is 4 minutes\n"
              "Blood Bat Essence stack limit is now 20\n"
