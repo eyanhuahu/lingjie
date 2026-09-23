@@ -3774,22 +3774,22 @@ DATA = {
         {"日志版本": "v0.6", "日期": "2026-09-22",
          "内容":
              "版本号更新到 0.6\n"
-             "彼岸花改名为龙爪花（花、花根、采下的花一起改）\n"
+             "彼岸花改名为龙爪花\n"
              "祭天重做：只有击杀它的玩家会被雷劈（随从、虚空戒等击杀也算）；普通深度入魔扣 10% 最大生命，史诗 Boss 必杀；第一轮预警立即出现\n"
              "炽岩蝎龙：护甲 30% → 15%；改为每损失 5000 点生命召唤一批幼虫；沙砾喷发 1.2 秒；被催眠昏睡 8 秒\n"
              "魂幡炼制时间 4 分钟\n"
              "血蝠精血的堆叠上限改为 20\n"
              "荒界纳物箱：不再限制同时开启的人数；整理时不会把多出来的堆叠物掉在地上\n"
-             "灵虚葫：从物品栏拿起再放下，会回到它原来的格子\n",
+             "灵虚葫：优化葫芦部署后的视觉逻辑\n",
          "英文内容":
              "Version updated to 0.6\n"
-             "Spider Lily renamed to Dragon Claw Flower (the flower, its root and the cut flower)\n"
+             "Spider Lily renamed to Dragon Claw Flower\n"
              "Heaven's Judgment reworked: only the player who killed it is struck (kills by followers or the Void Ring count too); an ordinary deeply demonized creature costs you 10% of your maximum health, while an epic boss kills outright, and the first warning appears right away\n"
              "Blazing Rock Scorpion Dragon: armour 30% → 15%; it now summons a batch of larvae every 5000 health it loses; its grit eruption lasts 1.2 seconds; it sleeps for 8 seconds when put to sleep\n"
              "Soul Banner refining time is 4 minutes\n"
              "Blood Bat Essence stack limit is now 20\n"
              "Wild Realm Storage Box: no longer limits how many players can open it at once; sorting no longer drops the extra items of an over-stacked pile on the ground\n"
-             "Spirit Void Gourd: picking it up from your inventory and putting it down returns it to its original slot\n",
+             "Spirit Void Gourd: improved how the gourd looks right after it is deployed\n",
          "是否展示": "true"},
     ],
     "tele": [{"导向id": t[0], "字段": t[1], "说明": "", "是否展示": "true"} for t in TELE],
