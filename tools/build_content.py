@@ -644,7 +644,7 @@ On death it drops 1 to 2 Magic Cores and 1 to 3 Magic Core Shards plus the creat
     },
     "corruption_deep": {
         "tags": "Demonization,Deep",
-        "summary": "Demonized health uses a 2.35× discounted multiplier (the higher the base health, the closer to full); ignores every slow, plus Bone-Deep Poison, Mirror Confusion, Demonic Frenzy and Heaven's Judgment.",
+        "summary": "Demonized health uses a 2.35× discounted multiplier (the higher the base health, the closer to full); ignores every slow, plus Bone-Deep Poison, Mirror Confusion, Demonic Frenzy and Sacrificial Tribulation.",
         "detail": """
 Shown in game as "Deep".
 
@@ -684,7 +684,7 @@ Feeding on Remains: whenever a player dies, any deeply demonized boss within 40 
 Demonic Frenzy: dropping to 30% health or below triggers a frenzy — damage +30%, its damage reduction and planar defense stop working (the damage multiplier and the +5 planar defense are removed), and it cannot heal at all while frenzied (every heal is blocked).
 　Only epic bosses also get their skill cooldowns halved.
 　The frenzy lasts 300 seconds (5 minutes) and can only trigger again once it has ended.
-Heaven's Judgment: on death it calls down a tribulation for 60 seconds, striking lightning every 6 seconds. Only the player who killed it is struck (kills credited to followers, the Void Ring and so on count as the player's): an ordinary deeply demonized creature takes 10% of your maximum health, while an epic boss kills outright (100% of maximum health, ignoring invulnerability and damage absorption). The landing spot is marked first and the bolt lands 1.5 seconds later, and the very first mark appears immediately instead of after 6 seconds.
+Sacrificial Tribulation: on death it calls down a tribulation for 60 seconds, striking lightning every 6 seconds. Only the player who killed it is struck (kills credited to followers, the Void Ring and so on count as the player's): an ordinary deeply demonized creature takes 10% of your maximum health, while an epic boss kills outright (100% of maximum health, ignoring invulnerability and damage absorption). The landing spot is marked first and the bolt lands 1.5 seconds later, and the very first mark appears immediately instead of after 6 seconds.
 　Warning: players within 25 of the landing spot hear "The heavens have sensed it. A tribulation is coming!" and see a "Sacrificial Tribulation" countdown on the HUD; it disappears once they leave the area.
 
 On death it adds 1 Magic Crystal plus the creature's own loot, and doubles the vanilla drop amounts.
@@ -2258,7 +2258,7 @@ item(
 
 item(
     "rumo", "corruption_deep", "深度入魔", "入魔,深度",
-    "入魔血量按 2.35 倍打折计算（血量越高越接近满倍率）；无视减速、毒入骨髓、镜像混淆、魔化狂暴、祭天天劫。",
+    "入魔血量按 2.35 倍打折计算（血量越高越接近满倍率）；无视减速、毒入骨髓、镜像混淆、魔化狂暴、祭天雷劫。",
     """
 游戏内显示为「深度」。
 
@@ -2298,7 +2298,7 @@ item(
 魔化狂暴：生命值降到 30% 及以下时进入狂暴——伤害 +30%、减伤与位面防御加成失效（移除受伤乘数与 +5 位面防御）、期间完全无法回血（任何治疗都被拦下）。
 　　只有史诗 Boss 会额外获得技能冷却减半。
 　　狂暴持续 300 秒（5 分钟），结束后才可能再次触发。
-祭天：死亡后召唤天劫，持续 60 秒，每 6 秒触发一次雷击。只有击杀它的玩家会被劈中（随从、虚空戒等造成的击杀同样算玩家的）：普通深度入魔扣除 10% 最大生命，史诗 Boss 则必杀（100% 最大生命，无视无敌与伤害吸收）。落点会先有标识，1.5 秒后落地，且第一轮标识立即出现（不必再等 6 秒）。
+祭天雷劫：死亡后召唤天劫，持续 60 秒，每 6 秒触发一次雷击。只有击杀它的玩家会被劈中（随从、虚空戒等造成的击杀同样算玩家的）：普通深度入魔扣除 10% 最大生命，史诗 Boss 则必杀（100% 最大生命，无视无敌与伤害吸收）。落点会先有标识，1.5 秒后落地，且第一轮标识立即出现（不必再等 6 秒）。
 　预警：落点 25 范围内的玩家会收到台词「天道有感，雷劫将至！」并在 HUD 上看到「祭天雷劫」倒计时；走出范围自动消失。
 
 击杀后追加 1 个魔晶 + 生物原生材料，且原生掉落量翻倍。
@@ -3811,7 +3811,7 @@ DATA = {
          "内容":
              "新增「限时状态」面板（增益 / 负面分开、可拖动，跟随 HUD 缩放）\n"
              "玩家头像弹窗新增「灵界介绍页」入口\n"
-             "祭天新增预警：落点 25 范围内提示 + HUD 倒计时\n"
+             "祭天雷劫新增预警：落点 25 范围内提示 + HUD 倒计时\n"
              "丹劫：炼丹时 HUD 显示倒计时，死亡原因记为「丹劫天雷」\n"
              "入魔调整：中度护盾 25 → 5 秒、反弹 5% → 2%；深度护盾 25 → 12 秒、反弹 2% → 5%\n"
              "月蚀晶翼狮：技能改轮转、爪击冷却 8 → 5 秒、飞弹射程 8 → 10 格、已种曼德拉草生效、新增脱战回归\n"
@@ -3825,7 +3825,7 @@ DATA = {
          "英文内容":
              "Added the \"Timed Effects\" panel (buffs and negative effects shown separately, draggable, follows the HUD scale)\n"
              "The player avatar popup now has an \"Ethereal Realm Guide\" entry\n"
-             "Heaven's Judgment now warns players within 25 of the landing spot, with a HUD countdown\n"
+             "Sacrificial Tribulation now warns players within 25 of the landing spot, with a HUD countdown\n"
              "Alchemy Tribulation: HUD countdown while refining, and the death cause is now \"Alchemy Tribulation Lightning\"\n"
              "Demonization tuning: moderate shield 25 → 5s, reflection 5% → 2%; deep shield 25 → 12s, reflection 2% → 5%\n"
              "Eclipsed Crystalwing Lion: skills now rotate, claw cooldown 8 → 5s, missile range 8 → 10 turf, planted mandrakes take effect, and it now disengages and returns home\n"
@@ -3841,7 +3841,7 @@ DATA = {
          "内容":
              "版本号更新到 0.6\n"
              "彼岸花改名为龙爪花\n"
-             "祭天重做：只有击杀它的玩家会被雷劈（随从、虚空戒等击杀也算）；普通深度入魔扣 10% 最大生命，史诗 Boss 必杀；第一轮预警立即出现\n"
+             "祭天雷劫重做：只有击杀它的玩家会被雷劈（随从、虚空戒等击杀也算）；普通深度入魔扣 10% 最大生命，史诗 Boss 必杀；第一轮预警立即出现\n"
              "炽岩蝎龙：护甲 30% → 15%；改为每损失 5000 点生命召唤一批幼虫；沙砾喷发 1.2 秒；被催眠昏睡 8 秒\n"
              "魂幡炼制时间 4 分钟\n"
              "血蝠精血的堆叠上限改为 20\n"
@@ -3855,7 +3855,7 @@ DATA = {
          "英文内容":
              "Version updated to 0.6\n"
              "Spider Lily renamed to Dragon Claw Flower\n"
-             "Heaven's Judgment reworked: only the player who killed it is struck (kills by followers or the Void Ring count too); an ordinary deeply demonized creature costs you 10% of your maximum health, while an epic boss kills outright, and the first warning appears right away\n"
+             "Sacrificial Tribulation reworked: only the player who killed it is struck (kills by followers or the Void Ring count too); an ordinary deeply demonized creature costs you 10% of your maximum health, while an epic boss kills outright, and the first warning appears right away\n"
              "Blazing Rock Scorpion Dragon: armour 30% → 15%; it now summons a batch of larvae every 5000 health it loses; its grit eruption lasts 1.2 seconds; it sleeps for 8 seconds when put to sleep\n"
              "Soul Banner refining time is 4 minutes\n"
              "Blood Bat Essence stack limit is now 20\n"
@@ -3865,7 +3865,7 @@ DATA = {
              "Realm experience: Abigail's attacks and kills made by Willow's fire now count for their owner\n"
              "Amethyst Form Flower: every world is guaranteed one; an older save grows one when you enter it, and a flower that vanishes abnormally is put back\n"
              "Demonization: deep demonization's reflection now caps at 75 damage per hit, and ocean shadow creatures are added to the never-demonized list\n"
-             "Visual polish (Heaven's Judgment landing marker icon)\n",
+             "Visual polish (Sacrificial Tribulation landing marker icon)\n",
          "是否展示": "true"},
     ],
     "tele": [{"导向id": t[0], "字段": t[1], "说明": "", "是否展示": "true"} for t in TELE],
