@@ -204,7 +204,7 @@ for (const item of built.items) {
 
 // 长词优先：短名不能把长名截断（魔核 / 魔核碎片、日志 / 尘火日志）
 const order = xrefTerms.map((row) => row.term);
-for (const [longer, shorter] of [["魔核碎片", "魔核"], ["尘火日志", "日志"], ["彼岸花根", "彼岸花"]]) {
+for (const [longer, shorter] of [["魔核碎片", "魔核"], ["尘火日志", "日志"], ["龙爪花根", "龙爪花"]]) {
   const a = order.indexOf(longer.toLowerCase());
   const b = order.indexOf(shorter.toLowerCase());
   if (a < 0 || b < 0) {

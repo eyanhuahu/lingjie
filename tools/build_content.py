@@ -107,9 +107,9 @@ MATERIAL_ICON = {
     "融灵草": None,
     "采下的融灵草": None,
     "融灵草根": None,
-    "彼岸花": None,
-    "采下的彼岸花": None,
-    "彼岸花根": None,
+    "龙爪花": None,
+    "采下的龙爪花": None,
+    "龙爪花根": None,
     "紫晶塑体花": None,
     "紫晶塑体花瓣": None,
     # 花瓣是**原版**物品（petals），不是 mod 物品，走原版图标
@@ -159,8 +159,8 @@ MOD_MATERIAL_ID = {
     "魔晶": "lj_magic_crystal",
     "采下的融灵草": "lj_reiki_cutgrass",
     "融灵草根": "lj_reiki_dug_grass",
-    "采下的彼岸花": "lj_red_magic_cutflower",
-    "彼岸花根": "lj_red_magic_dug_flower",
+    "采下的龙爪花": "lj_red_magic_cutflower",
+    "龙爪花根": "lj_red_magic_dug_flower",
     "紫晶塑体花瓣": "lj_purple_magic_bloom",
     "血蝠精血": "lj_bat_blood",
     "蝎龙骨": "lj_scorpion_dragon_bone",
@@ -185,7 +185,7 @@ def icon_for(name):
 # 这里做统一翻译，保证配方文本与 mod 一致。
 CODE_MATERIAL_NAME = {
     "融灵草": "采下的融灵草",
-    "彼岸花": "采下的彼岸花",
+    "龙爪花": "采下的龙爪花",
     "紫晶塑体花": "紫晶塑体花瓣",
     "仙人掌": "仙人掌肉",
 }
@@ -198,7 +198,7 @@ MATERIAL_EN = {
     "魔核": "Magic Core",
     "魔核碎片": "Magic Core Shard",
     "采下的融灵草": "Harvested Spirit-Melting Grass",
-    "采下的彼岸花": "Harvested Spider Lily",
+    "采下的龙爪花": "Harvested Dragon Claw Flower",
     "紫晶塑体花瓣": "Amethyst Form Petals",
     "蝎龙骨": "Scorpion Dragon Bone",
     "紫晶壳": "Amethyst Shell",
@@ -415,8 +415,8 @@ NAME_EN = {
     "lj_magic_crystal": "Magic Crystal",
     "lj_reiki_cutgrass": "Harvested Spirit-Melting Grass",
     "lj_reiki_dug_grass": "Spirit-Melting Grass Root",
-    "lj_red_magic_cutflower": "Harvested Spider Lily",
-    "lj_red_magic_dug_flower": "Spider Lily Root",
+    "lj_red_magic_cutflower": "Harvested Dragon Claw Flower",
+    "lj_red_magic_dug_flower": "Dragon Claw Flower Root",
     "lj_wudao_chair": "Enlightenment Tempering Seat",
     "lj_huangjie_box": "Wild Realm Storage Box",
     "lj_cuiju_box": "Qi-Gathering Weapon Case",
@@ -429,7 +429,7 @@ NAME_EN = {
     "zhen_quling": "Spirit-Banishing Demon-Locking Formation",
     "zhen_jiwen": "Extreme Temperature Ward Formation",
     "lj_reiki_grass": "Spirit-Melting Grass",
-    "lj_red_magic_flower": "Spider Lily",
+    "lj_red_magic_flower": "Dragon Claw Flower",
     "lj_purple_magic_flower": "Amethyst Form Flower",
     "yihuo_rules": "Flame Usage Rules",
     "lj_ordinary_flame": "Wasteland Flame",
@@ -653,7 +653,7 @@ Feeding on Remains: whenever a player dies, any deeply demonized boss within 40 
 Demonic Frenzy: dropping to 30% health or below triggers a frenzy — damage +30%, its damage reduction and planar defense stop working (the damage multiplier and the +5 planar defense are removed), and it cannot heal at all while frenzied (every heal is blocked).
 　Only epic bosses also get their skill cooldowns halved.
 　The frenzy lasts 300 seconds (5 minutes) and can only trigger again once it has ended.
-Heaven's Judgment: on death it calls down a tribulation for 60 seconds, striking lightning every 6 seconds that kills outright (9999 damage, ignoring invulnerability and damage absorption). The landing spot is marked first and the bolt lands 1.5 seconds later.
+Heaven's Judgment: on death it calls down a tribulation for 60 seconds, striking lightning every 6 seconds. Only the player who killed it is struck (kills credited to followers, the Void Ring and so on count as the player's): an ordinary deeply demonized creature takes 10% of your maximum health, while an epic boss kills outright (100% of maximum health, ignoring invulnerability and damage absorption). The landing spot is marked first and the bolt lands 1.5 seconds later, and the very first mark appears immediately instead of after 6 seconds.
 　Warning: players within 25 of the landing spot hear "The heavens have sensed it. A tribulation is coming!" and see a "Sacrificial Tribulation" countdown on the HUD; it disappears once they leave the area.
 
 On death it adds 1 Magic Crystal plus the creature's own loot, and doubles the vanilla drop amounts.
@@ -740,6 +740,7 @@ Cannot be destroyed, and cannot be deconstructed with a Deconstruction Staff.
 Absorbs exotic flames and stores pills, 8 slots.
 Right-click in the inventory to open or close it (there is only one container — the one opened from a following gourd is the same one). While open it stays open; opening other chest-like items will not close the gourd.
 Pick it up with the mouse, drop it on the ground and it follows you. While following, any ownerless exotic flame within 16 range flies into the gourd on its own, and once absorbed it belongs to the gourd's owner.
+Picking the gourd up from your inventory or a backpack with the mouse and putting it down again returns it to the slot it came from whenever that slot is still usable.
 While following: left-click opens or closes the gourd, right-click recalls it.
 """,
     },
@@ -748,6 +749,8 @@ While following: left-click opens or closes the gourd, right-click recalls it.
         "summary": "Plant it in the ground to absorb shadow creatures and turn them into Magic Cores; giving it a Purple Scale Demon Flame unlocks Soul Refining.",
         "detail": """
 Special refining (no pill tribulation, 100% success)
+
+Refining time 4 minutes.
 
 Cannot be destroyed or deconstructed.
 
@@ -992,6 +995,8 @@ Source: killing a Shadow Blood Bat on Butterfly Island always drops 1.
 Use: Keel Armour, Crystal Crown, Extraordinary Pill.
 
 1 Blood Bat Essence restores Keel Armour / Crystal Crown to full durability.
+
+Stack limit 20.
 """,
     },
     "lj_soul_snake_skin": {
@@ -1034,18 +1039,18 @@ Use: transplanting Spirit-Melting Grass elsewhere.
     },
     "lj_red_magic_cutflower": {
         "tags": "Materials,Spirit Plants,Alchemy",
-        "summary": "The part harvested from a Spider Lily; used in moderate and high-tier pills.",
+        "summary": "The part harvested from a Dragon Claw Flower; used in moderate and high-tier pills.",
         "detail": """
-Source: harvesting a "Spider Lily" gives 1 [images/inventoryimages2/petals.png] Petals plus 1 Harvested Spider Lily.
+Source: harvesting a "Dragon Claw Flower" gives 1 [images/inventoryimages2/petals.png] Petals plus 1 Harvested Dragon Claw Flower.
 
 Use: Invincible Pill, Nascent Union Pill.
 """,
     },
     "lj_red_magic_dug_flower": {
         "tags": "Materials,Spirit Plants",
-        "summary": "The root left behind when a Spider Lily is dug up.",
+        "summary": "The root left behind when a Dragon Claw Flower is dug up.",
         "detail": """
-Source: 5% chance of an extra one when harvesting a "Spider Lily".
+Source: 5% chance of an extra one when harvesting a "Dragon Claw Flower".
 
 Use: transplanting Spider Lilies elsewhere.
 """,
@@ -1148,8 +1153,10 @@ Can be destroyed with a hammer and burned by torches; destroying it returns 2 [i
 
 Stores 3×11 + 1×10 slots and behaves like a vanilla chest.
 
+There is no open limit, so several players can have the same box open at once.
+
 Extra features:
-Top left "Sort" — adds a sorting function.
+Top left "Sort" — adds a sorting function (sorting no longer dumps the excess of an infinitely stacked item onto the ground, and identical items are ordered by stack size, biggest first).
 Bottom right "Seal" — closes the chest.
 Lower right "Safe Deposit" — for items the chest already holds, clicking safe deposit puts everything of yours into the chest in one go.
 
@@ -1453,9 +1460,9 @@ Use: the basic herb of nearly every pill.
         "tags": "Spirit Plants,Materials",
         "summary": "Grows beside predecessor skeletons; a skeleton left by a dead player also grows one after 1 day.",
         "detail": """
-Spawn: beside predecessor skeletons, only 1 per skeleton. A skeleton left behind when a player dies grows a Spider Lily nearby after 1 day.
+Spawn: beside predecessor skeletons, only 1 per skeleton. A skeleton left behind when a player dies grows a Dragon Claw Flower nearby after 1 day.
 
-Harvesting: gives 1 [images/inventoryimages2/petals.png] Petals and 1 Spider Lily, with a 5% chance of an extra Spider Lily Root.
+Harvesting: gives 1 [images/inventoryimages2/petals.png] Petals and 1 Dragon Claw Flower, with a 5% chance of an extra Dragon Claw Flower Root.
 
 Its growth cycle matches vanilla saplings and it can be fertilised to speed it up.
 ⚠️ It does not grow in winter (same as Spirit-Melting Grass).
@@ -1772,19 +1779,19 @@ The restored altar
 Spawns at the Remains Altar (an ancient ruins islet). Epic boss.
 
 Base stats
-30000 health, 30 armour, medium movement speed.
+30000 health, 15 armour, medium movement speed.
 
 Core mechanics
-Immune to freeze, stagger and knockback.
-Every 10000 health lost summons 4 Venomous Scorpion Larvae (250 health, 40 attack, 3 poison damage per second for 8 seconds), with a 30-second cooldown. The larvae stay around forever, and whether they die does not affect the next summon of 4.
+Immune to freeze, stagger and knockback; when put to sleep it stays down for 8 seconds.
+Every 5000 health lost summons 4 Venomous Scorpion Larvae (250 health, 40 attack, 3 poison damage per second for 8 seconds), with a 30-second cooldown; healing back up never re-triggers a stage that has already been recorded. The larvae stay around forever, and whether they die does not affect the next summon of 4.
 
 Skills
 Sweep (basic attack): a pincer swipe, 60 damage per pincer, 8-second cooldown. Attack range about 1 turf (4 units; 1 turf = 4 units). After 4 attacks the tail sweeps for 90 AOE damage and knocks players back 2 turf.
 
 Meteor Crash: calls down a meteor that hurtles at the player, much like the rocks falling in a meteor field (destroying buildings and trees, same as a vanilla meteor field). 18-second cooldown. Deals 120 damage and knocks the player down (sending them flying and sprawling).
 
-Grit Eruption: a 5-turf cone of sand in front of it, lasting 3 seconds, 20-second cooldown.
-　The eruption lasts 3 seconds, covering a 5-turf cone 3 turf wide in front of it, continuously spawning grit that corrodes the terrain; the terrain lingers for 2 seconds after the eruption ends.
+Grit Eruption: a 5-turf cone of sand in front of it, lasting 1.2 seconds, 20-second cooldown.
+　The eruption lasts 1.2 seconds, covering a 5-turf cone 3 turf wide in front of it, continuously spawning grit that corrodes the terrain; the terrain lingers for 2 seconds after the eruption ends.
 　⚠️ The grit's slow and damage come from the vanilla sand spikes themselves.
 
 Scorpion Dragon Charge: charges up for 1 second, then charges in a straight line for 8 turf, dealing 100 damage and destroying buildings along the way, ending with a 2-second stagger; 30-second cooldown. Maximum straight-line distance is 8 turf.
@@ -1908,7 +1915,7 @@ Amethyst Shell 1, Lion Bone 1, [images/inventoryimages2/monstermeat.png] Monster
 SITE = [
     # modinfo.lua 里是 name = "灵界"，author = "犹如黑夜星光、喵大仙BigXian"。
     # 顶栏作者名按作者要求单独写（跟 modinfo 不必一致）。
-    {"网站标题": "灵界", "网站英文名": "Spirit Realm", "网站版本": "v0.3", "作者": "犹如黑夜星光JinYan、喵大仙BigXian"},
+    {"网站标题": "灵界", "网站英文名": "Spirit Realm", "网站版本": "v0.6", "作者": "犹如黑夜星光JinYan、喵大仙BigXian"},
 ]
 
 SECTIONS = [
@@ -1950,7 +1957,7 @@ TELE = [
     ("lj_dust_flame", "灵煊尘火"),
     ("lj_purplemonster_flame", "紫鳞妖焰"),
     ("lj_reiki_grass", "融灵草"),
-    ("lj_red_magic_flower", "彼岸花"),
+    ("lj_red_magic_flower", "龙爪花"),
     ("lj_purple_magic_flower", "紫晶塑体花"),
     ("lj_wudao_chair", "悟道淬体台,淬体台"),
     ("lj_alchemy_furnace", "炼丹炉,丹炉"),
@@ -2227,7 +2234,7 @@ item(
 魔化狂暴：生命值降到 30% 及以下时进入狂暴——伤害 +30%、减伤与位面防御加成失效（移除受伤乘数与 +5 位面防御）、期间完全无法回血（任何治疗都被拦下）。
 　　只有史诗 Boss 会额外获得技能冷却减半。
 　　狂暴持续 300 秒（5 分钟），结束后才可能再次触发。
-祭天：死亡后召唤天劫，持续 60 秒，每 6 秒触发一次雷击，一击必杀（9999 点、无视无敌与伤害吸收）。落点会先有标识，1.5 秒后落地。
+祭天：死亡后召唤天劫，持续 60 秒，每 6 秒触发一次雷击。只有击杀它的玩家会被劈中（随从、虚空戒等造成的击杀同样算玩家的）：普通深度入魔扣除 10% 最大生命，史诗 Boss 则必杀（100% 最大生命，无视无敌与伤害吸收）。落点会先有标识，1.5 秒后落地，且第一轮标识立即出现（不必再等 6 秒）。
 　预警：落点 25 范围内的玩家会收到台词「天道有感，雷劫将至！」并在 HUD 上看到「祭天雷劫」倒计时；走出范围自动消失。
 
 击杀后追加 1 个魔晶 + 生物原生材料，且原生掉落量翻倍。
@@ -2324,6 +2331,7 @@ item(
 吸收异火时「异火焚身」的剩余时间会显示在 HUD 的负面状态面板上；只显示给当前持有葫芦的人，葫芦掉在地上时暂停并移除显示。
 在物品栏里就能右键打开 / 关闭（容器只有一份，跟随葫芦打开的也是它）。打开状态下会一直在，不会因打开其他箱子类物品而自动关闭葫芦。
 可鼠标拿起放置地面跟随；跟随状态下 16 码范围内有没有主人的异火，会自动飞进葫芦，吸收后归葫芦主人所有。
+从物品栏 / 背包里用鼠标拿起葫芦后再放下，会优先放回原来的格子；原格不能用时才随意放置。
 跟随状态下：左键是跟随状态葫芦的打开 / 关闭，右键跟随状态的葫芦就回收。
 """,
     recipe=R(("魔核", 2), ("铥矿", 4), ("蓝宝石", 1), ("红宝石", 1)),
@@ -2337,7 +2345,7 @@ item(
 
 炼制（特殊炼制，必成、不触发丹劫）：""" + R(("噩梦燃料", 5), ("芦苇", 5), ("树枝", 5), ("魔晶", 2)) + """。
 
-无法摧毁，可分解。
+炼制时间 4 分钟。\n\n无法摧毁，可分解。
 
 给予紫鳞妖焰可解锁技能「炼魂」。
 插在地上会自动吸收原版的 4 种影怪，以及深度入魔产生的影体分身；每吸进一只化成一颗魔核，直接掉在魂幡下方。
@@ -2459,11 +2467,11 @@ item(
     """
 中阶丹药（玄），炼制时间 4 分钟。
 
-材料：""" + R(("融灵草", 5), ("彼岸花", 2), ("告密的心", 1), ("魔晶", 1)) + """。
+材料：""" + R(("融灵草", 5), ("龙爪花", 2), ("告密的心", 1), ("魔晶", 1)) + """。
 
 效果：30 秒「不灭」状态，30 秒内生命值最低为 1，其他数值不受影响。
 """,
-    recipe=R(("融灵草", 5), ("彼岸花", 2), ("告密的心", 1), ("魔晶", 1)),
+    recipe=R(("融灵草", 5), ("龙爪花", 2), ("告密的心", 1), ("魔晶", 1)),
 )
 
 item(
@@ -2537,11 +2545,11 @@ item(
     """
 高阶丹药（地），炼制时间 8 分钟。可触发丹劫。
 
-材料：""" + R(("彼岸花", 3), ("黄宝石", 2), ("紫晶壳", 1), ("魔晶", 5)) + """。
+材料：""" + R(("龙爪花", 3), ("黄宝石", 2), ("紫晶壳", 1), ("魔晶", 5)) + """。
 
 效果：服用此丹药，在悟道淬体台打坐 10 秒，提升合婴级别强者的实力。
 """,
-    recipe=R(("彼岸花", 3), ("黄宝石", 2), ("紫晶壳", 1), ("魔晶", 5)),
+    recipe=R(("龙爪花", 3), ("黄宝石", 2), ("紫晶壳", 1), ("魔晶", 5)),
 )
 
 item(
@@ -2658,6 +2666,8 @@ item(
 用途：骸龙甲、晶羽冠、超凡丹。
 
 血蝠精血 1 个可恢复骸龙甲 / 晶羽冠的满耐久。
+
+堆叠上限 20。
 """,
 )
 
@@ -2705,22 +2715,22 @@ item(
 )
 
 item(
-    "cailiao", "lj_red_magic_cutflower", "采下的彼岸花", "材料,灵植,炼丹",
-    "从彼岸花上采下来的部分，用于中高阶丹药。",
+    "cailiao", "lj_red_magic_cutflower", "采下的龙爪花", "材料,灵植,炼丹",
+    "从龙爪花上采下来的部分，用于中高阶丹药。",
     """
-来源：采集「彼岸花」获得，一次得 花瓣 1 + 采下的彼岸花 1。
+来源：采集「龙爪花」获得，一次得 花瓣 1 + 采下的龙爪花 1。
 
 用途：不灭丹、合婴丹。
 """,
 )
 
 item(
-    "cailiao", "lj_red_magic_dug_flower", "彼岸花根", "材料,灵植",
-    "挖走彼岸花留下的根。",
+    "cailiao", "lj_red_magic_dug_flower", "龙爪花根", "材料,灵植",
+    "挖走龙爪花留下的根。",
     """
-来源：采集「彼岸花」时有 5% 概率额外获得。
+来源：采集「龙爪花」时有 5% 概率额外获得。
 
-用途：把彼岸花移植到别处。
+用途：把龙爪花移植到别处。
 """,
 )
 
@@ -2781,8 +2791,10 @@ item(
 
 存放物品 3×11 + 1×10 格，具备原版箱子效果。
 
+没有开启人数限制，多名玩家可以同时打开同一个箱子。
+
 附加功能：
-左上角「整理」——增加整理功能。
+左上角「整理」——增加整理功能（整理时不会再把无限堆叠里超出的部分掉到地上；同一种物品会按数量从多到少排）。
 右下角「封」——关闭箱子。
 右下方「安全入库」——箱子内已存在的物品，点击安全入库，自身的东西会一键放入箱子。
 
@@ -3205,12 +3217,12 @@ item(
 )
 
 item(
-    "lingzhi", "lj_red_magic_flower", "彼岸花", "灵植,材料",
+    "lingzhi", "lj_red_magic_flower", "龙爪花", "灵植,材料",
     "生长在前辈骨架旁，玩家死亡留下的骨架 1 天后也会长出来。",
     """
-生成：前辈骨架旁，每个骨架只生成 1 朵。玩家死亡后留下的骨架会在 1 天后附近生长彼岸花。
+生成：前辈骨架旁，每个骨架只生成 1 朵。玩家死亡后留下的骨架会在 1 天后附近生长龙爪花。
 
-采摘：可获得 花瓣 1、彼岸花 1；5% 概率额外获得 彼岸花根 1。
+采摘：可获得 花瓣 1、龙爪花 1；5% 概率额外获得 龙爪花根 1。
 
 生长周期同原版树枝，可催熟。
 ⚠️ 冬季不生长（与融灵草一样）。
@@ -3551,19 +3563,19 @@ item(
 生成在残骸祭坛（远古遗迹小岛）。史诗级 Boss。
 
 基础属性
-血量 30000，护甲 30，移速中等。
+血量 30000，护甲 15，移速中等。
 
 核心机制
-不吃冰冻、僵直、击退效果。
-每掉落 10000 血量召唤 4 只毒蝎幼虫（250 血，攻击 40，毒伤 3/秒，持续 8 秒），冷却 30 秒。毒蝎幼虫会一直存在，不死亡也不影响下一次技能召唤 4 只。
+不吃冰冻、僵直、击退效果；被催眠时昏睡 8 秒。
+每损失 5000 点生命就召唤 4 只毒蝎幼虫（250 血，攻击 40，毒伤 3/秒，持续 8 秒），冷却 30 秒；回血不会让已经记过的阶段重复触发。毒蝎幼虫会一直存在，不死亡也不影响下一次技能召唤 4 只。
 
 技能
 横扫（普攻）：钳子挥击，每钳 60 伤，冷却 8 秒。攻击范围约 1 格（4 码，1 格 = 4 码）。攻击 4 下后尾巴横扫造成 90 点 AOE 范围伤害，并对玩家造成 2 格击退效果。
 
 陨石崩击：召唤一个从天而降的陨石，飞速砸向玩家，类似陨石区的石头坠落（破坏建筑及树木，同原版陨石区）。冷却 18 秒。造成 120 点伤害，并击倒玩家（让玩家击飞摔倒的样子）。
 
-沙砾喷发：身前 5 格锥形喷沙，持续 3 秒，冷却 20 秒。
-　喷发持续释放时长 3 秒，身前 5 格锥形区域，宽 3 格，持续生成沙砾腐蚀地形，喷发结束后地形留存 2 秒。
+沙砾喷发：身前 5 格锥形喷沙，持续 1.2 秒，冷却 20 秒。
+　喷发持续释放时长 1.2 秒，身前 5 格锥形区域，宽 3 格，持续生成沙砾腐蚀地形，喷发结束后地形留存 2 秒。
 　⚠️ 沙砾的减速与伤害来自原版沙刺本身。
 
 蝎龙冲撞：蓄力 1 秒，直线冲锋 8 格，100 伤害 + 摧毁路径建筑，结束后眩晕 2 秒，冷却 30 秒。直线最大距离 8 格。
@@ -3742,7 +3754,7 @@ DATA = {
              "灵虚葫：异火焚身倒计时显示在 HUD，掉地暂停\n"
              "蝴蝶岛：地图缩小（陆地约原来一半），固定实体精简（夜蝠巢穴 4 → 3、正常的树 2 → 1）\n"
              "配方：清心丸粘液 3 → 1；入微丹犀牛角 → 暗影心房\n"
-             "其它：灵韵弓箭矢调整、彼岸花计时持久化、异火线索提示文案调整\n"
+             "其它：灵韵弓箭矢调整、龙爪花计时持久化、异火线索提示文案调整\n"
              "版本号 0.1 → 0.3；补充服务器筛选标签\n",
          "英文内容":
              "Added the \"Timed Effects\" panel (buffs and negative effects shown separately, draggable, follows the HUD scale)\n"
@@ -3756,8 +3768,30 @@ DATA = {
              "Spirit Void Gourd: the Flame Backlash countdown now shows on the HUD and pauses when dropped\n"
              "Butterfly Island: smaller map (about half the land) with fewer fixed props (Night Bat Nests 4 → 3, ordinary trees 2 → 1)\n"
              "Recipes: Stillness Pill Glommer's Goop 3 → 1; Subtle Realm Pill Guardian's Horn → Shadow Atrium\n"
-             "Also: Reiki Bow arrow tweaks, Spider Lily timer persistence, and new wording for the exotic flame clue hint\n"
+             "Also: Reiki Bow arrow tweaks, Dragon Claw Flower timer persistence, and new wording for the exotic flame clue hint\n"
              "Version 0.1 → 0.3; added server filter tags\n",
+         "是否展示": "true"},
+        {"日志版本": "v0.6", "日期": "2026-09-22",
+         "内容":
+             "版本号 0.3 → 0.6\n"
+             "龙爪花改名为龙爪花（花、花根、采下的花一起改）\n"
+             "祭天重做：只有击杀它的玩家会被雷劈（随从、虚空戒等也算）；普通深度入魔扣 10% 最大生命，史诗 Boss 必杀；第一轮预警立即出现\n"
+             "炽岩蝎龙：护甲 30% → 15%；召唤改为每损失 5000 点生命召唤一批；沙砾喷发 1.2 秒；被催眠昏睡 8 秒\n"
+             "魂幡炼制时间写入常量：4 分钟\n"
+             "血蝠精血堆叠上限改为 20\n"
+             "荒界纳物箱：不再限制同时开启人数；整理时不会把超额堆叠掉到地上\n"
+             "灵虚葫：从物品栏 / 背包拿起后可以放回原槽位\n"
+             "新增「雷劫层数」组件（每层雷劫伤害 +2%，上限 50 层，本次版本尚未启用）\n",
+         "英文内容":
+             "Version 0.3 → 0.6\n"
+             "Dragon Claw Flower renamed to Dragon Claw Flower (flower, root and cut flower)\n"
+             "Heaven's Judgment reworked: only the player who killed it is struck (followers and the Void Ring count too); an ordinary deeply demonized creature takes 10% of your maximum health while an epic boss kills outright, and the first warning appears immediately\n"
+             "Blazing Rock Scorpion Dragon: armour 30% → 15%; summons now trigger every 5000 health lost; grit eruption lasts 1.2 seconds; sleeps for 8 seconds when put to sleep\n"
+             "Soul Banner refining time is now a defined constant: 4 minutes\n"
+             "Blood Bat Essence stack limit changed to 20\n"
+             "Wild Realm Storage Box: no more limit on how many players can open it; sorting no longer dumps excess stacks on the ground\n"
+             "Spirit Void Gourd: picking it up from the inventory or a backpack and putting it down returns it to its original slot\n"
+             "Added a \"Tribulation Debt\" component (each stack adds 2% tribulation damage, up to 50 stacks; not enabled in this version yet)\n",
          "是否展示": "true"},
     ],
     "tele": [{"导向id": t[0], "字段": t[1], "说明": "", "是否展示": "true"} for t in TELE],
