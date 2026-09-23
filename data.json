@@ -572,8 +572,8 @@
       "需祭坛": "",
       "简介": "中阶丹药，配合悟道淬体台打坐 10 秒提升境界。",
       "英文简介": "A moderate pill: meditate 10 seconds on the Enlightenment Tempering Seat to advance a realm.",
-      "详情": "中阶丹药（玄），炼制时间 4 分钟。\n\n效果：服用此丹药，在悟道淬体台打坐 10 秒，辟谷境界提升至入微。",
-      "英文详情": "Moderate pill (mystic), refining time 4 minutes.\n\nEffect: take it and meditate 10 seconds on the Enlightenment Tempering Seat to advance from Fasting to Subtle.",
+      "详情": "中阶丹药（玄），炼制时间 4 分钟。\n\n效果：服用此丹药，在悟道淬体台打坐 10 秒，辟谷境界提升至引气。",
+      "英文详情": "Moderate pill (mystic), refining time 4 minutes.\n\nEffect: take it and meditate 10 seconds on the Enlightenment Tempering Seat to advance from Fasting to Guiding.",
       "排序值": "25",
       "是否展示": "true"
     },

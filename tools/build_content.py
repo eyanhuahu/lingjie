@@ -889,7 +889,7 @@ Effect: take it and meditate 10 seconds on the Enlightenment Tempering Seat to a
         "detail": """
 Moderate pill (mystic), refining time 4 minutes.
 
-Effect: take it and meditate 10 seconds on the Enlightenment Tempering Seat to advance from Fasting to Subtle.
+Effect: take it and meditate 10 seconds on the Enlightenment Tempering Seat to advance from Fasting to Guiding.
 """,
     },
     "lj_ruwei_pill": {
@@ -2553,7 +2553,7 @@ item(
 
 材料：""" + R(("铥矿", 2), ("兔毛", 5), ("红宝石", 2), ("魔核", 5)) + """。
 
-效果：服用此丹药，在悟道淬体台打坐 10 秒，辟谷境界提升至入微。
+效果：服用此丹药，在悟道淬体台打坐 10 秒，辟谷境界提升至引气。
 """,
     recipe=R(("铥矿", 2), ("兔毛", 5), ("红宝石", 2), ("魔核", 5)),
 )
