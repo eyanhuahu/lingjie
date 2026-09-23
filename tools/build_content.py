@@ -923,7 +923,7 @@ Effect: take it and meditate 10 seconds on the Enlightenment Tempering Seat to e
         "tags": "Pills,High,Tribulation,Survival",
         "summary": "A high pill that makes you immune to pill tribulation lightning until it ends.",
         "detail": """
-High pill (earth), refining time 8 minutes.
+High pill (earth), refining time 8 minutes. Can trigger an Alchemy Tribulation.
 
 Effect: immune to pill tribulation lightning until it ends.
 
@@ -2614,7 +2614,7 @@ item(
     "danyao", "lj_disaster_pill", "破劫丹（丹劫）", "丹药,高阶,丹劫,保命",
     "高阶丹药，服用后免疫丹劫雷击，直至消亡。",
     """
-高阶丹药（地），炼制时间 8 分钟。
+高阶丹药（地），炼制时间 8 分钟。可触发丹劫。
 
 材料：""" + R(("羊奶", 2), ("黄油", 2), ("蜂王浆", 2), ("魔晶", 2)) + """。
 

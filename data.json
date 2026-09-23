@@ -662,8 +662,8 @@
       "需祭坛": "",
       "简介": "高阶丹药，服用后免疫丹劫雷击，直至消亡。",
       "英文简介": "A high pill that makes you immune to pill tribulation lightning until it ends.",
-      "详情": "高阶丹药（地），炼制时间 8 分钟。\n\n效果：服用后免疫丹劫雷击，直至消亡。\n\n用于跳过炼制其他丹药时的雷劫判定——不触发丹劫则炼丹必然失败成为废丹，服用破劫丹可跳过雷劫判定直接成功。",
-      "英文详情": "High pill (earth), refining time 8 minutes.\n\nEffect: immune to pill tribulation lightning until it ends.\n\nIt is used to skip the lightning check when refining other pills — with no tribulation the refinement always fails and produces a Failed Pill, so taking a Disaster Breaking Pill skips the check and succeeds outright.",
+      "详情": "高阶丹药（地），炼制时间 8 分钟。可触发丹劫。\n\n效果：服用后免疫丹劫雷击，直至消亡。\n\n用于跳过炼制其他丹药时的雷劫判定——不触发丹劫则炼丹必然失败成为废丹，服用破劫丹可跳过雷劫判定直接成功。",
+      "英文详情": "High pill (earth), refining time 8 minutes. Can trigger an Alchemy Tribulation.\n\nEffect: immune to pill tribulation lightning until it ends.\n\nIt is used to skip the lightning check when refining other pills — with no tribulation the refinement always fails and produces a Failed Pill, so taking a Disaster Breaking Pill skips the check and succeeds outright.",
       "排序值": "30",
       "是否展示": "true"
     },
