@@ -783,7 +783,7 @@ Refining time 4 minutes.
 Cannot be destroyed or deconstructed.
 
 Giving it a Purple Scale Demon Flame unlocks the Soul Refining skill.
-Planted in the ground it automatically absorbs the 4 vanilla shadow creatures, plus the shadow clones produced by deep demonization; each one absorbed becomes a Magic Core dropped right below the banner.
+Soul Refining: planted in the ground it automatically absorbs the 4 vanilla shadow creatures, plus the shadow clones produced by deep demonization; each one absorbed becomes a Magic Core dropped right below the banner.
 　Other shadow creatures (Shadow Knight, Shadow Bishop, Shadow Rook and so on) are not absorbed.
 """,
     },
@@ -2406,7 +2406,7 @@ item(
 炼制时间 4 分钟。\n\n无法摧毁，可分解。
 
 给予紫鳞妖焰可解锁技能「炼魂」。
-插在地上会自动吸收原版的 4 种影怪，以及深度入魔产生的影体分身；每吸进一只化成一颗魔核，直接掉在魂幡下方。
+炼魂：插在地上会自动吸收原版的 4 种影怪，以及深度入魔产生的影体分身；每吸进一只化成一颗魔核，直接掉在魂幡下方。
 　　其他影怪（影骑士、影主教、影车等）不会被吸入。
 """,
     recipe=R(("噩梦燃料", 5), ("芦苇", 5), ("树枝", 5), ("魔晶", 2)),

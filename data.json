@@ -374,8 +374,8 @@
       "需祭坛": "",
       "简介": "插入地面自动吸收影怪并转化为魔核；给予紫鳞妖焰可解锁「炼魂」。",
       "英文简介": "Plant it in the ground to absorb shadow creatures and turn them into Magic Cores; giving it a Purple Scale Demon Flame unlocks Soul Refining.",
-      "详情": "特殊炼制（不触发丹劫，炼制概率 100%）\n\n炼制时间 4 分钟。\n\n无法摧毁，可分解。\n\n给予紫鳞妖焰可解锁技能「炼魂」。\n插在地上会自动吸收原版的 4 种影怪，以及深度入魔产生的影体分身；每吸进一只化成一颗魔核，直接掉在魂幡下方。\n　　其他影怪（影骑士、影主教、影车等）不会被吸入。",
-      "英文详情": "Special refining (no pill tribulation, 100% success)\n\nRefining time 4 minutes.\n\nCannot be destroyed or deconstructed.\n\nGiving it a Purple Scale Demon Flame unlocks the Soul Refining skill.\nPlanted in the ground it automatically absorbs the 4 vanilla shadow creatures, plus the shadow clones produced by deep demonization; each one absorbed becomes a Magic Core dropped right below the banner.\n　Other shadow creatures (Shadow Knight, Shadow Bishop, Shadow Rook and so on) are not absorbed.",
+      "详情": "特殊炼制（不触发丹劫，炼制概率 100%）\n\n炼制时间 4 分钟。\n\n无法摧毁，可分解。\n\n给予紫鳞妖焰可解锁技能「炼魂」。\n炼魂：插在地上会自动吸收原版的 4 种影怪，以及深度入魔产生的影体分身；每吸进一只化成一颗魔核，直接掉在魂幡下方。\n　　其他影怪（影骑士、影主教、影车等）不会被吸入。",
+      "英文详情": "Special refining (no pill tribulation, 100% success)\n\nRefining time 4 minutes.\n\nCannot be destroyed or deconstructed.\n\nGiving it a Purple Scale Demon Flame unlocks the Soul Refining skill.\nSoul Refining: planted in the ground it automatically absorbs the 4 vanilla shadow creatures, plus the shadow clones produced by deep demonization; each one absorbed becomes a Magic Core dropped right below the banner.\n　Other shadow creatures (Shadow Knight, Shadow Bishop, Shadow Rook and so on) are not absorbed.",
       "排序值": "14",
       "是否展示": "true"
     },
