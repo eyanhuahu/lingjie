@@ -547,10 +547,6 @@ If you are hit: the furnace is destroyed on the spot, leaving only 5 Charcoal an
 Protection: a Disaster Breaking Pill makes you immune to the tribulation with no time limit, but it is lost on death and does nothing while merely carried.
 Indicators: the negative-effect panel shows an "Alchemy Tribulation" countdown while refining, and dying to it records the cause of death as "Alchemy Tribulation Lightning".
 Refining that never triggers it: using an exotic flame still owes the tribulation, but "special refining" (Soul Banner, Moonlight Condensing Vase, Dustflame Log and so on) always succeeds and never triggers one.
-
-3. Tribulation Debt (not enabled in this version)
-
-Each deeply demonized creature a player kills would add 1 stack, each stack raising tribulation damage by 2% up to 50 stacks (+100%), and the progress is saved. Nothing in the current version enables it yet.
 """,
     },
     "reiki_value": {
@@ -2171,10 +2167,6 @@ item(
 免劫：服用破劫丹后免疫丹劫，没有时间限制，但死亡后失效；只带在背包里不生效。
 提示：炼丹期间，负面状态面板上会显示「丹劫」倒计时；被丹劫劈死的死亡原因记为「丹劫天雷」。
 不触发丹劫的炼制：使用异火炼丹仍然要应劫；但「特殊炼制」（魂幡、月魄凝液瓶、尘火日志等）必成，且完全不触发丹劫。
-
-三、雷劫层数（本版尚未启用）
-
-玩家每击杀一只深度入魔生物累积 1 层，每层让雷劫伤害 +2%，最高 50 层（+100%），进度会存档。当前版本还没有任何地方启用它。
 """,
 )
 
