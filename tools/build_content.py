@@ -401,6 +401,7 @@ NAME_EN = {
     "realm_system": "Realm System",
     "reiki_value": "Reiki",
     "timed_effects": "Timed Effects",
+    "tribulation_rules": "Tribulation",
     "corruption_overview": "Demonization Overview",
     "corruption_light": "Light Demonization",
     "corruption_medium": "Moderate Demonization",
@@ -519,6 +520,36 @@ Buffs (6): Blazing Pill, Cold Flame Pill, Drying Pill, Explosion Pill, Invincibl
 
 Also: the player avatar popup now has an "Ethereal Realm Guide" entry.
 """,
+    },
+    "tribulation_rules": {
+        "tags": "Realm,Tribulation,Alchemy,Judgment",
+        "summary": "The full rules for the Alchemy Tribulation while refining and the Sacrificial Tribulation on a deeply demonized death.",
+        "detail": """
+There are two kinds of tribulation: the Alchemy Tribulation while refining pills, and the Sacrificial Tribulation that falls when a deeply demonized creature is killed by a player.
+
+1. Alchemy Tribulation
+
+Trigger: only mid-tier and high-tier pills can trigger it, with a 50% chance (the other 50% means no tribulation, and that batch always fails into a Failed Pill).
+Pace: mid-tier strikes every 10 seconds, with the first landing marker at second 9; high-tier every 8 seconds, with the first marker at second 7.
+Landing: the marker appears first and the bolt lands 1 second later, with a hit radius of 1.75.
+Duration: the whole tribulation lasts 120 seconds, and you have to stay beside the furnace dodging until it ends before you can collect the pills.
+Damage: the bolt empties your current health outright.
+If you are hit: the furnace is destroyed on the spot, leaving only 5 Charcoal and 1 Failed Pill, with no materials returned.
+Protection: a Disaster Breaking Pill makes you immune to the tribulation with no time limit, but it is lost on death and does nothing while merely carried.
+Indicators: the negative-effect panel shows an "Alchemy Tribulation" countdown while refining, and dying to it records the cause of death as "Alchemy Tribulation Lightning".
+Refining that never triggers it: using an exotic flame still owes the tribulation, but "special refining" (Soul Banner, Moonlight Condensing Vase, Dustflame Log and so on) always succeeds and never triggers one.
+
+2. Sacrificial Tribulation (deeply demonized death)
+
+Trigger: a deeply demonized creature killed by a player calls down a tribulation when it dies.
+Duration: 60 seconds, one strike every 6 seconds, and the first landing marker appears immediately instead of after 6 seconds.
+Target: only the player who killed it is struck; kills credited to followers or the Void Ring count as the player's.
+Damage: an ordinary deeply demonized creature takes 10% of your maximum health, while an epic boss kills outright (100% of maximum health), ignoring invulnerability and damage absorption.
+Landing: the marker appears first and the bolt lands 1.5 seconds later; players within 25 hear "The heavens have sensed it. A tribulation is coming!" and see a "Sacrificial Tribulation" countdown on the HUD, which disappears once they leave the area.
+
+3. Tribulation Debt (not enabled in this version)
+
+Each deeply demonized creature a player kills would add 1 stack, each stack raising tribulation damage by 2% up to 50 stacks (+100%), and the progress is saved. Nothing in the current version enables it yet.""",
     },
     "reiki_value": {
         "tags": "Realm,Reiki,Stats",
@@ -2108,6 +2139,37 @@ item(
 
 另外：玩家头像弹窗里新增了「灵界介绍页」入口。
 """,
+)
+
+item(
+    "jingjie", "tribulation_rules", "雷劫", "境界,雷劫,丹劫,祭天",
+    "炼丹时的「丹劫」与深度入魔死亡时的「祭天雷劫」的完整规则。",
+    """
+游戏里一共有两种雷劫：炼丹时的「丹劫」，以及深度入魔生物被玩家杀死时降下的「祭天雷劫」。
+
+一、丹劫（炼丹雷劫）
+
+触发：只有中阶与高阶丹药会触发丹劫，触发概率 50%（另外 50% 不触发，那一次必然失败，只得废丹）。
+节奏：中阶每 10 秒落雷一轮，第一轮的落点标识在第 9 秒出现；高阶每 8 秒一轮，第一轮标识在第 7 秒。
+落点：先出现落点标识，1 秒后落雷，判定半径 1.75。
+持续：整场丹劫 120 秒，期间必须一直待在炉子旁边躲避，躲完才能收丹。
+落雷伤害：直接清空当前生命（必杀）。
+被劈中：炼丹炉当场炸毁，只留下 5 个木炭和 1 颗废丹，材料不返还。
+免劫：服用破劫丹后免疫丹劫，没有时间限制，但死亡后失效；只带在背包里不生效。
+提示：炼丹期间，负面状态面板上会显示「丹劫」倒计时；被丹劫劈死的死亡原因记为「丹劫天雷」。
+不触发丹劫的炼制：使用异火炼丹仍然要应劫；但「特殊炼制」（魂幡、月魄凝液瓶、尘火日志等）必成，且完全不触发丹劫。
+
+二、祭天雷劫（深度入魔生物死亡）
+
+触发：被玩家杀死的深度入魔生物，死亡时召唤天劫。
+时长：持续 60 秒，每 6 秒落雷一次；第一轮的落点标识立即出现，不必再等 6 秒。
+目标：只有击杀它的玩家会被劈中；随从、虚空戒等造成的击杀同样算玩家的。
+伤害：普通深度入魔生物扣 10% 最大生命；史诗 Boss 则是必杀（100% 最大生命），无视无敌与伤害吸收。
+落点：先出现标识，1.5 秒后落地；落点 25 范围内的玩家会收到台词「天道有感，雷劫将至！」，并在 HUD 上看到「祭天雷劫」倒计时，走出范围自动消失。
+
+三、雷劫层数（本版尚未启用）
+
+玩家每击杀一只深度入魔生物累积 1 层，每层让雷劫伤害 +2%，最高 50 层（+100%），进度会存档。当前版本还没有任何地方启用它。""",
 )
 
 # ===========================================================================
