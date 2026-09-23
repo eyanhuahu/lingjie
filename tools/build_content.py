@@ -463,7 +463,7 @@ Adds Realm and Reiki values, shown alongside the three vanilla stats.
 There are 9 realms: Mortal, Tempered, Sinew, Fasting, Guiding, Subtle, Exalted, Nascent, Manifest. Each realm has 9 stages — Tempered 1, Tempered 2 … Tempered 9.
 
 How to advance
-　Earn experience by killing creatures. You count as a participant if you attacked within the last 30 seconds and within 15 turf of the kill.
+　Earn experience by killing creatures. You count as a participant if you attacked within the last 30 seconds and within 15 turf of the kill. Abigail's attacks, and kills made by Willow's fire, count for their owner (other followers do not).
 　Experience gained = the target's maximum health × 5% (5% / 8% / 12% selectable in mod settings); the code reads its current maximum health, so demonization-inflated health counts too.
 
 Bottlenecks and meditation
@@ -581,7 +581,7 @@ Every demonized creature is hostile (neutral creatures such as Chester are exclu
 Demonization has three tiers, shown in game as "Demonization: Light / Moderate / Deep":
 Light Demonization, Moderate Demonization, Deep Demonization.
 
-Never demonized: shadow creatures (Crawling Horror, Terrorbeak, Shadow creatures, Ruins shadow creatures, Shadow Knight, Shadow Bishop, Shadow Rook and so on), passive critters, players, followers, walls, and equipment display models. Creatures hired by a player lose every demonization effect immediately.
+Never demonized: shadow creatures (Crawling Horror, Terrorbeak, Shadow creatures, Ruins shadow creatures, Shadow Knight, Shadow Bishop, Shadow Rook, ocean shadow creatures and so on), passive critters, players, followers, walls, and equipment display models. Creatures hired by a player lose every demonization effect immediately.
 """,
     },
     "corruption_light": {
@@ -634,7 +634,7 @@ Player debuffs
 Demonic Aura: within 10 range, players lose 3 sanity every 5 seconds.
 Curse of Hunger: 30% chance when the player is hit by a creature; hunger drains 20% faster for 30 seconds.
 Shadow Slow: 20% chance when the player is hit by a creature; movement speed −20% for 10 seconds.
-Demonic Reflection: 10% chance when the creature takes damage from a player; reflects 5% of the damage.
+Demonic Reflection: 10% chance when the creature takes damage from a player; reflects 2% of the damage.
 
 Creature buffs
 Conditional Vulnerability: dropping to 50% health or below triggers a shield; the creature takes no damage for 5 seconds, with a 5-minute cooldown. The shield shows as a red force field.
@@ -669,7 +669,7 @@ Player debuffs
 Demonic Aura: within 10 range, players lose 5 sanity every 5 seconds.
 Curse of Hunger: 30% chance when the player is hit by a creature; hunger drains 20% faster for 30 seconds.
 Shadow Slow: 20% chance when the player is hit by a creature; movement speed −20% for 10 seconds.
-Demonic Reflection: 10% chance when the creature takes damage from a player; reflects 5% of the damage.
+Demonic Reflection: 10% chance when the creature takes damage from a player; reflects 5% of the damage, capped at 75 damage per hit.
 Mirror Confusion: 10% chance on attack; the player's movement direction flips 180° for the next 5 seconds.
 
 Creature buffs
@@ -1099,7 +1099,7 @@ Use: repairing the Remains Altar needs 1.
         "tags": "Spirit Plants,Materials,Boss",
         "summary": "Grows near the Mandrake plains and spawns one flower within 4 range every day; an Eclipsed Crystalwing Lion always guards it.",
         "detail": """
-Spawn: near the Mandrake plains, only one per world.
+Spawn: near the Mandrake plains, only one per world. The world keeps a record of whether that flower has been generated, so an older save grows one when you enter it, and a flower that vanishes abnormally is put back (the record is saved).
 
 Behaviour: spawns one flower within 4 range of itself every day.
 
@@ -1414,6 +1414,8 @@ Effect: provides light inside the area; every plant and crop in the formation ne
 Core: Demon Subduing Nucleus ([images/inventoryimages3/shadowheart.png] Shadow Atrium 1, [images/inventoryimages3/thulecite.png] Thulecite 5, [images/inventoryimages2/nightmarefuel.png] Nightmare Fuel 10, [images/inventoryimages2/purplegem.png] Purple Gem 1, [images/inventoryimages2/livinglog.png] Living Log 2, [images/lingjie/icons/lj_magic_crystal.png] Magic Crystal 2).
 
 Effect: blocks creatures but not players. No hostile creatures can spawn inside the area, or they are kept outside it; creatures already inside cannot leave.
+
+Spawn eviction: a hostile creature that spawns inside the area is moved at once to the nearest valid spot outside it — land creatures only onto land, while aquatic and flying ones may land on the ocean, and never next to a cave entrance; it is then registered as a creature outside.
 """,
     },
     "zhen_jiwen": {
@@ -2062,7 +2064,7 @@ item(
 境界共 9 个：凡境、淬体、炼筋、辟谷、引气、入微、超凡、合婴、具灵。每个境界分 9 阶，如淬体一阶、二阶……九阶。
 
 升阶方式
-　击杀生物获得经验；在 15 个地皮范围内、30 秒内参与过攻击就算参与。
+　击杀生物获得经验；在 15 个地皮范围内、30 秒内参与过攻击就算参与。亚比盖尔的攻击，以及薇洛技能火焰造成的击杀，都算它们主人的参战（其他随从不算）。
 　经验获取量 = 目标的最大生命 × 5%（mod 设置里可选 5% / 8% / 12%）；按代码取的是当前最大生命，被入魔抬高的那部分也算在内。
 
 瓶颈与打坐
@@ -2190,7 +2192,7 @@ item(
 入魔分三档，游戏内显示为「入魔程度：轻度 / 中度 / 深度」：
 轻度入魔、中度入魔、深度入魔。
 
-不会被入魔的：影怪系（爬行梦魇、恐怖喙、梦魇、废墟梦魇、影骑士、影主教、影车等）、被动小动物、玩家、同伴、墙体、装备展示模型。被玩家雇佣的生物会立即清除全部入魔效果。
+不会被入魔的：影怪系（爬行梦魇、恐怖喙、梦魇、废墟梦魇、影骑士、影主教、影车、海洋影怪等）、被动小动物、玩家、同伴、墙体、装备展示模型。被玩家雇佣的生物会立即清除全部入魔效果。
 """,
 )
 
@@ -2245,7 +2247,7 @@ item(
 魔气环绕：10 范围内玩家理智每 5 秒流失 3 点。
 饥饿诅咒：玩家受到生物攻击时 30% 概率触发，饥饿值消耗加快 20%，持续 30 秒。
 暗影迟缓：玩家受到生物攻击时 20% 概率触发，移速 -20%，持续 10 秒。
-魔气反弹：生物受到玩家伤害时 10% 概率触发，反射 5% 伤害。
+魔气反弹：生物受到玩家伤害时 10% 概率触发，反射 2% 伤害。
 
 生物强化
 限定易伤：生命值降到 50% 及以下会触发护盾，期间不受伤害（无敌），持续 5 秒，冷却 5 分钟。护盾表现为红色力场。
@@ -2281,7 +2283,7 @@ item(
 魔气环绕：10 范围内玩家理智每 5 秒流失 5 点。
 饥饿诅咒：玩家受到生物攻击时 30% 概率触发，饥饿值消耗加快 20%，持续 30 秒。
 暗影迟缓：玩家受到生物攻击时 20% 概率触发，移速 -20%，持续 10 秒。
-魔气反弹：生物受到玩家伤害时 10% 概率触发，反射 5% 伤害。
+魔气反弹：生物受到玩家伤害时 10% 概率触发，反射 5% 伤害，单次最多反弹 75 点。
 镜像混淆：攻击时 10% 概率触发「镜像」，玩家接下来 5 秒内移动方向反转 180°。
 
 生物强化
@@ -3183,6 +3185,8 @@ item(
 阵眼：镇魔枢核（""" + R(("暗影心房", 1), ("铥矿", 5), ("噩梦燃料", 10), ("紫宝石", 1), ("活木", 2), ("魔晶", 2)) + """）。
 
 效果：只拦生物不拦玩家。范围内无法生成敌对生物，或把敌对生物拦截在阵外；已经在阵内的生物无法出去。
+
+出生驱逐：敌对生物如果直接出生在阵内，会被立刻送到阵外最近的可站立位置——陆生生物只能落陆地，水生与飞行生物可以落海面，而且不会落到洞穴口旁边；送到之后才按阵外生物登记。
 """,
 )
 
@@ -3299,7 +3303,7 @@ item(
     "lingzhi", "lj_purple_magic_flower", "紫晶塑体花", "灵植,材料,Boss",
     "生长在曼德拉草原附近，每日在 4 格内生成一朵花；旁边必有月蚀晶翼狮守护。",
     """
-生成：曼德拉草原附近，每个世界只会生成一朵。
+生成：曼德拉草原附近，每个世界只会生成一朵。系统会记录这朵花有没有生成过：老存档进入世界后会补种一朵，花异常消失时也会补回来（生成状态会存档）。
 
 特性：每日在自身 4 格范围内生成一朵花。
 
@@ -3842,7 +3846,12 @@ DATA = {
              "魂幡炼制时间 4 分钟\n"
              "血蝠精血的堆叠上限改为 20\n"
              "荒界纳物箱：不再限制同时开启的人数；整理时不会把多出来的堆叠物掉在地上\n"
-             "灵虚葫：优化葫芦部署后的视觉逻辑\n",
+             "灵虚葫：优化葫芦部署后的视觉逻辑\n"
+             "驱灵锁魔阵：敌对生物出生在阵内会被立刻送到阵外最近的可站立位置\n"
+             "境界经验：亚比盖尔的攻击与薇洛技能火焰的击杀，也算它们主人的参战\n"
+             "紫晶塑体花：保证每个世界有一朵；老存档进世界会补种，花异常消失也会补回来\n"
+             "入魔：深度入魔的魔气反弹单次最多 75 点；不会被入魔的名单加上海洋影怪\n"
+             "优化视觉（祭天雷劫的落点预警图标）\n",
          "英文内容":
              "Version updated to 0.6\n"
              "Spider Lily renamed to Dragon Claw Flower\n"
@@ -3851,7 +3860,12 @@ DATA = {
              "Soul Banner refining time is 4 minutes\n"
              "Blood Bat Essence stack limit is now 20\n"
              "Wild Realm Storage Box: no longer limits how many players can open it at once; sorting no longer drops the extra items of an over-stacked pile on the ground\n"
-             "Spirit Void Gourd: improved how the gourd looks right after it is deployed\n",
+             "Spirit Void Gourd: improved how the gourd looks right after it is deployed\n"
+             "Demon-Locking Formation: hostile creatures that spawn inside are moved at once to the nearest valid spot outside\n"
+             "Realm experience: Abigail's attacks and kills made by Willow's fire now count for their owner\n"
+             "Amethyst Form Flower: every world is guaranteed one; an older save grows one when you enter it, and a flower that vanishes abnormally is put back\n"
+             "Demonization: deep demonization's reflection now caps at 75 damage per hit, and ocean shadow creatures are added to the never-demonized list\n"
+             "Visual polish (Heaven's Judgment landing marker icon)\n",
          "是否展示": "true"},
     ],
     "tele": [{"导向id": t[0], "字段": t[1], "说明": "", "是否展示": "true"} for t in TELE],
