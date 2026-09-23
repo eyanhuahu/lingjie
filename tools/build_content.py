@@ -3774,7 +3774,7 @@ DATA = {
         {"日志版本": "v0.6", "日期": "2026-09-22",
          "内容":
              "版本号 0.3 → 0.6\n"
-             "龙爪花改名为龙爪花（花、花根、采下的花一起改）\n"
+             "彼岸花改名为龙爪花（花、花根、采下的花一起改）\n"
              "祭天重做：只有击杀它的玩家会被雷劈（随从、虚空戒等也算）；普通深度入魔扣 10% 最大生命，史诗 Boss 必杀；第一轮预警立即出现\n"
              "炽岩蝎龙：护甲 30% → 15%；召唤改为每损失 5000 点生命召唤一批；沙砾喷发 1.2 秒；被催眠昏睡 8 秒\n"
              "魂幡炼制时间写入常量：4 分钟\n"
@@ -3784,7 +3784,7 @@ DATA = {
              "新增「雷劫层数」组件（每层雷劫伤害 +2%，上限 50 层，本次版本尚未启用）\n",
          "英文内容":
              "Version 0.3 → 0.6\n"
-             "Dragon Claw Flower renamed to Dragon Claw Flower (flower, root and cut flower)\n"
+             "Spider Lily renamed to Dragon Claw Flower (flower, root and cut flower)\n"
              "Heaven's Judgment reworked: only the player who killed it is struck (followers and the Void Ring count too); an ordinary deeply demonized creature takes 10% of your maximum health while an epic boss kills outright, and the first warning appears immediately\n"
              "Blazing Rock Scorpion Dragon: armour 30% → 15%; summons now trigger every 5000 health lost; grit eruption lasts 1.2 seconds; sleeps for 8 seconds when put to sleep\n"
              "Soul Banner refining time is now a defined constant: 4 minutes\n"
