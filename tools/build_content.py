@@ -529,7 +529,7 @@ There are two kinds of tribulation: the Sacrificial Tribulation that falls when 
 
 1. Sacrificial Tribulation (deeply demonized death)
 
-Trigger: a deeply demonized creature killed by a player calls down a tribulation when it dies (kills credited to followers, the Void Ring and so on count as the player's).
+Trigger: the creature must be killed by a player — only then does a deeply demonized creature call down a tribulation on death. The check looks at the source of the final blow: the player, the player's followers, and the player's items (such as the Void Ring) all count as the player's kill. A death with no source (starvation, environmental damage, creatures killing each other and so on) never triggers a tribulation and is not credited to any player.
 Duration: 60 seconds, one strike every 6 seconds, and the first landing marker appears immediately instead of after 6 seconds.
 Target: the landing spots are random within roughly 25 range of the corpse — a marker appears first and the bolt falls shortly after, and any player it hits takes damage.
 Damage: an ordinary deeply demonized creature takes 10% of your maximum health, while an epic boss kills outright (100% of maximum health), ignoring invulnerability and damage absorption.
@@ -2148,7 +2148,7 @@ item(
 
 一、祭天雷劫（深度入魔生物死亡）
 
-触发：被玩家杀死的深度入魔生物，死亡时召唤天劫（随从、虚空戒等造成的击杀同样算玩家的）。
+触发：必须是玩家击杀的深度入魔生物，死亡时才会召唤天劫。判定看的是最后一击的来源：玩家本人、玩家的随从、以及玩家物品（例如虚空戒）造成的击杀都算玩家的；没有来源的死亡（饿死、环境伤害、生物互相打死等）不会触发天劫，也不会算到任何玩家头上。
 时长：持续 60 秒，每 6 秒落雷一次；第一轮的落点标识立即出现，不必再等 6 秒。
 目标：以尸体为中心约 25 格范围内随机落点，先出标识，再降落天雷，劈中任意玩家都会造成伤害。
 伤害：普通深度入魔生物扣 10% 最大生命；史诗 Boss 则是必杀（100% 最大生命），无视无敌与伤害吸收。
