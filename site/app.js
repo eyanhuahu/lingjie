@@ -152,6 +152,7 @@ const state = {
   itemByName: new Map(),
   autoXrefByTerm: new Map(),
   autoXrefPattern: null,
+  autoXrefTermsByFirstChar: null,
   carousel: new Map(),
   reducedMotion: window.matchMedia("(prefers-reduced-motion: reduce)").matches,
   lastFocus: null,
@@ -342,6 +343,16 @@ function buildIndex() {
     .filter(Boolean)
     .sort((a, b) => b.length - a.length);
   state.autoXrefPattern = terms.length ? new RegExp(terms.map(escapeRegExp).join("|"), "gi") : null;
+  // 首字索引：给 collectXrefMatches 用（避免每次都比一遍全部词）。
+  state.autoXrefTermsByFirstChar = new Map();
+  terms.forEach((term) => {
+    const lowerTerm = term.toLowerCase();
+    const key = lowerTerm.charAt(0);
+    if (!key) return;
+    const list = state.autoXrefTermsByFirstChar.get(key) || [];
+    list.push({ term, lowerTerm });
+    state.autoXrefTermsByFirstChar.set(key, list);
+  });
 }
 
 function sectionIds() {
@@ -403,21 +414,44 @@ function xrefHtml(name) {
   return xrefTargetHtml(name, item);
 }
 
+// 收集所有跳转候选（含重叠），再按「长词优先、起点靠后优先」挑出不重叠的一组。
+// 为什么不直接用联合正则从左往右扫：词表里有「入魔」这种短报名词，
+// 扫到「注入魔核」时会先命中「入魔」（把「注入」的「入」也算进去），「魔核」就丢链了。
+// 改成先收集全部候选、再挑：同样长度时起点靠后的优先，于是「注入魔核」里的「魔核」胜出。
+function collectXrefMatches(source) {
+  const found = [];
+  if (!source || !state.autoXrefByTerm.size) return found;
+  const byFirst = state.autoXrefTermsByFirstChar || new Map();
+  const lower = source.toLowerCase();
+  for (let i = 0; i < lower.length; i += 1) {
+    const terms = byFirst.get(lower[i]);
+    if (!terms) continue;
+    terms.forEach(({ term, lowerTerm }) => {
+      const item = state.autoXrefByTerm.get(normalize(term));
+      if (item && lower.startsWith(lowerTerm, i)) found.push({ index: i, term, item });
+    });
+  }
+  found.sort((a, b) => (b.term.length - a.term.length) || (b.index - a.index));
+  const taken = [];
+  found.forEach((cand) => {
+    const end = cand.index + cand.term.length;
+    const clash = taken.some((t) => cand.index < t.index + t.term.length && t.index < end);
+    if (!clash) taken.push(cand);
+  });
+  taken.sort((a, b) => a.index - b.index);
+  return taken;
+}
+
 function renderAutoXrefs(text) {
   const source = String(text ?? "");
   if (!source || !state.autoXrefPattern) return highlightEscaped(source);
-  state.autoXrefPattern.lastIndex = 0;
   let html = "";
   let lastIndex = 0;
-  let match;
-  while ((match = state.autoXrefPattern.exec(source)) !== null) {
-    const hit = match[0];
-    const item = state.autoXrefByTerm.get(normalize(hit));
-    if (!hit || !item) continue;
-    html += highlightEscaped(source.slice(lastIndex, match.index));
-    html += xrefTargetHtml(hit, item);
-    lastIndex = match.index + hit.length;
-  }
+  collectXrefMatches(source).forEach((m) => {
+    html += highlightEscaped(source.slice(lastIndex, m.index));
+    html += xrefTargetHtml(m.term, m.item);
+    lastIndex = m.index + m.term.length;
+  });
   html += highlightEscaped(source.slice(lastIndex));
   return html;
 }
@@ -461,24 +495,19 @@ function appendAutoXrefs(container, text) {
     container.appendChild(document.createTextNode(source));
     return;
   }
-  state.autoXrefPattern.lastIndex = 0;
   let lastIndex = 0;
-  let match;
-  while ((match = state.autoXrefPattern.exec(source)) !== null) {
-    const hit = match[0];
-    const item = state.autoXrefByTerm.get(normalize(hit));
-    if (!hit || !item) continue;
-    container.appendChild(document.createTextNode(source.slice(lastIndex, match.index)));
-    const icon = hasRecipeIconBefore(container) ? null : xrefIconNode(item);
+  collectXrefMatches(source).forEach((m) => {
+    container.appendChild(document.createTextNode(source.slice(lastIndex, m.index)));
+    const icon = hasRecipeIconBefore(container) ? null : xrefIconNode(m.item);
     if (icon) container.appendChild(icon);
     const a = document.createElement("a");
     a.className = "xref";
-    a.href = `#item=${encodeURIComponent(item.id)}`;
-    a.dataset.target = item.id;
-    a.textContent = hit;
+    a.href = `#item=${encodeURIComponent(m.item.id)}`;
+    a.dataset.target = m.item.id;
+    a.textContent = m.term;
     container.appendChild(a);
-    lastIndex = match.index + hit.length;
-  }
+    lastIndex = m.index + m.term.length;
+  });
   container.appendChild(document.createTextNode(source.slice(lastIndex)));
 }
 
