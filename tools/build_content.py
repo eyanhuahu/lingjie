@@ -395,10 +395,6 @@ NAME_EN = {
     "lj_bat_nest": "Night Bat Nest",
     "lj_demon_bat": "Shadow Blood Bat",
     "lj_blood_bat": "Demon Bat",
-    "vanilla_deerclops": "Deerclops",
-    "vanilla_dragonfly": "Dragonfly",
-    "vanilla_bearger": "Bearger",
-    "vanilla_antlion": "Antlion",
     "lj_soul_devouring_snake": "Soul-devouring Snake（Hidden Boss）",
     "lj_moon_lion": "Eclipsed Crystalwing Lion",
     # ↓ 以下为 wiki 侧翻译（mod 英文表里没有对应项）
@@ -523,50 +519,6 @@ Negative effects (9): Starfire Burn, Frost Erosion, Scorpion Venom, Soul Snake V
 Buffs (6): Blazing Pill, Cold Flame Pill, Drying Pill, Explosion Pill, Invincible Pill, Restore Spirit Pill.
 
 Also: the player avatar popup now has an "Ethereal Realm Guide" entry.
-""",
-    },
-    "vanilla_deerclops": {
-        "tags": "Vanilla,Boss,Clue",
-        "summary": "A vanilla boss: in the Spirit Realm it is the follow-up boss of the 冰霜 clue chain.",
-        "detail": """
-A vanilla boss, not a creature added by the Spirit Realm mod.
-
-Clue chain: Frozen Log → Frost Log → Frost Karma Flame → Deerclops.
-
-In the Spirit Realm: once the 冰霜 clue is solved, this is the follow-up boss the clue points to. This entry only covers what relates to the mod; for vanilla stats and loot, check the game itself.
-""",
-    },
-    "vanilla_dragonfly": {
-        "tags": "Vanilla,Boss,Clue",
-        "summary": "A vanilla boss: in the Spirit Realm it is the follow-up boss of the 龙炎 clue chain.",
-        "detail": """
-A vanilla boss, not a creature added by the Spirit Realm mod.
-
-Clue chain: Charred Scales → Dragonflame Log → Dragon Flame Heartfire → Dragonfly.
-
-In the Spirit Realm: once the 龙炎 clue is solved, this is the follow-up boss the clue points to. This entry only covers what relates to the mod; for vanilla stats and loot, check the game itself.
-""",
-    },
-    "vanilla_bearger": {
-        "tags": "Vanilla,Boss,Clue",
-        "summary": "A vanilla boss: in the Spirit Realm it is the follow-up boss of the 狂鬃 clue chain.",
-        "detail": """
-A vanilla boss, not a creature added by the Spirit Realm mod.
-
-Clue chain: Rotten Backpack → Mighty Flame Log → Wildmane Flame → Bearger.
-
-In the Spirit Realm: once the 狂鬃 clue is solved, this is the follow-up boss the clue points to. This entry only covers what relates to the mod; for vanilla stats and loot, check the game itself.
-""",
-    },
-    "vanilla_antlion": {
-        "tags": "Vanilla,Boss,Clue",
-        "summary": "A vanilla boss: in the Spirit Realm it is the follow-up boss of the 尘火 clue chain.",
-        "detail": """
-A vanilla boss, not a creature added by the Spirit Realm mod.
-
-Clue chain: Dried Camel Feathers → Dustflame Log → Spirit Dust Flame → Antlion.
-
-In the Spirit Realm: once the 尘火 clue is solved, this is the follow-up boss the clue points to. This entry only covers what relates to the mod; for vanilla stats and loot, check the game itself.
 """,
     },
     "tribulation_rules": {
@@ -3927,53 +3879,9 @@ item(
 """,
 )
 
-item(
-    "ditu", "vanilla_deerclops", "独眼巨鹿", "原版,Boss,线索",
-    "原版 Boss：灵界里由「冻僵的日志」这条线索引出。",
-    """
-原版 Boss，不是灵界新增的生物。
 
-线索链：冻僵的日志 → 冰霜日志 → 冰霜业火 → 独眼巨鹿。
 
-在灵界里：解开冰霜线索后，它就是线索指向的后续 Boss。本条目只记录与灵界相关的部分，原版的数值与掉落请以游戏内为准。
-""",
-)
 
-item(
-    "ditu", "vanilla_dragonfly", "龙蝇", "原版,Boss,线索",
-    "原版 Boss：灵界里由「焦黑鳞片」这条线索引出。",
-    """
-原版 Boss，不是灵界新增的生物。
-
-线索链：焦黑鳞片 → 龙炎日志 → 龙炎心火 → 龙蝇。
-
-在灵界里：解开龙炎线索后，它就是线索指向的后续 Boss。本条目只记录与灵界相关的部分，原版的数值与掉落请以游戏内为准。
-""",
-)
-
-item(
-    "ditu", "vanilla_bearger", "熊獾", "原版,Boss,线索",
-    "原版 Boss：灵界里由「腐烂的背包」这条线索引出。",
-    """
-原版 Boss，不是灵界新增的生物。
-
-线索链：腐烂的背包 → 狂鬃日志 → 狂鬃焰 → 熊獾。
-
-在灵界里：解开狂鬃线索后，它就是线索指向的后续 Boss。本条目只记录与灵界相关的部分，原版的数值与掉落请以游戏内为准。
-""",
-)
-
-item(
-    "ditu", "vanilla_antlion", "蚁狮", "原版,Boss,线索",
-    "原版 Boss：灵界里由「风干的羽毛」这条线索引出。",
-    """
-原版 Boss，不是灵界新增的生物。
-
-线索链：风干的羽毛 → 尘火日志 → 灵煊尘火 → 蚁狮。
-
-在灵界里：解开尘火线索后，它就是线索指向的后续 Boss。本条目只记录与灵界相关的部分，原版的数值与掉落请以游戏内为准。
-""",
-)
 
 # === CHUNK4 ===
 
