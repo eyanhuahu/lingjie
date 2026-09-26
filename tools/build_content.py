@@ -395,6 +395,10 @@ NAME_EN = {
     "lj_bat_nest": "Night Bat Nest",
     "lj_demon_bat": "Shadow Blood Bat",
     "lj_blood_bat": "Demon Bat",
+    "vanilla_deerclops": "Deerclops",
+    "vanilla_dragonfly": "Dragonfly",
+    "vanilla_bearger": "Bearger",
+    "vanilla_antlion": "Antlion",
     "lj_soul_devouring_snake": "Soul-devouring Snake（Hidden Boss）",
     "lj_moon_lion": "Eclipsed Crystalwing Lion",
     # ↓ 以下为 wiki 侧翻译（mod 英文表里没有对应项）
@@ -519,6 +523,50 @@ Negative effects (9): Starfire Burn, Frost Erosion, Scorpion Venom, Soul Snake V
 Buffs (6): Blazing Pill, Cold Flame Pill, Drying Pill, Explosion Pill, Invincible Pill, Restore Spirit Pill.
 
 Also: the player avatar popup now has an "Ethereal Realm Guide" entry.
+""",
+    },
+    "vanilla_deerclops": {
+        "tags": "Vanilla,Boss,Clue",
+        "summary": "A vanilla boss: in the Spirit Realm it is the follow-up boss of the 冰霜 clue chain.",
+        "detail": """
+A vanilla boss, not a creature added by the Spirit Realm mod.
+
+Clue chain: Frozen Log → Frost Log → Frost Karma Flame → Deerclops.
+
+In the Spirit Realm: once the 冰霜 clue is solved, this is the follow-up boss the clue points to. This entry only covers what relates to the mod; for vanilla stats and loot, check the game itself.
+""",
+    },
+    "vanilla_dragonfly": {
+        "tags": "Vanilla,Boss,Clue",
+        "summary": "A vanilla boss: in the Spirit Realm it is the follow-up boss of the 龙炎 clue chain.",
+        "detail": """
+A vanilla boss, not a creature added by the Spirit Realm mod.
+
+Clue chain: Charred Scales → Dragonflame Log → Dragon Flame Heartfire → Dragonfly.
+
+In the Spirit Realm: once the 龙炎 clue is solved, this is the follow-up boss the clue points to. This entry only covers what relates to the mod; for vanilla stats and loot, check the game itself.
+""",
+    },
+    "vanilla_bearger": {
+        "tags": "Vanilla,Boss,Clue",
+        "summary": "A vanilla boss: in the Spirit Realm it is the follow-up boss of the 狂鬃 clue chain.",
+        "detail": """
+A vanilla boss, not a creature added by the Spirit Realm mod.
+
+Clue chain: Rotten Backpack → Mighty Flame Log → Wildmane Flame → Bearger.
+
+In the Spirit Realm: once the 狂鬃 clue is solved, this is the follow-up boss the clue points to. This entry only covers what relates to the mod; for vanilla stats and loot, check the game itself.
+""",
+    },
+    "vanilla_antlion": {
+        "tags": "Vanilla,Boss,Clue",
+        "summary": "A vanilla boss: in the Spirit Realm it is the follow-up boss of the 尘火 clue chain.",
+        "detail": """
+A vanilla boss, not a creature added by the Spirit Realm mod.
+
+Clue chain: Dried Camel Feathers → Dustflame Log → Spirit Dust Flame → Antlion.
+
+In the Spirit Realm: once the 尘火 clue is solved, this is the follow-up boss the clue points to. This entry only covers what relates to the mod; for vanilla stats and loot, check the game itself.
 """,
     },
     "tribulation_rules": {
@@ -1545,6 +1593,9 @@ Clue item: the "Frozen Log" (spawns at random in birch forests, unlocked by smas
 How to get it: right-click the log to open it, and the note reads "a giant shadow under the moonlight; when it shatters the ice, a dancing light hides in the cold". A large suspicious mound then spawns somewhere on the ground; search every clue mound to spawn Deerclops. Killing it drops its normal loot plus the Frost Karma Flame.
 
 Use: crafting the Reiki Bow needs a full Frost Karma Flame.
+
+
+Clue chain: Frozen Log → Frost Log → Frost Karma Flame → Deerclops.
 """,
     },
     "lj_dragon_flame": {
@@ -1558,6 +1609,9 @@ Clue item: the "Charred Scales" (spawn near lava ponds, unlocked by dousing them
 How to get it: right-click the log to open it, and the note reads "the rock nest stirs; a great beast guards its ground. Its rage burns the grass to ash; its shell hides a fire core that a sudden strike can crack". A Dragonfly spawns beside the pet nest; killing it drops its normal loot plus the Dragon Flame Heartfire.
 
 Use: crafting Starfall needs a full Dragon Flame Heartfire.
+
+
+Clue chain: Charred Scales → Dragonflame Log → Dragon Flame Heartfire → Dragonfly.
 """,
     },
     "lj_mighty_flame": {
@@ -1576,6 +1630,9 @@ Full Wildmane Flame: empowers any armour, granting 15 extra damage reduction and
 
 That extra 15 damage reduction applies after the armour's own defence.
 For example: armour with 80 defence takes a 100 damage hit, so 20 damage gets through, minus 15 more, leaving 17 damage.
+
+
+Clue chain: Rotten Backpack → Mighty Flame Log → Wildmane Flame → Bearger.
 """,
     },
     "lj_dust_flame": {
@@ -1590,6 +1647,9 @@ How to get it: right-click the log to open it, and the note reads "there is a ha
 
 Use: put it in the Void Ring.
 ⚠️ Putting it in the Void Ring does not unlock anything yet (the technique gameplay is still in development — coming soon).
+
+
+Clue chain: Dried Camel Feathers → Dustflame Log → Spirit Dust Flame → Antlion.
 """,
     },
     "lj_purplemonster_flame": {
@@ -1603,6 +1663,9 @@ Clue item: the "Swollen Scroll" (spawns at random beside swamp tentacles, unlock
 How to get it: right-click the log to open it, and the note reads "dusk is coming; purple firelight will be mirrored on the spirit vein's water". After reading the log the boss appears at dusk beside a pond on Butterfly Island. Going there shows the Soul-devouring Snake; killing it drops its normal loot plus the Purple Scale Demon Flame.
 
 Use: it crafts the Soul Banner, and giving it to the banner unlocks the "Soul Refining" skill.
+
+
+Clue chain: Swollen Scroll → Purple Scale Log → Purple Scale Demon Flame → Soul-devouring Snake.
 """,
     },
     "lj_log": {
@@ -1633,6 +1696,9 @@ Location: spawns at random in birch forests.
 How to unlock: smash it with a pickaxe.
 
 Breaking it open turns it into the 'Frost Log' — the note and everything that follows are written on the log's own entry (see "Frost Log").
+
+
+Clue chain: Frozen Log → Frost Log → Frost Karma Flame → Deerclops.
 """,
     },
     "lj_charred_scales": {
@@ -1645,6 +1711,9 @@ Location: spawns beside lava ponds.
 How to unlock: douse it with a watering can.
 
 Dousing it turns it into the 'Dragonflame Log' — the note and everything that follows are written on the log's own entry (see "Dragonflame Log").
+
+
+Clue chain: Charred Scales → Dragonflame Log → Dragon Flame Heartfire → Dragonfly.
 """,
     },
     "lj_rotten_backpack": {
@@ -1657,6 +1726,9 @@ Location: spawns at random on forest terrain.
 How to unlock: split it with an axe.
 
 Splitting it open turns it into the 'Mighty Flame Log' — the note and everything that follows are written on the log's own entry (see "Mighty Flame Log").
+
+
+Clue chain: Rotten Backpack → Mighty Flame Log → Wildmane Flame → Bearger.
 """,
     },
     "lj_dried_camel_feathers": {
@@ -1668,6 +1740,9 @@ Clue item pointing to the Spirit Dust Flame.
 Location: picked up near the oasis.
 
 Use: an Alchemy Furnace material for refining the 'Dustflame Log' (high tier, 2 minutes — see that entry). The note's clue is read from the Dustflame Log itself.
+
+
+Clue chain: Dried Camel Feathers → Dustflame Log → Spirit Dust Flame → Antlion.
 """,
     },
     "lj_swollen_scroll": {
@@ -1680,6 +1755,9 @@ Location: spawns at random beside swamp tentacles.
 How to unlock: bake it with fire.
 
 Baking it turns it into the 'Purple Scale Log' — the note and everything that follows are written on the log's own entry (see "Purple Scale Log").
+
+
+Clue chain: Swollen Scroll → Purple Scale Log → Purple Scale Demon Flame → Soul-devouring Snake.
 """,
     },
     "lj_ice_log": {
@@ -1693,6 +1771,9 @@ Follow-up boss: Deerclops.
 The note reads 'a giant shadow under the moonlight; when it shatters the ice, a dancing light hides in the cold'. A large suspicious mound then spawns at random on the ground, and searching every clue mound spawns Deerclops.
 
 Reading it requires the Subtle realm.
+
+
+Clue chain: Frozen Log → Frost Log → Frost Karma Flame → Deerclops.
 """,
     },
     "lj_dragon_log": {
@@ -1706,6 +1787,9 @@ Follow-up boss: Dragonfly.
 The note reads 'the rock nest stirs; a great beast guards its ground. Its rage burns the grass to ash; its shell hides a fire core that a sudden strike can crack'. A Dragonfly spawns beside the pet nest.
 
 Reading it requires the Subtle realm.
+
+
+Clue chain: Charred Scales → Dragonflame Log → Dragon Flame Heartfire → Dragonfly.
 """,
     },
     "lj_mighty_log": {
@@ -1719,6 +1803,9 @@ Follow-up boss: Bearger.
 The note reads 'when it pushes over a pine, sparks rise from the roots; it fears water but loves honey'. A Bee Queen hive is picked somewhere on the map and a bee box spawns near it, with the Bearger right beside the box.
 
 Reading it requires the Subtle realm.
+
+
+Clue chain: Rotten Backpack → Mighty Flame Log → Wildmane Flame → Bearger.
 """,
     },
     "lj_dust_log": {
@@ -1734,6 +1821,9 @@ The note reads 'there is a halo at the centre of the sandstorm — that is his b
 Refining (high tier, refining time 2 minutes)
 
 Reading it requires the Subtle realm.
+
+
+Clue chain: Dried Camel Feathers → Dustflame Log → Spirit Dust Flame → Antlion.
 """,
     },
     "lj_purplemonster_log": {
@@ -1747,6 +1837,9 @@ Follow-up boss: Soul-devouring Snake.
 The note reads 'dusk is coming; purple firelight will be mirrored on the spirit vein's water'. After reading the log the boss appears at dusk beside a pond on Butterfly Island, and going there shows the Soul-devouring Snake.
 
 Reading it requires the Subtle realm.
+
+
+Clue chain: Swollen Scroll → Purple Scale Log → Purple Scale Demon Flame → Soul-devouring Snake.
 """,
     },
     "lj_butterfly_island": {
@@ -2097,6 +2190,21 @@ item(
 合婴　生命 +80，移速 ×1.35，灵力 +50，攻击 ×2.75
 具灵　生命 +100，移速 ×1.40，灵力 +70，攻击 ×3.00
 　加成不会累加，提升境界时直接换成新境界的数值；生命与灵力是加在上限上的固定值，移速与攻击是倍率（攻击 ×1.25 即伤害 +25%）。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 """,
     image="images/lingjie/anim/realm_badge.png",
 )
@@ -3357,6 +3465,8 @@ item(
 获取流程：获取日志后右键打开，纸条记载着「月光下的巨影，踏碎冰面时，寒气中藏着跳动的光」。地面会随机生成一个大型可疑的土堆，翻找所有线索土堆，会生成独眼巨鹿。击杀会掉落正常掉落物，并额外掉落冰霜业火。
 
 用途：制作灵韵需要冰霜业火本体。
+
+线索链：冻僵的日志 → 冰霜日志 → 冰霜业火 → 独眼巨鹿。
 """,
 )
 
@@ -3371,6 +3481,8 @@ item(
 获取流程：获取日志后右键打开，纸条记载着「岩巢灵醒，有巨兽守其领地。其怒则焚尽草木，壳藏火核，骤击可破之。」宠物巢穴旁刷新龙蝇，击杀会掉落正常掉落物，并额外掉落龙炎心火。
 
 用途：制作星陨需要龙炎心火本体。
+
+线索链：焦黑鳞片 → 龙炎日志 → 龙炎心火 → 龙蝇。
 """,
 )
 
@@ -3390,6 +3502,8 @@ item(
 
 这个额外 15 免伤是在受到伤害的基础上防御。
 举例：护甲初始防御 80，受到攻击 100，造成 20 点伤害，再吃 15 免伤，实际造成 17 点伤害。
+
+线索链：腐烂的背包 → 狂鬃日志 → 狂鬃焰 → 熊獾。
 """,
 )
 
@@ -3405,6 +3519,8 @@ item(
 
 用途：放入虚空戒。
 ⚠️ 放入虚空戒目前不会解锁任何东西（灵技玩法开发中，敬请期待）。
+
+线索链：风干的羽毛 → 尘火日志 → 灵煊尘火 → 蚁狮。
 """,
 )
 
@@ -3419,6 +3535,8 @@ item(
 获取流程：获取日志后右键打开，纸条记载着「薄暮将至，灵脉水面会倒映出紫色火光」。查看日志后，Boss 会在黄昏时分出现在蝴蝶岛的池塘旁边。过去会看到噬魂蛇，击杀会掉落正常掉落物，并额外掉落紫鳞妖焰。
 
 用途：可制作魂幡；给予魂幡可解锁技能「炼魂」。
+
+线索链：泡胀的卷轴 → 紫鳞日志 → 紫鳞妖焰 → 噬魂蛇。
 """,
 )
 
@@ -3451,6 +3569,8 @@ item(
 解锁方式：需要用镐子敲碎。
 
 弄开后变成「冰霜日志」——纸条内容与后续线索都写在日志条目里（见「冰霜日志」）。
+
+线索链：冻僵的日志 → 冰霜日志 → 冰霜业火 → 独眼巨鹿。
 """,
 )
 
@@ -3464,6 +3584,8 @@ item(
 解锁方式：需要用水壶浇灭。
 
 弄开后变成「龙炎日志」——纸条内容与后续线索都写在日志条目里（见「龙炎日志」）。
+
+线索链：焦黑鳞片 → 龙炎日志 → 龙炎心火 → 龙蝇。
 """,
 )
 
@@ -3477,6 +3599,8 @@ item(
 解锁方式：需要用斧头劈开。
 
 弄开后变成「狂鬃日志」——纸条内容与后续线索都写在日志条目里（见「狂鬃日志」）。
+
+线索链：腐烂的背包 → 狂鬃日志 → 狂鬃焰 → 熊獾。
 """,
 )
 
@@ -3489,6 +3613,8 @@ item(
 位置：绿洲附近拾取。
 
 用途：炼丹炉材料，用于炼制「尘火日志」（高阶，炼制时间 2 分钟；见「尘火日志」）。纸条上的线索要在「尘火日志」里阅读。
+
+线索链：风干的羽毛 → 尘火日志 → 灵煊尘火 → 蚁狮。
 """,
 )
 
@@ -3502,6 +3628,8 @@ item(
 解锁方式：需要火焰烘烤。
 
 弄开后变成「紫鳞日志」——纸条内容与后续线索都写在日志条目里（见「紫鳞日志」）。
+
+线索链：泡胀的卷轴 → 紫鳞日志 → 紫鳞妖焰 → 噬魂蛇。
 """,
 )
 
@@ -3517,6 +3645,8 @@ item(
 纸条记载着「月光下的巨影，踏碎冰面时，寒气中藏着跳动的光」。随后地面会随机生成一个大型可疑的土堆，翻找所有线索土堆会生成独眼巨鹿。
 
 阅读需要境界达到 入微。
+
+线索链：冻僵的日志 → 冰霜日志 → 冰霜业火 → 独眼巨鹿。
 """,
 )
 
@@ -3531,6 +3661,8 @@ item(
 纸条记载着「岩巢灵醒，有巨兽守其领地。其怒则焚尽草木，壳藏火核，骤击可破之。」宠物巢穴旁会刷新龙蝇。
 
 阅读需要境界达到 入微。
+
+线索链：焦黑鳞片 → 龙炎日志 → 龙炎心火 → 龙蝇。
 """,
 )
 
@@ -3545,6 +3677,8 @@ item(
 纸条记载着「它推倒松树时，树根下会冒出火星，怕水却爱蜂蜜」。地图上会找一处蜂后巢穴，在它附近生成一个蜂箱，熊獾就在蜂箱旁边。
 
 阅读需要境界达到 入微。
+
+线索链：腐烂的背包 → 狂鬃日志 → 狂鬃焰 → 熊獾。
 """,
 )
 
@@ -3562,6 +3696,8 @@ item(
 """ + R(("仙人掌", 3), ("风干的羽毛", 1)) + """
 
 阅读需要境界达到 入微。
+
+线索链：风干的羽毛 → 尘火日志 → 灵煊尘火 → 蚁狮。
 """,
     recipe=R(("仙人掌", 3), ("风干的羽毛", 1)),
 )
@@ -3577,6 +3713,8 @@ item(
 纸条记载着「薄暮将至，灵脉水面会倒映出紫色火光」。查看日志后，Boss 会在黄昏时分出现在蝴蝶岛的池塘旁边，过去会看到噬魂蛇。
 
 阅读需要境界达到 入微。
+
+线索链：泡胀的卷轴 → 紫鳞日志 → 紫鳞妖焰 → 噬魂蛇。
 """,
 )
 
@@ -3735,6 +3873,8 @@ item(
     """
 隐藏 Boss，史诗级。
 
+线索：泡胀的卷轴 → 紫鳞日志。
+
 基础属性
 血量 12000，普攻撕咬 50 伤害，附加中毒效果，护甲 15%，移速中等。
 
@@ -3784,6 +3924,54 @@ item(
 
 击杀掉落
 紫晶壳 1、狮骨 1、怪物肉 4、魔晶 2、魔核 6、魔核碎片 10、红宝石 2、蓝宝石 2、紫宝石 2。
+""",
+)
+
+item(
+    "ditu", "vanilla_deerclops", "独眼巨鹿", "原版,Boss,线索",
+    "原版 Boss：灵界里由「冻僵的日志」这条线索引出。",
+    """
+原版 Boss，不是灵界新增的生物。
+
+线索链：冻僵的日志 → 冰霜日志 → 冰霜业火 → 独眼巨鹿。
+
+在灵界里：解开冰霜线索后，它就是线索指向的后续 Boss。本条目只记录与灵界相关的部分，原版的数值与掉落请以游戏内为准。
+""",
+)
+
+item(
+    "ditu", "vanilla_dragonfly", "龙蝇", "原版,Boss,线索",
+    "原版 Boss：灵界里由「焦黑鳞片」这条线索引出。",
+    """
+原版 Boss，不是灵界新增的生物。
+
+线索链：焦黑鳞片 → 龙炎日志 → 龙炎心火 → 龙蝇。
+
+在灵界里：解开龙炎线索后，它就是线索指向的后续 Boss。本条目只记录与灵界相关的部分，原版的数值与掉落请以游戏内为准。
+""",
+)
+
+item(
+    "ditu", "vanilla_bearger", "熊獾", "原版,Boss,线索",
+    "原版 Boss：灵界里由「腐烂的背包」这条线索引出。",
+    """
+原版 Boss，不是灵界新增的生物。
+
+线索链：腐烂的背包 → 狂鬃日志 → 狂鬃焰 → 熊獾。
+
+在灵界里：解开狂鬃线索后，它就是线索指向的后续 Boss。本条目只记录与灵界相关的部分，原版的数值与掉落请以游戏内为准。
+""",
+)
+
+item(
+    "ditu", "vanilla_antlion", "蚁狮", "原版,Boss,线索",
+    "原版 Boss：灵界里由「风干的羽毛」这条线索引出。",
+    """
+原版 Boss，不是灵界新增的生物。
+
+线索链：风干的羽毛 → 尘火日志 → 灵煊尘火 → 蚁狮。
+
+在灵界里：解开尘火线索后，它就是线索指向的后续 Boss。本条目只记录与灵界相关的部分，原版的数值与掉落请以游戏内为准。
 """,
 )
 
