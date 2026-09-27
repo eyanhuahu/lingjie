@@ -1849,7 +1849,7 @@ The restored altar
     },
     "lj_chiyan_scorpion_dragon": {
         "tags": "Boss,Epic,Remains Altar",
-        "summary": "The epic boss of the Remains Altar. 30000 health, 30 armour; immune to freeze, stagger and knockback, and it summons Venomous Scorpion Larvae after half health.",
+        "summary": "The epic boss of the Remains Altar. 30000 health, 15 armour; immune to freeze, stagger, knockback and sleep, and it summons a batch of Venomous Scorpion Larvae every 5000 health it loses.",
         "detail": """
 Spawns at the Remains Altar (an ancient ruins islet). Epic boss.
 
@@ -1857,7 +1857,7 @@ Base stats
 30000 health, 15 armour, medium movement speed.
 
 Core mechanics
-Immune to freeze, stagger and knockback; when put to sleep it stays down for 8 seconds.
+Immune to freeze, stagger, knockback and sleep.
 Every 5000 health lost summons 4 Venomous Scorpion Larvae (250 health, 40 attack, 3 poison damage per second for 8 seconds), with a 30-second cooldown; healing back up never re-triggers a stage that has already been recorded. The larvae stay around forever, and whether they die does not affect the next summon of 4.
 
 Skills
@@ -1869,7 +1869,7 @@ Grit Eruption: a 5-turf cone of sand in front of it, lasting 1.2 seconds, 20-sec
 　The eruption lasts 1.2 seconds, covering a 5-turf cone 3 turf wide in front of it, continuously spawning grit that corrodes the terrain; the terrain lingers for 2 seconds after the eruption ends.
 　⚠️ The grit's slow and damage come from the vanilla sand spikes themselves.
 
-Scorpion Dragon Charge: charges up for 1 second, then charges in a straight line for 8 turf, dealing 100 damage and destroying buildings along the way, ending with a 2-second stagger; 30-second cooldown. Maximum straight-line distance is 8 turf.
+Scorpion Dragon Charge: charges up for 1 second, then charges in a straight line for 8 turf, dealing 100 damage and destroying buildings along the way, ending with an 8-second stagger; 30-second cooldown. Maximum straight-line distance is 8 turf.
 　Building destruction: every wooden or stone wall, harvestable and small structure in the path is destroyed outright.
 
 Drops on kill
@@ -3708,7 +3708,7 @@ item(
 
 item(
     "ditu", "lj_chiyan_scorpion_dragon", "炽岩蝎龙", "Boss,史诗,残骸祭坛",
-    "残骸祭坛史诗级 Boss。血量 30000、护甲 30；不吃冰冻僵直击退，半场后召唤毒蝎幼虫。",
+    "残骸祭坛史诗级 Boss。血量 30000、护甲 15；不吃冰冻、僵直、击退与睡眠，每损失 5000 生命召唤一批毒蝎幼虫。",
     """
 生成在残骸祭坛（远古遗迹小岛）。史诗级 Boss。
 
@@ -3716,7 +3716,7 @@ item(
 血量 30000，护甲 15，移速中等。
 
 核心机制
-不吃冰冻、僵直、击退效果；被催眠时昏睡 8 秒。
+不吃冰冻、僵直、击退与睡眠效果。
 每损失 5000 点生命就召唤 4 只毒蝎幼虫（250 血，攻击 40，毒伤 3/秒，持续 8 秒），冷却 30 秒；回血不会让已经记过的阶段重复触发。毒蝎幼虫会一直存在，不死亡也不影响下一次技能召唤 4 只。
 
 技能
@@ -3728,7 +3728,7 @@ item(
 　喷发持续释放时长 1.2 秒，身前 5 格锥形区域，宽 3 格，持续生成沙砾腐蚀地形，喷发结束后地形留存 2 秒。
 　⚠️ 沙砾的减速与伤害来自原版沙刺本身。
 
-蝎龙冲撞：蓄力 1 秒，直线冲锋 8 格，100 伤害 + 摧毁路径建筑，结束后眩晕 2 秒，冷却 30 秒。直线最大距离 8 格。
+蝎龙冲撞：蓄力 1 秒，直线冲锋 8 格，100 伤害 + 摧毁路径建筑，结束后眩晕 8 秒，冷却 30 秒。直线最大距离 8 格。
 　建筑破坏：路径内所有木、石制墙体、采集物、小型建筑直接摧毁。
 
 击杀掉落
@@ -3932,7 +3932,7 @@ DATA = {
              "版本号更新到 0.6\n"
              "彼岸花改名为龙爪花\n"
              "祭天雷劫重做：改为范围内随机落雷，不再只劈击杀者（随从、虚空戒等击杀也算）；普通深度入魔扣 10% 最大生命，史诗 Boss 必杀；第一轮预警立即出现\n"
-             "炽岩蝎龙：护甲 30% → 15%；改为每损失 5000 点生命召唤一批幼虫；沙砾喷发 1.2 秒；被催眠昏睡 8 秒\n"
+             "炽岩蝎龙：护甲 30% → 15%；改为每损失 5000 点生命召唤一批幼虫；沙砾喷发 1.2 秒；冲撞后的倒地硬直改为 8 秒\n"
              "魂幡炼制时间 4 分钟\n"
              "血蝠精血的堆叠上限改为 20\n"
              "荒界纳物箱：不再限制同时开启的人数；整理时不会把多出来的堆叠物掉在地上\n"
@@ -3946,7 +3946,7 @@ DATA = {
              "Version updated to 0.6\n"
              "Spider Lily renamed to Dragon Claw Flower\n"
              "Sacrificial Tribulation reworked: the strikes are now random within the area and no longer single out the killer (kills by followers or the Void Ring count too); an ordinary deeply demonized creature costs you 10% of your maximum health, while an epic boss kills outright, and the first warning appears right away\n"
-             "Blazing Rock Scorpion Dragon: armour 30% → 15%; it now summons a batch of larvae every 5000 health it loses; its grit eruption lasts 1.2 seconds; it sleeps for 8 seconds when put to sleep\n"
+             "Blazing Rock Scorpion Dragon: armour 30% → 15%; it now summons a batch of larvae every 5000 health it loses; its grit eruption lasts 1.2 seconds; and its charge now ends with an 8-second stagger\n"
              "Soul Banner refining time is 4 minutes\n"
              "Blood Bat Essence stack limit is now 20\n"
              "Wild Realm Storage Box: no longer limits how many players can open it at once; sorting no longer drops the extra items of an over-stacked pile on the ground\n"
