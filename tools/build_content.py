@@ -1992,7 +1992,7 @@ Amethyst Shell 1, Lion Bone 1, [images/inventoryimages2/monstermeat.png] Monster
 SITE = [
     # modinfo.lua 里是 name = "灵界"，author = "犹如黑夜星光、喵大仙BigXian"。
     # 顶栏作者名按作者要求单独写（跟 modinfo 不必一致）。
-    {"网站标题": "灵界", "网站英文名": "Spirit Realm", "网站版本": "v0.6", "作者": "犹如黑夜星光JinYan、喵大仙BigXian"},
+    {"网站标题": "灵界", "网站英文名": "Spirit Realm", "网站版本": "v0.8", "作者": "犹如黑夜星光JinYan、喵大仙BigXian"},
 ]
 
 SECTIONS = [
