@@ -659,8 +659,6 @@ Core buff — Armour and size
 All incoming external damage ×0.8 (a 20% physical damage reduction), plus +5 insulation / planar defense.
 Movement speed +10%, and the creature is scaled up to 1.2×. (The three epic bosses — Eclipsed Crystalwing Lion, Blazing Rock Scorpion Dragon and Soul-devouring Snake — keep their original look and are not enlarged.)
 
-Core buff — Slow immunity
-Ignores every slow: it only accepts movement multipliers greater than 1.
 
 Player debuffs
 Demonic Aura: within 10 range, players lose 5 sanity every 5 seconds.
@@ -1206,7 +1204,7 @@ Craftable in the <Ethereal Realm>, <Structures> and <Containers> tabs.
         "detail": """
 Can be destroyed with a hammer and burned by torches; destroying it returns 2 [images/inventoryimages1/boards.png] Boards, 1 [images/inventoryimages2/papyrus.png] Papyrus and 2 [images/inventoryimages1/cutstone.png] Cut Stone.
 
-Stores weapons and armour, 7×7 + 1 slots. The first slot displays a weapon — putting a weapon in on its own shows it off.
+Stores weapons and armour, 7×7 + 1 slots: every slot takes equipment (charms and bone armour included), and the first slot additionally displays a held weapon when you put one there.
 
 Giving it a Magic Crystal slowly restores durability.
 
@@ -1217,11 +1215,11 @@ Craftable in the <Ethereal Realm>, <Structures> and <Containers> tabs.
     },
     "lj_ordinary_sword": {
         "tags": "Weapons,Melee,Early Game",
-        "summary": "45 attack and +10% movement speed while held; a transitional blade repaired with Magic Core Shards.",
+        "summary": "56.1 attack and +10% movement speed while held; a transitional blade repaired with Magic Core Shards.",
         "detail": """
-45 attack and +10% movement speed while held; its attack range matches other ordinary weapons.
+56.1 attack and +10% movement speed while held; its attack range matches other ordinary weapons.
 
-100 durability (100 hits), repairable with Magic Core Shards — 1 shard restores 10 durability.
+220 durability (220 hits), repairable with Magic Core Shards — 1 shard restores 20 durability and 1 Magic Core restores 50.
 
 Role: an early-game portable melee cultivation weapon, the basic blade that carries you to mid-game artifacts, covering self-defence and light exploration.
 
@@ -1230,12 +1228,12 @@ Craftable in the <Ethereal Realm> and <Weapons> tabs.
     },
     "lj_reiki_bow": {
         "tags": "Weapons,Ranged,Freeze,Artifact",
-        "summary": "78 attack, 20% crit, plus Ice Erosion and 10 planar damage; right-click Ice Infusion deals 300 damage and freezes.",
+        "summary": "78 attack, 8% crit, plus Ice Erosion and 10 planar damage; right-click Ice Infusion deals 300 damage and freezes.",
         "detail": """
 Cannot be destroyed or deconstructed. Exotic flames are awkward to keep in the inventory or a backpack, so open the Spirit Void Gourd while crafting — the game only needs to be able to see it.
 
 Base stats
-78 attack, 20% crit chance, crit damage ×1.8.
+78 attack, 8% crit chance, crit damage ×1.8.
 Hits apply the "Ice Erosion" debuff: 8 seconds, 16 damage every 0.5 seconds, refreshed on another hit. Adds 10 planar damage.
 Range 10, durability 200. Attack interval matches ordinary weapons such as the spear. Each attack costs 1 durability.
 At 0 durability it does not disappear and you can keep attacking, but damage drops to 10. Durability can be refilled with Magic Cores — 1 core fills 100.
@@ -1255,12 +1253,12 @@ Craftable in the <Ethereal Realm> and <Weapons> tabs.
     },
     "lj_star_sword": {
         "tags": "Weapons,Melee,Fire,Artifact",
-        "summary": "88 attack, 22% crit, plus Scorch; it hits harder the longer you swing, and right-click Meteor Thrust dashes invulnerably for 150 damage.",
+        "summary": "88 attack, 8% crit, plus Scorch; it hits harder the longer you swing, and right-click Meteor Thrust dashes invulnerably for 150 damage.",
         "detail": """
 Cannot be destroyed or deconstructed. Exotic flames are awkward to keep in the inventory or a backpack, so open the Spirit Void Gourd while crafting — the game only needs to be able to see it.
 
 Base stats
-88 attack, 22% crit chance, crit damage ×2.
+88 attack, 8% crit chance, crit damage ×2.
 Hits apply the "Scorch" debuff: 8 seconds, 16 fire damage every 0.5 seconds, refreshed on another hit. Adds 10 planar damage.
 300 durability. Attack interval and attack range both match ordinary weapons such as the spear. Each attack costs 1 durability.
 At 0 durability it does not disappear and you can keep attacking, but damage drops to 10. Durability can be refilled with Magic Cores — 1 core fills 100.
@@ -1328,7 +1326,7 @@ Craftable in the <Ethereal Realm> and <Armour> tabs.
     },
     "lj_void_ring": {
         "tags": "Artifact,Tool,Starting Gift",
-        "summary": "A ring you start with; one slot holds a Wasteland Flame or an exotic flame, and once equipped you can ignite targets from a distance.",
+        "summary": "A ring you start with (the same account can claim it again after switching characters); one slot holds a Wasteland Flame or an exotic flame, and once equipped you can ignite targets from a distance.",
         "detail": """
 Special crafting: unlocked near the restored Remains Altar, and every craft still needs you to be near it.
 
@@ -1413,6 +1411,8 @@ Core: Demon Subduing Nucleus ([images/inventoryimages3/shadowheart.png] Shadow A
 Effect: blocks creatures but not players. No hostile creatures can spawn inside the area, or they are kept outside it; creatures already inside cannot leave.
 
 Spawn eviction: a hostile creature that spawns inside the area is moved at once to the nearest valid spot outside it — land creatures only onto land, while aquatic and flying ones may land on the ocean, and never next to a cave entrance; it is then registered as a creature outside.
+
+Passage: a player's companion creatures (followers and summons) are not blocked, and a mounted player passes through as well.
 """,
     },
     "zhen_jiwen": {
@@ -1770,7 +1770,7 @@ Follow-up boss: Antlion.
 
 The note reads 'there is a halo at the centre of the sandstorm — that is his breath'. Going there shows the Antlion.
 
-Refining (high tier, refining time 2 minutes)
+Refining (always succeeds, no tribulation, refining time 2 minutes)
 
 Reading it requires the Subtle realm.
 
@@ -1889,11 +1889,13 @@ The larvae stay around forever, and whether they die does not affect the next su
     },
     "lj_bat_nest": {
         "tags": "Terrain,Butterfly Island,Spawns",
-        "summary": "Each nest spawns 6 Demon Bats and 1 Shadow Blood Bat, active at dusk and at night.",
+        "summary": "Each nest spawns 6 Demon Bats and 1 Shadow Blood Bat; Demon Bats swarm out at dusk, while the Shadow Blood Bat leaves only when the nest is attacked.",
         "detail": """
 Several spawn on Butterfly Island. Each nest spawns 6 Demon Bats (1 respawns every 5 minutes, up to 6) and 1 Shadow Blood Bat (1 respawns every 45 minutes, up to 1).
 
-Active at dusk and at night (behaving much like vanilla bats).
+Leaving the nest: at dusk the Demon Bats swarm out all at once (no more waiting for one at a time, and an off-screen nest woken at night also releases the whole swarm); the Shadow Blood Bat leaves only when the nest is attacked, regardless of daytime, and after its 45-minute replacement it stays inside until the next alarm.
+
+Calling for help: hitting any bat (a killing blow counts too) alerts its own nest, nests within 40 range and kin already outside, which all turn on the attacker.
 
 1 to 3 Spirit-Melting Grass spawns at random beside each nest.
 """,
@@ -1908,7 +1910,7 @@ Attacks: it bites within 1 turf, and charges when you are further away. A charge
 
 On death it always drops [images/inventoryimages2/monstermeat.png] Monster Meat 1 (Magic Core Shards, Magic Cores and Magic Crystals drop according to its current demonization tier). It is not a large demonic beast.
 
-Spawned by Night Bat Nests, 6 per nest, 1 respawning every 5 minutes, up to 6.
+Spawned by Night Bat Nests, 6 per nest, 1 respawning every 5 minutes, up to 6. They swarm out at dusk, and they call for help when attacked.
 """,
     },
     "lj_demon_bat": {
@@ -1926,7 +1928,7 @@ Summoning: below 50% health it starts summoning 1 Demon Bat every 15 seconds wit
 
 On death it always drops Blood Bat Essence 1 and [images/inventoryimages2/monstermeat.png] Monster Meat 2 (Magic Core Shards, Magic Cores and Magic Crystals drop according to its current demonization tier).
 
-Spawned by Night Bat Nests, 1 per nest, 1 respawning every 45 minutes, up to 1.
+Spawned by Night Bat Nests, 1 per nest, 1 respawning every 45 minutes, up to 1. It leaves the nest only when the nest is attacked, regardless of daytime; after its 45-minute replacement it stays inside until the next alarm. Attacking it also calls in bats from its own and nearby nests.
 """,
     },
     "lj_soul_devouring_snake": {
@@ -1969,7 +1971,7 @@ Destroying or harvesting nearby flowers interrupts the healing and forces a Lion
 Standing near a Mandrake — planted ones included — puts it to sleep for 8 seconds, and that sleep can only trigger once per minute.
 
 Skills (used in rotation: claw → scale powder missiles → roar → earth-rending step; anything unavailable or still cooling down is skipped)
-Crystal Claw Smash: a single-target melee heavy blow. 70 damage, 5-second cooldown, range about 1 turf (3 units), knocks small creatures down, and staggers a hit player for 0.6 seconds. If the player is closer than 1 turf, there is a 60% chance of one swing with each claw for 70 damage each (140 total), and a 40% chance of a single swing.
+Crystal Claw Smash: a single-target melee heavy blow. 70 damage, 5-second cooldown, range about 1 turf (4 units), knocks small creatures down, and staggers a hit player for 0.6 seconds. If the player is closer than 1 turf, there is a 60% chance of one swing with each claw for 70 damage each (140 total), and a 40% chance of a single swing.
 Scale Powder Missiles (ranged): fans one wing to fire 3 scale powder orbs in a triangular spread. 40 damage each, 120 for all three. Blast radius about 0.4 turf (1.5 units), and each blast leaves a petal at the impact point. 18-second cooldown, up to 10 turf flight distance, exploding on contact with an obstacle.
 Lion's Roar (control): a screen-wide sound wave with 6 turf of range. No damage, but it staggers the player for 1.2 seconds and forces their weapon to drop.
 Earth-Rending Step: the lion raises one front paw, sinks its body to gather power, the ground trembles faintly and dust kicks up at its feet, with a small screen shake warning players to move.
@@ -2330,8 +2332,6 @@ item(
 受到的所有外部伤害 ×0.8（即减免 20% 物理伤害），并额外获得 +5 点恒温/位面防御。
 移动速度 +10%，体型放大到 1.2 倍。（月蚀晶翼狮、炽岩蝎龙、噬魂蛇这三只史诗 Boss 保留原外观，不放大）
 
-核心强化 —— 无视减速
-无视一切减速：只接受大于 1 的移速倍率。
 
 人物负面
 魔气环绕：10 范围内玩家理智每 5 秒流失 5 点。
@@ -2932,15 +2932,15 @@ item(
 
 item(
     "jianzhu", "lj_cuiju_box", "聚气淬具匣", "建筑,储物,武器",
-    "7×7 + 1 格的武器防具柜，第一格可展示武器，注入魔晶可缓慢修复耐久。",
+    "7×7 + 1 格的武器防具柜，50 格都能放装备，第一格可额外展示手持装备，注入魔晶可缓慢修复耐久。",
     """
 制作：""" + R(("魔核", 1), ("木板", 5), ("莎草纸", 2), ("石砖", 5)) + """。
 
 可使用锤子摧毁，可被火把燃烧，摧毁后返还 木板 2、莎草纸 1、石砖 2。
 
-存放武器防具，7×7 + 1 格子。第一个格子是可以展示武器的，单独放入武器有展示效果。
+存放武器防具，7×7 + 1 格子：每一格都能放装备（护符、骨甲这类也算），第一格放入手持装备时会额外展示出来。
 
-给予魔晶，提供缓慢恢复耐久的效​果。
+给予魔晶，提供缓慢恢复耐久的效果：修复覆盖全部收纳格，以燃料计耐久的装备（例如晨星锤）按最大燃料的 1% 恢复，保鲜类装备按保鲜时间推进。
 
 可在 <灵界>、<建筑>、<储存方案> 栏位制作。
 
@@ -3038,13 +3038,13 @@ item(
 # ===========================================================================
 item(
     "wuqi", "lj_ordinary_sword", "淬铁灵剑", "武器,近战,前期",
-    "攻击 45、手持加 10% 移速，可用魔核碎片修复的过渡兵刃。",
+    "攻击 56.1、手持加 10% 移速，可用魔核碎片修复的过渡兵刃。",
     """
 制作：""" + R(("魔核碎片", 20), ("树枝", 5), ("绳子", 2), ("燧石", 2)) + """。
 
-攻击 45，手持增加 10% 移动速度；攻击范围与其他普通武器一致。
+攻击 56.1，手持增加 10% 移动速度；攻击范围与其他普通武器一致。
 
-耐久 100（可攻击 100 下），可用魔核碎片修复，1 个魔核碎片回复 10 点耐久。
+耐久 220（可攻击 220 下），可用魔核碎片修复：1 个魔核碎片回复 20 点耐久、1 个魔核回复 50 点耐久。
 
 定位：前期近战便携型修仙武器，过渡到中期法宝的基础兵刃，兼顾防身与轻度探索需求。
 
@@ -3055,14 +3055,14 @@ item(
 
 item(
     "wuqi", "lj_reiki_bow", "灵韵", "武器,远程,冰冻,法宝",
-    "攻击 78、暴击 20%、附带冰蚀与 10 点位面伤害；右键「玄冰灌注」造成 300 伤害并冻结。",
+    "攻击 78、暴击 8%、附带冰蚀与 10 点位面伤害；右键「玄冰灌注」造成 300 伤害并冻结。",
     """
 制作：""" + R(("魔晶", 5), ("伏特羊角", 2), ("冰霜业火本体", None), ("活木", 5), ("噩梦燃料", 10)) + """。
 
 无法摧毁、分解。因异火不好放入物品栏 / 背包，制作时打开灵虚葫，系统能检查到即可。
 
 基础属性
-攻击力 78，暴击率 20%，暴击伤害 ×1.8。
+攻击力 78，暴击率 8%，暴击伤害 ×1.8。
 攻击命中后附加「冰蚀」减益：持续 8 秒，每 0.5 秒造成 16 点伤害，再次命中会重置时间。增加 10 点位面伤害。
 射程 10，耐久 200。攻击间隔与长矛等普通武器一致。攻击一次减 1 点耐久。
 耐久为 0 不消失，可继续攻击，但伤害降为 10。可用魔核填充耐久，1 个魔核填充 100。
@@ -3084,14 +3084,14 @@ item(
 
 item(
     "wuqi", "lj_star_sword", "星陨", "武器,近战,火焰,法宝",
-    "攻击 88、暴击 22%、附带焚灼；越打越痛，右键「陨火刺」无敌突进 150 伤害。",
+    "攻击 88、暴击 8%、附带焚灼；越打越痛，右键「陨火刺」无敌突进 150 伤害。",
     """
 制作：""" + R(("魔晶", 5), ("一角鲸的角", 1), ("龙炎心火本体", None), ("活木", 5), ("噩梦燃料", 10)) + """。
 
 无法摧毁、分解。因异火不好放入物品栏 / 背包，制作时打开灵虚葫，系统能检查到即可。
 
 基础属性
-攻击力 88，暴击率 22%，暴击伤害 ×2。
+攻击力 88，暴击率 8%，暴击伤害 ×2。
 攻击命中后附加「焚灼」减益：持续 8 秒，每 0.5 秒造成 16 点火焰伤害，再次命中会重置时间。增加 10 点位面伤害。
 耐久 300。攻击间隔与攻击距离都与长矛等普通武器一致。攻击一次减 1 点耐久。
 耐久为 0 不消失，可继续攻击，但伤害降为 10。可用魔核填充耐久，1 个魔核填充 100。
@@ -3171,8 +3171,8 @@ item(
 # 卷目 7：法宝与工具
 # ===========================================================================
 item(
-    "fabao", "lj_void_ring", "虚空戒", "法宝,工具,开局自带",
-    "开局自带的戒指，一格空间可放墟火 / 异火，装备后可远程点燃目标。",
+    "fabao", "lj_void_ring", "虚空戒", "法宝,工具,开局自带；同一账号每次换人后都能重新领取一次",
+    "开局自带；同一账号每次换人后都能重新领取一次的戒指，一格空间可放墟火 / 异火，装备后可远程点燃目标。",
     """
 特殊制作：靠近修复的残骸祭坛解锁，每次制作都需要靠近残骸祭坛。
 
@@ -3180,7 +3180,7 @@ item(
 
 不能摧毁，无法用分解法杖分解。
 
-开局自带，一格空间，可放入墟火 / 异火。戒内放有异火本体时，装备后右键目标就能像火魔杖一样远程点燃：射出火球，射程 8 到 10，消耗 10 点灵力值。
+开局自带；同一账号每次换人后都能重新领取一次，一格空间，可放入墟火 / 异火。戒内放有异火本体时，装备后右键目标就能像火魔杖一样远程点燃：射出火球，射程 8 到 10，消耗 10 点灵力值。
 命中效果与火魔杖相同：点燃目标，或给可燃燃料装置补一份燃料；顺带解冻目标、叫醒睡眠中的目标，并让它仇恨你。本身不造成伤害；戒内没有异火时不会出现点燃动作。
 
 可在 <灵界>、<工具> 栏位制作。
@@ -3241,6 +3241,8 @@ item(
 效果：只拦生物不拦玩家。范围内无法生成敌对生物，或把敌对生物拦截在阵外；已经在阵内的生物无法出去。
 
 出生驱逐：敌对生物如果直接出生在阵内，会被立刻送到阵外最近的可站立位置——陆生生物只能落陆地，水生与飞行生物可以落海面，而且不会落到洞穴口旁边；送到之后才按阵外生物登记。
+
+放行：玩家的同伴类生物（随从、召唤物）不会被拦，玩家骑乘时同样放行。
 """,
 )
 
@@ -3395,7 +3397,7 @@ item(
 )
 
 item(
-    "yihuo", "lj_ordinary_flame", "墟火", "墟火,开局自带,火焰",
+    "yihuo", "lj_ordinary_flame", "墟火", "墟火,开局自带；同一账号每次换人后都能重新领取一次,火焰",
     "所有人物出生自带的火焰，存在于虚空戒中。",
     """
 所有人物出生自带，存在于虚空戒中。
@@ -3644,7 +3646,7 @@ item(
 
 纸条记载着「沙暴中心有一道光晕，那是他的呼吸」。过去会看到蚁狮。
 
-炼制（高阶，炼制时间 2 分钟）
+炼制（必成、不触发丹劫，炼制时间 2 分钟）
 """ + R(("仙人掌", 3), ("风干的羽毛", 1)) + """
 
 阅读需要境界达到 入微。
@@ -3776,11 +3778,13 @@ item(
 
 item(
     "ditu", "lj_bat_nest", "夜蝠巢穴", "地形,蝴蝶岛,刷怪",
-    "每个巢穴生成 6 只妖蝠与 1 只暗影血蝠，黄昏夜晚出没。",
+    "每个巢穴生成 6 只妖蝠与 1 只暗影血蝠；妖蝠黄昏整群出巢，暗影血蝠只在巢穴被攻击时出巢。",
     """
 蝴蝶岛生成若干。每个巢穴生成 6 只妖蝠（5 分钟刷新 1 只，最多 6 只）、1 只暗影血蝠（45 分钟刷新 1 只，最多 1 只）。
 
-黄昏夜晚出没（特性类似原版蝙蝠）。
+出巢规则：黄昏一到，妖蝠整群出巢（不再逐只等间隔；离屏的巢穴在夜里被唤醒也会整群出来）；暗影血蝠只在巢穴被攻击（警报）时出巢，不受白天限制，45 分钟补员结束后留在巢内等下一次警报。
+
+求援：打中任意一只蝙蝠（致命一击也算）会惊动它所属的巢穴、40 范围内附近的巢穴以及在外的同类，一起扑向攻击者。
 
 每个巢穴旁随机生成 1 到 3 个融灵草。
 """,
@@ -3801,7 +3805,7 @@ item(
 
 击杀固定掉落 血蝠精血 1、怪物肉 2（魔核碎片、魔核、魔晶根据当前入魔程度掉落）。
 
-由夜蝠巢穴生成，每个巢穴 1 只，45 分钟刷新 1 只，最多 1 只。
+由夜蝠巢穴生成，每个巢穴 1 只，45 分钟刷新 1 只，最多 1 只。只在巢穴被攻击（警报）时出巢，不受白天限制；45 分钟补员结束后留在巢内等下一次警报。打中它也会引来同巢与附近巢穴的蝙蝠。
 """,
 )
 
@@ -3815,7 +3819,7 @@ item(
 
 击杀只固定掉落 怪物肉 1（魔核碎片、魔核、魔晶根据当前入魔程度掉落）。非大型魔兽生物。
 
-由夜蝠巢穴生成，每个巢穴 6 只，5 分钟刷新 1 只，最多 6 只。
+由夜蝠巢穴生成，每个巢穴 6 只，5 分钟刷新 1 只，最多 6 只；黄昏时整群出巢，受到攻击会求援。
 """,
 )
 
@@ -3862,7 +3866,7 @@ item(
 靠近曼德拉草会陷入昏睡 8 秒，昏睡状态 1 分钟内只会触发一次（已种下的曼德拉草同样有效）。
 
 技能（按顺序轮转：爪击 → 鳞粉飞弹 → 狮吼 → 裂地囚步；条件不满足或还在冷却的技能会跳过）
-晶爪猛击：单体近战重击。伤害 70，冷却 5 秒，范围约 1 格（3 码），击倒小型生物，玩家受击硬直 0.6 秒。如果玩家距离小于 1 格，则 60% 概率左右手各挥一次、每下 70 伤（合计 140），40% 概率只挥一下。
+晶爪猛击：单体近战重击。伤害 70，冷却 5 秒，范围约 1 格（4 码），击倒小型生物，玩家受击硬直 0.6 秒。如果玩家距离小于 1 格，则 60% 概率左右手各挥一次、每下 70 伤（合计 140），40% 概率只挥一下。
 鳞粉飞弹（远程消耗）：扇动单侧翅膀发射 3 枚蝶粉光球，呈三角散射。单发伤害 40，三发全中 120。爆炸半径约 0.4 格（1.5 码），爆炸后会在爆炸点生成一个花瓣。冷却 18 秒，最大飞行距离 10 格，遇障碍物直接爆炸。
 狮吼震慑（控制技能）：全屏 6 格范围声波冲击。无伤害，但玩家僵直 1.2 秒，武器强制掉落地面。冷却 20 秒。
 裂地囚步：狮子抬起单侧前爪，身躯下沉蓄力，地面轻微持续震动，脚下扬起细碎沙尘特效，屏幕小幅抖动提示玩家规避。
@@ -3956,6 +3960,32 @@ DATA = {
              "Amethyst Form Flower: every world is guaranteed one; an older save grows one when you enter it, and a flower that vanishes abnormally is put back\n"
              "Demonization: deep demonization's reflection now caps at 75 damage per hit, and ocean shadow creatures are added to the never-demonized list\n"
              "Visual polish (Sacrificial Tribulation landing marker icon)\n",
+         "是否展示": "true"},
+        {"日志版本": "v0.8", "日期": "2026-09-29",
+         "内容":
+             "版本号 0.6 → 0.8\n"
+             "淬铁灵剑：攻击 45 → 56.1、耐久 100 → 220；修复改成 1 魔核碎片 +20、1 魔核 +50\n"
+             "灵韵与星陨的暴击率都下调到 8%\n"
+             "深度入魔：不再无视减速，也不再免疫冰冻、睡眠、电击与眩晕\n"
+             "暗影血蝠改成只在巢穴被攻击时出巢；妖蝠黄昏整群出巢；蝙蝠新增求援（打中一只会叫来附近同类）\n"
+             "聚气淬具匣：50 格都能放装备，修复范围覆盖全部收纳格\n"
+             "驱灵锁魔阵：玩家的同伴与坐骑不再被拦\n"
+             "尘火日志：改成必成且不触发丹劫，不再按丹药等级算成功率\n"
+             "蚁狮现在也支持深度入魔与影体\n"
+             "出生礼物：同一账号每次换人后都能重新领取\n"
+             "优化视觉（祭天雷劫落点标识、灵韵骑乘射击的箭矢高度与命中判定）\n",
+         "英文内容":
+             "Version 0.6 → 0.8\n"
+             "Tempered Iron Spirit Sword: attack 45 → 56.1, durability 100 → 220; repairs now give +20 per Magic Core Shard and +50 per Magic Core\n"
+             "The crit rate of Reiki Bow and Starfall is lowered to 8%\n"
+             "Deep demonization: no longer ignores slows, and no longer ignores freeze, sleep, electrocution or grogginess\n"
+             "Shadow Blood Bats now leave the nest only when it is attacked; Demon Bats swarm out at dusk; bats now call for help (hitting one brings nearby kin)\n"
+             "Qi-Gathering Weapon Case: all 50 slots take equipment, and repairs cover every storage slot\n"
+             "Spirit-Banishing Demon-Locking Formation: players' companions and mounts are no longer blocked\n"
+             "Dustflame Log: now always succeeds with no tribulation, no longer using pill-tier success rates\n"
+             "The Antlion now also supports deep demonization and shadow clones\n"
+             "Starting gift: the same account can claim it again after switching characters\n"
+             "Visual polish (Heaven's Judgment landing marker, and the arrow height and hit check when firing the Reiki Bow while riding)\n",
          "是否展示": "true"},
     ],
     "tele": [{"导向id": t[0], "字段": t[1], "说明": "", "是否展示": "true"} for t in TELE],
