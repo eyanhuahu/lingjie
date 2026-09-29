@@ -1358,11 +1358,11 @@ There are currently 4 formations: Four Seasons Harmony, Vitality Rejuvenation, S
     },
     "lj_flag": {
         "tags": "Structures,Formations",
-        "summary": "Marks out a formation's area. Connects up to 3 tiles away.",
+        "summary": "Marks out a formation's area. At least 4 flags; they must be at least 3 turf apart and connect within 6 turf.",
         "detail": """
 Can be destroyed with a hammer, returning no materials.
 
-Marks out a formation's area, connecting up to 3 tiles away.
+Marks out a formation's area: a formation needs at least 4 flags, flags must be at least 3 turf apart, and they connect to each other within 6 turf.
 
 The area follows how the flags connect — a circle, a square, a rectangle — like a dashed ring drawn on the map showing roughly where it reaches.
 
@@ -3001,13 +3001,13 @@ item(
 
 item(
     "jianzhu", "lj_flag", "阵旗", "建筑,阵法",
-    "给阵法划分范围。最远 3 格范围相互连接。",
+    "给阵法划分范围。至少 4 面，旗间最少相隔 3 地皮、最远 6 地皮相连。",
     """
 制作：""" + R(("莎草纸", 1), ("木头", 5), ("绳子", 2), ("魔核", 1)) + """。
 
 可使用锤子摧毁，摧毁后不返还材料。
 
-给阵法划分范围，最远 3 格范围相互连接。
+给阵法划分范围：每个阵法至少需要 4 面阵旗；阵旗之间最少相隔 3 地皮，最远 6 地皮以内可以相互连接。
 
 阵法范围根据阵旗相连划分，例如一个圆形、正 / 长方形，类似在地图上围一圈虚线，显示大概范围。
 
