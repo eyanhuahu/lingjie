@@ -1236,7 +1236,7 @@ Base stats
 78 attack, 8% crit chance, crit damage ×1.8.
 Hits apply the "Ice Erosion" debuff: 8 seconds, 16 damage every 0.5 seconds, refreshed on another hit. Adds 10 planar damage.
 Range 10, durability 200. Attack interval matches ordinary weapons such as the spear. Each attack costs 1 durability.
-At 0 durability it does not disappear and you can keep attacking, but damage drops to 10. Durability can be refilled with Magic Cores — 1 core fills 100.
+At 0 durability it does not disappear and you can keep attacking, but damage drops to 10. Durability can be restored with Magic Core Shards or Magic Cores — 1 shard restores 20 and 1 core restores 50.
 
 Ice Erosion debuff: each hit adds one stack of freeze, and reaching the creature's freeze resistance threshold triggers Frozen.
 　Small creatures: 2 stacks = frozen for 2 seconds
@@ -1261,7 +1261,7 @@ Base stats
 88 attack, 8% crit chance, crit damage ×2.
 Hits apply the "Scorch" debuff: 8 seconds, 16 fire damage every 0.5 seconds, refreshed on another hit. Adds 10 planar damage.
 300 durability. Attack interval and attack range both match ordinary weapons such as the spear. Each attack costs 1 durability.
-At 0 durability it does not disappear and you can keep attacking, but damage drops to 10. Durability can be refilled with Magic Cores — 1 core fills 100.
+At 0 durability it does not disappear and you can keep attacking, but damage drops to 10. Durability can be restored with Magic Core Shards or Magic Cores — 1 shard restores 20 and 1 core restores 50.
 
 Charge mechanic
 The weapon charges itself as you attack (25% every 5 attacks), and at 100% it enters the "Starfall state".
@@ -3065,7 +3065,7 @@ item(
 攻击力 78，暴击率 8%，暴击伤害 ×1.8。
 攻击命中后附加「冰蚀」减益：持续 8 秒，每 0.5 秒造成 16 点伤害，再次命中会重置时间。增加 10 点位面伤害。
 射程 10，耐久 200。攻击间隔与长矛等普通武器一致。攻击一次减 1 点耐久。
-耐久为 0 不消失，可继续攻击，但伤害降为 10。可用魔核填充耐久，1 个魔核填充 100。
+耐久为 0 不消失，可继续攻击，但伤害降为 10。可用魔核碎片或魔核修复：1 个魔核碎片回复 20 点耐久、1 个魔核回复 50 点耐久。
 
 「冰蚀」debuff：命中敌方后施加 1 层冰冻效果，叠加至对应生物冰冻抗性阈值时触发「冻结」。
 　小型生物 2 层 = 冻结 2 秒
@@ -3094,7 +3094,7 @@ item(
 攻击力 88，暴击率 8%，暴击伤害 ×2。
 攻击命中后附加「焚灼」减益：持续 8 秒，每 0.5 秒造成 16 点火焰伤害，再次命中会重置时间。增加 10 点位面伤害。
 耐久 300。攻击间隔与攻击距离都与长矛等普通武器一致。攻击一次减 1 点耐久。
-耐久为 0 不消失，可继续攻击，但伤害降为 10。可用魔核填充耐久，1 个魔核填充 100。
+耐久为 0 不消失，可继续攻击，但伤害降为 10。可用魔核碎片或魔核修复：1 个魔核碎片回复 20 点耐久、1 个魔核回复 50 点耐久。
 
 充能机制
 攻击时武器自动充能（每攻击 5 次充能 25%），充能满 100% 后进入「星陨状态」。
