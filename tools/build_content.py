@@ -194,6 +194,7 @@ CODE_MATERIAL_NAME = {
 # 原版材料用原版英文名，mod 材料用 NAME_EN 里既有的官方英文名。
 # 没收录的名字会在构建时报告出来，不会静默留中文。
 MATERIAL_EN = {
+    "蓝蘑菇": "Blue Cap",
     "魔晶": "Magic Crystal",
     "魔核": "Magic Core",
     "魔核碎片": "Magic Core Shard",
@@ -432,6 +433,10 @@ NAME_EN = {
     "lj_reiki_grass": "Spirit-Melting Grass",
     "lj_red_magic_flower": "Dragon Claw Flower",
     "lj_purple_magic_flower": "Amethyst Form Flower",
+    "lj_concealment_pill": "Concealment Pill",
+    "lj_retain_pill": "Realm Retention Pill（Tribulation）",
+    "shadow_body": "Shadow Body",
+    "body_origin": "Body Origin",
     "yihuo_rules": "Flame Usage Rules",
     "lj_ordinary_flame": "Wasteland Flame",
     "lj_ice_flame": "Frost Karma Flame",
@@ -454,7 +459,7 @@ NAME_EN = {
 EN_CONTENT = {
     "realm_system": {
         "tags": "Realm,Cultivation,Breakthrough,Experience,Attributes",
-        "summary": "Nine realms, nine stages each. Kill creatures to earn experience and advance; dying costs one stage. Includes per-stage experience thresholds and per-realm stat bonuses.",
+        "summary": "Nine realms, nine stages each. Kill creatures to earn experience and advance; dying costs one stage. Includes per-stage experience thresholds, per-realm stat bonuses and the per-stage attack bonus.",
         "detail": """
 Adds Realm and Reiki values, shown alongside the three vanilla stats.
 
@@ -489,16 +494,24 @@ Manifest　76500 · 82500 · 88500 · 94500 · 100500 · 106500 · 112500 · 118
 　Within Mortal the first seven stages add +50 each, with 450 and 500 for stages 8 and 9. Inside every other realm the step is fixed: Tempered +100, Sinew +200, Fasting +400, Guiding +800, Subtle +1500, Exalted +2500, Nascent +4000, Manifest +6000.
 
 Per-realm stat bonus (applies once you reach that realm)
-Mortal　HP +0, Speed ×1.00, Reiki +0, Attack ×1.00
-Tempered　HP +10, Speed ×1.05, Reiki +5, Attack ×1.25
-Sinew　HP +15, Speed ×1.10, Reiki +10, Attack ×1.50
-Fasting　HP +25, Speed ×1.15, Reiki +15, Attack ×1.75
-Guiding　HP +40, Speed ×1.20, Reiki +20, Attack ×2.00
-Subtle　HP +55, Speed ×1.25, Reiki +30, Attack ×2.25
-Exalted　HP +70, Speed ×1.30, Reiki +40, Attack ×2.50
-Nascent　HP +80, Speed ×1.35, Reiki +50, Attack ×2.75
-Manifest　HP +100, Speed ×1.40, Reiki +70, Attack ×3.00
-　Bonuses do not stack — reaching a new realm simply replaces the old values. HP and Reiki are flat additions to the cap; Speed and Attack are multipliers (Attack ×1.25 means +25% damage).
+Mortal　HP +0, Reiki +0, Hunger ×1.00, Demonic aura ×1.00, Skill cost ×1.00
+Tempered　HP +10, Reiki +5, Hunger ×1.00, Demonic aura ×0.95, Skill cost ×1.00
+Sinew　HP +15, Reiki +10, Hunger ×1.00, Demonic aura ×0.90, Skill cost ×1.00
+Fasting　HP +25, Reiki +15, Hunger ×0.95, Demonic aura ×0.90, Skill cost ×1.00
+Guiding　HP +40, Reiki +20, Hunger ×0.90, Demonic aura ×0.85, Skill cost ×1.00
+Subtle　HP +55, Reiki +30, Hunger ×0.85, Demonic aura ×0.80, Skill cost ×1.00
+Exalted　HP +70, Reiki +40, Hunger ×0.80, Demonic aura ×0.75, Skill cost ×0.80
+Nascent　HP +80, Reiki +50, Hunger ×0.70, Demonic aura ×0.65, Skill cost ×0.70
+Manifest　HP +80, Reiki +70, Hunger ×0.55, Demonic aura ×0.50, Skill cost ×0.60, Negative aura ×0.50
+　Bonuses do not stack — reaching a new realm simply replaces the old values. HP and Reiki are flat additions to the cap; everything else is a multiplier.
+　Lower Hunger means you eat less (×0.55 = barely over half); lower Demonic aura means you lose less sanity inside a demonic aura; lower Skill cost means techniques and artifacts cost less Reiki (×0.6 = only 60%).
+　The movement-speed bonus has been removed, and Attack now rises per stage — see below.
+
+Attack bonus per stage (three steps inside each realm)
+　Stages 1–3 of a realm keep the previous realm's crossing step, stages 4–6 use the realm's first step, stages 7–9 use its second, and Manifest stage 9 uses the third; Mortal stages 1–3 are ×1.00.
+　Mortal ×1.01 / ×1.02 / ×1.03　Tempered ×1.05 / ×1.07 / ×1.09　Sinew ×1.11 / ×1.13 / ×1.15
+　Fasting ×1.18 / ×1.21 / ×1.24　Guiding ×1.27 / ×1.30 / ×1.33　Subtle ×1.37 / ×1.41 / ×1.45
+　Exalted ×1.50 / ×1.55 / ×1.60　Nascent ×1.66 / ×1.72 / ×1.78　Manifest ×1.85 / ×1.92 / ×2.00
 """,
     },
     "timed_effects": {
@@ -519,6 +532,60 @@ Negative effects (9): Starfire Burn, Frost Erosion, Scorpion Venom, Soul Snake V
 Buffs (6): Blazing Pill, Cold Flame Pill, Drying Pill, Explosion Pill, Invincible Pill, Restore Spirit Pill.
 
 Also: the player avatar popup now has an "Ethereal Realm Guide" entry.
+""",
+    },
+    "lj_concealment_pill": {
+        "tags": "Pill,Low Tier,Stealth",
+        "summary": "A low-tier pill that conceals you for 4 minutes; attacking or dying ends it at once.",
+        "detail": """
+Low-tier pill (yellow), refining time 2 minutes.
+
+Materials: Harvested Spirit-Melting Grass 3, Harvested Dragon Claw Flower 3, Blue Cap 1, Magic Core 1.
+
+Effect: conceals you for 4 minutes — creatures within 64 range that are already targeting you lose their target at once; attacking or dying ends it immediately. Taking another one refreshes it to 4 minutes.
+""",
+    },
+    "lj_retain_pill": {
+        "tags": "Pill,High Tier,Realm,Tribulation",
+        "summary": "A high-tier tribulation pill: permanently keeps your cultivation when you change characters.",
+        "detail": """
+High-tier pill (earth), refining time 8 minutes. Can trigger a pill tribulation.
+
+Materials: Magic Crystal 2, Harvested Dragon Claw Flower 3, Scales 1, Blood Bat Essence 1.
+
+Effect: permanently grants "keep cultivation when switching characters" — from then on your realm and cultivation data follow you across character changes (health ratio, seat and temporary effects do not). Death still costs a stage, but you never lose this ability.
+""",
+    },
+    "shadow_body": {
+        "tags": "Realm,Shadow Body,Body Origin",
+        "summary": "A looks-only shadow double that follows its owner and has no health; surviving a full tribulation with it yields a Body Origin.",
+        "detail": """
+A shadow body is your own shadow double: it copies only your appearance (skin and clothing), never your equipment, and it has no health — creatures cannot kill it.
+
+How to get one
+　Reach Nascent (the 8th realm) or above, then use the Amethyst Form Flower on a Meat Effigy you have already placed (it must be your own effigy — someone else's will not work).
+
+Behaviour
+　It only follows and faces its owner, and never fights, gathers or flees on its own.
+　The Soul Banner treats it as a shadow creature and absorbs it into a Magic Core.
+　Only one shadow body can exist at a time; it disappears when you die or change characters.
+
+Next step
+　Bring it through an entire Heaven's Judgment tribulation and it tempers into one stack of Body Origin (see Tribulation).
+""",
+    },
+    "body_origin": {
+        "tags": "Realm,Shadow Body,Body Origin",
+        "summary": "A protective origin tempered from a shadow body surviving a full tribulation; it blocks one lethal hit.",
+        "detail": """
+A protective origin tempered after a shadow body survives an entire Heaven's Judgment tribulation.
+
+Requirements
+　Be at Nascent or above, shape a shadow body first, then bring it through one complete tribulation; both the shadow and you must stay inside the area the whole time, and you cannot swap shadows midway (each tribulation counts separately — a failure means waiting for the next one).
+
+Effect
+　Blocks one lethal hit: when you would die the origin is consumed, and health, Reiki and sanity are each restored to half of their maximum.
+　While you hold an origin you cannot shape another shadow body; dying or changing characters clears both the shadow and the origin.
 """,
     },
     "tribulation_rules": {
@@ -545,6 +612,8 @@ Damage: the bolt empties your current health outright.
 If you are hit: the furnace is destroyed on the spot, leaving only 5 Charcoal and 1 Failed Pill, with no materials returned.
 Protection: a Disaster Breaking Pill makes you immune to the tribulation with no time limit, but it is lost on death and does nothing while merely carried.
 Indicators: the negative-effect panel shows an "Alchemy Tribulation" countdown while refining, and dying to it records the cause of death as "Alchemy Tribulation Lightning".
+Shadow body tempering: bring your shadow body (the one shaped with the Amethyst Form Flower at Nascent or above) through an entire Heaven's Judgment tribulation — with the shadow and you both inside the area the whole time — and afterwards it tempers into one stack of Body Origin, which blocks one lethal hit. Each tribulation counts separately; swapping shadows, the shadow leaving the area, or the owner leaving all count as a failure.
+
 Refining that never triggers it: using an exotic flame still owes the tribulation, but "special refining" (Soul Banner, Moonlight Condensing Vase, Dustflame Log and so on) always succeeds and never triggers one.
 """,
     },
@@ -561,6 +630,8 @@ Regenerates 3.3 Reiki per minute.
 When Reiki runs dry (below 5) you enter a 10-second weakened state: vanilla drowsiness and grogginess stack up and you may fall asleep outright. When the weakness ends you regain 10 Reiki.
 
 Reiki is spent by many techniques and artifacts — for example the Reiki Bow's ice infusion costs 20, and Starfall's meteor thrust costs 10.
+
+Higher realms spend less Reiki: Exalted ×0.8, Nascent ×0.7, Manifest ×0.6, and ×1.0 everywhere else (both the requirement and the actual cost use this multiplier).
 """,
     },
     "corruption_overview": {
@@ -610,7 +681,7 @@ Creatures with 149 or less base health keep the light buff only and gain no demo
     },
     "corruption_medium": {
         "tags": "Demonization,Moderate",
-        "summary": "Demonized health uses a 1.95× discounted multiplier (the higher the base health, the closer to full); 12% damage reduction, a 5-second invulnerable shield at half health and 2% demonic reflection.",
+        "summary": "Demonized health uses a 1.95× discounted multiplier (the higher the base health, the closer to full); 12% damage reduction, a 5-second shield at half health (a single hit deals at most 90 damage) and 2% demonic reflection.",
         "detail": """
 Shown in game as "Moderate".
 
@@ -628,13 +699,13 @@ Core buff — Armour
 All incoming external damage ×0.88 (a 12% physical damage reduction).
 
 Player debuffs
-Demonic Aura: within 10 range, players lose 3 sanity every 5 seconds.
+Demonic Aura: within 10 range, players lose 3 sanity every 5 seconds (a higher realm loses less — the drain is scaled by the Demonic aura multiplier in the Realm System).
 Curse of Hunger: 30% chance when the player is hit by a creature; hunger drains 20% faster for 30 seconds.
 Shadow Slow: 20% chance when the player is hit by a creature; movement speed −20% for 10 seconds.
 Demonic Reflection: 10% chance when the creature takes damage from a player; reflects 2% of the damage.
 
 Creature buffs
-Conditional Vulnerability: dropping to 50% health or below triggers a shield; the creature takes no damage for 5 seconds, with a 5-minute cooldown. The shield shows as a red force field.
+Conditional Vulnerability: dropping to 50% health or below triggers a 5-second shield with a 5-minute cooldown. It is not invulnerability — while the shield is up a single hit deals at most 90 damage. The shield shows as a red force field.
 
 On death it drops 1 to 2 Magic Cores and 1 to 3 Magic Core Shards plus the creature's own loot.
 """,
@@ -661,14 +732,14 @@ Movement speed +10%, and the creature is scaled up to 1.2×. (The three epic bos
 
 
 Player debuffs
-Demonic Aura: within 10 range, players lose 5 sanity every 5 seconds.
+Demonic Aura: within 10 range, players lose 5 sanity every 5 seconds (a higher realm loses less — the drain is scaled by the Demonic aura multiplier in the Realm System).
 Curse of Hunger: 30% chance when the player is hit by a creature; hunger drains 20% faster for 30 seconds.
 Shadow Slow: 20% chance when the player is hit by a creature; movement speed −20% for 10 seconds.
 Demonic Reflection: 10% chance when the creature takes damage from a player; reflects 5% of the damage, capped at 75 damage per hit.
 Mirror Confusion: 10% chance on attack; the player's movement direction flips 180° for the next 5 seconds.
 
 Creature buffs
-Conditional Vulnerability: while health is between 30% and 50% (>30% and ≤50%) it triggers a 12-second invulnerable shield, with a 5-minute cooldown. The shield shows as a red force field.
+Conditional Vulnerability: while health is between 30% and 50% (>30% and ≤50%) it triggers a 12-second shield with a 5-minute cooldown. It is not invulnerability — while the shield is up a single hit deals at most 90 damage. The shield shows as a red force field.
 Bone-Deep Poison: normal attacks carry bone-eating poison. One poisoning lasts 240 seconds and does not stack (the timer can be refreshed, capped at 240 seconds), and the first tick lands the moment it hits.
 　0 to 80 seconds: 6 damage every 10 seconds
 　80 to 160 seconds: 10 damage every 10 seconds
@@ -703,7 +774,7 @@ Vanilla creatures drop Magic Core Shards and Magic Cores according to their demo
         "tags": "Alchemy,Pills,Rules",
         "summary": "Refining with a Wasteland Flame has a base 50% success rate; an exotic flame raises it to 100%. Failures become a Failed Pill and materials are not returned.",
         "detail": """
-Refining uses a Wasteland Flame. Pills that do not trigger a tribulation have a 50% success chance either way, and refining time never changes.
+Refining uses a Wasteland Flame. Pills that do not trigger a tribulation have a base 50% success chance plus a pity bonus: every failure adds +10% to the next attempt (up to 100%), and one success resets it. That progress is stored on the player, so it follows you across character changes and shards. Refining time never changes either way.
 
 Pills that can trigger a pill tribulation: 50% chance of no tribulation, in which case refining always fails and produces a Failed Pill; 50% chance of a lightning tribulation, and if you dodge it successfully the pill is refined. Taking a Disaster Breaking Pill skips the tribulation check.
 
@@ -755,7 +826,7 @@ Rain prayer: right-click and pick "Pray for Rain" to spend 20 spirit fluid and f
     },
     "lj_reiki_gourd": {
         "tags": "Artifact,Storage,Flames",
-        "summary": "An 8-slot gourd that absorbs exotic flames and stores pills; it follows the player and automatically absorbs ownerless exotic flames within 16 range.",
+        "summary": "An 8-slot gourd that absorbs exotic flames and stores pills; it follows the player — hold it in hand and right-click an ownerless exotic flame on the ground to absorb it.",
         "detail": """
 Special refining (no pill tribulation, 100% success)
 
@@ -765,7 +836,7 @@ Cannot be destroyed, and cannot be deconstructed with a Deconstruction Staff.
 
 Absorbs exotic flames and stores pills, 8 slots.
 Right-click in the inventory to open or close it (there is only one container — the one opened from a following gourd is the same one). While open it stays open; opening other chest-like items will not close the gourd.
-Pick it up with the mouse, drop it on the ground and it follows you. While following, any ownerless exotic flame within 16 range flies into the gourd on its own, and once absorbed it belongs to the gourd's owner.
+Pick it up with the mouse, drop it on the ground and it follows you. With the gourd in hand, right-click an ownerless exotic flame on the ground to absorb it — you have to be right up against it, it no longer flies in from 16 range. Once absorbed it belongs to the gourd's owner. Only strong exotic flames can be absorbed, and only while they are ownerless (a flame that already has a master must first lose it).
 Picking the gourd up from your inventory or a backpack with the mouse and putting it down again returns it to the slot it came from whenever that slot is still usable.
 While following: left-click opens or closes the gourd, right-click recalls it.
 """,
@@ -781,7 +852,7 @@ Refining time 4 minutes.
 Cannot be destroyed or deconstructed.
 
 Giving it a Purple Scale Demon Flame unlocks the Soul Refining skill.
-Soul Refining: planted in the ground it automatically absorbs the 4 vanilla shadow creatures, plus the shadow clones produced by deep demonization; each one absorbed becomes a Magic Core dropped right below the banner.
+Soul Refining: planted in the ground it automatically absorbs the 4 vanilla shadow creatures, the shadow clones produced by deep demonization, and a player's own shadow body as well; each one absorbed becomes a Magic Core dropped right below the banner.
 　Other shadow creatures (Shadow Knight, Shadow Bishop, Shadow Rook and so on) are not absorbed.
 """,
     },
@@ -1104,7 +1175,7 @@ It regrows 10 days after being harvested.
 While the lion is alive the Amethyst Form Flower cannot be chopped for loot, so deal with the Eclipsed Crystalwing Lion first.
 Once the lion dies the flower can be harvested immediately, once; the lion respawns on its own 20-day timer (the panel shows "Moon Lion respawn remaining"), and when it comes back the flower is restored.
 
-Use: repairing the Remains Altar.
+Use: repairing the Remains Altar; at Nascent or above you can also use it on a placed Meat Effigy to Shape Shadow (see Shadow Body and Body Origin).
 """,
     },
     "lj_alchemy_furnace": {
@@ -1508,7 +1579,7 @@ Use: Invincible Pill, Nascent Union Pill.
         "detail": """
 Storage limits: a full Wasteland Flame / exotic flame can only be stored properly in the Spirit Void Gourd or the Void Ring. A split flame is a single-use item and cannot stack.
 
-Burn risk: while a full flame sits in your inventory or a backpack it burns up 1 random burnable item every 10 seconds (world-unique items excepted, and other flames are never burned); if that item is a stack, only 1 is consumed. Several exotic flames in the same storage do NOT speed this up — the code rate-limits it to one burn per 10 seconds.
+Dropping: a split flame that you drop on the ground disappears at once (only the split flame refunded when an alchemy tribulation blows up the furnace may stay on the ground). A full exotic flame dropped on the ground stays there and starts its ownerless timer. Dropping a flame never burns anything in your inventory.
 
 Light and fire-fighting: a full Wasteland Flame / exotic flame placed on the ground provides 20 range of light and puts out every ordinary fire nearby (exotic flames do not repel each other — two on the ground each give light and heat while still putting out other fires). A split flame placed on the ground simply disappears.
 
@@ -1992,7 +2063,7 @@ Amethyst Shell 1, Lion Bone 1, [images/inventoryimages2/monstermeat.png] Monster
 SITE = [
     # modinfo.lua 里是 name = "灵界"，author = "犹如黑夜星光、喵大仙BigXian"。
     # 顶栏作者名按作者要求单独写（跟 modinfo 不必一致）。
-    {"网站标题": "灵界", "网站英文名": "Spirit Realm", "网站版本": "v0.8", "作者": "犹如黑夜星光JinYan、喵大仙BigXian"},
+    {"网站标题": "灵界", "网站英文名": "Spirit Realm", "网站版本": "v0.9", "作者": "犹如黑夜星光JinYan、喵大仙BigXian"},
 ]
 
 SECTIONS = [
@@ -2099,7 +2170,7 @@ def item(sec, iid, name, tags, summary, detail, recipe="", image="", visible=Tru
 # ===========================================================================
 item(
     "jingjie", "realm_system", "境界体系", "境界,修炼,升阶,经验,属性",
-    "九大境界，每境九阶。靠击杀生物积累经验升阶，死亡会掉一阶。含每阶经验门槛与每境属性加成。",
+    "九大境界，每境九阶。靠击杀生物积累经验升阶，死亡会掉一阶。含每阶经验门槛、每境属性加成与按阶攻击加成。",
     """
 新增境界值与灵力值，类似三维显示。
 
@@ -2134,16 +2205,24 @@ item(
 　凡境前七阶每阶 +50，第 8、9 阶是 450 和 500；其余境界每境内部的每阶增幅固定：淬体 +100、炼筋 +200、辟谷 +400、引气 +800、入微 +1500、超凡 +2500、合婴 +4000、具灵 +6000。
 
 每境属性加成（达到该境界后生效）
-凡境　生命 +0，移速 ×1.00，灵力 +0，攻击 ×1.00
-淬体　生命 +10，移速 ×1.05，灵力 +5，攻击 ×1.25
-炼筋　生命 +15，移速 ×1.10，灵力 +10，攻击 ×1.50
-辟谷　生命 +25，移速 ×1.15，灵力 +15，攻击 ×1.75
-引气　生命 +40，移速 ×1.20，灵力 +20，攻击 ×2.00
-入微　生命 +55，移速 ×1.25，灵力 +30，攻击 ×2.25
-超凡　生命 +70，移速 ×1.30，灵力 +40，攻击 ×2.50
-合婴　生命 +80，移速 ×1.35，灵力 +50，攻击 ×2.75
-具灵　生命 +100，移速 ×1.40，灵力 +70，攻击 ×3.00
-　加成不会累加，提升境界时直接换成新境界的数值；生命与灵力是加在上限上的固定值，移速与攻击是倍率（攻击 ×1.25 即伤害 +25%）。
+凡境　生命 +0，灵力 +0，饥饿 ×1.00，魔气影响 ×1.00，技能耗灵 ×1.00
+淬体　生命 +10，灵力 +5，饥饿 ×1.00，魔气影响 ×0.95，技能耗灵 ×1.00
+炼筋　生命 +15，灵力 +10，饥饿 ×1.00，魔气影响 ×0.90，技能耗灵 ×1.00
+辟谷　生命 +25，灵力 +15，饥饿 ×0.95，魔气影响 ×0.90，技能耗灵 ×1.00
+引气　生命 +40，灵力 +20，饥饿 ×0.90，魔气影响 ×0.85，技能耗灵 ×1.00
+入微　生命 +55，灵力 +30，饥饿 ×0.85，魔气影响 ×0.80，技能耗灵 ×1.00
+超凡　生命 +70，灵力 +40，饥饿 ×0.80，魔气影响 ×0.75，技能耗灵 ×0.80
+合婴　生命 +80，灵力 +50，饥饿 ×0.70，魔气影响 ×0.65，技能耗灵 ×0.70
+具灵　生命 +80，灵力 +70，饥饿 ×0.55，魔气影响 ×0.50，技能耗灵 ×0.60，负光环 ×0.50
+　加成不会累加，提升境界时直接换成新境界的数值；生命与灵力是加在上限上的固定值，其余都是倍率。
+　饥饿越小越省饭（×0.55 = 只吃一半多）；魔气影响越小，站进魔气光环里掉的理智越少；技能耗灵越小，灵技与法宝花得越少（×0.6 = 只花六成）。
+　移速加成已经取消，攻击改成按「阶」阶梯提升，见下。
+
+攻击加成按阶（同境内分三段）
+　本境 1～3 阶沿用上一境的跨境档，4～6 阶用本境第一档，7～9 阶用本境第二档，具灵九阶用第三档；凡境 1～3 阶是 ×1.00。
+　凡境 ×1.01 / ×1.02 / ×1.03　淬体 ×1.05 / ×1.07 / ×1.09　炼筋 ×1.11 / ×1.13 / ×1.15
+　辟谷 ×1.18 / ×1.21 / ×1.24　引气 ×1.27 / ×1.30 / ×1.33　入微 ×1.37 / ×1.41 / ×1.45
+　超凡 ×1.50 / ×1.55 / ×1.60　合婴 ×1.66 / ×1.72 / ×1.78　具灵 ×1.85 / ×1.92 / ×2.00
 
 
 
@@ -2176,6 +2255,8 @@ item(
 灵力枯竭时（低于 5）会进入 10 秒的虚弱状态：按原版规则叠加睡意与昏沉，甚至直接昏睡；虚弱解除后恢复 10 点灵力。
 
 灵力值会被多种灵技与法宝消耗，例如灵韵的玄冰灌注消耗 20 点、星陨的陨火刺消耗 10 点。
+
+境界越高越省灵力：超凡 ×0.8、合婴 ×0.7、具灵 ×0.6，其余境界 ×1.0（门槛与扣费同时按这个倍率算）。
 """,
     image="images/lingjie/anim/spirit_badge.png",
 )
@@ -2226,6 +2307,8 @@ item(
 被劈中：炼丹炉当场炸毁，只留下 5 个木炭和 1 颗废丹，材料不返还。
 免劫：服用破劫丹后免疫丹劫，没有时间限制，但死亡后失效；只带在背包里不生效。
 提示：炼丹期间，负面状态面板上会显示「丹劫」倒计时；被丹劫劈死的死亡原因记为「丹劫天雷」。
+影体淬本源：带着影体（合婴以上用紫晶塑体花塑造的那只）经历整场祭天雷劫，且影体与你自始至终都在范围内，雷劫结束后影体会淬成一层「塑体本源」——可抵御一次致命伤害。每场雷劫独立计算，中途换影体、影体离开范围或主人离场都算失败。
+
 不触发丹劫的炼制：使用异火炼丹仍然要应劫；但「特殊炼制」（魂幡、月魄凝液瓶、尘火日志等）必成，且完全不触发丹劫。
 """,
 )
@@ -2282,7 +2365,7 @@ item(
 
 item(
     "rumo", "corruption_medium", "中度入魔", "入魔,中度",
-    "入魔血量按 1.95 倍打折计算（血量越高越接近满倍率）；带 12% 减伤、半血触发 5 秒无敌护盾、2% 魔气反弹。",
+    "入魔血量按 1.95 倍打折计算（血量越高越接近满倍率）；带 12% 减伤、半血触发 5 秒护盾（单次最多扣 90 血）、2% 魔气反弹。",
     """
 游戏内显示为「中度」。
 
@@ -2300,13 +2383,13 @@ item(
 受到的所有外部伤害 ×0.88（即减免 12% 物理伤害）。
 
 人物负面
-魔气环绕：10 范围内玩家理智每 5 秒流失 3 点。
+魔气环绕：10 范围内玩家理智每 5 秒流失 3 点（境界越高掉得越少，按「境界体系」里的魔气影响倍率打折）。
 饥饿诅咒：玩家受到生物攻击时 30% 概率触发，饥饿值消耗加快 20%，持续 30 秒。
 暗影迟缓：玩家受到生物攻击时 20% 概率触发，移速 -20%，持续 10 秒。
 魔气反弹：生物受到玩家伤害时 10% 概率触发，反射 2% 伤害。
 
 生物强化
-限定易伤：生命值降到 50% 及以下会触发护盾，期间不受伤害（无敌），持续 5 秒，冷却 5 分钟。护盾表现为红色力场。
+限定易伤：生命值降到 50% 及以下会触发护盾，持续 5 秒，冷却 5 分钟——护盾期间不是无敌，而是单次受到的伤害最多 90 点。护盾表现为红色力场。
 
 击杀后掉落魔核 1 到 2 个、魔核碎片 1 到 3 个 + 生物原生材料。
 """,
@@ -2334,14 +2417,14 @@ item(
 
 
 人物负面
-魔气环绕：10 范围内玩家理智每 5 秒流失 5 点。
+魔气环绕：10 范围内玩家理智每 5 秒流失 5 点（境界越高掉得越少，按「境界体系」里的魔气影响倍率打折）。
 饥饿诅咒：玩家受到生物攻击时 30% 概率触发，饥饿值消耗加快 20%，持续 30 秒。
 暗影迟缓：玩家受到生物攻击时 20% 概率触发，移速 -20%，持续 10 秒。
 魔气反弹：生物受到玩家伤害时 10% 概率触发，反射 5% 伤害，单次最多反弹 75 点。
 镜像混淆：攻击时 10% 概率触发「镜像」，玩家接下来 5 秒内移动方向反转 180°。
 
 生物强化
-限定易伤：生命值在 30% 与 50% 之间（>30% 且 ≤50%）时触发无敌护盾 12 秒，冷却 5 分钟。护盾表现为红色力场。
+限定易伤：生命值在 30% 与 50% 之间（>30% 且 ≤50%）时触发护盾 12 秒，冷却 5 分钟——护盾期间不是无敌，而是单次受到的伤害最多 90 点。护盾表现为红色力场。
 毒入骨髓：普通攻击附带蚀骨毒。单次中毒 240 秒，不可叠加（可重置时间，上限 240 秒），命中当刻立即结算一跳。
 　0 到 80 秒：每 10 秒造成 6 点伤害
 　80 到 160 秒：每 10 秒造成 10 点伤害
@@ -2381,7 +2464,7 @@ item(
     "danyao", "alchemy_rules", "炼丹总则", "炼制,丹药,规则",
     "用墟火炼丹基础成功率 50%，异火可提升至 100%；失败成废丹不返还材料。",
     """
-使用墟火炼丹。不触发雷劫的丹药炼制概率均为 50%，无论成功与否，炼丹时间不变。
+使用墟火炼丹。不触发雷劫的丹药，基础炼制概率为 50%，并且带保底：每失败一次，下一次成功率 +10%（最多叠到 100%），成功一次立刻清零；这个进度记在玩家身上，换人、切洞穴都会跟着你。无论成功与否，炼丹时间不变。
 
 能触发丹劫的丹药：50% 概率不触发丹劫，炼丹必然失败成为废丹；50% 概率触发雷劫，躲避成功则炼制成功。服用破劫丹可跳过雷劫判定。
 
@@ -2436,7 +2519,7 @@ item(
 
 item(
     "fabao", "lj_reiki_gourd", "灵虚葫", "法宝,储物,异火",
-    "吸收异火、存放丹药的 8 格葫芦；可跟随玩家并自动吸收 16 码内没有主人的异火。",
+    "吸收异火、存放丹药的 8 格葫芦；可跟随玩家，鼠标拿起后对着地上的无主异火右键把它吸进来。",
     """
 特殊炼制（不触发丹劫，炼制概率 100%）
 
@@ -2448,7 +2531,7 @@ item(
 
 吸收异火时「异火焚身」的剩余时间会显示在 HUD 的负面状态面板上；只显示给当前持有葫芦的人，葫芦掉在地上时暂停并移除显示。
 在物品栏里就能右键打开 / 关闭（容器只有一份，跟随葫芦打开的也是它）。打开状态下会一直在，不会因打开其他箱子类物品而自动关闭葫芦。
-可鼠标拿起放置地面跟随；跟随状态下 16 码范围内有没有主人的异火，会自动飞进葫芦，吸收后归葫芦主人所有。
+可鼠标拿起放置地面跟随；拿起葫芦后对着地上的无主异火右键就能吸收，要贴上去吸（不再是从 16 码外自动飞进来），吸收后归葫芦主人所有。可吸收的是强异火，而且必须是无主状态（已经认主的异火得先等它失主）。
 从物品栏 / 背包里用鼠标拿起葫芦后再放下，会优先放回原来的格子；原格不能用时才随意放置。
 跟随状态下：左键是跟随状态葫芦的打开 / 关闭，右键跟随状态的葫芦就回收。
 """,
@@ -2466,7 +2549,7 @@ item(
 炼制时间 4 分钟。\n\n无法摧毁，可分解。
 
 给予紫鳞妖焰可解锁技能「炼魂」。
-炼魂：插在地上会自动吸收原版的 4 种影怪，以及深度入魔产生的影体分身；每吸进一只化成一颗魔核，直接掉在魂幡下方。
+炼魂：插在地上会自动吸收原版的 4 种影怪、深度入魔产生的影体分身，以及玩家塑造的影体本身；每吸进一只化成一颗魔核，直接掉在魂幡下方。
 　　其他影怪（影骑士、影主教、影车等）不会被吸入。
 """,
     recipe=R(("噩梦燃料", 5), ("芦苇", 5), ("树枝", 5), ("魔晶", 2)),
@@ -2495,6 +2578,53 @@ item(
 效果：恢复 50 饱食度，猪人也爱吃。
 """,
     recipe=R(("融灵草", 3), ("蜂蜜", 3)) + "、" + R(("橡果", 3, "acorn")) + " 或 " + R(("松果", 3, "pinecone")) + "、" + R(("魔核", 1)),
+)
+
+item(
+    "jingjie", "shadow_body", "影体", "境界,影体,塑体",
+    "只有外观的影分身，跟着主人走、没有血量；带着它吃满一场祭天雷劫可淬出塑体本源。",
+    """
+影体是你自己的影分身：只复制外观（皮肤、服装），不复制装备，也没有血量——不会被怪打死。
+
+怎么获得
+　境界达到合婴（第 8 境）以上，用紫晶塑体花右键一座已经摆放好的肉块雕像即可塑造（必须是自己的雕像，别人的不能用）。
+
+表现
+　影体只跟随主人、面朝主人，不会自己去打架、采集或逃跑。
+　魂幡会把它当影怪吸进去，炼成一颗魔核。
+　同一时间只能存在一只影体；死亡或换人时影体会消失。
+
+进阶
+　带着它经历一整场祭天雷劫，就能淬成一层「塑体本源」（见「雷劫」）。
+""",
+)
+
+item(
+    "jingjie", "body_origin", "塑体本源", "境界,影体,塑体",
+    "影体吃满一整场祭天雷劫淬出的护身本源，可抵御一次致命伤害。",
+    """
+影体吃满一整场祭天雷劫后淬成的护身本源。
+
+获得条件
+　境界合婴以上、先塑造出影体，再带着它经历完整的一场祭天雷劫；期间影体与你都必须一直在范围内，也不能中途换影体（每场雷劫独立计算，失败就等下一场）。
+
+效果
+　可抵御一次致命伤害：受到致命伤时本源消耗掉，生命、灵力与理智各恢复到上限的一半。
+　本源在身时不能再塑造影体；死亡或换人会把影体与本源一起清空。
+""",
+)
+
+item(
+    "danyao", "lj_concealment_pill", "凝摒丹", "丹药,低阶,隐匿",
+    "低阶丹药，隐匿气息 4 分钟；主动攻击或死亡后立即失效。",
+    """
+低阶丹药（黄），炼制时间 2 分钟。
+
+材料：""" + R(("采下的融灵草", 3), ("采下的龙爪花", 3), ("蓝蘑菇", 1, "blue_cap"), ("魔核", 1)) + """。
+
+效果：隐匿气息 4 分钟——附近 64 范围内正盯着你的生物会立刻失去目标；主动攻击或死亡后立即失效。重复服用刷新为 4 分钟。
+""",
+    recipe=R(("采下的融灵草", 3), ("采下的龙爪花", 3), ("蓝蘑菇", 1, "blue_cap"), ("魔核", 1)),
 )
 
 item(
@@ -2696,6 +2826,19 @@ item(
 效果：服用此丹药，在悟道淬体台打坐 10 秒，极为稀有，能突破具灵境界。
 """,
     recipe=R(("彩虹宝石", 1), ("格罗姆翅膀", 1), ("蝎龙骨", 1), ("魔晶", 10)),
+)
+
+item(
+    "danyao", "lj_retain_pill", "蜕灵丹（丹劫）", "丹药,高阶,境界,丹劫",
+    "高阶丹劫丹药，服下后永久获得换人保留境界的能力。",
+    """
+高阶丹药（地），炼制时间 8 分钟。可触发丹劫。
+
+材料：""" + R(("魔晶", 2), ("采下的龙爪花", 3), ("鳞片", 1), ("血蝠精血", 1)) + """。
+
+效果：永久获得「换人保留境界」的能力——之后换角色时，境界与修炼数据会跟着你走（生命比例、占座和临时效果不带过去）；死亡仍会掉阶，但不会失去这个能力。
+""",
+    recipe=R(("魔晶", 2), ("采下的龙爪花", 3), ("鳞片", 1), ("血蝠精血", 1)),
 )
 
 # ===========================================================================
@@ -3369,7 +3512,7 @@ item(
 狮王存在的情况下，紫晶塑体花无法被砍伐掉落。想采花就得先解决月蚀晶翼狮。
 月狮死亡后紫花立刻可以采一次；月狮按 20 天独立计时重生（面板显示「月狮重生剩余」），月狮回来时紫花直接恢复。
 
-用途：修复残骸祭坛。
+用途：修复残骸祭坛；境界到合婴以上时，还能用它右键一座已摆放好的肉块雕像来「塑造影体」（见「影体」与「塑体本源」）。
 """,
 )
 
@@ -3382,7 +3525,7 @@ item(
     """
 存放限制：墟火 / 异火本体只能正常放在灵虚葫、虚空戒中。分裂的火焰为单次消耗物品，无法堆叠。
 
-焚毁危险：放在物品栏 / 背包里，每 10 秒随机焚毁 1 件可烧物品（世界唯一物品除外，异火本体也不会被烧）；如果那件是可堆叠的，一次只消耗 1 个。同一存储空间里放多个异火不会加速——代码里有 10 秒限流，多个异火只算一次。
+丢弃规则：分裂火丢在地上会直接消失（只有丹劫炸炉返还的那一份能留在地上）；异火本体丢在地上会留下，并开始计算失主时间。放在物品栏 / 背包里不会焚毁任何东西。
 
 照明与灭火：墟火 / 异火本体放置地上会提供 20 码范围照明，并熄灭周围所有普通火焰（异火之间不互相排斥，比如两个异火都放在地上，各自发光发热，还是会熄灭其他火焰）。分裂出来的放置地上会消失。
 
@@ -3986,6 +4129,34 @@ DATA = {
              "The Antlion now also supports deep demonization and shadow clones\n"
              "Starting gift: the same account can claim it again after switching characters\n"
              "Visual polish (Heaven's Judgment landing marker, and the arrow height and hit check when firing the Reiki Bow while riding)\n",
+         "是否展示": "true"},
+        {"日志版本": "v0.9", "日期": "2026-10-02",
+         "内容":
+             "版本号 0.8 → 0.9\n"
+             "新增「影体」与「塑体本源」：合婴以上用紫晶塑体花右键肉块雕像塑造影体，带着它吃满一整场祭天雷劫就能淬出本源——可抵御一次致命伤害\n"
+             "境界重做：取消移速加成，攻击改成按阶提升（每境分三段）；新增饥饿、魔气、技能耗灵三种减免\n"
+             "灵力消耗随境界递减：超凡 ×0.8、合婴 ×0.7、具灵 ×0.6\n"
+             "入魔护盾不再是无敌，改成单次最多扣 90 点生命；魔气光环扣的理智按境界打折\n"
+             "毒素不再致死：蝎毒与噬魂蛇毒对玩家最低保留 5 点生命\n"
+             "灵虚葫改成「拿起葫芦、右键地上的无主异火」吸收，要贴上去吸，不再从 16 码外自动飞\n"
+             "异火不再焚毁背包里的物品；分裂火丢在地上会直接消失（丹劫炸炉返还的那一份可以留在地上）\n"
+             "新增丹药：蜕灵丹（永久获得换人保留境界）、凝摒丹（隐匿气息 4 分钟）\n"
+             "炼丹加入保底：每失败一次成功率 +10%，最多叠到 100%，成功清零；进度记在玩家身上\n"
+             "魂幡现在也能吸玩家的影体\n"
+             "优化视觉（境界突破特效、月蚀晶翼狮音效音量、灵韵弓卸装后的特效清理）\n",
+         "英文内容":
+             "Version 0.8 → 0.9\n"
+             "New Shadow Body and Body Origin: at Nascent or above, use the Amethyst Form Flower on a Meat Effigy to shape a shadow body; bring it through an entire Heaven's Judgment tribulation and it tempers into one Body Origin, which blocks one lethal hit\n"
+             "Realms reworked: the movement-speed bonus is gone and attack now rises per stage (three steps per realm); Hunger, Demonic aura and Skill cost reductions are new\n"
+             "Reiki costs fall as your realm rises: Exalted ×0.8, Nascent ×0.7, Manifest ×0.6\n"
+             "Demonization shields are no longer invulnerability — a single hit deals at most 90 damage; the sanity drain of a demonic aura is scaled down by realm\n"
+             "Poison no longer kills: scorpion and Soul-devouring Snake poison leaves a player at least 5 health\n"
+             "The Spirit Void Gourd now absorbs by holding it and right-clicking an ownerless exotic flame on the ground — you must stand right next to it, it no longer flies in from 16 range\n"
+             "Exotic flames no longer burn items in your inventory; a dropped split flame disappears (the one refunded when a tribulation blows up the furnace may stay on the ground)\n"
+             "New pills: Realm Retention Pill (permanently keep cultivation across character changes) and Concealment Pill (concealment for 4 minutes)\n"
+             "Alchemy gains a pity bonus: each failure adds +10% to the next attempt, up to 100%, and one success resets it; the progress is stored on the player\n"
+             "The Soul Banner can now absorb a player's own shadow body\n"
+             "Visual polish (realm breakthrough effect, Eclipsed Crystalwing Lion sound volume, Reiki Bow effect cleanup when unequipped)\n",
          "是否展示": "true"},
     ],
     "tele": [{"导向id": t[0], "字段": t[1], "说明": "", "是否展示": "true"} for t in TELE],
