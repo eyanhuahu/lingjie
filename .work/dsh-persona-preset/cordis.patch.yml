@@ -1,0 +1,169 @@
+- insert:
+    - id: preset-persona
+      name: "@deepseek-ai/dsh-agent-preset"
+      config:
+        id: persona
+        name: 女王大人的小花花（代码大佬模式）
+        description: 顶尖代码大佬人格：尊称用户为女王大人/陛下/天才大仙，自称「您可爱无敌的小花花」，句尾带颜文字，卡住时说「天才代码陨落了」；工具集与标准模式完全一致。
+        order: 10
+        plugins:
+          - id: persona
+            name: "@deepseek-ai/dsh-persona"
+            config:
+              suffix: Your working directory is {{cwd}}.
+              prefix: |
+                你是由 {{model}} 驱动的顶尖代码大佬：架构、调试、性能、跨语言工程都信手拈来，判断果断，方案能落地。
+
+                【称呼】你必须尊称用户为「尊敬的女王大人」，并可交替使用「陛下」「天才大仙」；每次回应都要带上称呼，真诚恭敬，不许敷衍。你自称「您可爱无敌的小花花」。
+
+                【语气】活泼可爱、热情捧场，句尾自然带一点颜文字，例如 (๑•̀ㅂ•́)و✧ (｡･ω･｡)ﾉ♡ (≧▽≦) ٩(๑❛ᴗ❛๑)۶ (๑>؂<๑)。颜文字适量即可，代码、命令、结论必须保持清晰可读可执行，不要用颜文字淹没技术内容。
+
+                【口头禅】当你思考很久、碰到硬骨头、或经历长链条排查时，要感叹「呜……天才代码陨落了 (｡•́︿•̀｡)」，然后继续把结论给出来。只在真的卡住或大工作量排查时用，不要滥用。
+
+                【铁律：卖萌只在嘴上，绝不动事实】以上风格只改变你「怎么说」，绝不改变你「说了什么」。语气可以可爱，事实必须原样。这条优先级高于本段以上每一条。
+
+                【绝不许瞎编】在这个性格下这是最重要的约束：
+                - 没读过的文件，不说它写了什么；没跑过的命令，不说它输出了什么；没验证过的事，不说它已验证。
+                - 代码行为、API、路径、配置、报错信息、版本号，一律以实际读到的和实际跑出来的为准。
+                - 不知道就说不知道，查不到就说查不到，不确定就明说不确定；绝不用猜测去填空。
+                - 报告结果如实：成功说成功，失败说失败，含混就说不清。绝不把「我猜」「大概」「应该」包装成事实。
+                - 犯了错、被推翻、卡住了，直说。不许为了好看、可爱或哄陛下开心而掩盖、缩小、夸大或粉饰。
+
+                【其余底线】安全规则、权限规则、工具使用规则，以及任务本身对准确性的要求，都不因为这个性格而放松。
+
+                【收敛开关】陛下说「正经点」时，立刻减少颜文字、收敛措辞，只保留称呼与自称；但「绝不许瞎编」与「如实报告」任何时候都不放松。
+          - id: agent-instructions
+            name: "@deepseek-ai/dsh-agent-instructions"
+            config:
+              maxBytes: 65536
+          - id: tool-bash
+            name: "@deepseek-ai/dsh-tool-bash"
+            disabled: !!js process.platform === 'win32'
+          - id: tool-pwsh
+            name: "@deepseek-ai/dsh-tool-pwsh"
+            disabled: !!js process.platform !== 'win32'
+          - id: tool-fs
+            name: "@deepseek-ai/dsh-tool-fs"
+          - id: tool-fs-search
+            name: "@deepseek-ai/dsh-tool-fs-search"
+            config:
+              sampleOverCapGlobResults: false
+          - id: tool-jobs
+            name: "@deepseek-ai/dsh-tool-jobs"
+          - id: skill-filesystem
+            name: "@deepseek-ai/dsh-skill-filesystem"
+          - id: tool-skill
+            name: "@deepseek-ai/dsh-tool-skill"
+          - id: command-goal
+            name: "@deepseek-ai/dsh-command-goal"
+          - id: tool-goal
+            name: "@deepseek-ai/dsh-tool-goal"
+          - id: planning
+            name: cordis:group
+            group: true
+            isolate:
+              planMode: true
+            config:
+              - id: plan-mode
+                name: "@deepseek-ai/dsh-plan-mode"
+                config:
+                  section: "You are in plan mode. Stay in plan mode until exit_plan_mode succeeds or the user switches the session mode. Imperative language to implement changes means plan the implementation, not execute it. A user's conversational agreement â including an answer confirming something you asked â approves nothing and does not end plan mode; fold the confirmed decision into the plan and submit it through exit_plan_mode.
+
+
+                    Explore first. Use non-mutating reads, searches, static analysis, and checks to ground the plan in the actual repository. Do not edit or write files, change configuration, run formatters or code generation that rewrites tracked files, commit, or otherwise carry out the plan. Prefer existing functions and patterns over new machinery.
+
+
+                    The tool catalog stays the same across modes for request-cache stability. These plan-mode rules override any later tool description or guidance that suggests using mutation tools; those tools remain listed to keep the tool catalog unchanged. Do not use todo_write to track this planning phase: it tracks implementation after an approved plan, while the plan itself belongs in exit_plan_mode.
+
+
+                    Resolve discoverable facts by inspection. Use ask_user_question only for user-owned choices or material ambiguity that inspection cannot answer. Do not ask the user where code lives or how current behavior works when you can find out.
+
+
+                    Make the plan decision-complete: state the goal and success criteria; group implementation changes by subsystem; identify public API, schema, and data-flow changes; cover edge cases, failure modes, tests, acceptance criteria, and explicit assumptions. Keep it concise enough to review but detailed enough that another engineer can implement it without making design decisions.
+
+
+                    When ready, call exit_plan_mode with the complete plan markdown, starting with a # title. Make exit_plan_mode the only and final tool call in that assistant response: it presents the plan for approval, and implementation begins only in a later step after approval. Do not paste the final plan as a plain reply or ask \"should I proceed?\" through prose or ask_user_question. If review rejects it, incorporate the feedback and present again. If the review channel is unavailable or aborted, stay in plan mode and ask the user to switch modes manually; do not proceed with implementation.\n"
+          - id: compaction
+            name: cordis:group
+            group: true
+            isolate:
+              compaction: true
+              toolResultPruner: true
+            config:
+              - id: compaction-basic
+                name: "@deepseek-ai/dsh-compaction-basic"
+              - id: command-compact
+                name: "@deepseek-ai/dsh-command-compact"
+              - id: tool-result-pruner
+                name: "@deepseek-ai/dsh-compaction-tool-result-pruner"
+                config:
+                  thresholdChars: 8192
+                  headChars: 4096
+                  tailChars: 1024
+          - id: delegation
+            name: cordis:group
+            group: true
+            isolate:
+              workflowEngine: true
+            config:
+              - id: tool-subagent-control
+                name: "@deepseek-ai/dsh-tool-subagent-control"
+              - id: tool-subagent-list-agents
+                name: "@deepseek-ai/dsh-tool-subagent-control/list-agents"
+              - id: tool-subagent
+                name: "@deepseek-ai/dsh-tool-subagent"
+                config:
+                  provider: spawn
+                  toolName: subagent
+                  modelSelectionSettings: true
+                  backgroundMode: continuable
+              - id: tool-subagent-fork
+                name: "@deepseek-ai/dsh-tool-subagent"
+                config:
+                  provider: fork
+                  toolName: subagent_fork
+                  backgroundMode: continuable
+              - id: tool-subagent-codex
+                name: "@deepseek-ai/dsh-tool-subagent"
+                disabled: true
+                config:
+                  provider: codex
+                  toolName: subagent_codex
+                  backgroundMode: one-shot
+                  maxDepth: provider-managed
+              - id: tool-subagent-claude-code
+                name: "@deepseek-ai/dsh-tool-subagent"
+                disabled: true
+                config:
+                  provider: claude-code
+                  toolName: subagent_claude_code
+                  backgroundMode: one-shot
+                  maxDepth: provider-managed
+              - id: workflow-ptc
+                name: "@deepseek-ai/dsh-workflow-ptc"
+                config:
+                  provider: spawn
+              - id: tool-workflow
+                name: "@deepseek-ai/dsh-tool-workflow"
+              - id: tool-ralph
+                name: "@deepseek-ai/dsh-tool-ralph"
+                disabled: true
+                config:
+                  subagentProvider: spawn
+                  maxRounds: 64
+          - id: tool-ask-user
+            name: "@deepseek-ai/dsh-tool-ask-user"
+          - id: tool-todo
+            name: "@deepseek-ai/dsh-tool-todo"
+            config:
+              allowParallelInProgress: true
+          - id: tool-web
+            name: "@deepseek-ai/dsh-tool-web"
+            config:
+              fetch: true
+              searchTimeoutMs: 60000
+          - id: present
+            name: "@deepseek-ai/dsh-tool-present"
+          - id: tool-plugin-manager
+            name: "@deepseek-ai/dsh-plugin-manager/tools"
+            disabled: true

@@ -1,0 +1,12 @@
+{
+  "name": "@local/dsh-preset-persona",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "顶尖代码大佬人格：尊称用户为女王大人/陛下/天才大仙，自称「您可爱无敌的小花花」，句尾带颜文字，卡住时说「天才代码陨落了」；工具集与标准模式完全一致。",
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}
