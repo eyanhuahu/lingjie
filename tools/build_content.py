@@ -3964,7 +3964,7 @@ DATA = {
         {"日志版本": "v0.8", "日期": "2026-09-29",
          "内容":
              "版本号 0.6 → 0.8\n"
-             "淬铁灵剑：攻击 45 → 56.1、耐久 100 → 220；修复改成 1 魔核碎片 +20、1 魔核 +50\n"
+             "淬铁灵剑：攻击 45 → 56.1、耐久 100 → 220；修复改成用魔核碎片修，1 个回复 20 点耐久\n"
              "灵韵与星陨的暴击率都下调到 8%\n"
              "深度入魔：不再无视减速，也不再免疫冰冻、睡眠、电击与眩晕\n"
              "暗影血蝠改成只在巢穴被攻击时出巢；妖蝠黄昏整群出巢；蝙蝠新增求援（打中一只会叫来附近同类）\n"
@@ -3976,7 +3976,7 @@ DATA = {
              "优化视觉（祭天雷劫落点标识、灵韵骑乘射击的箭矢高度与命中判定）\n",
          "英文内容":
              "Version 0.6 → 0.8\n"
-             "Tempered Iron Spirit Sword: attack 45 → 56.1, durability 100 → 220; repairs now give +20 per Magic Core Shard and +50 per Magic Core\n"
+             "Tempered Iron Spirit Sword: attack 45 → 56.1, durability 100 → 220; repairs now use Magic Core Shards only, +20 each\n"
              "The crit rate of Reiki Bow and Starfall is lowered to 8%\n"
              "Deep demonization: no longer ignores slows, and no longer ignores freeze, sleep, electrocution or grogginess\n"
              "Shadow Blood Bats now leave the nest only when it is attacked; Demon Bats swarm out at dusk; bats now call for help (hitting one brings nearby kin)\n"
