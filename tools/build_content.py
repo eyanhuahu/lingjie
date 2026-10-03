@@ -599,7 +599,7 @@ There are two kinds of tribulation: the Sacrificial Tribulation that falls when 
 Trigger: the creature must be killed by a player — only then does a deeply demonized creature call down a tribulation on death. The check looks at the source of the final blow: the player, the player's followers, and the player's items (such as the Void Ring) all count as the player's kill. A death with no source (starvation, environmental damage, creatures killing each other and so on) never triggers a tribulation and is not credited to any player.
 Duration: 60 seconds, one strike every 6 seconds, and the first landing marker appears immediately instead of after 6 seconds.
 Target: the landing spots are random within roughly 25 range of the corpse — a marker appears first and the bolt falls shortly after, and any player it hits takes damage.
-Damage: an ordinary deeply demonized creature takes 10% of your maximum health, while an epic boss kills outright (100% of maximum health), ignoring invulnerability and damage absorption.
+Damage: a hit on the killer is always an instant kill, ignoring invulnerability and damage absorption; it also removes the Invincibility Pill's minimum-health protection before the kill.
 Warning: the bolt lands 1.5 seconds after the marker appears; players within 25 hear "The heavens have sensed it. A tribulation is coming!" and see a "Sacrificial Tribulation" countdown on the HUD, which disappears once they leave the area.
 
 2. Alchemy Tribulation
@@ -753,7 +753,7 @@ Demonic Frenzy: dropping to 30% health or below triggers a frenzy — damage +30
 Sacrificial Tribulation: on death it calls down a tribulation for 60 seconds, striking every 6 seconds. The landing spots are random within roughly 25 range of the corpse — a marker appears first and the bolt falls shortly after, damaging any player it hits. (Kills credited to followers, the Void Ring and so on count as the player's and still trigger the tribulation.) an ordinary deeply demonized creature takes 10% of your maximum health, while an epic boss kills outright (100% of maximum health, ignoring invulnerability and damage absorption). The bolt lands 1.5 seconds after the marker appears, and the very first marker appears immediately instead of after 6 seconds.
 　Warning: players within 25 of the landing spot hear "The heavens have sensed it. A tribulation is coming!" and see a "Sacrificial Tribulation" countdown on the HUD; it disappears once they leave the area.
 
-On death it adds 1 Magic Crystal plus the creature's own loot, and doubles the vanilla drop amounts.
+On death it adds 1 Magic Crystal plus the creature's own loot, and doubles the vanilla drop amounts; a non-boss deeply demonized creature also gains 1–2 extra Magic Cores.
 　Exception: the three epic bosses with their own complete loot tables — Eclipsed Crystalwing Lion, Blazing Rock Scorpion Dragon and Soul-devouring Snake — are neither doubled nor given a Magic Crystal.
 """,
     },
@@ -852,7 +852,7 @@ Refining time 4 minutes.
 Cannot be destroyed or deconstructed.
 
 Giving it a Purple Scale Demon Flame unlocks the Soul Refining skill.
-Soul Refining: planted in the ground it automatically absorbs the 4 vanilla shadow creatures, the shadow clones produced by deep demonization, and a player's own shadow body as well; each one absorbed becomes a Magic Core dropped right below the banner.
+Soul Refining: planted in the ground it automatically absorbs the 5 vanilla shadow creatures (Terrorbeak, Crawling Horror, the ocean shadow creature, Nightmarebeak and Crawling Nightmare), the shadow clones produced by deep demonization, and a player's own shadow body as well; each one absorbed becomes a Magic Core dropped right below the banner.
 　Other shadow creatures (Shadow Knight, Shadow Bishop, Shadow Rook and so on) are not absorbed.
 """,
     },
@@ -882,7 +882,7 @@ Effect: restores 50 hunger, and werepigs like it too.
         "detail": """
 Low-tier pill (yellow), refining time 2 minutes.
 
-Effect: warming, prevents freezing cold, lasts 2 days.
+Effect: warming, prevents freezing cold, lasts 2 days. It stacks the vanilla hot-food temperature bonus and stops adding heat once you reach the vanilla hot-food threshold.
 """,
     },
     "lj_cooling_pill": {
@@ -891,18 +891,18 @@ Effect: warming, prevents freezing cold, lasts 2 days.
         "detail": """
 Low-tier pill (yellow), refining time 2 minutes.
 
-Effect: cooling, prevents overheating, lasts 2 days.
+Effect: cooling, prevents overheating, lasts 2 days. It stacks the vanilla cold-food temperature bonus and stops removing heat once you reach the vanilla cold-food threshold.
 """,
     },
     "lj_stillness_pill": {
         "tags": "Pills,Low,Realm",
-        "summary": "Take it after losing a realm stage to steady your mind and keep cultivating.",
+        "summary": "Cures poison, grants poison immunity and a full day of Steady Mind — while it lasts, death costs no stage and does not stall cultivation.",
         "detail": """
 Low-tier pill (yellow), refining time 2 minutes.
 
-Effect: taken after losing a stage on death, it steadies your mind and lets you keep cultivating.
+Effect: cures poison, grants poison immunity, and gives one day of Steady Mind — during it every death costs no realm stage and never stalls cultivation; the effect keeps counting down even if you die.
 
-This is the pill required to regain the ability to cultivate after a death penalty — without it you stay stuck.
+It used to be the pill that unlocked cultivation after a death penalty; Steady Mind now covers that as well.
 
 Extra use: it is also an antidote — taking one removes Soul Snake Venom outright (see Bone-Deep Poison under "Deep Demonization").
 """,
@@ -1045,9 +1045,9 @@ Advanced use: 20 Magic Cores craft 1 Magic Crystal, and they are the core materi
     },
     "lj_magic_crystal": {
         "tags": "Materials,Demonic Energy,Crafting",
-        "summary": "Crafted from 20 Magic Cores. Dropped by demonic beasts and deeply demonized creatures; essential for high-tier pills and armour.",
+        "summary": "Crafted from 99 Magic Cores. Dropped by demonic beasts and deeply demonized creatures; essential for high-tier pills and armour.",
         "detail": """
-Crafting: 20 Magic Cores craft one.
+Crafting: 99 Magic Cores craft one.
 
 Source: killing demonic beasts drops them; deeply demonized creatures drop 1.
 
@@ -1481,7 +1481,7 @@ Core: Demon Subduing Nucleus ([images/inventoryimages3/shadowheart.png] Shadow A
 
 Effect: blocks creatures but not players. No hostile creatures can spawn inside the area, or they are kept outside it; creatures already inside cannot leave.
 
-Spawn eviction: a hostile creature that spawns inside the area is moved at once to the nearest valid spot outside it — land creatures only onto land, while aquatic and flying ones may land on the ocean, and never next to a cave entrance; it is then registered as a creature outside.
+Spawn eviction: a hostile creature that spawns inside the area is moved at once to the nearest valid spot outside it — land creatures only onto land, while aquatic and flying ones may land on the ocean, and never next to a cave entrance; it is then registered as a creature outside. A gestalt born inside the area is evicted the same way.
 
 Passage: a player's companion creatures (followers and summons) are not blocked, and a mounted player passes through as well.
 """,
@@ -2019,8 +2019,8 @@ Once the Soul-devouring Snake first falls to 50% health it actively seeks out an
 Skills
 Bite: a snake head bite for 50 damage, non-stacking, and it can refresh the poison timer.
 Venom Bog: spits venom at the target to create a poison bog that lasts 4 minutes, slowing anyone inside by 60% and poisoning them on contact; 15-second cooldown.
-Petrifying Bind: within a circle of radius 16 centred on itself, binds the target in place for 3 seconds; 30-second cooldown. (Circular area, players only.)
-Venom Lock: slams its tail into the ground and spawns a snake body like a shadow creature that coils around the target for 5 seconds, during which the boss closes in and basic-attacks the bound target. (Players only.)
+Petrifying Bind: within a circle of radius 16 centred on itself, binds the target in place for 3 seconds; 30-second cooldown. (Circular area, players only — and it only petrifies players facing the snake, so facing away or sideways avoids it.)
+Venom Lock: slams its tail into the ground and spawns a snake body like a shadow creature that coils around the target for 5 seconds, during which the boss closes in and basic-attacks the bound target. (Players only; it is only used after 3 consecutive missed bites, and any bite that lands resets the count — the HUD shows the miss count.)
 
 Drops on kill
 Soul Snake Skin 3, [images/inventoryimages2/monstermeat.png] Monster Meat 5, Magic Crystal 2, Magic Core 6, Magic Core Shard 10, [images/inventoryimages3/redgem.png] Red Gem 2, Purple Scale Demon Flame 1.
@@ -2041,11 +2041,11 @@ With flowers within 5 turf it heals 60 health per flower every 10 seconds (an Am
 Destroying or harvesting nearby flowers interrupts the healing and forces a Lion's Roar within 10 seconds (harvesting petals within those 10 seconds still triggers it only once).
 Standing near a Mandrake — planted ones included — puts it to sleep for 8 seconds, and that sleep can only trigger once per minute.
 
-Skills (used in rotation: claw → scale powder missiles → roar → earth-rending step; anything unavailable or still cooling down is skipped)
-Crystal Claw Smash: a single-target melee heavy blow. 70 damage, 5-second cooldown, range about 1 turf (4 units), knocks small creatures down, and staggers a hit player for 0.6 seconds. If the player is closer than 1 turf, there is a 60% chance of one swing with each claw for 70 damage each (140 total), and a 40% chance of a single swing.
+Skills (normal attacks only rotate between claw and scale powder missiles; the roar and earth-rending step are now condition-triggered)
+Crystal Claw Smash: a single-target melee heavy blow. 70 damage, 5-second cooldown, range about 1 turf (4 units), knocks small creatures down, and staggers a hit player for 0.6 seconds. If the player is closer than 1 turf, there is a 60% chance of one swing with each claw for 70 damage each (140 total), and a 40% chance of a single swing. Three consecutive melee misses force one earth-rending step (any hit resets the count).
 Scale Powder Missiles (ranged): fans one wing to fire 3 scale powder orbs in a triangular spread. 40 damage each, 120 for all three. Blast radius about 0.4 turf (1.5 units), and each blast leaves a petal at the impact point. 18-second cooldown, up to 10 turf flight distance, exploding on contact with an obstacle.
 Lion's Roar (control): a screen-wide sound wave with 6 turf of range. No damage, but it staggers the player for 1.2 seconds and forces their weapon to drop.
-Earth-Rending Step: the lion raises one front paw, sinks its body to gather power, the ground trembles faintly and dust kicks up at its feet, with a small screen shake warning players to move.
+Earth-Rending Step (condition-triggered: after 3 consecutive melee misses, or when flower-picking interrupts its healing): the lion raises one front paw, sinks its body to gather power, the ground trembles faintly and dust kicks up at its feet, with a small screen shake warning players to move. A flower-triggered earth-rending step has its own 20-second interval.
 　Spawn area: centred on itself with 8 turf (32 units) of radius, it spawns one temporary pit under every player in range; pits never overlap, and no pit spawns where the ground is impassable.
 　The pit does not destroy buildings, turf, walls or crops, and when it first appears only cracks show as a warning for 1 second.
 　It then advances one collapse stage per second, 3 stages in all: stages 1 and 3 each deal 60 area damage, and stage 2 is effects only.
@@ -2063,7 +2063,7 @@ Amethyst Shell 1, Lion Bone 1, [images/inventoryimages2/monstermeat.png] Monster
 SITE = [
     # modinfo.lua 里是 name = "灵界"，author = "犹如黑夜星光、喵大仙BigXian"。
     # 顶栏作者名按作者要求单独写（跟 modinfo 不必一致）。
-    {"网站标题": "灵界", "网站英文名": "Spirit Realm", "网站版本": "v0.9", "作者": "犹如黑夜星光JinYan、喵大仙BigXian"},
+    {"网站标题": "灵界", "网站英文名": "Spirit Realm", "网站版本": "v0.10", "作者": "犹如黑夜星光JinYan、喵大仙BigXian"},
 ]
 
 SECTIONS = [
@@ -2294,7 +2294,7 @@ item(
 触发：必须是玩家击杀的深度入魔生物，死亡时才会召唤天劫。判定看的是最后一击的来源：玩家本人、玩家的随从、以及玩家物品（例如虚空戒）造成的击杀都算玩家的；没有来源的死亡（饿死、环境伤害、生物互相打死等）不会触发天劫，也不会算到任何玩家头上。
 时长：持续 60 秒，每 6 秒落雷一次；第一轮的落点标识立即出现，不必再等 6 秒。
 目标：以尸体为中心约 25 格范围内随机落点，先出标识，再降落天雷，劈中任意玩家都会造成伤害。
-伤害：普通深度入魔生物扣 10% 最大生命；史诗 Boss 则是必杀（100% 最大生命），无视无敌与伤害吸收。
+伤害：命中击杀者一律必杀，无视无敌与伤害吸收；而且会先解除不灭丹的最低生命保护，再强制击杀。
 预警：标识出现 1.5 秒后落地；25 范围内的玩家会收到台词「天道有感，雷劫将至！」，并在 HUD 上看到「祭天雷劫」倒计时，走出范围自动消失。
 
 二、丹劫（炼丹雷劫）
@@ -2438,7 +2438,7 @@ item(
 祭天雷劫：死亡后召唤天劫，持续 60 秒，每 6 秒落雷一次。以尸体为中心约 25 格范围内随机落点，先出标识，再降落天雷，劈中任意玩家都会造成伤害（随从、虚空戒等造成的击杀同样算玩家击杀，会照常触发雷劫）。伤害：普通深度入魔扣除 10% 最大生命，史诗 Boss 则必杀（100% 最大生命，无视无敌与伤害吸收）。标识出现 1.5 秒后落地，第一轮标识立即出现（不必再等 6 秒）。
 　预警：落点 25 范围内的玩家会收到台词「天道有感，雷劫将至！」并在 HUD 上看到「祭天雷劫」倒计时；走出范围自动消失。
 
-击杀后追加 1 个魔晶 + 生物原生材料，且原生掉落量翻倍。
+击杀后追加 1 个魔晶 + 生物原生材料，且原生掉落量翻倍；非首领的深度入魔生物还会额外追加 1~2 颗魔核。
 　　例外：月蚀晶翼狮、炽岩蝎龙、噬魂蛇这三只自带完整掉落的史诗 Boss 不会翻倍、也不会追加魔晶。
 """,
 )
@@ -2549,7 +2549,7 @@ item(
 炼制时间 4 分钟。\n\n无法摧毁，可分解。
 
 给予紫鳞妖焰可解锁技能「炼魂」。
-炼魂：插在地上会自动吸收原版的 4 种影怪、深度入魔产生的影体分身，以及玩家塑造的影体本身；每吸进一只化成一颗魔核，直接掉在魂幡下方。
+炼魂：插在地上会自动吸收原版的 5 种影怪（恐吓鸟、爬行梦魇、海上的影怪、梦魇鸟、爬行暗影）、深度入魔产生的影体分身，以及玩家塑造的影体本身；每吸进一只化成一颗魔核，直接掉在魂幡下方。
 　　其他影怪（影骑士、影主教、影车等）不会被吸入。
 """,
     recipe=R(("噩梦燃料", 5), ("芦苇", 5), ("树枝", 5), ("魔晶", 2)),
@@ -2635,7 +2635,7 @@ item(
 
 材料：""" + R(("融灵草", 3), ("硝石", 2), ("蝴蝶翅膀", 2), ("魔核", 1)) + """。
 
-效果：升温效果，不会过冷，持续 2 天。
+效果：升温效果，不会过冷，持续 2 天。温度按原版热食修正叠加：升到原版热食阈值后不再额外升温。
 """,
     recipe=R(("融灵草", 3), ("硝石", 2), ("蝴蝶翅膀", 2), ("魔核", 1)),
 )
@@ -2648,24 +2648,24 @@ item(
 
 材料：""" + R(("融灵草", 3), ("硝石", 2), ("月娥翅膀", 2), ("魔核", 1)) + """。
 
-效果：降温效果，不会过热，持续 2 天。
+效果：降温效果，不会过热，持续 2 天。温度按原版冷食修正叠加：降到原版冷食阈值后不再额外降温。
 """,
     recipe=R(("融灵草", 3), ("硝石", 2), ("月娥翅膀", 2), ("魔核", 1)),
 )
 
 item(
     "danyao", "lj_stillness_pill", "清心丸", "丹药,低阶,境界",
-    "死亡掉阶后服用，可稳固心神、继续修炼。",
+    "服下后解毒、免疫毒素，并稳固心神一天；期间死亡不掉阶、也不停滞修炼。",
     """
 低阶丹药（黄），炼制时间 2 分钟。
 
 材料：""" + R(("魔核", 1), ("腺体", 2), ("格罗姆粘液", 1), ("融灵草", 3)) + """。
 
-效果：死亡后掉阶后服用，可稳固心神，继续修炼。
+效果：服下后解毒、免疫毒素，并获得「稳固心神」一天——期间每次死亡都不掉阶、也不会停滞修炼；死亡后药效仍继续计时。
 
-这是死亡掉阶后恢复修炼资格的必要丹药，否则会止步不前。
+原本是死亡掉阶后恢复修炼资格的丹药，现在这份作用也由「稳固心神」一并覆盖。
 
-额外用途：可以解毒——服用后直接解除噬魂蛇毒（详见「深度入魔」的毒入骨髓）。
+解毒：服用后直接解除噬魂蛇毒，并在药效期间免疫一切中毒（详见「深度入魔」的毒入骨髓）。
 """,
     recipe=R(("魔核", 1), ("腺体", 2), ("格罗姆粘液", 1), ("融灵草", 3)),
 )
@@ -2875,9 +2875,9 @@ item(
 
 item(
     "cailiao", "lj_magic_crystal", "魔晶", "材料,魔气,合成",
-    "20 个魔核合成。魔兽与深度入魔生物掉落，高阶丹药与盔甲的必需品。",
+    "99 个魔核合成。魔兽与深度入魔生物掉落，高阶丹药与盔甲的必需品。",
     """
-合成：20 个魔核合成。
+合成：99 个魔核合成。
 
 来源：击杀魔兽掉落；深度入魔生物掉落魔晶 1。
 
@@ -2887,7 +2887,7 @@ item(
 
 可在 <灵界>、<魔法>、<精炼> 栏位制作。
 """,
-    recipe=R(("魔核", 20)),
+    recipe=R(("魔核", 99)),
 )
 
 item(
@@ -3383,7 +3383,7 @@ item(
 
 效果：只拦生物不拦玩家。范围内无法生成敌对生物，或把敌对生物拦截在阵外；已经在阵内的生物无法出去。
 
-出生驱逐：敌对生物如果直接出生在阵内，会被立刻送到阵外最近的可站立位置——陆生生物只能落陆地，水生与飞行生物可以落海面，而且不会落到洞穴口旁边；送到之后才按阵外生物登记。
+出生驱逐：敌对生物如果直接出生在阵内，会被立刻送到阵外最近的可站立位置——陆生生物只能落陆地，水生与飞行生物可以落海面，而且不会落到洞穴口旁边；送到之后才按阵外生物登记。出生在阵内的虚影同样会被送出去。
 
 放行：玩家的同伴类生物（随从、召唤物）不会被拦，玩家骑乘时同样放行。
 """,
@@ -3985,8 +3985,8 @@ item(
 技能
 撕咬：蛇头咬击，50 伤害，不可叠加，可重置中毒时间。
 毒沼喷涌：朝目标喷射毒液生成毒沼，毒沼区域持续 4 分钟，区域内减速 60%，踩中附加中毒效果，冷却 15 秒。
-定身石化：以自身为中心、半径 16 的圆形范围内，定身目标 3 秒，冷却 30 秒。（圆形范围，只对玩家生效）
-剧毒禁锢：蛇尾猛砸向地面，生成一个影怪一样的蛇身缠住目标 5 秒，期间 Boss 会向禁锢目标靠近普攻。（只对玩家生效）
+定身石化：以自身为中心、半径 16 的圆形范围内，定身目标 3 秒，冷却 30 秒。（圆形范围，只对玩家生效；结算时只石化面向蛇的玩家——背对或侧对蛇可以躲开。）
+剧毒禁锢：蛇尾猛砸向地面，生成一个影怪一样的蛇身缠住目标 5 秒，期间 Boss 会向禁锢目标靠近普攻。（只对玩家生效；需要连续 3 次撕咬落空才会使用，任意一次撕咬命中都会重新计数，HUD 上会显示落空次数。）
 
 击杀掉落
 噬魂蛇皮 3、怪物肉 5、魔晶 2、魔核 6、魔核碎片 10、红宝石 2、紫鳞妖焰 1。
@@ -4008,11 +4008,11 @@ item(
 玩家摧毁、采集附近花朵会打断回血，10 秒内强制触发一次狮吼震慑（10 秒内采集花瓣，只会强制触发一次）。
 靠近曼德拉草会陷入昏睡 8 秒，昏睡状态 1 分钟内只会触发一次（已种下的曼德拉草同样有效）。
 
-技能（按顺序轮转：爪击 → 鳞粉飞弹 → 狮吼 → 裂地囚步；条件不满足或还在冷却的技能会跳过）
-晶爪猛击：单体近战重击。伤害 70，冷却 5 秒，范围约 1 格（4 码），击倒小型生物，玩家受击硬直 0.6 秒。如果玩家距离小于 1 格，则 60% 概率左右手各挥一次、每下 70 伤（合计 140），40% 概率只挥一下。
+技能（常规攻击只在「爪击 ↔ 鳞粉飞弹」之间轮转；狮吼震慑与裂地囚步改为按条件触发）
+晶爪猛击：单体近战重击。伤害 70，冷却 5 秒，范围约 1 格（4 码），击倒小型生物，玩家受击硬直 0.6 秒。如果玩家距离小于 1 格，则 60% 概率左右手各挥一次、每下 70 伤（合计 140），40% 概率只挥一下。连续 3 次近战落空后会强制触发一次裂地囚步（命中一次就重新计数）。
 鳞粉飞弹（远程消耗）：扇动单侧翅膀发射 3 枚蝶粉光球，呈三角散射。单发伤害 40，三发全中 120。爆炸半径约 0.4 格（1.5 码），爆炸后会在爆炸点生成一个花瓣。冷却 18 秒，最大飞行距离 10 格，遇障碍物直接爆炸。
 狮吼震慑（控制技能）：全屏 6 格范围声波冲击。无伤害，但玩家僵直 1.2 秒，武器强制掉落地面。冷却 20 秒。
-裂地囚步：狮子抬起单侧前爪，身躯下沉蓄力，地面轻微持续震动，脚下扬起细碎沙尘特效，屏幕小幅抖动提示玩家规避。
+裂地囚步（条件触发：连续近战落空 3 次，或被采花打断回血后）：狮子抬起单侧前爪，身躯下沉蓄力，地面轻微持续震动，脚下扬起细碎沙尘特效，屏幕小幅抖动提示玩家规避。采花触发的裂地囚步有 20 秒独立间隔。
 　生成范围：以自身 8 个地皮（32 单位）为中心，给范围内每名玩家在脚下各生成一个临时陷坑；坑与坑之间互不重叠，脚下不可通行的位置不生成。
 　陷坑不摧毁建筑、地皮、墙体、作物，出现后先只露裂纹预警 1 秒。
 　随后每秒推进一段塌陷，共 3 段：第 1 段与第 3 段各造成 60 点范围伤害，第 2 段只有特效。
@@ -4157,6 +4157,32 @@ DATA = {
              "Alchemy gains a pity bonus: each failure adds +10% to the next attempt, up to 100%, and one success resets it; the progress is stored on the player\n"
              "The Soul Banner can now absorb a player's own shadow body\n"
              "Visual polish (realm breakthrough effect, Eclipsed Crystalwing Lion sound volume, Reiki Bow effect cleanup when unequipped)\n",
+         "是否展示": "true"},
+        {"日志版本": "v0.10", "日期": "2026-10-03",
+         "内容":
+             "版本号 0.9 → 0.10\n"
+             "魔晶配方涨价：20 个魔核 → 99 个魔核\n"
+             "祭天雷劫与丹劫的落雷改成必杀，而且会先解除不灭丹的最低生命保护\n"
+             "清心丸改成「稳固心神」一天：解毒、免疫毒素，期间死亡不掉阶也不停滞修炼\n"
+             "噬魂蛇：连续 3 次撕咬落空后才会用「剧毒禁锢」（咬中一次就重新计数）；「定身石化」只石化面向蛇的玩家，背对或侧对能躲开\n"
+             "月蚀晶翼狮：常规攻击只在爪击与鳞粉飞弹之间轮转，狮吼与裂地囚步改成条件触发；连续 3 次近战落空会强制触发裂地囚步（采花触发的这次有 20 秒独立间隔）\n"
+             "魂幡现在也能吸收海上的影怪：原版影怪从 4 种增加到 5 种\n"
+             "驱灵锁魔阵的出生驱逐现在也会把出生在阵内的虚影送出去\n"
+             "深度入魔的非首领生物额外追加 1~2 颗魔核\n"
+             "赤焰丹与冷焰丹的温度改成按原版热食 / 冷食修正叠加\n"
+             "优化视觉（虚空戒与星陨漂浮时的显示、淬铁灵剑动画）\n",
+         "英文内容":
+             "Version 0.9 → 0.10\n"
+             "Magic Crystal recipe costs more: 20 Magic Cores → 99 Magic Cores\n"
+             "Sacrificial and alchemy tribulation bolts are now instant kills, and they remove the Invincibility Pill's minimum-health protection first\n"
+             "The Stillness Pill now grants a full day of Steady Mind: it cures poison, grants poison immunity, and while it lasts death costs no realm stage and never stalls cultivation\n"
+             "Soul-devouring Snake: Venom Lock is only used after 3 consecutive missed bites (any hit resets the count), and Petrifying Bind now only petrifies players facing the snake — facing away or sideways avoids it\n"
+             "Eclipsed Crystalwing Lion: normal attacks only rotate between claw and scale powder missiles, and the roar and earth-rending step are now condition-triggered; 3 consecutive melee misses force an earth-rending step (a flower-triggered one has its own 20-second interval)\n"
+             "The Soul Banner can now absorb the ocean shadow creature too: vanilla shadow creatures go from 4 to 5\n"
+             "The Spirit-Banishing Demon-Locking Formation now also evicts gestalts that spawn inside it\n"
+             "Non-boss deeply demonized creatures gain 1–2 extra Magic Cores\n"
+             "Warming and Cooling Pills now stack the vanilla hot-food / cold-food temperature bonuses\n"
+             "Visual polish (Void Ring and Starfall floating display, Tempered Iron Spirit Sword animation)\n",
          "是否展示": "true"},
     ],
     "tele": [{"导向id": t[0], "字段": t[1], "说明": "", "是否展示": "true"} for t in TELE],
