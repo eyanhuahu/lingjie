@@ -4143,7 +4143,7 @@ DATA = {
              "新增丹药：蜕灵丹（永久获得换人保留境界）、凝摒丹（隐匿气息 4 分钟）\n"
              "炼丹加入保底：每失败一次成功率 +10%，最多叠到 100%，成功清零；进度记在玩家身上\n"
              "魂幡现在也能吸玩家的影体\n"
-             "优化视觉（境界突破特效、月蚀晶翼狮音效音量、灵韵弓卸装后的特效清理）\n",
+             "优化视觉（灵虚葫新增吸收动作动画、境界突破特效、月蚀晶翼狮音效音量、灵韵弓卸装后的特效清理）\n",
          "英文内容":
              "Version 0.8 → 0.9\n"
              "New Shadow Body and Body Origin: at Nascent or above, use the Amethyst Form Flower on a Meat Effigy to shape a shadow body; bring it through an entire Heaven's Judgment tribulation and it tempers into one Body Origin, which blocks one lethal hit\n"
@@ -4156,7 +4156,7 @@ DATA = {
              "New pills: Realm Retention Pill (permanently keep cultivation across character changes) and Concealment Pill (concealment for 4 minutes)\n"
              "Alchemy gains a pity bonus: each failure adds +10% to the next attempt, up to 100%, and one success resets it; the progress is stored on the player\n"
              "The Soul Banner can now absorb a player's own shadow body\n"
-             "Visual polish (realm breakthrough effect, Eclipsed Crystalwing Lion sound volume, Reiki Bow effect cleanup when unequipped)\n",
+             "Visual polish (new Spirit Void Gourd absorption animation, realm breakthrough effect, Eclipsed Crystalwing Lion sound volume, Reiki Bow effect cleanup when unequipped)\n",
          "是否展示": "true"},
         {"日志版本": "v0.10", "日期": "2026-10-03",
          "内容":
