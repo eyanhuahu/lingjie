@@ -286,7 +286,7 @@ MATERIAL_EN = {
 def recipe_en(recipe):
     """把中文配方串里的材料名换成英文（图标路径原样保留，分隔符仍是「、」）。
 
-    做法是**按名字长度的降序做整串替换**，这样：
+    做法是按名字长度的降序做整串替换，这样：
     · 「魔核碎片」不会被「魔核」先吃掉
     · 「橡果 3 或 [图标] 松果」这种一段里塞两个名字的写法也能各自换掉
     认不出的中文会记进 WARNINGS，方便维护者补 MATERIAL_EN。
@@ -496,7 +496,7 @@ How to advance
 
 How to advance
 　Earn experience by killing creatures. You count as a participant if you attacked within the last 30 seconds and within 15 turf of the kill. Abigail's attacks, and kills made by Willow's fire, count for their owner (other followers do not).
-　Experience gained = the target's maximum health × 5% (5% / 8% / 12% selectable in mod settings); the code reads its current maximum health, so demonization-inflated health counts too.
+　Experience gained = the target's maximum health × 5% (5% / 8% / 12% selectable in mod settings); it uses the target's current maximum health, so demonization-inflated health counts too.
 
 Bottlenecks and meditation
 　Stages 1 to 3 have no bottleneck. Stage 3 → 4, stage 6 → 7, and stage 9 → the next realm all require meditation.
@@ -692,7 +692,7 @@ What each element does
 　Earth: damage taken ×0.8 (×0.9 with several roots); damage dealt ×0.85 and speed ×0.9; a single Earth root gives ×1.9 max health (other single roots ×1.5, several roots no bonus); a single Earth root is immune to stagger, knockback, knockdown and electric stun.
 
 Single-root bonuses
-　×1.2 global damage and ×1.1 speed, and death costs no realm stage (the same exemption as the Stillness Pill).
+　×1.2 global damage and ×1.1 speed, and death costs no realm stage.
 
 Changing roots
 　Marrow-Cleansing Pill tries to shave off one extra root (it hurts whether it works or not). The Essence-Turning Pill reshapes your core into a chosen element.
@@ -2403,11 +2403,11 @@ item(
 境界共 9 个：凡境、淬体、炼筋、辟谷、引气、入微、超凡、合婴、具灵。每个境界分 9 阶，如淬体一阶、二阶……九阶。
 
 灵根加成
-　五行灵根会**乘进生命上限与经验获取**（单土生命 ×1.9、其他单灵根 ×1.5；经验按灵根条数 ×1.7 ~ ×0.5）；**单灵根死亡不掉阶**。详见「五行灵根」。
+　五行灵根会乘进生命上限与经验获取（单土生命 ×1.9、其他单灵根 ×1.5；经验按灵根条数 ×1.7 ~ ×0.5）；单灵根死亡不掉阶。详见「五行灵根」。
 
 升阶方式
 　击杀生物获得经验；在 15 个地皮范围内、30 秒内参与过攻击就算参与。阿比盖尔的攻击，以及薇洛技能火焰造成的击杀，都算它们主人的参战（其他随从不算）。
-　经验获取量 = 目标的最大生命 × 5%（mod 设置里可选 5% / 8% / 12%）；按代码取的是当前最大生命，被入魔抬高的那部分也算在内。
+　经验获取量 = 目标的最大生命 × 5%（mod 设置里可选 5% / 8% / 12%）；取的是目标当前的最大生命，被入魔抬高的那部分也算在内。
 
 瓶颈与打坐
 　第 1 到 3 阶无瓶颈；第 3 阶升第 4 阶、第 6 阶升第 7 阶、第 9 阶升入下一个境界，都需要打坐。
@@ -2565,7 +2565,7 @@ item(
 　土：受伤 ×0.8（多灵根 ×0.9）；增伤 ×0.85、移速 ×0.9；单土生命上限 ×1.9（其他单灵根 ×1.5，多灵根无加成）；单土免疫受击、击退、击倒与电击。
 
 单灵根专属
-　全局增伤 ×1.2、移速 ×1.1，而且死亡不掉阶（与清心丸走同一条豁免）。
+　全局增伤 ×1.2、移速 ×1.1，而且死亡不掉阶。
 
 改灵根
 　洗髓丹：试着削掉一条多余的灵根（失败会带伤）。转元丹：把本元重塑成指定属性。
@@ -2706,7 +2706,7 @@ item(
 生物强化
 限定易伤：生命值降到 50% 及以下会触发护盾，持续 5 秒，冷却 5 分钟——护盾期间不是无敌，而是单次受到的伤害最多 90 点。护盾表现为红色力场。
 
-击杀后掉落魔核碎片 1 到 3 个 + 生物原生材料（v0.11 起**不再掉魔核**）。
+击杀后掉落魔核碎片 1 到 3 个 + 生物原生材料（v0.11 起不再掉魔核）。
 """,
 )
 
@@ -3964,7 +3964,7 @@ item(
 
 丢弃规则：分裂火丢在地上会直接消失（只有丹劫炸炉返还的那一份能留在地上）；异火本体丢在地上会留下，并开始计算失主时间。放在物品栏 / 背包里不会焚毁任何东西。
 
-照明与灭火：墟火 / 异火本体放置地上会提供照明（现在**视觉光照显示约 10 码**，但发热与灭火的**功能半径仍是 20 码**），并熄灭周围所有普通火焰（异火之间不互相排斥，比如两个异火都放在地上，各自发光发热，还是会熄灭其他火焰）。分裂出来的放置地上会消失。
+照明与灭火：墟火 / 异火本体放置地上会提供照明（现在视觉光照显示约 10 码，但发热与灭火的功能半径仍是 20 码），并熄灭周围所有普通火焰（异火之间不互相排斥，比如两个异火都放在地上，各自发光发热，还是会熄灭其他火焰）。分裂出来的放置地上会消失。
 
 分裂：灵虚葫吸收的异火可右键分裂，消耗 10 灵力值。分裂的火焰可放入灵虚光盏提供光照，添加燃料 50%，燃烧可燃物、焚烧建筑，可以放入炼丹炉融合。
 
@@ -4324,7 +4324,7 @@ item(
     """
 由炽岩蝎龙每掉落 10000 血量时召唤 4 只。
 
-v0.11 起：幼虫被击杀**不再掉落任何战利品**。
+v0.11 起：幼虫被击杀不再掉落任何战利品。
 
 血量 250，攻击 40，毒伤 3/秒，持续 8 秒。
 
@@ -4674,7 +4674,7 @@ _ICON_BEFORE = re.compile(r"\]\s*$")
 
 
 def material_name_re(extra_names=()):
-    """材料名正则：**最长的名字优先**，并且把 wiki 条目名一起放进去。
+    """材料名正则：最长的名字优先，并且把 wiki 条目名一起放进去。
 
     后者是为了「吃掉」更长的匹配：正文里的「融灵草 1」如果不放进去，
     就会在「融」后面匹配到短名「草」并插一个草图标，变成「融灵[图标] 草 1」。
