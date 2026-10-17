@@ -748,7 +748,7 @@ Four hammer hits take it down.
     },
     "lj_refresh_pill": {
         "tags": "Pill,Mid Tier,Roots",
-        "summary": "A mid-tier pill that tries to shave off one extra spirit root; it hurts whether it succeeds or fails.",
+        "summary": "Mid-tier pill: cleanses the marrow and may shave off a tangled spirit root; whether it works or not it costs 20 health and 20 sanity.",
         "detail": """
 Mid-tier pill (mystic), refining time 4 minutes.
 
@@ -3020,7 +3020,7 @@ item(
 
 item(
     "danyao", "lj_refresh_pill", "洗髓丹", "丹药,中阶,灵根",
-    "中阶丹药：洗筋伐髓，试着削掉一条多余的灵根；失败会带伤。",
+    "中阶丹药：洗筋伐髓，或可削减杂乱灵根；不管成败都会扣 20 点生命和 20 点理智。",
     """
 中阶丹药（玄），炼制时间 4 分钟。
 
