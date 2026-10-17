@@ -695,7 +695,7 @@ Single-root bonuses
 　×1.2 global damage and ×1.1 speed, and death costs no realm stage.
 
 Changing roots
-　Marrow-Cleansing Pill tries to shave off one extra root (it hurts whether it works or not). The Essence-Turning Pill reshapes your core into a chosen element.
+　Marrow-Cleansing Pill tries to shave off one extra root — whether it works or not it costs 20 health and 20 sanity (cannot be reduced). The Essence-Turning Pill reshapes your core into a chosen element.
 """,
     },
     "lj_myriad_spirit_ritual": {
@@ -2568,7 +2568,7 @@ item(
 　全局增伤 ×1.2、移速 ×1.1，而且死亡不掉阶。
 
 改灵根
-　洗髓丹：试着削掉一条多余的灵根（失败会带伤）。转元丹：把本元重塑成指定属性。
+　洗髓丹：试着削掉一条多余的灵根——不管成败都会扣 20 点生命和 20 点理智（不可减免）。转元丹：把本元重塑成指定属性。
 """,
 )
 
