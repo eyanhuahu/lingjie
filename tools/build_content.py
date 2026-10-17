@@ -702,26 +702,32 @@ The count sets cultivation speed
 　1 ×1.7 · 2 ×1.3 · 3 ×1.0 · 4 ×0.75 · 5 ×0.5 (experience multiplier).
 
 What each element does
-　First, one rule: "single Metal / Wood / …" only applies when that is your only root. With two or more roots you only get the parts not marked "single", and the bonuses are shared out.
+　Each element works on two levels: "any Metal root" applies as soon as you carry that element; "single Metal only" is the extra you get when it is your ONLY root.
+　So multiple roots are not a pure downgrade — you still get every element's base effect, you just miss the "single root only" tier (and you do cultivate more slowly).
 
 　Metal — unstoppable by lightning, the miner's pick
-　　Single Metal: lightning cannot hurt you at all; melee is 20% stronger; mining is twice as fast.
+　　Any Metal root: mining is 25% faster.
+　　Single Metal only: lightning cannot hurt you at all; melee is 20% stronger; mining is twice as fast.
 　　Cost: fire hurts — flame and heat damage is doubled; healing you receive drops to 80%.
 
 　Wood — a feller and a farmer who heals on the job
-　　Single Wood: chopping and gathering are twice as fast; out of combat, plants nearby slowly heal you.
+　　Any Wood root: chopping and gathering are 25% faster.
+　　Single Wood only: you are immune to snake venom; chopping and gathering are twice as fast; out of combat, plants nearby slowly heal you.
 　　Cost: thin skin — you take 20% more damage.
 
 　Water — tougher the wetter you are, the angler's friend
-　　Single Water: you never get soaked through, you move 10% faster, your wetness soaks up damage for you, and when you are not at full health that wetness turns into healing; fishing is much faster.
+　　Any Water root: fishing is a little faster.
+　　Single Water only: you stay dry, move 10% faster and shrug off cold better; your wetness soaks up damage for you and, when you are not at full health, turns into healing; fishing is much faster.
 　　Cost: you warm up slowly.
 
 　Fire — at home in the flames, safe down a burning mine
-　　Single Fire: fire cannot hurt you at all; you warm up fast and cool down slowly; you regain sanity near heat such as campfires; out of combat and warm, you slowly heal.
+　　Any Fire root: you warm up fast and cool down slowly, and regain sanity near heat such as campfires.
+　　Single Fire only: fire cannot hurt you at all; out of combat and warm, you slowly heal.
 　　Cost: while something is burning on you, cold damage is doubled.
 
 　Earth — the tank: more health, harder to move
-　　Single Earth: ×1.9 max health (nearly double); you take 20% less damage; you cannot be staggered, knocked back, knocked down or stunned by electricity.
+　　Any Earth root: you take 10% less damage.
+　　Single Earth only: ×1.9 max health (nearly double); you take 20% less damage; you cannot be staggered, knocked back, knocked down or stunned by electricity.
 　　Cost: you hit a little softer (×0.85 damage) and move a little slower (×0.9 speed).
 
 Single-root bonuses
@@ -2601,26 +2607,32 @@ item(
 　1 条 ×1.7 · 2 条 ×1.3 · 3 条 ×1.0 · 4 条 ×0.75 · 5 条 ×0.5（经验获取倍率）。
 
 各属性效果
-　先记住一件事：「单金 / 单木…」指的是你只抽到这一种灵根；抽到两三种的，只吃不带「单」字的那部分，好处会分摊。
+　每个灵根分两档：「所有X灵根」是只要带这一种就生效；「只有单X」是只抽到这一种才多给的加成。
+　所以抽到多灵根并不吃亏——每种灵根的基础效果照样吃得到，只是拿不到「只有单X」那一档（另外修炼会慢一些）。
 
 　金 —— 雷打不动，矿工首选
-　　单金：雷电完全打不动你；近战强两成；挖矿快一倍。
+　　所有金：挖矿快 25%。
+　　只有单金：雷电完全打不动你；近战强两成；挖矿快一倍。
 　　代价：怕火——火焰和高温的伤害翻倍；别人给你回血只能回八成。
 
 　木 —— 砍树种地，边打边回血
-　　单木：砍树、采集都快一倍；打完架停下来，附近有植物就会慢慢回血。
+　　所有木：砍树、采集都快 25%。
+　　只有单木：免疫蛇毒；砍树、采集快一倍；打完架停下来，附近有植物就会慢慢回血。
 　　代价：皮薄——受到的伤害多两成。
 
 　水 —— 越湿越抗打，钓鱼好手
-　　单水：自动防水、走路快一成；身上的湿气能替你挡伤害，没满血时湿气还会变成回血；钓鱼快很多。
+　　所有水：钓鱼快一点。
+　　只有单水：自动防水、走路快一成、更耐冷；身上的湿气能替你挡伤害，没满血时湿气还会变成回血；钓鱼快很多。
 　　代价：暖得慢（只有七成的升温速度）。
 
 　火 —— 火里来火里去，下矿不怕烧
-　　单火：完全不怕火；暖得快、凉得慢；靠近火堆之类的热源会回理智；打完架停下来、身上暖和时会回血。
+　　所有火：暖得快、凉得慢；靠近火堆之类的热源会回理智。
+　　只有单火：完全不怕火；打完架停下来、身上暖和时会回血。
 　　代价：身上带着火的时候更怕冷（冷伤害翻倍）。
 
 　土 —— 肉盾，血厚、站得住
-　　单土：生命上限 ×1.9（差不多翻倍）；受伤少两成；不会被击退、击倒、电击。
+　　所有土：受伤少一成。
+　　只有单土：生命上限 ×1.9（差不多翻倍）；受伤少两成；不会被击退、击倒、电击。
 　　代价：打得轻一点（伤害 ×0.85）、跑得慢一点（移速 ×0.9）。
 
 单灵根专属
