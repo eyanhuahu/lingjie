@@ -718,12 +718,12 @@ What each element does
 　Water — tougher the wetter you are, the angler's friend
 　　Any Water root: fishing is a little faster.
 　　Single Water only: you stay dry, move 10% faster and shrug off cold better; your wetness soaks up damage for you and, when you are not at full health, turns into healing; fishing is much faster.
-　　Cost: you warm up slowly.
+　　Single-root cost: you warm up slowly, and in extreme heat or cold you only move at 85%.
 
 　Fire — at home in the flames, safe down a burning mine
 　　Any Fire root: you warm up fast and cool down slowly, and regain sanity near heat such as campfires.
 　　Single Fire only: fire cannot hurt you at all; out of combat and warm, you slowly heal.
-　　Cost: while something is burning on you, cold damage is doubled.
+　　Cost: while something is burning on you cold damage is doubled, and while frozen you take 20% more damage.
 
 　Earth — the tank: more health, harder to move
 　　Any Earth root: you take 10% less damage.
@@ -2623,12 +2623,12 @@ item(
 　水 —— 越湿越抗打，钓鱼好手
 　　所有水：钓鱼快一点。
 　　只有单水：自动防水、走路快一成、更耐冷；身上的湿气能替你挡伤害，没满血时湿气还会变成回血；钓鱼快很多。
-　　代价：暖得慢（只有七成的升温速度）。
+　　单水的代价：暖得慢（只有七成的升温速度）；过热或过冷时走路只有八成五。
 
 　火 —— 火里来火里去，下矿不怕烧
 　　所有火：暖得快、凉得慢；靠近火堆之类的热源会回理智。
 　　只有单火：完全不怕火；打完架停下来、身上暖和时会回血。
-　　代价：身上带着火的时候更怕冷（冷伤害翻倍）。
+　　代价：身上带着火的时候更怕冷（冷伤害翻倍）；被冻住的时候挨打更疼（×1.2）。
 
 　土 —— 肉盾，血厚、站得住
 　　所有土：受伤少一成。
