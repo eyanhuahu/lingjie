@@ -454,7 +454,7 @@ NAME_EN = {
     "lj_xichen_fruit": "Dust-Cleansing Fruit",
     "lj_danling": "Danling",
     "spirit_roots": "Five-Element Spirit Roots",
-    "myriad_spirit_ritual": "Myriad Spirit Ritual",
+    "lj_myriad_spirit_ritual": "Myriad Spirit Ritual",
     "lj_refresh_pill": "Marrow-Cleansing Pill",
     "lj_transcendent_pill": "Essence-Turning Pill（Celestial）",
     "lj_concealment_pill": "Concealment Pill",
@@ -698,7 +698,7 @@ Changing roots
 　Marrow-Cleansing Pill tries to shave off one extra root (it hurts whether it works or not). The Essence-Turning Pill reshapes your core into a chosen element.
 """,
     },
-    "myriad_spirit_ritual": {
+    "lj_myriad_spirit_ritual": {
         "tags": "Roots,Structure,Identify",
         "summary": "Put your hand on it to identify your spirit roots; the result shows as five-element characters on the building.",
         "detail": """
@@ -2573,7 +2573,7 @@ item(
 )
 
 item(
-    "linggen", "myriad_spirit_ritual", "万象灵仪", "灵根,建筑,鉴定",
+    "linggen", "lj_myriad_spirit_ritual", "万象灵仪", "灵根,建筑,鉴定",
     "把手放上去就能鉴定自身灵根的建筑；结果显示在建筑上的五行字里。",
     """
 把手放上去，便能照见自身灵根。

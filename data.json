@@ -227,13 +227,13 @@
       "是否展示": "true"
     },
     {
-      "id": "myriad_spirit_ritual",
+      "id": "lj_myriad_spirit_ritual",
       "分类id": "linggen",
       "名称": "万象灵仪",
       "英文名": "Myriad Spirit Ritual",
       "标签": "灵根,建筑,鉴定",
       "英文标签": "Roots,Structure,Identify",
-      "图片": "",
+      "图片": "images/lingjie/showcase/lj_myriad_spirit_ritual.png",
       "制作配方": "[images/inventoryimages2/moonrocknugget.png] 月岩 2、[images/inventoryimages2/nightmarefuel.png] 噩梦燃料 2、[images/inventoryimages2/livinglog.png] 活木 1、[images/inventoryimages2/lightbulb.png] 荧光果 5",
       "英文配方": "[images/inventoryimages2/moonrocknugget.png] Moon Rock 2、[images/inventoryimages2/nightmarefuel.png] Nightmare Fuel 2、[images/inventoryimages2/livinglog.png] Living Log 1、[images/inventoryimages2/lightbulb.png] Glow Berry 5",
       "需祭坛": "",
