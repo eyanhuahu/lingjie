@@ -239,8 +239,8 @@
       "需祭坛": "",
       "简介": "把手放上去就能鉴定自身灵根的建筑；结果显示在建筑上的五行字里。",
       "英文简介": "Put your hand on it to identify your spirit roots; the result shows as five-element characters on the building.",
-      "详情": "把手放上去，便能照见自身灵根。\n\n制作：二本科技解锁。\n\n使用：右键「鉴定灵根」，消耗 10 点灵力、冷却 10 秒，必须站在 4 格以内。\n鉴定结果会显示在建筑上的五行字里。\n用锤子敲 4 下可以拆掉。",
-      "英文详情": "Put your hand on it and it mirrors your own spirit roots.\n\nRecipe: Moon Rock 2, Nightmare Fuel 2, Living Log 1, Glow Berry 5 — Science Machine tier.\n\nUse: right-click \"Identify Roots\"; it costs 10 Reiki, has a 10-second cooldown and needs you within 4 range.\nThe result appears as five-element characters on the building.\nFour hammer hits take it down.",
+      "详情": "把手放上去，便能照见自身灵根。\n\n制作：二本科技解锁。\n\n使用：右键「鉴定灵根」，消耗 10 点灵力、冷却 10 秒，必须站在 4 格以内。\n鉴定结果会显示在建筑上的五行字里。\n用锤子敲 4 下可以拆掉。\n\n[[图片:images/lingjie/anim/myriad_spirit_ritual_ui.png|鉴定之后，灵仪上方会亮起五行字，对应你身上的灵根]]",
+      "英文详情": "Put your hand on it and it mirrors your own spirit roots.\n\nRecipe: Moon Rock 2, Nightmare Fuel 2, Living Log 1, Glow Berry 5 — Science Machine tier.\n\nUse: right-click \"Identify Roots\"; it costs 10 Reiki, has a 10-second cooldown and needs you within 4 range.\nThe result appears as five-element characters on the building.\nFour hammer hits take it down.\n\n[[图片:images/lingjie/anim/myriad_spirit_ritual_ui.png|After identifying, the five-element characters light up above the ritual]]",
       "排序值": "6",
       "是否展示": "true"
     },

@@ -710,6 +710,8 @@ Recipe: Moon Rock 2, Nightmare Fuel 2, Living Log 1, Glow Berry 5 — Science Ma
 Use: right-click "Identify Roots"; it costs 10 Reiki, has a 10-second cooldown and needs you within 4 range.
 The result appears as five-element characters on the building.
 Four hammer hits take it down.
+
+[[图片:images/lingjie/anim/myriad_spirit_ritual_ui.png|After identifying, the five-element characters light up above the ritual]]
 """,
     },
     "lj_refresh_pill": {
@@ -2591,6 +2593,8 @@ item(
 使用：右键「鉴定灵根」，消耗 10 点灵力、冷却 10 秒，必须站在 4 格以内。
 鉴定结果会显示在建筑上的五行字里。
 用锤子敲 4 下可以拆掉。
+
+[[图片:images/lingjie/anim/myriad_spirit_ritual_ui.png|鉴定之后，灵仪上方会亮起五行字，对应你身上的灵根]]
 """,
     recipe=R(("月岩", 2, "moonrocknugget"), ("噩梦燃料", 2), ("活木", 1), ("荧光果", 5, "lightbulb")),
 )
