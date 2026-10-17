@@ -201,6 +201,15 @@ def main():
             err("%s：字段「%s」与第 %s 行重复" % (line, term, seen_terms[term]))
         seen_terms[term] = i + 1
 
+    # 6.5 正文里不许出现 Markdown 加粗标记（站点不支持，会原样显示星号）
+    for it in data["items"]:
+        for key, label in (("简介", "简介"), ("详情", "详情"), ("英文简介", "英文简介"), ("英文详情", "英文详情")):
+            text = it.get(key) or ""
+            if "**" in text:
+                warn("条目「%s」的%s里有 **（站点不支持 Markdown 加粗，会原样显示成星号）：%s" % (
+                    it.get("名称", it.get("id", "?")), label,
+                    text[max(0, text.find("**") - 12):text.find("**") + 18].replace("\n", " ")))
+
     # 7. 统计
     sys.stdout.write("data.json 校验结果\n")
     sys.stdout.write("  卷目 %d 个，条目 %d 个，词条 %d 条，更新日志 %d 条\n" % (
