@@ -677,7 +677,8 @@ Traits: no health, cannot attack, cannot be killed; it hovers around and dodges 
 How to catch it
 　1. Offer a high-tier pill on a Reiki Table as bait (it only comes if the table is within 30 range, and it stays away while a player is within 15).
 　2. It settles down and feeds for 10 seconds; once done the bait pill is eaten (whether or not you catch it).
-　3. Then it sleeps for 60 seconds — during that window right-click it with the Spirit Void Gourd (within 2 range) to catch it and get the celestial pill back.
+　3. Then it sleeps for 60 seconds — during that window right-click it with the Spirit Void Gourd (within 2 range) to catch it and get the celestial pill you originally refined back.
+　　The bait only supplies reiki, not the reward — and it is eaten whether you catch the Danling or not.
 　4. Miss the window and it fades out over 10 seconds and vanishes, taking the pill with it.
 
 What works as bait: the 5 high-tier pills and the 6 celestial ones — 11 in total; the mid-tier Marrow-Cleansing Pill cannot be offered.
@@ -3249,7 +3250,8 @@ item(
 怎么抓
 　1. 在灵玉台上供一颗高阶丹药当诱饵（台子在 30 格内它才会来；15 格内有人它就不来）。
 　2. 丹灵落下来吸灵力，吸 10 秒；吸完那颗诱饵丹药就被吃掉（跟抓没抓到无关）。
-　3. 吸完之后它会睡着 60 秒——趁这 60 秒拿灵虚葫右键它（2 格内）就能抓住，并拿回那颗天阶丹药。
+　3. 吸完之后它会睡着 60 秒——趁这 60 秒拿灵虚葫右键它（2 格内）就能抓住，并拿回你原本炼出的那颗天阶丹药。
+　　诱饵只负责提供灵力，抓到手的东西跟它无关；但不管抓没抓到，那颗诱饵都会被吃掉。
 　4. 错过这 60 秒，它会渐隐 10 秒后消失，丹药也一起没了。
 
 谁能当诱饵：高阶丹药 5 种 + 天阶丹药 6 种，共 11 种；中阶的洗髓丹不能供奉。
