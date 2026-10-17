@@ -461,24 +461,6 @@
       "是否展示": "true"
     },
     {
-      "id": "lj_refresh_pill",
-      "分类id": "danyao",
-      "名称": "洗髓丹",
-      "英文名": "Marrow-Cleansing Pill",
-      "标签": "丹药,中阶,灵根",
-      "英文标签": "Pill,Mid Tier,Roots",
-      "图片": "images/lingjie/showcase/lj_refresh_pill.png",
-      "制作配方": "[images/inventoryimages3/tentaclespots.png] 触手皮 2、[images/inventoryimages1/boneshard.png] 骨片 2、[images/inventoryimages2/houndstooth.png] 犬齿 2、[images/lingjie/icons/lj_magic_core.png] 魔核 1",
-      "英文配方": "[images/inventoryimages3/tentaclespots.png] Tentacle Spots 2、[images/inventoryimages1/boneshard.png] Bone Shards 2、[images/inventoryimages2/houndstooth.png] Hound's Tooth 2、[images/lingjie/icons/lj_magic_core.png] Magic Core 1",
-      "需祭坛": "",
-      "简介": "中阶丹药：洗筋伐髓，试着削掉一条多余的灵根；失败会带伤。",
-      "英文简介": "A mid-tier pill that tries to shave off one extra spirit root; it hurts whether it succeeds or fails.",
-      "详情": "中阶丹药（玄），炼制时间 4 分钟。\n\n效果：随机削掉一条灵根。成功率看灵根条数：2 条 8%、3 条 15%、4 条 35%、5 条 60%，每次失败再累加 10%。\n服用条件：灵根 ≥ 2 条、生命 > 20、理智 ≥ 20。\n代价：不管成败，都扣 20 点生命和 20 点理智（不可减免）。",
-      "英文详情": "Mid-tier pill (mystic), refining time 4 minutes.\n\nMaterials: Tentacle Spots 2, Bone Shards 2, Hound's Tooth 2, Magic Core 1.\n\nEffect: randomly shaves off one spirit root. The chance depends on how many you have: 2 roots 8%, 3 roots 15%, 4 roots 35%, 5 roots 60%, and every failure adds another 10%.\nRequirements: at least 2 roots, health above 20, sanity at least 20.\nCost: 20 health and 20 sanity whether it works or not (cannot be reduced).",
-      "排序值": "19",
-      "是否展示": "true"
-    },
-    {
       "id": "shadow_body",
       "分类id": "jingjie",
       "名称": "影体",
@@ -493,7 +475,7 @@
       "英文简介": "A looks-only shadow double that follows its owner and has no health; surviving a full tribulation with it yields a Body Origin.",
       "详情": "影体是你自己的影分身：只复制外观（皮肤、服装），不复制装备，也没有血量——不会被怪打死。\n\n怎么获得\n　境界达到合婴（第 8 境）以上，用紫晶塑体花右键一座已经摆放好的肉块雕像即可塑造（必须是自己的雕像，别人的不能用）。\n\n表现\n　影体只跟随主人、面朝主人，不会自己去打架、采集或逃跑。\n　魂幡会把它当影怪吸进去，炼成一颗魔核。\n　同一时间只能存在一只影体；死亡或换人时影体会消失。\n\n进阶\n　带着它经历一整场祭天雷劫，就能淬成一层「塑体本源」（见「雷劫」）。",
       "英文详情": "A shadow body is your own shadow double: it copies only your appearance (skin and clothing), never your equipment, and it has no health — creatures cannot kill it.\n\nHow to get one\n　Reach Nascent (the 8th realm) or above, then use the Amethyst Form Flower on a Meat Effigy you have already placed (it must be your own effigy — someone else's will not work).\n\nBehaviour\n　It only follows and faces its owner, and never fights, gathers or flees on its own.\n　The Soul Banner treats it as a shadow creature and absorbs it into a Magic Core.\n　Only one shadow body can exist at a time; it disappears when you die or change characters.\n\nNext step\n　Bring it through an entire Heaven's Judgment tribulation and it tempers into one stack of Body Origin (see Tribulation).",
-      "排序值": "20",
+      "排序值": "19",
       "是否展示": "true"
     },
     {
@@ -511,7 +493,7 @@
       "英文简介": "A protective origin tempered from a shadow body surviving a full tribulation; it blocks one lethal hit.",
       "详情": "影体吃满一整场祭天雷劫后淬成的护身本源。\n\n获得条件\n　境界合婴以上、先塑造出影体，再带着它经历完整的一场祭天雷劫；期间影体与你都必须一直在范围内，也不能中途换影体（每场雷劫独立计算，失败就等下一场）。\n\n效果\n　可抵御一次致命伤害：受到致命伤时本源消耗掉，生命、灵力与理智各恢复到上限的一半。\n　本源在身时不能再塑造影体；死亡或换人会把影体与本源一起清空。",
       "英文详情": "A protective origin tempered after a shadow body survives an entire Heaven's Judgment tribulation.\n\nRequirements\n　Be at Nascent or above, shape a shadow body first, then bring it through one complete tribulation; both the shadow and you must stay inside the area the whole time, and you cannot swap shadows midway (each tribulation counts separately — a failure means waiting for the next one).\n\nEffect\n　Blocks one lethal hit: when you would die the origin is consumed, and health, Reiki and sanity are each restored to half of their maximum.\n　While you hold an origin you cannot shape another shadow body; dying or changing characters clears both the shadow and the origin.",
-      "排序值": "21",
+      "排序值": "20",
       "是否展示": "true"
     },
     {
@@ -529,7 +511,7 @@
       "英文简介": "A low-tier pill that conceals you for 4 minutes; attacking or dying ends it at once.",
       "详情": "低阶丹药（黄），炼制时间 2 分钟。\n\n效果：隐匿气息 4 分钟——附近 64 范围内正盯着你的生物会立刻失去目标；主动攻击或死亡后立即失效。重复服用刷新为 4 分钟。",
       "英文详情": "Low-tier pill (yellow), refining time 2 minutes.\n\nMaterials: Harvested Spirit-Melting Grass 3, Harvested Dragon Claw Flower 3, Blue Cap 1, Magic Core 1.\n\nEffect: conceals you for 4 minutes — creatures within 64 range that are already targeting you lose their target at once; attacking or dying ends it immediately. Taking another one refreshes it to 4 minutes.",
-      "排序值": "22",
+      "排序值": "21",
       "是否展示": "true"
     },
     {
@@ -547,7 +529,7 @@
       "英文简介": "A low-tier pill that warms you and keeps you from freezing for 2 days.",
       "详情": "低阶丹药（黄），炼制时间 2 分钟。\n\n效果：升温效果，不会过冷，持续 2 天。温度按原版热食修正叠加：升到原版热食阈值后不再额外升温。",
       "英文详情": "Low-tier pill (yellow), refining time 2 minutes.\n\nEffect: warming, prevents freezing cold, lasts 2 days. It stacks the vanilla hot-food temperature bonus and stops adding heat once you reach the vanilla hot-food threshold.",
-      "排序值": "23",
+      "排序值": "22",
       "是否展示": "true"
     },
     {
@@ -565,7 +547,7 @@
       "英文简介": "A low-tier pill that cools you and keeps you from overheating for 2 days.",
       "详情": "低阶丹药（黄），炼制时间 2 分钟。\n\n效果：降温效果，不会过热，持续 2 天。温度按原版冷食修正叠加：降到原版冷食阈值后不再额外降温。",
       "英文详情": "Low-tier pill (yellow), refining time 2 minutes.\n\nEffect: cooling, prevents overheating, lasts 2 days. It stacks the vanilla cold-food temperature bonus and stops removing heat once you reach the vanilla cold-food threshold.",
-      "排序值": "24",
+      "排序值": "23",
       "是否展示": "true"
     },
     {
@@ -583,6 +565,24 @@
       "英文简介": "Cures poison, grants poison immunity and a full day of Steady Mind — while it lasts, death costs no stage and does not stall cultivation.",
       "详情": "低阶丹药（黄），炼制时间 2 分钟。\n\n效果：服下后解毒、免疫毒素，并获得「稳固心神」一天——期间每次死亡都不掉阶、也不会停滞修炼；死亡后药效仍继续计时。\n\n原本是死亡掉阶后恢复修炼资格的丹药，现在这份作用也由「稳固心神」一并覆盖。\n\n解毒：服用后直接解除噬魂蛇毒，并在药效期间免疫一切中毒（详见「深度入魔」的毒入骨髓）。",
       "英文详情": "Low-tier pill (yellow), refining time 2 minutes.\n\nEffect: cures poison, grants poison immunity, and gives one day of Steady Mind — during it every death costs no realm stage and never stalls cultivation; the effect keeps counting down even if you die.\n\nIt used to be the pill that unlocked cultivation after a death penalty; Steady Mind now covers that as well.\n\nExtra use: it is also an antidote — taking one removes Soul Snake Venom outright (see Bone-Deep Poison under \"Deep Demonization\").",
+      "排序值": "24",
+      "是否展示": "true"
+    },
+    {
+      "id": "lj_refresh_pill",
+      "分类id": "danyao",
+      "名称": "洗髓丹",
+      "英文名": "Marrow-Cleansing Pill",
+      "标签": "丹药,中阶,灵根",
+      "英文标签": "Pill,Mid Tier,Roots",
+      "图片": "images/lingjie/showcase/lj_refresh_pill.png",
+      "制作配方": "[images/inventoryimages3/tentaclespots.png] 触手皮 2、[images/inventoryimages1/boneshard.png] 骨片 2、[images/inventoryimages2/houndstooth.png] 犬齿 2、[images/lingjie/icons/lj_magic_core.png] 魔核 1",
+      "英文配方": "[images/inventoryimages3/tentaclespots.png] Tentacle Spots 2、[images/inventoryimages1/boneshard.png] Bone Shards 2、[images/inventoryimages2/houndstooth.png] Hound's Tooth 2、[images/lingjie/icons/lj_magic_core.png] Magic Core 1",
+      "需祭坛": "",
+      "简介": "中阶丹药：洗筋伐髓，试着削掉一条多余的灵根；失败会带伤。",
+      "英文简介": "A mid-tier pill that tries to shave off one extra spirit root; it hurts whether it succeeds or fails.",
+      "详情": "中阶丹药（玄），炼制时间 4 分钟。\n\n效果：随机削掉一条灵根。成功率看灵根条数：2 条 8%、3 条 15%、4 条 35%、5 条 60%，每次失败再累加 10%。\n服用条件：灵根 ≥ 2 条、生命 > 20、理智 ≥ 20。\n代价：不管成败，都扣 20 点生命和 20 点理智（不可减免）。",
+      "英文详情": "Mid-tier pill (mystic), refining time 4 minutes.\n\nMaterials: Tentacle Spots 2, Bone Shards 2, Hound's Tooth 2, Magic Core 1.\n\nEffect: randomly shaves off one spirit root. The chance depends on how many you have: 2 roots 8%, 3 roots 15%, 4 roots 35%, 5 roots 60%, and every failure adds another 10%.\nRequirements: at least 2 roots, health above 20, sanity at least 20.\nCost: 20 health and 20 sanity whether it works or not (cannot be reduced).",
       "排序值": "25",
       "是否展示": "true"
     },
@@ -803,24 +803,6 @@
       "是否展示": "true"
     },
     {
-      "id": "lj_transcendent_pill",
-      "分类id": "danyao",
-      "名称": "转元丹（天阶）",
-      "英文名": "Essence-Turning Pill（Celestial）",
-      "标签": "丹药,天阶,灵根",
-      "英文标签": "Pill,Celestial,Roots",
-      "图片": "images/lingjie/showcase/lj_transcendent_pill.png",
-      "制作配方": "",
-      "英文配方": "",
-      "需祭坛": "",
-      "简介": "天阶丹药：重塑本元灵根。通用版随机换属性，五个单属性版指定金木水火土；服下后虚弱 30 秒。",
-      "英文简介": "A celestial pill that reshapes your elemental core: the generic version rerolls, the five single-element versions set Metal, Wood, Water, Fire or Earth; it leaves you weakened for 30 seconds.",
-      "详情": "天阶丹药（天），炼制时间 8 分钟。没有落雷丹劫，成败只看火焰：放强异火必成，放墟火只有 5%。\n\n6 种\n　转元丹（通用）：多灵根时随机削掉一条；已经是单灵根则随机换成别的属性。\n　转元丹·金 / 木 / 水 / 火 / 土：把本元重塑成指定属性。\n\n材料\n　通用版：洗尘神树果 1、灌注的[images/inventoryimages3/shadowheart.png] 暗影心房 1、[images/inventoryimages2/livinglog.png] 活木 5、魔晶 10。\n　单属性版：洗尘神树果 1、灌注的[images/inventoryimages3/shadowheart.png] 暗影心房 1、对应稀有海鱼 1、魔晶 1。\n\n代价：服下后虚弱 30 秒——不能装备、不能用道具、不能攻击，已经穿着的装备会全部卸到地上。",
-      "英文详情": "Celestial pill (heaven), refining time 8 minutes. There is no lightning tribulation — success depends only on the flame: a strong exotic flame always succeeds, a Wasteland Flame only 5%.\n\nThe six versions\n　Essence-Turning Pill (generic): with several roots it shaves off a random one; if you already have a single root it rerolls the element.\n　Essence-Turning Pill - Metal / Wood / Water / Fire / Earth: reshapes your core into that element.\n\nMaterials\n　Generic: Dust-Cleansing Fruit 1, Infused Shadow Atrium 1, Living Log 5, Magic Crystal 10.\n　Single-element: Dust-Cleansing Fruit 1, Infused Shadow Atrium 1, the matching rare ocean fish 1, Magic Crystal 1.\n\nCost: 30 seconds of weakness after taking it — you cannot equip, use items or attack, and everything you are wearing drops to the ground.",
-      "排序值": "38",
-      "是否展示": "true"
-    },
-    {
       "id": "lj_retain_pill",
       "分类id": "danyao",
       "名称": "蜕灵丹（丹劫）",
@@ -835,6 +817,24 @@
       "英文简介": "A high-tier tribulation pill: permanently keeps your cultivation when you change characters.",
       "详情": "高阶丹药（地），炼制时间 8 分钟。可触发丹劫。\n\n效果：永久获得「换人保留境界」的能力——之后换角色时，境界与修炼数据会跟着你走（生命比例、占座和临时效果不带过去）；死亡仍会掉阶，但不会失去这个能力。",
       "英文详情": "High-tier pill (earth), refining time 8 minutes. Can trigger a pill tribulation.\n\nMaterials: Magic Crystal 2, Harvested Dragon Claw Flower 3, Scales 1, Blood Bat Essence 1.\n\nEffect: permanently grants \"keep cultivation when switching characters\" — from then on your realm and cultivation data follow you across character changes (health ratio, seat and temporary effects do not). Death still costs a stage, but you never lose this ability.",
+      "排序值": "38",
+      "是否展示": "true"
+    },
+    {
+      "id": "lj_transcendent_pill",
+      "分类id": "danyao",
+      "名称": "转元丹（天阶）",
+      "英文名": "Essence-Turning Pill（Celestial）",
+      "标签": "丹药,天阶,灵根",
+      "英文标签": "Pill,Celestial,Roots",
+      "图片": "images/lingjie/showcase/lj_transcendent_pill.png",
+      "制作配方": "",
+      "英文配方": "",
+      "需祭坛": "",
+      "简介": "天阶丹药：重塑本元灵根。通用版随机换属性，五个单属性版指定金木水火土；服下后虚弱 30 秒。",
+      "英文简介": "A celestial pill that reshapes your elemental core: the generic version rerolls, the five single-element versions set Metal, Wood, Water, Fire or Earth; it leaves you weakened for 30 seconds.",
+      "详情": "天阶丹药（天），炼制时间 8 分钟。没有落雷丹劫，成败只看火焰：放强异火必成，放墟火只有 5%。\n\n6 种\n　转元丹（通用）：多灵根时随机削掉一条；已经是单灵根则随机换成别的属性。\n　转元丹·金 / 木 / 水 / 火 / 土：把本元重塑成指定属性。\n\n材料\n　通用版：洗尘神树果 1、灌注的[images/inventoryimages3/shadowheart.png] 暗影心房 1、[images/inventoryimages2/livinglog.png] 活木 5、魔晶 10。\n　单属性版：洗尘神树果 1、灌注的[images/inventoryimages3/shadowheart.png] 暗影心房 1、对应稀有海鱼 1、魔晶 1。\n\n代价：服下后虚弱 30 秒——不能装备、不能用道具、不能攻击，已经穿着的装备会全部卸到地上。",
+      "英文详情": "Celestial pill (heaven), refining time 8 minutes. There is no lightning tribulation — success depends only on the flame: a strong exotic flame always succeeds, a Wasteland Flame only 5%.\n\nThe six versions\n　Essence-Turning Pill (generic): with several roots it shaves off a random one; if you already have a single root it rerolls the element.\n　Essence-Turning Pill - Metal / Wood / Water / Fire / Earth: reshapes your core into that element.\n\nMaterials\n　Generic: Dust-Cleansing Fruit 1, Infused Shadow Atrium 1, Living Log 5, Magic Crystal 10.\n　Single-element: Dust-Cleansing Fruit 1, Infused Shadow Atrium 1, the matching rare ocean fish 1, Magic Crystal 1.\n\nCost: 30 seconds of weakness after taking it — you cannot equip, use items or attack, and everything you are wearing drops to the ground.",
       "排序值": "39",
       "是否展示": "true"
     },
