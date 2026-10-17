@@ -569,7 +569,7 @@ Also: the player avatar popup now has an "Ethereal Realm Guide" entry.
 A bound flying sword: you can ride it, or ride as a passenger.
 
 Making it
-　Recipe: Tempered Iron Spirit Sword 1 plus 15 Reiki (it sits in the Character tab, has no placement preview and spawns at your feet).
+　Craft it in the Character tab; it costs 15 Reiki.
 　Requirement: realm Guiding (the 4th) or above, and you must dismount and be on the ground to take off.
 
 Flying
@@ -3670,7 +3670,7 @@ item(
 认主的飞剑，可以御剑，也可以搭乘。
 
 怎么做
-　在「人物」分类里制作（材料见上方配方）；没有摆放预览，点一下就在脚下生成。
+　在「人物」分类里制作，消耗 15 点灵力。
 　解锁条件：大境界达到引气（第 4 境）以上；要在地面解除骑乘后才能御剑。
 
 飞行
