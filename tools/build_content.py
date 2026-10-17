@@ -154,6 +154,7 @@ def icon_path(basename):
 # mod 自己的材料：中文名 -> 预制体 id。对应图标由 tools/extract_mod_icons.py
 # 从 mod 的 ethereal_realm_icons 图集导出到 images/lingjie/icons/。
 MOD_MATERIAL_ID = {
+    "洗尘神树果": "lj_xichen_fruit",
     "淬铁灵剑": "lj_ordinary_sword",
     "魔核碎片": "lj_magic_debris",
     "魔核": "lj_magic_core",
@@ -195,6 +196,7 @@ CODE_MATERIAL_NAME = {
 # 原版材料用原版英文名，mod 材料用 NAME_EN 里既有的官方英文名。
 # 没收录的名字会在构建时报告出来，不会静默留中文。
 MATERIAL_EN = {
+    "洗尘神树果": "Dust-Cleansing Fruit",
     "蜂蜡": "Beeswax",
     "月树花": "Moon Tree Blossom",
     "月眼": "Moon Eye",
@@ -3166,11 +3168,12 @@ item(
 　转元丹·金 / 木 / 水 / 火 / 土：把本元重塑成指定属性。
 
 材料
-　通用版：洗尘神树果 1、灌注的暗影心房 1、活木 5、魔晶 10。
+　通用版：见上方配方。
 　单属性版：洗尘神树果 1、灌注的暗影心房 1、对应稀有海鱼 1、魔晶 1。
 
 代价：服下后虚弱 30 秒——不能装备、不能用道具、不能攻击，已经穿着的装备会全部卸到地上。
 """,
+    recipe=R(("洗尘神树果", 1), ("灌注的暗影心房", 1, "shadowheart_infused"), ("活木", 5), ("魔晶", 10)),
 )
 
 
