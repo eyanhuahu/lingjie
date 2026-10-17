@@ -926,7 +926,7 @@ Demonic Reflection: 10% chance when the creature takes damage from a player; ref
 Creature buffs
 Conditional Vulnerability: dropping to 50% health or below triggers a 5-second shield with a 5-minute cooldown. It is not invulnerability — while the shield is up a single hit deals at most 90 damage. The shield shows as a red force field.
 
-On death it drops 1 to 3 Magic Core Shards plus the creature's own loot (it no longer drops Magic Cores).
+On death it drops 1 to 3 Magic Core Shards plus the creature's own loot.
 """,
     },
     "corruption_deep": {
@@ -1056,7 +1056,7 @@ Cannot be destroyed, and cannot be deconstructed with a Deconstruction Staff.
 
 Absorbs exotic flames and stores pills, 8 slots.
 Right-click in the inventory to open or close it (there is only one container — the one opened from a following gourd is the same one). While open it stays open; opening other chest-like items will not close the gourd.
-Pick it up with the mouse, drop it on the ground and it follows you. With the gourd in hand, right-click an ownerless exotic flame on the ground to absorb it — you have to be right up against it, it no longer flies in from 16 range. Once absorbed it belongs to the gourd's owner. You can also catch a Danling: during the 60 seconds it sleeps after feeding, right-click it with the gourd (within 2 range) to catch it and recover the celestial pill (see Danling).
+Pick it up with the mouse, drop it on the ground and it follows you. With the gourd in hand, right-click an ownerless exotic flame on the ground to absorb it — you have to be right up against it. Once absorbed it belongs to the gourd's owner. You can also catch a Danling: during the 60 seconds it sleeps after feeding, right-click it with the gourd (within 2 range) to catch it and recover the celestial pill (see Danling).
 
 Only strong exotic flames can be absorbed, and only while they are ownerless (a flame that already has a master must first lose it).
 Picking the gourd up from your inventory or a backpack with the mouse and putting it down again returns it to the slot it came from whenever that slot is still usable.
@@ -1256,7 +1256,7 @@ Cannot be destroyed or deconstructed.
         "detail": """
 Crafting: 99 Magic Core Shards craft one.
 
-Source: killing bosses and demonic beasts drops them; moderately demonized creatures no longer drop them.
+Source: killing bosses and demonic beasts drops them.
 
 Cannot be destroyed or deconstructed.
 
@@ -2197,7 +2197,7 @@ The larvae stay around forever, and whether they die does not affect the next su
         "detail": """
 Several spawn on Butterfly Island. Each nest spawns 6 Demon Bats (1 respawns every 5 minutes, up to 6) and 1 Shadow Blood Bat (1 respawns every 45 minutes, up to 1).
 
-Leaving the nest: at dusk the Demon Bats swarm out all at once (no more waiting for one at a time, and an off-screen nest woken at night also releases the whole swarm); the Shadow Blood Bat leaves only when the nest is attacked, regardless of daytime, and after its 45-minute replacement it stays inside until the next alarm.
+Leaving the nest: at dusk the Demon Bats swarm out all at once, and an off-screen nest woken at night also releases the whole swarm; the Shadow Blood Bat leaves only when the nest is attacked, regardless of daytime, and after its 45-minute replacement it stays inside until the next alarm.
 
 Calling for help: hitting any bat (a killing blow counts too) alerts its own nest, nests within 40 range and kin already outside, which all turn on the attacker.
 
@@ -2687,7 +2687,7 @@ item(
 生物强化
 限定易伤：生命值降到 50% 及以下会触发护盾，持续 5 秒，冷却 5 分钟——护盾期间不是无敌，而是单次受到的伤害最多 90 点。护盾表现为红色力场。
 
-击杀后掉落魔核碎片 1 到 3 个 + 生物原生材料（不再掉魔核）。
+击杀后掉落魔核碎片 1 到 3 个 + 生物原生材料。
 """,
 )
 
@@ -2827,7 +2827,7 @@ item(
 
 吸收异火时「异火焚身」的剩余时间会显示在 HUD 的负面状态面板上；只显示给当前持有葫芦的人，葫芦掉在地上时暂停并移除显示。
 在物品栏里就能右键打开 / 关闭（容器只有一份，跟随葫芦打开的也是它）。打开状态下会一直在，不会因打开其他箱子类物品而自动关闭葫芦。
-可鼠标拿起放置地面跟随；拿起葫芦后对着地上的无主异火右键就能吸收，要贴上去吸（不再是从 16 码外自动飞进来），吸收后归葫芦主人所有。可吸收的是强异火，而且必须是无主状态（已经认主的异火得先等它失主）。
+可鼠标拿起放置地面跟随；拿起葫芦后对着地上的无主异火右键就能吸收，要贴上去吸，吸收后归葫芦主人所有。可吸收的是强异火，而且必须是无主状态（已经认主的异火得先等它失主）。
 
 抓丹灵：丹灵吸完灵力睡着的那 60 秒里，拿葫芦右键它（2 格内）就能把它抓走，并把那颗天阶丹药拿回来（见「丹灵」）。
 从物品栏 / 背包里用鼠标拿起葫芦后再放下，会优先放回原来的格子；原格不能用时才随意放置。
@@ -3211,7 +3211,7 @@ item(
     """
 合成：99 个魔核碎片合成。
 
-来源：击杀 Boss 生物、魔兽掉落；中度入魔现在不再掉魔核。
+来源：击杀 Boss 生物、魔兽掉落。
 
 无法摧毁、分解。
 
@@ -4383,7 +4383,7 @@ item(
     """
 蝴蝶岛生成若干。每个巢穴生成 6 只妖蝠（5 分钟刷新 1 只，最多 6 只）、1 只暗影血蝠（45 分钟刷新 1 只，最多 1 只）。
 
-出巢规则：黄昏一到，妖蝠整群出巢（不再逐只等间隔；离屏的巢穴在夜里被唤醒也会整群出来）；暗影血蝠只在巢穴被攻击（警报）时出巢，不受白天限制，45 分钟补员结束后留在巢内等下一次警报。
+出巢规则：黄昏一到，妖蝠整群出巢；离屏的巢穴在夜里被唤醒时也会整群出来；暗影血蝠只在巢穴被攻击（警报）时出巢，不受白天限制，45 分钟补员结束后留在巢内等下一次警报。
 
 求援：打中任意一只蝙蝠（致命一击也算）会惊动它所属的巢穴、40 范围内附近的巢穴以及在外的同类，一起扑向攻击者。
 
