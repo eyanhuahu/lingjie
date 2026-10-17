@@ -90,6 +90,7 @@ ANIM_OVERRIDE = {
     "lj_demon_bat": "fly_loop_down",
     "lj_reiki_dug_grass": "dug",
     "lj_red_magic_dug_flower": "dug",
+    "lj_danling": "idle_up",  # 它的模型朝向是反的，down 渲染出来是背面
 }
 
 
