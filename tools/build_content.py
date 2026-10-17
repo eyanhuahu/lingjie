@@ -706,8 +706,8 @@ Put your hand on it and it mirrors your own spirit roots.
 
 Recipe: Moon Rock 2, Nightmare Fuel 2, Living Log 1, Glow Berry 5 — Science Machine tier.
 
-Use: right-click to run the vanilla channelling action "Identify Roots"; it costs 10 Reiki, has a 10-second cooldown and needs you within 4 range.
-The result is shown as five-element characters on the building — the character no longer speaks it.
+Use: right-click "Identify Roots"; it costs 10 Reiki, has a 10-second cooldown and needs you within 4 range.
+The result appears as five-element characters on the building.
 Four hammer hits take it down.
 """,
     },
@@ -2174,7 +2174,7 @@ Scorpion Dragon Bone 1, [images/inventoryimages2/monstermeat.png] Monster Meat 4
         "detail": """
 Summoned 4 at a time by the Blazing Rock Scorpion Dragon every 10000 health it loses.
 
-Since v0.11 a killed larva drops no loot at all.
+A killed larva drops no loot at all.
 
 250 health, 40 attack, 3 poison damage per second for 8 seconds.
 
@@ -2578,10 +2578,10 @@ item(
     """
 把手放上去，便能照见自身灵根。
 
-配方：""" + R(("月岩", 2, "moonrocknugget"), ("噩梦燃料", 2), ("活木", 1), ("荧光果", 5, "lightbulb")) + """，二本科技解锁。
+制作：二本科技解锁。
 
-使用：右键走原版引导动作「鉴定灵根」，消耗 10 点灵力、冷却 10 秒，必须站在 4 格以内。
-结果直接显示在建筑上的五行字里，不再让角色说话。
+使用：右键「鉴定灵根」，消耗 10 点灵力、冷却 10 秒，必须站在 4 格以内。
+鉴定结果会显示在建筑上的五行字里。
 用锤子敲 4 下可以拆掉。
 """,
     recipe=R(("月岩", 2, "moonrocknugget"), ("噩梦燃料", 2), ("活木", 1), ("荧光果", 5, "lightbulb")),
@@ -2613,8 +2613,8 @@ item(
 　转元丹·金 / 木 / 水 / 火 / 土：把本元重塑成指定属性。
 
 材料
-　通用版：""" + R(("洗尘神树果", 1), ("灌注的暗影心房", 1, "shadowheart_infused"), ("活木", 5), ("魔晶", 10)) + """。
-　单属性版：""" + R(("洗尘神树果", 1), ("灌注的暗影心房", 1, "shadowheart_infused")) + """ + 对应稀有海鱼 1 + """ + R(("魔晶", 1)) + """。
+　通用版：洗尘神树果 1、灌注的暗影心房 1、活木 5、魔晶 10。
+　单属性版：洗尘神树果 1、灌注的暗影心房 1、对应稀有海鱼 1、魔晶 1。
 
 代价：服下后虚弱 30 秒——不能装备、不能用道具、不能攻击，已经穿着的装备会全部卸到地上。
 """,
@@ -2706,7 +2706,7 @@ item(
 生物强化
 限定易伤：生命值降到 50% 及以下会触发护盾，持续 5 秒，冷却 5 分钟——护盾期间不是无敌，而是单次受到的伤害最多 90 点。护盾表现为红色力场。
 
-击杀后掉落魔核碎片 1 到 3 个 + 生物原生材料（v0.11 起不再掉魔核）。
+击杀后掉落魔核碎片 1 到 3 个 + 生物原生材料（不再掉魔核）。
 """,
 )
 
@@ -3197,7 +3197,7 @@ item(
     """
 合成：99 个魔核碎片合成。
 
-来源：击杀 Boss 生物、魔兽掉落（v0.11 起中度入魔不再掉魔核）。
+来源：击杀 Boss 生物、魔兽掉落；中度入魔现在不再掉魔核。
 
 无法摧毁、分解。
 
@@ -3656,7 +3656,7 @@ item(
 认主的飞剑，可以御剑，也可以搭乘。
 
 怎么做
-　配方：""" + R(("淬铁灵剑", 1)) + """ + 消耗 15 点灵力（在「人物」分类里，没有摆放预览，点一下就在脚下生成）。
+　在「人物」分类里制作（材料见上方配方）；没有摆放预览，点一下就在脚下生成。
 　解锁条件：大境界达到引气（第 4 境）以上；要在地面解除骑乘后才能御剑。
 
 飞行
@@ -3680,7 +3680,7 @@ item(
     """
 岚丝织袍，蕴核为铠。步履轻盈，缓缓安定心神。
 
-配方：""" + R(("魔核碎片", 20), ("蜘蛛丝", 2, "silk"), ("花瓣", 6, "petals"), ("蜂蜡", 1, "beeswax")) + """，二本科技（炼金引擎）解锁。
+制作：二本科技（炼金引擎）解锁。
 
 属性：650 耐久，80% 伤害吸收，移速 +10%，每 8 秒回复 1 点理智。
 
@@ -3695,7 +3695,7 @@ item(
     """
 雄狮骨盔缀灵羽，嵌月眼，缠月花。月华涤荡心魔，护持识海。
 
-配方：""" + R(("狮骨", 1), ("格罗姆翅膀", 1, "glommerwings"), ("月眼", 1, "moonrockcrater"), ("月树花", 9, "moon_tree_blossom")) + """，二本科技（炼金引擎）解锁。
+制作：二本科技（炼金引擎）解锁。
 
 效果：佩戴时抵抗心魔、缓慢回复理智，全靠燃料维持。
 　燃料上限 6 天。
@@ -4324,7 +4324,7 @@ item(
     """
 由炽岩蝎龙每掉落 10000 血量时召唤 4 只。
 
-v0.11 起：幼虫被击杀不再掉落任何战利品。
+幼虫被击杀不会掉落任何战利品。
 
 血量 250，攻击 40，毒伤 3/秒，持续 8 秒。
 

@@ -239,8 +239,8 @@
       "需祭坛": "",
       "简介": "把手放上去就能鉴定自身灵根的建筑；结果显示在建筑上的五行字里。",
       "英文简介": "Put your hand on it to identify your spirit roots; the result shows as five-element characters on the building.",
-      "详情": "把手放上去，便能照见自身灵根。\n\n二本科技解锁。\n\n使用：右键走原版引导动作「鉴定灵根」，消耗 10 点灵力、冷却 10 秒，必须站在 4 格以内。\n结果直接显示在建筑上的五行字里，不再让角色说话。\n用锤子敲 4 下可以拆掉。",
-      "英文详情": "Put your hand on it and it mirrors your own spirit roots.\n\nRecipe: Moon Rock 2, Nightmare Fuel 2, Living Log 1, Glow Berry 5 — Science Machine tier.\n\nUse: right-click to run the vanilla channelling action \"Identify Roots\"; it costs 10 Reiki, has a 10-second cooldown and needs you within 4 range.\nThe result is shown as five-element characters on the building — the character no longer speaks it.\nFour hammer hits take it down.",
+      "详情": "把手放上去，便能照见自身灵根。\n\n制作：二本科技解锁。\n\n使用：右键「鉴定灵根」，消耗 10 点灵力、冷却 10 秒，必须站在 4 格以内。\n鉴定结果会显示在建筑上的五行字里。\n用锤子敲 4 下可以拆掉。",
+      "英文详情": "Put your hand on it and it mirrors your own spirit roots.\n\nRecipe: Moon Rock 2, Nightmare Fuel 2, Living Log 1, Glow Berry 5 — Science Machine tier.\n\nUse: right-click \"Identify Roots\"; it costs 10 Reiki, has a 10-second cooldown and needs you within 4 range.\nThe result appears as five-element characters on the building.\nFour hammer hits take it down.",
       "排序值": "6",
       "是否展示": "true"
     },
@@ -275,7 +275,7 @@
       "需祭坛": "",
       "简介": "天阶丹药：重塑本元灵根。通用版随机换属性，五个单属性版指定金木水火土；服下后虚弱 30 秒。",
       "英文简介": "A celestial pill that reshapes your elemental core: the generic version rerolls, the five single-element versions set Metal, Wood, Water, Fire or Earth; it leaves you weakened for 30 seconds.",
-      "详情": "天阶丹药（天），炼制时间 8 分钟。没有落雷丹劫，成败只看火焰：放强异火必成，放墟火只有 5%。\n\n6 种\n　转元丹（通用）：多灵根时随机削掉一条；已经是单灵根则随机换成别的属性。\n　转元丹·金 / 木 / 水 / 火 / 土：把本元重塑成指定属性。\n\n材料\n　通用版：洗尘神树果 1、[images/inventoryimages3/shadowheart_infused.png] 灌注的[images/inventoryimages3/shadowheart.png] 暗影心房 1、[images/inventoryimages2/livinglog.png] 活木 5、[images/lingjie/icons/lj_magic_crystal.png] 魔晶 10。\n　单属性版：洗尘神树果 1、[images/inventoryimages3/shadowheart_infused.png] 灌注的[images/inventoryimages3/shadowheart.png] 暗影心房 1 + 对应稀有海鱼 1 + [images/lingjie/icons/lj_magic_crystal.png] 魔晶 1。\n\n代价：服下后虚弱 30 秒——不能装备、不能用道具、不能攻击，已经穿着的装备会全部卸到地上。",
+      "详情": "天阶丹药（天），炼制时间 8 分钟。没有落雷丹劫，成败只看火焰：放强异火必成，放墟火只有 5%。\n\n6 种\n　转元丹（通用）：多灵根时随机削掉一条；已经是单灵根则随机换成别的属性。\n　转元丹·金 / 木 / 水 / 火 / 土：把本元重塑成指定属性。\n\n材料\n　通用版：洗尘神树果 1、灌注的[images/inventoryimages3/shadowheart.png] 暗影心房 1、[images/inventoryimages2/livinglog.png] 活木 5、魔晶 10。\n　单属性版：洗尘神树果 1、灌注的[images/inventoryimages3/shadowheart.png] 暗影心房 1、对应稀有海鱼 1、魔晶 1。\n\n代价：服下后虚弱 30 秒——不能装备、不能用道具、不能攻击，已经穿着的装备会全部卸到地上。",
       "英文详情": "Celestial pill (heaven), refining time 8 minutes. There is no lightning tribulation — success depends only on the flame: a strong exotic flame always succeeds, a Wasteland Flame only 5%.\n\nThe six versions\n　Essence-Turning Pill (generic): with several roots it shaves off a random one; if you already have a single root it rerolls the element.\n　Essence-Turning Pill - Metal / Wood / Water / Fire / Earth: reshapes your core into that element.\n\nMaterials\n　Generic: Dust-Cleansing Fruit 1, Infused Shadow Atrium 1, Living Log 5, Magic Crystal 10.\n　Single-element: Dust-Cleansing Fruit 1, Infused Shadow Atrium 1, the matching rare ocean fish 1, Magic Crystal 1.\n\nCost: 30 seconds of weakness after taking it — you cannot equip, use items or attack, and everything you are wearing drops to the ground.",
       "排序值": "8",
       "是否展示": "true"
@@ -329,7 +329,7 @@
       "需祭坛": "",
       "简介": "入魔血量按 1.95 倍打折计算（血量越高越接近满倍率）；带 12% 减伤、半血触发 5 秒护盾（单次最多扣 90 血）、2% 魔气反弹。",
       "英文简介": "Demonized health uses a 1.95× discounted multiplier (the higher the base health, the closer to full); 12% damage reduction, a 5-second shield at half health (a single hit deals at most 90 damage) and 2% demonic reflection.",
-      "详情": "游戏内显示为「中度」。\n\n核心强化 —— 生命值\n　　最大生命 = 未入魔时的最大生命 × (1.95 − 65 ÷ (未入魔时的最大生命 + 110))\n\n实际结果：\n\n　　基础 100 → 164.05（×1.640）\n　　基础 500 → 921.72（×1.843）\n　　基础 2000 → 3838.39（×1.919）\n　　基础 24000 → 46735.30（×1.947）\n\n核心强化 —— 护甲\n受到的所有外部伤害 ×0.88（即减免 12% 物理伤害）。\n\n人物负面\n魔气环绕：10 范围内玩家理智每 5 秒流失 3 点（境界越高掉得越少，按「境界体系」里的魔气影响倍率打折）。\n饥饿诅咒：玩家受到生物攻击时 30% 概率触发，饥饿值消耗加快 20%，持续 30 秒。\n暗影迟缓：玩家受到生物攻击时 20% 概率触发，移速 -20%，持续 10 秒。\n魔气反弹：生物受到玩家伤害时 10% 概率触发，反射 2% 伤害。\n\n生物强化\n限定易伤：生命值降到 50% 及以下会触发护盾，持续 5 秒，冷却 5 分钟——护盾期间不是无敌，而是单次受到的伤害最多 90 点。护盾表现为红色力场。\n\n击杀后掉落魔核碎片 1 到 3 个 + 生物原生材料（v0.11 起不再掉魔核）。",
+      "详情": "游戏内显示为「中度」。\n\n核心强化 —— 生命值\n　　最大生命 = 未入魔时的最大生命 × (1.95 − 65 ÷ (未入魔时的最大生命 + 110))\n\n实际结果：\n\n　　基础 100 → 164.05（×1.640）\n　　基础 500 → 921.72（×1.843）\n　　基础 2000 → 3838.39（×1.919）\n　　基础 24000 → 46735.30（×1.947）\n\n核心强化 —— 护甲\n受到的所有外部伤害 ×0.88（即减免 12% 物理伤害）。\n\n人物负面\n魔气环绕：10 范围内玩家理智每 5 秒流失 3 点（境界越高掉得越少，按「境界体系」里的魔气影响倍率打折）。\n饥饿诅咒：玩家受到生物攻击时 30% 概率触发，饥饿值消耗加快 20%，持续 30 秒。\n暗影迟缓：玩家受到生物攻击时 20% 概率触发，移速 -20%，持续 10 秒。\n魔气反弹：生物受到玩家伤害时 10% 概率触发，反射 2% 伤害。\n\n生物强化\n限定易伤：生命值降到 50% 及以下会触发护盾，持续 5 秒，冷却 5 分钟——护盾期间不是无敌，而是单次受到的伤害最多 90 点。护盾表现为红色力场。\n\n击杀后掉落魔核碎片 1 到 3 个 + 生物原生材料（不再掉魔核）。",
       "英文详情": "Shown in game as \"Moderate\".\n\nCore buff — Health\n　Max health = max health before demonization × (1.95 − 65 ÷ (max health before demonization + 110))\n\nActual results:\n\n　Base 100 → 164.05 (×1.640)\n　Base 500 → 921.72 (×1.843)\n　Base 2000 → 3838.39 (×1.919)\n　Base 24000 → 46735.30 (×1.947)\n\nCore buff — Armour\nAll incoming external damage ×0.88 (a 12% physical damage reduction).\n\nPlayer debuffs\nDemonic Aura: within 10 range, players lose 3 sanity every 5 seconds (a higher realm loses less — the drain is scaled by the Demonic aura multiplier in the Realm System).\nCurse of Hunger: 30% chance when the player is hit by a creature; hunger drains 20% faster for 30 seconds.\nShadow Slow: 20% chance when the player is hit by a creature; movement speed −20% for 10 seconds.\nDemonic Reflection: 10% chance when the creature takes damage from a player; reflects 2% of the damage.\n\nCreature buffs\nConditional Vulnerability: dropping to 50% health or below triggers a 5-second shield with a 5-minute cooldown. It is not invulnerability — while the shield is up a single hit deals at most 90 damage. The shield shows as a red force field.\n\nOn death it drops 1 to 3 Magic Core Shards plus the creature's own loot (since v0.11 it no longer drops Magic Cores).",
       "排序值": "11",
       "是否展示": "true"
@@ -887,7 +887,7 @@
       "需祭坛": "",
       "简介": "99 个魔核碎片合成。Boss 与魔兽掉落。",
       "英文简介": "Crafted from 99 Magic Core Shards. Dropped by bosses, demonic beasts and moderately demonized creatures.",
-      "详情": "合成：99 个魔核碎片合成。\n\n来源：击杀 Boss 生物、魔兽掉落（v0.11 起中度入魔不再掉魔核）。\n\n无法摧毁、分解。\n\n可在 <灵界>、<魔法>、<精炼> 栏位制作。\n\n高阶用途：20 个魔核可合成 1 个魔晶；也是多种丹药、建筑与法宝的核心材料。",
+      "详情": "合成：99 个魔核碎片合成。\n\n来源：击杀 Boss 生物、魔兽掉落；中度入魔现在不再掉魔核。\n\n无法摧毁、分解。\n\n可在 <灵界>、<魔法>、<精炼> 栏位制作。\n\n高阶用途：20 个魔核可合成 1 个魔晶；也是多种丹药、建筑与法宝的核心材料。",
       "英文详情": "Crafting: 99 Magic Core Shards craft one.\n\nSource: killing bosses and demonic beasts drops them; moderately demonized creatures drop 1 to 2.\n\nCannot be destroyed or deconstructed.\n\nCraftable in the <Ethereal Realm>, <Magic> and <Refine> tabs.\n\nAdvanced use: 20 Magic Cores craft 1 Magic Crystal, and they are the core material of many pills, structures and artifacts.",
       "排序值": "42",
       "是否展示": "true"
@@ -1373,7 +1373,7 @@
       "需祭坛": "",
       "简介": "淬铁灵剑认主后化作的飞剑：引气境界可御剑飞行，能载一名乘客，落地没有坠落伤害。",
       "英文简介": "The Tempered Iron Spirit Sword, once bound to you, becomes a flying sword: at Qi Guiding you can ride it (one passenger) with no fall damage.",
-      "详情": "认主的飞剑，可以御剑，也可以搭乘。\n\n怎么做\n+ 消耗 15 点灵力（在「人物」分类里，没有摆放预览，点一下就在脚下生成）。\n　解锁条件：大境界达到引气（第 4 境）以上；要在地面解除骑乘后才能御剑。\n\n飞行\n　飞行高度 6，移速 ×1.2，可以载 1 名乘客；没有冷却。\n　飞剑本身不造成伤害，战斗完全沿用你手里拿的武器。\n　飞行中不会溺水、能飞越海面、不会引来暗影生物、不能平台跳跃；降落不受到坠落伤害。\n\n归还\n　右键飞剑（3 格内、且没人在上面坐）或直接降落，就会归还原剑；死亡或换角色也会自动归还。\n　原剑连耐久一起收进飞剑实体，所以来回不丢耐久；创造模式不消耗原剑。\n\n乘客\n　乘客只能右键自己退出，不能移动、攻击或交互。",
+      "详情": "认主的飞剑，可以御剑，也可以搭乘。\n\n怎么做\n　在「人物」分类里制作（材料见上方配方）；没有摆放预览，点一下就在脚下生成。\n　解锁条件：大境界达到引气（第 4 境）以上；要在地面解除骑乘后才能御剑。\n\n飞行\n　飞行高度 6，移速 ×1.2，可以载 1 名乘客；没有冷却。\n　飞剑本身不造成伤害，战斗完全沿用你手里拿的武器。\n　飞行中不会溺水、能飞越海面、不会引来暗影生物、不能平台跳跃；降落不受到坠落伤害。\n\n归还\n　右键飞剑（3 格内、且没人在上面坐）或直接降落，就会归还原剑；死亡或换角色也会自动归还。\n　原剑连耐久一起收进飞剑实体，所以来回不丢耐久；创造模式不消耗原剑。\n\n乘客\n　乘客只能右键自己退出，不能移动、攻击或交互。",
       "英文详情": "A bound flying sword: you can ride it, or ride as a passenger.\n\nMaking it\n　Recipe: Tempered Iron Spirit Sword 1 plus 15 Reiki (it sits in the Character tab, has no placement preview and spawns at your feet).\n　Requirement: realm Guiding (the 4th) or above, and you must dismount and be on the ground to take off.\n\nFlying\n　Flight height 6, speed ×1.2, and it carries one passenger. No cooldown.\n　The sword itself deals no damage — combat uses whatever weapon you are holding.\n　In flight you do not drown, you can cross the ocean, you do not attract shadow creatures, you cannot jump onto platforms, and landing never hurts you.\n\nReturning it\n　Right-click the sword (within 3 range, nobody aboard) or simply land, and the original sword comes back; dying or changing characters returns it automatically.\n　The original sword's durability is stored inside the flying sword, so it never wears from the trip; in creative mode the original is not consumed.\n\nPassengers\n　A passenger can only right-click to get off, and cannot move, attack or interact.",
       "排序值": "69",
       "是否展示": "true"
@@ -1391,7 +1391,7 @@
       "需祭坛": "",
       "简介": "二本科技的体甲：650 耐久、80% 吸收、移速 +10%，被动回理智；可用魔核碎片修。",
       "英文简介": "A Science Machine body armour: 650 durability, 80% absorption, +10% speed and passive sanity regeneration; repairable with Magic Core Shards.",
-      "详情": "岚丝织袍，蕴核为铠。步履轻盈，缓缓安定心神。\n\n二本科技（炼金引擎）解锁。\n\n属性：650 耐久，80% 伤害吸收，移速 +10%，每 8 秒回复 1 点理智。\n\n修复：用魔核碎片修，每份回复 50 点护甲耐久（手持一组右键可以一次按缺口补多份）。",
+      "详情": "岚丝织袍，蕴核为铠。步履轻盈，缓缓安定心神。\n\n制作：二本科技（炼金引擎）解锁。\n\n属性：650 耐久，80% 伤害吸收，移速 +10%，每 8 秒回复 1 点理智。\n\n修复：用魔核碎片修，每份回复 50 点护甲耐久（手持一组右键可以一次按缺口补多份）。",
       "英文详情": "Silk-woven robe with a core for armour. Light steps, a steadying mind.\n\nRecipe: Magic Core Shard 20、Silk 2、Petals 6、Beeswax 1 — Science Machine tier.\n\nStats: 650 durability, 80% damage absorption, +10% movement speed, 1 sanity every 8 seconds.\n\nRepair: Magic Core Shards restore 50 armour durability each (hold a stack and right-click to spend several at once, filling the gap).",
       "排序值": "70",
       "是否展示": "true"
@@ -1409,7 +1409,7 @@
       "需祭坛": "",
       "简介": "狮骨头盔：靠燃料维持的心魔抵抗与理智恢复，燃料用完需要月树花续。",
       "英文简介": "A lion-bone helmet: fuel-powered resistance to inner demons and sanity regeneration; refuel it with Moon Tree Blossoms.",
-      "详情": "雄狮骨盔缀灵羽，嵌月眼，缠月花。月华涤荡心魔，护持识海。\n\n二本科技（炼金引擎）解锁。\n\n效果：佩戴时抵抗心魔、缓慢回复理智，全靠燃料维持。\n　燃料上限 6 天。\n　用月树花补充，每朵注入 180 秒（3 分钟）。\n燃料耗尽后提示「月华已散，需以月树花续燃」。",
+      "详情": "雄狮骨盔缀灵羽，嵌月眼，缠月花。月华涤荡心魔，护持识海。\n\n制作：二本科技（炼金引擎）解锁。\n\n效果：佩戴时抵抗心魔、缓慢回复理智，全靠燃料维持。\n　燃料上限 6 天。\n　用月树花补充，每朵注入 180 秒（3 分钟）。\n燃料耗尽后提示「月华已散，需以月树花续燃」。",
       "英文详情": "A lion-bone casque strung with spirit feathers, set with a moon eye and wrapped in moon flowers. Moonlight washes away inner demons and guards the mind.\n\nRecipe: Lion Bone 1、Glommer's Wings 1、[images/inventoryimages2/moonrockcrater.png] Moon Eye 1、[images/inventoryimages2/moon_tree_blossom.png] Moon Tree Blossom 9 — Science Machine tier.\n\nEffect: while worn it resists inner demons and slowly restores sanity, all powered by fuel.\n　Fuel cap: 6 days.\n　Refuel with Moon Tree Blossoms, each one adds 180 seconds (3 minutes).\nWhen the fuel runs out it says \"The moonlight has faded; feed it Moon Tree Blossoms to rekindle it.\"",
       "排序值": "71",
       "是否展示": "true"
@@ -2093,8 +2093,8 @@
       "需祭坛": "",
       "简介": "炽岩蝎龙每掉 10000 血召唤 4 只。血量 250、攻击 40、附带毒伤。",
       "英文简介": "Summoned 4 at a time whenever the Blazing Rock Scorpion Dragon loses 10000 health. 250 health, 40 attack, with poison damage.",
-      "详情": "由炽岩蝎龙每掉落 10000 血量时召唤 4 只。\n\nv0.11 起：幼虫被击杀不再掉落任何战利品。\n\n血量 250，攻击 40，毒伤 3/秒，持续 8 秒。\n\n毒蝎幼虫会一直存在，不死亡也不影响下一次技能召唤 4 只。",
-      "英文详情": "Summoned 4 at a time by the Blazing Rock Scorpion Dragon every 10000 health it loses.\n\nSince v0.11 a killed larva drops no loot at all.\n\n250 health, 40 attack, 3 poison damage per second for 8 seconds.\n\nThe larvae stay around forever, and whether they die does not affect the next summon of 4.",
+      "详情": "由炽岩蝎龙每掉落 10000 血量时召唤 4 只。\n\n幼虫被击杀不会掉落任何战利品。\n\n血量 250，攻击 40，毒伤 3/秒，持续 8 秒。\n\n毒蝎幼虫会一直存在，不死亡也不影响下一次技能召唤 4 只。",
+      "英文详情": "Summoned 4 at a time by the Blazing Rock Scorpion Dragon every 10000 health it loses.\n\nA killed larva drops no loot at all.\n\n250 health, 40 attack, 3 poison damage per second for 8 seconds.\n\nThe larvae stay around forever, and whether they die does not affect the next summon of 4.",
       "排序值": "109",
       "是否展示": "true"
     },
