@@ -861,7 +861,7 @@ Light Demonization, Moderate Demonization, Deep Demonization.
 
 Never demonized: shadow creatures (Crawling Horror, Terrorbeak, Shadow creatures, Ruins shadow creatures, Shadow Knight, Shadow Bishop, Shadow Rook, ocean shadow creatures and so on), passive critters, players, followers, walls, and equipment display models. Creatures hired by a player lose every demonization effect immediately.
 
-Demonization Affixes (new in v0.11)
+Demonization Affixes
 　Every demonized creature carries one random element affix on top of its light / moderate / deep tier; the Dragonfly never rolls Flame Bite and the Soul-devouring Snake never rolls Bone Rot.
 　Thunder Bite: hits deal an extra 12 electric damage.
 　Flame Bite: hits deal an extra 20 fire damage and can ignite the target.
@@ -926,7 +926,7 @@ Demonic Reflection: 10% chance when the creature takes damage from a player; ref
 Creature buffs
 Conditional Vulnerability: dropping to 50% health or below triggers a 5-second shield with a 5-minute cooldown. It is not invulnerability — while the shield is up a single hit deals at most 90 damage. The shield shows as a red force field.
 
-On death it drops 1 to 3 Magic Core Shards plus the creature's own loot (since v0.11 it no longer drops Magic Cores).
+On death it drops 1 to 3 Magic Core Shards plus the creature's own loot (it no longer drops Magic Cores).
 """,
     },
     "corruption_deep": {
@@ -2620,7 +2620,7 @@ item(
 
 不会被入魔的：影怪系（爬行梦魇、恐怖喙、梦魇、废墟梦魇、影骑士、影主教、影车、海上的影怪等）、被动小动物、玩家、同伴、墙体、装备展示模型。被玩家雇佣的生物会立即清除全部入魔效果。
 
-入魔元素词条（v0.11 新增）
+入魔元素词条
 　每个入魔生物会随机带上一种元素词条，叠在轻 / 中 / 深度入魔之上；龙蝇不会带火噬，噬魂蛇不会带蚀骨。
 　雷噬：命中额外造成 12 点电击伤害。
 　火噬：命中额外造成 20 点火焰伤害，并且能点燃目标。
