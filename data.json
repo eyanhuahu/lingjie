@@ -869,8 +869,8 @@
       "需祭坛": "",
       "简介": "最低阶的魔气结晶，轻度入魔生物掉落，可合成魔核。",
       "英文简介": "The lowest-grade demonic crystal, dropped by lightly demonized creatures; it can be crafted into Magic Cores.",
-      "详情": "来源：击杀轻度入魔生物掉落，1 到 3 不等。\n\n高阶用途：99 个魔核碎片可合成 1 个魔核；也是淬铁灵剑的主要材料。\n\n无法摧毁、分解。",
-      "英文详情": "Source: killing lightly demonized creatures drops 1 to 3.\n\nAdvanced use: 99 Magic Core Shards craft 1 Magic Core, and they are also the main material of the Tempered Iron Spirit Sword.\n\nCannot be destroyed or deconstructed.",
+      "详情": "来源：击杀轻度入魔生物掉落，1 到 3 不等。\n\n高阶用途：99 个魔核碎片可合成 1 个魔核；也是淬铁灵剑与青岚道袍的主要材料，还能用来修装备。\n\n无法摧毁、分解。",
+      "英文详情": "Source: killing lightly demonized creatures drops 1 to 3.\n\nAdvanced use: 99 Magic Core Shards craft 1 Magic Core; they are also the main material of the Tempered Iron Spirit Sword and the Bluemist Robe, and they repair gear.\n\nCannot be destroyed or deconstructed.",
       "排序值": "41",
       "是否展示": "true"
     },
@@ -886,9 +886,9 @@
       "英文配方": "[images/lingjie/icons/lj_magic_debris.png] Magic Core Shard 99",
       "需祭坛": "",
       "简介": "99 个魔核碎片合成。Boss 与魔兽掉落。",
-      "英文简介": "Crafted from 99 Magic Core Shards. Dropped by bosses, demonic beasts and moderately demonized creatures.",
+      "英文简介": "Crafted from 99 Magic Core Shards. Dropped by bosses and demonic beasts.",
       "详情": "合成：99 个魔核碎片合成。\n\n来源：击杀 Boss 生物、魔兽掉落；中度入魔现在不再掉魔核。\n\n无法摧毁、分解。\n\n可在 <灵界>、<魔法>、<精炼> 栏位制作。\n\n高阶用途：20 个魔核可合成 1 个魔晶；也是多种丹药、建筑与法宝的核心材料。",
-      "英文详情": "Crafting: 99 Magic Core Shards craft one.\n\nSource: killing bosses and demonic beasts drops them; moderately demonized creatures drop 1 to 2.\n\nCannot be destroyed or deconstructed.\n\nCraftable in the <Ethereal Realm>, <Magic> and <Refine> tabs.\n\nAdvanced use: 20 Magic Cores craft 1 Magic Crystal, and they are the core material of many pills, structures and artifacts.",
+      "英文详情": "Crafting: 99 Magic Core Shards craft one.\n\nSource: killing bosses and demonic beasts drops them; moderately demonized creatures no longer drop them.\n\nCannot be destroyed or deconstructed.\n\nCraftable in the <Ethereal Realm>, <Magic> and <Refine> tabs.\n\nAdvanced use: 20 Magic Cores craft 1 Magic Crystal, and they are the core material of many pills, structures and artifacts.",
       "排序值": "42",
       "是否展示": "true"
     },
@@ -905,8 +905,8 @@
       "需祭坛": "",
       "简介": "99 个魔核合成。魔兽与深度入魔生物掉落，高阶丹药与盔甲的必需品。",
       "英文简介": "Crafted from 99 Magic Cores. Dropped by demonic beasts and deeply demonized creatures; essential for high-tier pills and armour.",
-      "详情": "合成：99 个魔核合成。\n\n来源：击杀魔兽掉落；深度入魔生物掉落魔晶 1。\n\n无法摧毁、分解。\n\n原版生物深度入魔只会掉落魔晶 1，大型魔兽生物掉落魔晶 2。\n\n可在 <灵界>、<魔法>、<精炼> 栏位制作。",
-      "英文详情": "Crafting: 99 Magic Cores craft one.\n\nSource: killing demonic beasts drops them; deeply demonized creatures drop 1.\n\nCannot be destroyed or deconstructed.\n\nA vanilla creature at deep demonization drops only 1 Magic Crystal, while large demonic beasts drop 2.\n\nCraftable in the <Ethereal Realm>, <Magic> and <Refine> tabs.",
+      "详情": "合成：99 个魔核合成。\n\n来源：击杀魔兽掉落；深度入魔生物掉落魔晶 1。\n\n无法摧毁、分解。\n\n原版生物深度入魔只会掉落魔晶 1，大型魔兽生物掉落魔晶 2。\n\n用途：魂幡、转元丹（天阶）等高阶造物都要用到它。\n\n可在 <灵界>、<魔法>、<精炼> 栏位制作。",
+      "英文详情": "Crafting: 99 Magic Cores craft one.\n\nSource: killing demonic beasts drops them; deeply demonized creatures drop 1.\n\nCannot be destroyed or deconstructed.\n\nA vanilla creature at deep demonization drops only 1 Magic Crystal, while large demonic beasts drop 2.\n\nUse: high-tier creations such as the Soul Banner and the Essence-Turning Pill need it.\n\n\nCraftable in the <Ethereal Realm>, <Magic> and <Refine> tabs.",
       "排序值": "43",
       "是否展示": "true"
     },
@@ -942,7 +942,7 @@
       "简介": "月蚀晶翼狮的晶壳，用于制作晶羽冠与合婴丹。",
       "英文简介": "The crystal shell of the Eclipsed Crystalwing Lion; used to craft the Crystal Crown and the Nascent Union Pill.",
       "详情": "来源：击杀史诗级 Boss「月蚀晶翼狮」掉落 1 个。\n\n用途：晶羽冠、合婴丹的核心材料。",
-      "英文详情": "Source: killing the epic boss \"Eclipsed Crystalwing Lion\" drops 1.\n\nUse: core material of the Crystal Crown and the Nascent Union Pill.",
+      "英文详情": "Source: killing the epic boss \"Eclipsed Crystalwing Lion\" drops 1.\n\n\nUse: core material of the Crystal Crown and the Nascent Union Pill.",
       "排序值": "45",
       "是否展示": "true"
     },
@@ -959,8 +959,8 @@
       "需祭坛": "",
       "简介": "月蚀晶翼狮的骨骼。",
       "英文简介": "The bones of the Eclipsed Crystalwing Lion.",
-      "详情": "来源：击杀史诗级 Boss「月蚀晶翼狮」掉落 1 个。",
-      "英文详情": "Source: killing the epic boss \"Eclipsed Crystalwing Lion\" drops 1.",
+      "详情": "来源：击杀史诗级 Boss「月蚀晶翼狮」掉落 1 个。\n\n用途：做「月狮羽冠」需要 1 个。",
+      "英文详情": "Source: killing the epic boss \"Eclipsed Crystalwing Lion\" drops 1.\n\nUse: the \"Moonlion Feather Crown\" needs 1.",
       "排序值": "46",
       "是否展示": "true"
     },

@@ -984,6 +984,7 @@ Magic Core: dropped by bosses and demonic beasts; 99 Magic Core Shards craft one
 Magic Crystal: dropped by demonic beasts; 20 Magic Cores craft one; deeply demonized creatures drop 1. Cannot be destroyed or deconstructed.
 
 Vanilla creatures drop Magic Core Shards and Magic Cores according to their demonization tier. A vanilla creature at deep demonization drops only 1 Magic Crystal, while large demonic beasts drop 2.
+
 """,
     },
     "alchemy_rules": {
@@ -1241,18 +1242,18 @@ Effect: restores 30 Reiki.
         "detail": """
 Source: killing lightly demonized creatures drops 1 to 3.
 
-Advanced use: 99 Magic Core Shards craft 1 Magic Core, and they are also the main material of the Tempered Iron Spirit Sword.
+Advanced use: 99 Magic Core Shards craft 1 Magic Core; they are also the main material of the Tempered Iron Spirit Sword and the Bluemist Robe, and they repair gear.
 
 Cannot be destroyed or deconstructed.
 """,
     },
     "lj_magic_core": {
         "tags": "Materials,Demonic Energy,Crafting",
-        "summary": "Crafted from 99 Magic Core Shards. Dropped by bosses, demonic beasts and moderately demonized creatures.",
+        "summary": "Crafted from 99 Magic Core Shards. Dropped by bosses and demonic beasts.",
         "detail": """
 Crafting: 99 Magic Core Shards craft one.
 
-Source: killing bosses and demonic beasts drops them; moderately demonized creatures drop 1 to 2.
+Source: killing bosses and demonic beasts drops them; moderately demonized creatures no longer drop them.
 
 Cannot be destroyed or deconstructed.
 
@@ -1273,6 +1274,9 @@ Cannot be destroyed or deconstructed.
 
 A vanilla creature at deep demonization drops only 1 Magic Crystal, while large demonic beasts drop 2.
 
+Use: high-tier creations such as the Soul Banner and the Essence-Turning Pill need it.
+
+
 Craftable in the <Ethereal Realm>, <Magic> and <Refine> tabs.
 """,
     },
@@ -1291,6 +1295,7 @@ Use: core material of Keel Armour and the Spirit Manifesting Pill.
         "detail": """
 Source: killing the epic boss "Eclipsed Crystalwing Lion" drops 1.
 
+
 Use: core material of the Crystal Crown and the Nascent Union Pill.
 """,
     },
@@ -1299,6 +1304,8 @@ Use: core material of the Crystal Crown and the Nascent Union Pill.
         "summary": "The bones of the Eclipsed Crystalwing Lion.",
         "detail": """
 Source: killing the epic boss "Eclipsed Crystalwing Lion" drops 1.
+
+Use: the "Moonlion Feather Crown" needs 1.
 """,
     },
     "lj_bat_blood": {
@@ -3187,7 +3194,7 @@ item(
     """
 来源：击杀轻度入魔生物掉落，1 到 3 不等。
 
-高阶用途：99 个魔核碎片可合成 1 个魔核；也是淬铁灵剑的主要材料。
+高阶用途：99 个魔核碎片可合成 1 个魔核；也是淬铁灵剑与青岚道袍的主要材料，还能用来修装备。
 
 无法摧毁、分解。
 """,
@@ -3222,6 +3229,8 @@ item(
 
 原版生物深度入魔只会掉落魔晶 1，大型魔兽生物掉落魔晶 2。
 
+用途：魂幡、转元丹（天阶）等高阶造物都要用到它。
+
 可在 <灵界>、<魔法>、<精炼> 栏位制作。
 """,
     recipe=R(("魔核", 99)),
@@ -3252,6 +3261,8 @@ item(
     "月蚀晶翼狮的骨骼。",
     """
 来源：击杀史诗级 Boss「月蚀晶翼狮」掉落 1 个。
+
+用途：做「月狮羽冠」需要 1 个。
 """,
 )
 
