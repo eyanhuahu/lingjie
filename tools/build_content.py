@@ -1268,7 +1268,7 @@ Cannot be destroyed or deconstructed.
     },
     "lj_magic_core": {
         "tags": "Materials,Demonic Energy,Crafting",
-        "summary": "Crafted from 99 Magic Core Shards. Dropped by bosses and demonic beasts.",
+        "summary": "Crafted from 99 Magic Core Shards. Dropped by bosses and demonic beasts; also the core material of many pills, structures and artifacts.",
         "detail": """
 Crafting: 99 Magic Core Shards craft one.
 
@@ -1320,9 +1320,9 @@ Use: core material of the Crystal Crown and the Nascent Union Pill.
     },
     "lj_lion_bone": {
         "tags": "Materials,Boss Drop",
-        "summary": "The bones of the Eclipsed Crystalwing Lion.",
+        "summary": "The skull of the Eclipsed Crystalwing Lion, used to craft the Moonlion Feather Crown.",
         "detail": """
-Source: killing the epic boss "Eclipsed Crystalwing Lion" drops 1.
+Source: killing the epic boss "Eclipsed Crystalwing Lion" drops 1 skull.
 
 Use: the "Moonlion Feather Crown" needs 1.
 """,
@@ -3229,7 +3229,7 @@ item(
 
 item(
     "cailiao", "lj_magic_core", "魔核", "材料,魔气,合成",
-    "99 个魔核碎片合成。Boss 与魔兽掉落。",
+    "99 个魔核碎片合成。Boss 与魔兽掉落；也是多种丹药、建筑与法宝的核心材料。",
     """
 合成：99 个魔核碎片合成。
 
@@ -3285,9 +3285,9 @@ item(
 
 item(
     "cailiao", "lj_lion_bone", "狮骨", "材料,Boss掉落",
-    "月蚀晶翼狮的骨骼。",
+    "月蚀晶翼狮的头骨，用于制作月狮羽冠。",
     """
-来源：击杀史诗级 Boss「月蚀晶翼狮」掉落 1 个。
+来源：击杀史诗级 Boss「月蚀晶翼狮」掉落 1 个头骨。
 
 用途：做「月狮羽冠」需要 1 个。
 """,
