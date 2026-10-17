@@ -755,7 +755,8 @@ The six versions
 
 Materials
 　Generic: Dust-Cleansing Fruit 1, Infused Shadow Atrium 1, Living Log 5, Magic Crystal 10.
-　Single-element: Dust-Cleansing Fruit 1, Infused Shadow Atrium 1, the matching rare ocean fish 1, Magic Crystal 1.
+　Single-element: Dust-Cleansing Fruit 1, Infused Shadow Atrium 1, Magic Crystal 1, plus one matching rare ocean fish —
+　　Wood = Bloomfin Tuna · Fire = Scorching Sunfish · Metal = Fallounder · Water = Ice Bream · Earth = Mudfish.
 
 Cost: 30 seconds of weakness after taking it — you cannot equip, use items or attack, and everything you are wearing drops to the ground.
 """,
@@ -3183,7 +3184,8 @@ item(
 
 材料
 　通用版：见上方配方。
-　单属性版：洗尘神树果 1、灌注的暗影心房 1、对应稀有海鱼 1、魔晶 1。
+　单属性版：洗尘神树果 1、灌注的暗影心房 1、魔晶 1，再加一条对应的稀有海鱼——
+　　木 = 花朵金枪鱼 · 火 = 炽热太阳鱼 · 金 = 落叶比目鱼 · 水 = 冰鲷鱼 · 土 = 泥鱼。
 
 代价：服下后虚弱 30 秒——不能装备、不能用道具、不能攻击，已经穿着的装备会全部卸到地上。
 """,
