@@ -154,6 +154,7 @@ def icon_path(basename):
 # mod 自己的材料：中文名 -> 预制体 id。对应图标由 tools/extract_mod_icons.py
 # 从 mod 的 ethereal_realm_icons 图集导出到 images/lingjie/icons/。
 MOD_MATERIAL_ID = {
+    "淬铁灵剑": "lj_ordinary_sword",
     "魔核碎片": "lj_magic_debris",
     "魔核": "lj_magic_core",
     "魔晶": "lj_magic_crystal",
