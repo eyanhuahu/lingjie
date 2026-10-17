@@ -702,11 +702,27 @@ The count sets cultivation speed
 　1 ×1.7 · 2 ×1.3 · 3 ×1.0 · 4 ×0.75 · 5 ×0.5 (experience multiplier).
 
 What each element does
-　Metal: healing received ×0.8; hot damage ×2; a single Metal root gives full immunity to lightning and electric damage, and ×1.2 melee while holding a weapon; mining ×1.25 (single ×2).
-　Wood: damage taken ×1.2; a single Wood root immunises and clears snake poison; chopping ×1.25 (single ×2); a single Wood root regrows health out of combat near plants; gathering takes ÷1.25 (single ÷2).
-　Water: a single Water root gives cold damage ×0.5, warming ×0.7, permanent waterproofing and ×1.1 speed; you can spend wetness above 50 as a 1:1 damage buffer; wetness builds up over time (faster near water) and converts to healing when high and not full; fishing is faster (much faster when single).
-　Fire: a single Fire root gives full fire immunity and makes hot damage 0; while burning, cold damage ×2; warming ×1.5 and cooling ×0.5; sanity regenerates near heat sources; a single Fire root regrows health out of combat at a high body temperature.
-　Earth: damage taken ×0.8 (×0.9 with several roots); damage dealt ×0.85 and speed ×0.9; a single Earth root gives ×1.9 max health (other single roots ×1.5, several roots no bonus); a single Earth root is immune to stagger, knockback, knockdown and electric stun.
+　"Single Metal / Wood / …" means you have only that one root; anything marked "several roots" applies when you carry more than one.
+
+　Metal
+　　Upside: a single Metal root makes you completely immune to lightning; melee damage +20%; mining is faster (twice as fast with a single root).
+　　Cost: fire hurts you — flame and heat damage is doubled, and healing you receive drops to 80%.
+
+　Wood
+　　Upside: chopping is faster (twice as fast with a single root), gathering is faster (same), and a single Wood root slowly regrows health out of combat as long as plants are nearby.
+　　Cost: you take 20% more damage.
+
+　Water
+　　Upside: a single Water root keeps you permanently dry, gives +10% speed, and turns wetness into a buffer — wetness soaks up damage first and, when you are not at full health, also turns into healing; fishing is faster (much faster with a single root).
+　　Cost: you warm up more slowly.
+
+　Fire
+　　Upside: a single Fire root makes you completely immune to fire; you warm up fast and cool down slowly; you regain sanity near fire; a single Fire root regrows health out of combat when your body is warm.
+　　Cost: while something is burning on you, cold damage is doubled.
+
+　Earth
+　　Upside: you take 20% less damage; a single Earth root gives ×1.9 max health (other single roots ×1.5, several roots get nothing extra); a single Earth root cannot be staggered, knocked back, knocked down or stunned by electricity.
+　　Cost: you hit a little softer (×0.85 damage) and move a little slower (×0.9 speed).
 
 Single-root bonuses
 　×1.2 global damage and ×1.1 speed, and death costs no realm stage.
@@ -2585,11 +2601,27 @@ item(
 　1 条 ×1.7 · 2 条 ×1.3 · 3 条 ×1.0 · 4 条 ×0.75 · 5 条 ×0.5（经验获取倍率）。
 
 各属性效果
-　金：受治疗 ×0.8；火（hot）伤害 ×2；单金时雷击与电击完全免疫、手持近战 ×1.2；挖矿效率 ×1.25（单金 ×2）。
-　木：受伤 ×1.2；单木时免疫并清除蛇毒；砍伐效率 ×1.25（单木 ×2）；单木脱战后附近有植物会回血；采集动作时长 ÷1.25（单木 ÷2）。
-　水：单水时冷（cold）伤害 ×0.5、升温 ×0.7、防水恒真、移速 ×1.1；可以拿超过 50 的湿度 1:1 抵伤害；湿度会持续积累（附近有水更快），湿度够且没满血时转为回血；钓鱼更快（单水更快）。
-　火：单火时火焰伤害完全免疫、火（hot）伤害为 0；身上有火时冷伤害 ×2；升温 ×1.5 / 降温 ×0.5；附近有热源时回理智；单火脱战且体温偏高时回血。
-　土：受伤 ×0.8（多灵根 ×0.9）；增伤 ×0.85、移速 ×0.9；单土生命上限 ×1.9（其他单灵根 ×1.5，多灵根无加成）；单土免疫受击、击退、击倒与电击。
+　下面写的「单金 / 单木…」意思是：你身上只有这一种灵根时才有；括号里写「多灵根」的，是几种灵根都有的情况。
+
+　金
+　　好处：单金时雷电完全打不动你；近战伤害 +20%；挖矿更快（单金快一倍）。
+　　代价：怕火——火焰与高温造成的伤害翻倍；别人给你回的血变少（只能回八成）。
+
+　木
+　　好处：砍树更快（单木快一倍）；采东西更快（单木快一倍）；单木脱战后，只要附近有植物就会慢慢回血。
+　　代价：怕打——受到的伤害多两成。
+
+　水
+　　好处：单水时自动防水、移速 +10%；身上越湿越能抗——湿气可以先顶掉伤害，而且没满血时湿气还会转成回血；钓鱼更快（单水快很多）。
+　　代价：不太容易暖和起来（升温只有七成）；单水时虽然更耐冷，但怕热时也一样。
+
+　火
+　　好处：单火时完全不怕火（火焰伤害为 0）；身上暖得快、凉得慢；靠近火堆之类会回理智；单火脱战后体温偏高时还会回血。
+　　代价：身上带着火的时候更怕冷（冷伤害翻倍）。
+
+　土
+　　好处：更抗打（受伤少两成）；单土生命上限 ×1.9（其他单灵根 ×1.5，多灵根没有加成）；单土不会被击退、击倒、电击。
+　　代价：出手略轻（伤害 ×0.85）、跑得略慢（移速 ×0.9）。
 
 单灵根专属
 　全局增伤 ×1.2、移速 ×1.1，而且死亡不掉阶。
