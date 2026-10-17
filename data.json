@@ -245,42 +245,6 @@
       "是否展示": "true"
     },
     {
-      "id": "lj_refresh_pill",
-      "分类id": "danyao",
-      "名称": "洗髓丹",
-      "英文名": "Marrow-Cleansing Pill",
-      "标签": "丹药,中阶,灵根",
-      "英文标签": "Pill,Mid Tier,Roots",
-      "图片": "images/lingjie/showcase/lj_refresh_pill.png",
-      "制作配方": "[images/inventoryimages3/tentaclespots.png] 触手皮 2、[images/inventoryimages1/boneshard.png] 骨片 2、[images/inventoryimages2/houndstooth.png] 犬齿 2、[images/lingjie/icons/lj_magic_core.png] 魔核 1",
-      "英文配方": "[images/inventoryimages3/tentaclespots.png] Tentacle Spots 2、[images/inventoryimages1/boneshard.png] Bone Shards 2、[images/inventoryimages2/houndstooth.png] Hound's Tooth 2、[images/lingjie/icons/lj_magic_core.png] Magic Core 1",
-      "需祭坛": "",
-      "简介": "中阶丹药：洗筋伐髓，试着削掉一条多余的灵根；失败会带伤。",
-      "英文简介": "A mid-tier pill that tries to shave off one extra spirit root; it hurts whether it succeeds or fails.",
-      "详情": "中阶丹药（玄），炼制时间 4 分钟。\n\n效果：随机削掉一条灵根。成功率看灵根条数：2 条 8%、3 条 15%、4 条 35%、5 条 60%，每次失败再累加 10%。\n服用条件：灵根 ≥ 2 条、生命 > 20、理智 ≥ 20。\n代价：不管成败，都扣 20 点生命和 20 点理智（不可减免）。",
-      "英文详情": "Mid-tier pill (mystic), refining time 4 minutes.\n\nMaterials: Tentacle Spots 2, Bone Shards 2, Hound's Tooth 2, Magic Core 1.\n\nEffect: randomly shaves off one spirit root. The chance depends on how many you have: 2 roots 8%, 3 roots 15%, 4 roots 35%, 5 roots 60%, and every failure adds another 10%.\nRequirements: at least 2 roots, health above 20, sanity at least 20.\nCost: 20 health and 20 sanity whether it works or not (cannot be reduced).",
-      "排序值": "7",
-      "是否展示": "true"
-    },
-    {
-      "id": "lj_transcendent_pill",
-      "分类id": "danyao",
-      "名称": "转元丹（天阶）",
-      "英文名": "Essence-Turning Pill（Celestial）",
-      "标签": "丹药,天阶,灵根",
-      "英文标签": "Pill,Celestial,Roots",
-      "图片": "images/lingjie/showcase/lj_transcendent_pill.png",
-      "制作配方": "",
-      "英文配方": "",
-      "需祭坛": "",
-      "简介": "天阶丹药：重塑本元灵根。通用版随机换属性，五个单属性版指定金木水火土；服下后虚弱 30 秒。",
-      "英文简介": "A celestial pill that reshapes your elemental core: the generic version rerolls, the five single-element versions set Metal, Wood, Water, Fire or Earth; it leaves you weakened for 30 seconds.",
-      "详情": "天阶丹药（天），炼制时间 8 分钟。没有落雷丹劫，成败只看火焰：放强异火必成，放墟火只有 5%。\n\n6 种\n　转元丹（通用）：多灵根时随机削掉一条；已经是单灵根则随机换成别的属性。\n　转元丹·金 / 木 / 水 / 火 / 土：把本元重塑成指定属性。\n\n材料\n　通用版：洗尘神树果 1、灌注的[images/inventoryimages3/shadowheart.png] 暗影心房 1、[images/inventoryimages2/livinglog.png] 活木 5、魔晶 10。\n　单属性版：洗尘神树果 1、灌注的[images/inventoryimages3/shadowheart.png] 暗影心房 1、对应稀有海鱼 1、魔晶 1。\n\n代价：服下后虚弱 30 秒——不能装备、不能用道具、不能攻击，已经穿着的装备会全部卸到地上。",
-      "英文详情": "Celestial pill (heaven), refining time 8 minutes. There is no lightning tribulation — success depends only on the flame: a strong exotic flame always succeeds, a Wasteland Flame only 5%.\n\nThe six versions\n　Essence-Turning Pill (generic): with several roots it shaves off a random one; if you already have a single root it rerolls the element.\n　Essence-Turning Pill - Metal / Wood / Water / Fire / Earth: reshapes your core into that element.\n\nMaterials\n　Generic: Dust-Cleansing Fruit 1, Infused Shadow Atrium 1, Living Log 5, Magic Crystal 10.\n　Single-element: Dust-Cleansing Fruit 1, Infused Shadow Atrium 1, the matching rare ocean fish 1, Magic Crystal 1.\n\nCost: 30 seconds of weakness after taking it — you cannot equip, use items or attack, and everything you are wearing drops to the ground.",
-      "排序值": "8",
-      "是否展示": "true"
-    },
-    {
       "id": "corruption_overview",
       "分类id": "rumo",
       "名称": "入魔总览",
@@ -295,7 +259,7 @@
       "英文简介": "Creatures demonize at random as the world runs, and the threshold day is configurable. Past that day, epic bosses always demonize deeply.",
       "详情": "生物生成时随机抽入魔等级。游玩天数可调节为 30 / 60 / 90 天，默认为 60 天。\n\n抽取概率\n　未到设定天数：轻度 47.5%、中度 47.5%、深度 5%。\n　已到设定天数：史诗 Boss 必定深度入魔；其他生物 轻度 50%、中度 25%、深度 25%。\n\n所有入魔生物均为敌对目标（切斯特这类中立生物除外；玩家的特定属性关系也除外，比如蜘蛛不会攻击蜘蛛人）。\n\n入魔分三档，游戏内显示为「入魔程度：轻度 / 中度 / 深度」：\n轻度入魔、中度入魔、深度入魔。\n\n不会被入魔的：影怪系（爬行梦魇、恐怖喙、梦魇、废墟梦魇、影骑士、影主教、影车、海上的影怪等）、被动小动物、玩家、同伴、墙体、装备展示模型。被玩家雇佣的生物会立即清除全部入魔效果。\n\n入魔元素词条（v0.11 新增）\n　每个入魔生物会随机带上一种元素词条，叠在轻 / 中 / 深度入魔之上；龙蝇不会带火噬，噬魂蛇不会带蚀骨。\n　雷噬：命中额外造成 12 点电击伤害。\n　火噬：命中额外造成 20 点火焰伤害，并且能点燃目标。\n　蚀骨：命中会挂上噬魂蛇毒（持续 240 秒）。\n　缴械：命中玩家时打掉他手里的武器（12 秒冷却）。\n　岩固：最大生命 +15%、防御 +15、移速 −10%。\n　通用：所有入魔生物被玩家普通攻击命中时，有 15% 概率免疫该次伤害（免伤时它仍然盯着你），界面上没有任何提示。",
       "英文详情": "Creatures roll a demonization level when they spawn. The threshold day can be set to 30 / 60 / 90 days; the default is 60.\n\nRoll chances\n　Before the threshold day: light 47.5%, moderate 47.5%, deep 5%.\n　From the threshold day on: epic bosses always demonize deeply; other creatures get light 50%, moderate 25%, deep 25%.\n\nEvery demonized creature is hostile (neutral creatures such as Chester are excluded, as are special player relationships — spiders still will not attack Webber).\n\nDemonization has three tiers, shown in game as \"Demonization: Light / Moderate / Deep\":\nLight Demonization, Moderate Demonization, Deep Demonization.\n\nNever demonized: shadow creatures (Crawling Horror, Terrorbeak, Shadow creatures, Ruins shadow creatures, Shadow Knight, Shadow Bishop, Shadow Rook, ocean shadow creatures and so on), passive critters, players, followers, walls, and equipment display models. Creatures hired by a player lose every demonization effect immediately.\n\nDemonization Affixes (new in v0.11)\n　Every demonized creature carries one random element affix on top of its light / moderate / deep tier; the Dragonfly never rolls Flame Bite and the Soul-devouring Snake never rolls Bone Rot.\n　Thunder Bite: hits deal an extra 12 electric damage.\n　Flame Bite: hits deal an extra 20 fire damage and can ignite the target.\n　Bone Rot: hits inflict Soul Snake Venom (240 seconds).\n　Disarm: hits knock the player's weapon out of their hands (12-second cooldown).\n　Stonehide: +15% max health, +15 defence, −10% movement speed.\n　Always: every demonized creature has a 15% chance to ignore a hit from a player's basic attack (it still keeps its target) — the UI never shows this.",
-      "排序值": "9",
+      "排序值": "7",
       "是否展示": "true"
     },
     {
@@ -313,7 +277,7 @@
       "英文简介": "Demonized health uses a 1.60× discounted multiplier (the higher the base health, the closer to full); it applies Demonic Aura, Curse of Hunger and Shadow Slow to players.",
       "详情": "游戏内显示为「轻度」。\n\n核心强化 —— 生命值\n　　最大生命 = 未入魔时的最大生命 × (1.60 − 65 ÷ (未入魔时的最大生命 + 110))\n\n实际结果：\n\n　　基础 100 → 129.05（×1.290）\n　　基础 500 → 746.72（×1.493）\n　　基础 2000 → 3138.39（×1.569）\n　　基础 24000 → 38335.30（×1.597）\n\n倍率固定 1.60；血量越低，被 65 ÷ (血量 + 110) 扣掉的越多，所以小血量生物吃亏，大体型接近满倍率。没有可调的衰减阈值。\n\n人物负面\n魔气环绕：5 范围内玩家理智每 5 秒流失 1 点。\n饥饿诅咒：玩家受到生物攻击时 30% 概率触发，饥饿值消耗加快 20%，持续 30 秒。\n暗影迟缓：玩家受到生物攻击时 20% 概率触发，移速 -20%，持续 10 秒。\n\n击杀后掉落魔核碎片 1 到 3 个 + 生物原生材料。\n原始生命不超过 149 的弱小生物只保留轻度强化，不追加入魔材料（什么魔核材料都不掉）。",
       "英文详情": "Shown in game as \"Light\".\n\nCore buff — Health\n　Max health = max health before demonization × (1.60 − 65 ÷ (max health before demonization + 110))\n\nActual results:\n\n　Base 100 → 129.05 (×1.290)\n　Base 500 → 746.72 (×1.493)\n　Base 2000 → 3138.39 (×1.569)\n　Base 24000 → 38335.30 (×1.597)\n\nThe multiplier is fixed at 1.60; the lower the health, the more the 65 ÷ (health + 110) term takes away, so small creatures lose out while large ones approach the full multiplier. There is no adjustable decay threshold.\n\nPlayer debuffs\nDemonic Aura: within 5 range, players lose 1 sanity every 5 seconds.\nCurse of Hunger: 30% chance when the player is hit by a creature; hunger drains 20% faster for 30 seconds.\nShadow Slow: 20% chance when the player is hit by a creature; movement speed −20% for 10 seconds.\n\nOn death it drops 1 to 3 Magic Core Shards plus the creature's own loot.\nCreatures with 149 or less base health keep the light buff only and gain no demonization materials at all.",
-      "排序值": "10",
+      "排序值": "8",
       "是否展示": "true"
     },
     {
@@ -331,7 +295,7 @@
       "英文简介": "Demonized health uses a 1.95× discounted multiplier (the higher the base health, the closer to full); 12% damage reduction, a 5-second shield at half health (a single hit deals at most 90 damage) and 2% demonic reflection.",
       "详情": "游戏内显示为「中度」。\n\n核心强化 —— 生命值\n　　最大生命 = 未入魔时的最大生命 × (1.95 − 65 ÷ (未入魔时的最大生命 + 110))\n\n实际结果：\n\n　　基础 100 → 164.05（×1.640）\n　　基础 500 → 921.72（×1.843）\n　　基础 2000 → 3838.39（×1.919）\n　　基础 24000 → 46735.30（×1.947）\n\n核心强化 —— 护甲\n受到的所有外部伤害 ×0.88（即减免 12% 物理伤害）。\n\n人物负面\n魔气环绕：10 范围内玩家理智每 5 秒流失 3 点（境界越高掉得越少，按「境界体系」里的魔气影响倍率打折）。\n饥饿诅咒：玩家受到生物攻击时 30% 概率触发，饥饿值消耗加快 20%，持续 30 秒。\n暗影迟缓：玩家受到生物攻击时 20% 概率触发，移速 -20%，持续 10 秒。\n魔气反弹：生物受到玩家伤害时 10% 概率触发，反射 2% 伤害。\n\n生物强化\n限定易伤：生命值降到 50% 及以下会触发护盾，持续 5 秒，冷却 5 分钟——护盾期间不是无敌，而是单次受到的伤害最多 90 点。护盾表现为红色力场。\n\n击杀后掉落魔核碎片 1 到 3 个 + 生物原生材料（不再掉魔核）。",
       "英文详情": "Shown in game as \"Moderate\".\n\nCore buff — Health\n　Max health = max health before demonization × (1.95 − 65 ÷ (max health before demonization + 110))\n\nActual results:\n\n　Base 100 → 164.05 (×1.640)\n　Base 500 → 921.72 (×1.843)\n　Base 2000 → 3838.39 (×1.919)\n　Base 24000 → 46735.30 (×1.947)\n\nCore buff — Armour\nAll incoming external damage ×0.88 (a 12% physical damage reduction).\n\nPlayer debuffs\nDemonic Aura: within 10 range, players lose 3 sanity every 5 seconds (a higher realm loses less — the drain is scaled by the Demonic aura multiplier in the Realm System).\nCurse of Hunger: 30% chance when the player is hit by a creature; hunger drains 20% faster for 30 seconds.\nShadow Slow: 20% chance when the player is hit by a creature; movement speed −20% for 10 seconds.\nDemonic Reflection: 10% chance when the creature takes damage from a player; reflects 2% of the damage.\n\nCreature buffs\nConditional Vulnerability: dropping to 50% health or below triggers a 5-second shield with a 5-minute cooldown. It is not invulnerability — while the shield is up a single hit deals at most 90 damage. The shield shows as a red force field.\n\nOn death it drops 1 to 3 Magic Core Shards plus the creature's own loot (since v0.11 it no longer drops Magic Cores).",
-      "排序值": "11",
+      "排序值": "9",
       "是否展示": "true"
     },
     {
@@ -349,7 +313,7 @@
       "英文简介": "Demonized health uses a 2.35× discounted multiplier (the higher the base health, the closer to full); ignores every slow, plus Bone-Deep Poison, Mirror Confusion, Demonic Frenzy and Sacrificial Tribulation.",
       "详情": "游戏内显示为「深度」。\n\n核心强化 —— 生命值\n　　最大生命 = 未入魔时的最大生命 × (2.35 − 65 ÷ (未入魔时的最大生命 + 110))\n\n实际结果：\n\n　　基础 100 → 204.05（×2.040）\n　　基础 500 → 1121.72（×2.243）\n　　基础 2000 → 4638.39（×2.319）\n　　基础 24000 → 56335.30（×2.347）\n\n核心强化 —— 护甲与体型\n受到的所有外部伤害 ×0.8（即减免 20% 物理伤害），并额外获得 +5 点恒温/位面防御。\n移动速度 +10%，体型放大到 1.2 倍。（月蚀晶翼狮、炽岩蝎龙、噬魂蛇这三只史诗 Boss 保留原外观，不放大）\n\n\n人物负面\n魔气环绕：10 范围内玩家理智每 5 秒流失 5 点（境界越高掉得越少，按「境界体系」里的魔气影响倍率打折）。\n饥饿诅咒：玩家受到生物攻击时 30% 概率触发，饥饿值消耗加快 20%，持续 30 秒。\n暗影迟缓：玩家受到生物攻击时 20% 概率触发，移速 -20%，持续 10 秒。\n魔气反弹：生物受到玩家伤害时 10% 概率触发，反射 5% 伤害，单次最多反弹 75 点。\n镜像混淆：攻击时 10% 概率触发「镜像」，玩家接下来 5 秒内移动方向反转 180°。\n\n生物强化\n限定易伤：生命值在 30% 与 50% 之间（>30% 且 ≤50%）时触发护盾 12 秒，冷却 5 分钟——护盾期间不是无敌，而是单次受到的伤害最多 90 点。护盾表现为红色力场。\n毒入骨髓：普通攻击附带蚀骨毒。单次中毒 240 秒，不可叠加（可重置时间，上限 240 秒），命中当刻立即结算一跳。\n　0 到 80 秒：每 10 秒造成 6 点伤害\n　80 到 160 秒：每 10 秒造成 10 点伤害\n　160 到 240 秒：每 10 秒造成 14 点伤害\n　解毒：可用清心丸，也可用腺体。腺体解毒实际扣除「50 + 腺体原本治疗量」，血量不足时保底保留 5 点。\n影灵随行：唤醒时额外召唤一个影体，生命值为该生物基础最大生命的一半。影体不携带任何魔化效果、无护甲保护，魂幡可直接炼化。每个本体只召唤一次。\n吸食残骸：每当有玩家死亡，若死亡点 40 距离内有已深度入魔的 Boss，该 Boss 恢复自身损失生命值的 10%。\n魔化狂暴：生命值降到 30% 及以下时进入狂暴——伤害 +30%、减伤与位面防御加成失效（移除受伤乘数与 +5 位面防御）、期间完全无法回血（任何治疗都被拦下）。\n　　只有史诗 Boss 会额外获得技能冷却减半。\n　　狂暴持续 300 秒（5 分钟），结束后才可能再次触发。\n祭天雷劫：死亡后召唤天劫，持续 60 秒，每 6 秒落雷一次。以尸体为中心约 25 格范围内随机落点，先出标识，再降落天雷，劈中任意玩家都会造成伤害（随从、虚空戒等造成的击杀同样算玩家击杀，会照常触发雷劫）。伤害：普通深度入魔扣除 10% 最大生命，史诗 Boss 则必杀（100% 最大生命，无视无敌与伤害吸收）。标识出现 1.5 秒后落地，第一轮标识立即出现（不必再等 6 秒）。\n　预警：落点 25 范围内的玩家会收到台词「天道有感，雷劫将至！」并在 HUD 上看到「祭天雷劫」倒计时；走出范围自动消失。\n\n击杀后追加 1 个魔晶 + 生物原生材料，且原生掉落量翻倍；非首领的深度入魔生物还会额外追加 1~2 颗魔核。\n　　例外：月蚀晶翼狮、炽岩蝎龙、噬魂蛇这三只自带完整掉落的史诗 Boss 不会翻倍、也不会追加魔晶。",
       "英文详情": "Shown in game as \"Deep\".\n\nCore buff — Health\n　Max health = max health before demonization × (2.35 − 65 ÷ (max health before demonization + 110))\n\nActual results:\n\n　Base 100 → 204.05 (×2.040)\n　Base 500 → 1121.72 (×2.243)\n　Base 2000 → 4638.39 (×2.319)\n　Base 24000 → 56335.30 (×2.347)\n\nCore buff — Armour and size\nAll incoming external damage ×0.8 (a 20% physical damage reduction), plus +5 insulation / planar defense.\nMovement speed +10%, and the creature is scaled up to 1.2×. (The three epic bosses — Eclipsed Crystalwing Lion, Blazing Rock Scorpion Dragon and Soul-devouring Snake — keep their original look and are not enlarged.)\n\n\nPlayer debuffs\nDemonic Aura: within 10 range, players lose 5 sanity every 5 seconds (a higher realm loses less — the drain is scaled by the Demonic aura multiplier in the Realm System).\nCurse of Hunger: 30% chance when the player is hit by a creature; hunger drains 20% faster for 30 seconds.\nShadow Slow: 20% chance when the player is hit by a creature; movement speed −20% for 10 seconds.\nDemonic Reflection: 10% chance when the creature takes damage from a player; reflects 5% of the damage, capped at 75 damage per hit.\nMirror Confusion: 10% chance on attack; the player's movement direction flips 180° for the next 5 seconds.\n\nCreature buffs\nConditional Vulnerability: while health is between 30% and 50% (>30% and ≤50%) it triggers a 12-second shield with a 5-minute cooldown. It is not invulnerability — while the shield is up a single hit deals at most 90 damage. The shield shows as a red force field.\nBone-Deep Poison: normal attacks carry bone-eating poison. One poisoning lasts 240 seconds and does not stack (the timer can be refreshed, capped at 240 seconds), and the first tick lands the moment it hits.\n　0 to 80 seconds: 6 damage every 10 seconds\n　80 to 160 seconds: 10 damage every 10 seconds\n　160 to 240 seconds: 14 damage every 10 seconds\n　Antidote: a Stillness Pill works, and so does a gland. A gland antidote actually deducts \"50 + the gland's normal healing\"; if that would drop you below 5 health you keep 5.\nShadow Familiar: when it wakes up it summons one extra shadow with half the creature's base max health. The shadow carries no demonization effects and no armour, and a Soul Banner can refine it directly. Each body only summons it once.\nFeeding on Remains: whenever a player dies, any deeply demonized boss within 40 of the death spot heals 10% of the health it has lost.\nDemonic Frenzy: dropping to 30% health or below triggers a frenzy — damage +30%, its damage reduction and planar defense stop working (the damage multiplier and the +5 planar defense are removed), and it cannot heal at all while frenzied (every heal is blocked).\n　Only epic bosses also get their skill cooldowns halved.\n　The frenzy lasts 300 seconds (5 minutes) and can only trigger again once it has ended.\nSacrificial Tribulation: on death it calls down a tribulation for 60 seconds, striking every 6 seconds. The landing spots are random within roughly 25 range of the corpse — a marker appears first and the bolt falls shortly after, damaging any player it hits. (Kills credited to followers, the Void Ring and so on count as the player's and still trigger the tribulation.) an ordinary deeply demonized creature takes 10% of your maximum health, while an epic boss kills outright (100% of maximum health, ignoring invulnerability and damage absorption). The bolt lands 1.5 seconds after the marker appears, and the very first marker appears immediately instead of after 6 seconds.\n　Warning: players within 25 of the landing spot hear \"The heavens have sensed it. A tribulation is coming!\" and see a \"Sacrificial Tribulation\" countdown on the HUD; it disappears once they leave the area.\n\nOn death it adds 1 Magic Crystal plus the creature's own loot, and doubles the vanilla drop amounts; a non-boss deeply demonized creature also gains 1–2 extra Magic Cores.\n　Exception: the three epic bosses with their own complete loot tables — Eclipsed Crystalwing Lion, Blazing Rock Scorpion Dragon and Soul-devouring Snake — are neither doubled nor given a Magic Crystal.",
-      "排序值": "12",
+      "排序值": "10",
       "是否展示": "true"
     },
     {
@@ -367,7 +331,7 @@
       "英文简介": "Light demonization drops Magic Core Shards, deep drops a Magic Crystal; vanilla creatures drop according to their demonization tier.",
       "详情": "魔核碎片：击杀轻度入魔生物掉落魔核碎片 1 到 3 不等（原始生命不超过 149 的弱小生物不追加）。\n\n魔核：击杀 Boss 生物、魔兽掉落；99 个魔核碎片合成。无法摧毁、分解。\n\n魔晶：击杀魔兽掉落；20 个魔核合成；深度入魔生物掉落魔晶 1。无法摧毁、分解。\n\n原版生物按入魔程度掉落魔核碎片、魔核。原版生物深度入魔只会掉落魔晶 1，大型魔兽生物掉落魔晶 2。",
       "英文详情": "Magic Core Shard: killing a lightly demonized creature drops 1 to 3 shards (creatures with 149 or less base health get no extra materials).\n\nMagic Core: dropped by bosses and demonic beasts; 99 Magic Core Shards craft one. Cannot be destroyed or deconstructed.\n\nMagic Crystal: dropped by demonic beasts; 20 Magic Cores craft one; deeply demonized creatures drop 1. Cannot be destroyed or deconstructed.\n\nVanilla creatures drop Magic Core Shards and Magic Cores according to their demonization tier. A vanilla creature at deep demonization drops only 1 Magic Crystal, while large demonic beasts drop 2.",
-      "排序值": "13",
+      "排序值": "11",
       "是否展示": "true"
     },
     {
@@ -385,7 +349,7 @@
       "英文简介": "Refining with a Wasteland Flame has a base 50% success rate; an exotic flame raises it to 100%. Failures become a Failed Pill and materials are not returned.",
       "详情": "使用墟火炼丹。不触发雷劫的丹药，基础炼制概率为 50%，并且带保底：每失败一次，下一次成功率 +10%（最多叠到 100%），成功一次立刻清零；这个进度记在玩家身上，换人、切洞穴都会跟着你。无论成功与否，炼丹时间不变。\n\n能触发丹劫的丹药：50% 概率不触发丹劫，炼丹必然失败成为废丹；50% 概率触发雷劫，躲避成功则炼制成功。服用破劫丹可跳过雷劫判定。\n\n炼制材料须按照数量放入炼丹炉，可多不可少。炼制失败成为废丹，不返还材料，炼丹须谨慎。\n\n使用异火炼丹可把炼制概率提高至 100%——强异火必定成功，而且不会改变丹劫判定（该应劫的照常应劫）。\n\n另外，用异火本体炼丹不会消耗它（异火本体只当炉火）；只有分裂出来的火焰才是消耗品，会消耗 1 个。",
       "英文详情": "Refining uses a Wasteland Flame. Pills that do not trigger a tribulation have a base 50% success chance plus a pity bonus: every failure adds +10% to the next attempt (up to 100%), and one success resets it. That progress is stored on the player, so it follows you across character changes and shards. Refining time never changes either way.\n\nPills that can trigger a pill tribulation: 50% chance of no tribulation, in which case refining always fails and produces a Failed Pill; 50% chance of a lightning tribulation, and if you dodge it successfully the pill is refined. Taking a Disaster Breaking Pill skips the tribulation check.\n\nMaterials must be placed in the Alchemy Furnace in the listed amounts — more is fine, less is not. A failed refinement becomes a Failed Pill and the materials are not returned, so refine carefully.\n\nRefining with an exotic flame raises the success chance to 100% — a strong exotic flame always succeeds, and it does not change the tribulation check (a pill that owes a tribulation still gets one).\n\nUsing a full exotic flame as fuel does not consume it (it only acts as the furnace fire); only split flames are consumable, and one is used up per batch.",
-      "排序值": "14",
+      "排序值": "12",
       "是否展示": "true"
     },
     {
@@ -403,7 +367,7 @@
       "英文简介": "Refining time, output and tribulation parameters for the four tiers: low (yellow), moderate (mystic), high (earth) and heaven (sky).",
       "详情": "丹药分四阶：低阶（黄）、中阶（玄）、高阶（地）、天阶（天）。\n\n低阶（炼制时间 2 分钟）\n使用墟火炼制，不触发丹劫的丹药概率为 50%；使用异火炼制概率为 100%。\n一次 99% 概率可制作 3 枚，1% 概率制作出 5 枚。\n\n中阶（炼制时间 4 分钟）\n使用墟火炼制，概率为 50%，失败则会炼制出废丹；使用异火炼制，概率为 100%。\n一次 99% 概率可制作 1 枚，1% 概率可制作 2 枚。\n中阶丹劫：每 10 秒触发一次雷击，一击必杀，会有标识；第 9 秒出现标识，1 秒后落地，持续 120 秒，玩家须躲避，否则炼丹失败。丹劫躲避失败会导致丹炉炸毁，留下 5 个[images/inventoryimages1/charcoal.png] 木炭、1 个废丹。\n\n高阶（炼制时间 8 分钟）\n使用墟火炼制，概率为 20%，失败则会炼制出废丹；使用异火炼制，概率为 100%。\n一次只能制作出 1 枚。\n高阶丹劫：每 8 秒触发一次雷击，一击必杀，会有标识；第 7 秒出现标识，1 秒后落地，持续 120 秒，玩家须躲避，否则炼丹失败。丹劫躲避失败会导致丹炉炸毁，留下 5 个[images/inventoryimages1/charcoal.png] 木炭、1 个废丹。\n\n丹劫提示：炼丹期间 HUD 上会显示「丹劫」倒计时（按炉子剩余应劫时间走）；被丹劫劈死时死亡原因记为「丹劫天雷」。\n\n天阶（天）\n未实装。",
       "英文详情": "Pills come in four tiers: low (yellow), moderate (mystic), high (earth) and heaven (sky).\n\nLow (refining time 2 minutes)\nRefined with a Wasteland Flame, pills that do not trigger a tribulation have a 50% chance; with an exotic flame the chance is 100%.\n99% chance to make 3 at a time, 1% chance to make 5.\n\nModerate (refining time 4 minutes)\nRefined with a Wasteland Flame the chance is 50%, and a failure produces a Failed Pill; with an exotic flame the chance is 100%.\n99% chance to make 1 at a time, 1% chance to make 2.\nModerate pill tribulation: a lightning strike every 10 seconds that kills outright, always telegraphed; the marker shows at second 9 and the bolt lands 1 second later, lasting 120 seconds. Dodge it or the refinement fails. Failing to dodge destroys the furnace and leaves 5 [images/inventoryimages1/charcoal.png] Charcoal and 1 Failed Pill.\n\nHigh (refining time 8 minutes)\nRefined with a Wasteland Flame the chance is 20%, and a failure produces a Failed Pill; with an exotic flame the chance is 100%.\nOnly 1 can be made at a time.\nHigh pill tribulation: a lightning strike every 8 seconds that kills outright, always telegraphed; the marker shows at second 7 and the bolt lands 1 second later, lasting 120 seconds. Dodge it or the refinement fails. Failing to dodge destroys the furnace and leaves 5 [images/inventoryimages1/charcoal.png] Charcoal and 1 Failed Pill.\n\nTribulation readout: while refining, the HUD shows an \"Alchemy Tribulation\" countdown (driven by the furnace's remaining time); dying to it records the death cause as \"Alchemy Tribulation Lightning\".\n\nHeaven (sky)\nNot implemented yet.",
-      "排序值": "15",
+      "排序值": "13",
       "是否展示": "true"
     },
     {
@@ -421,7 +385,7 @@
       "英文简介": "No pill tribulation and a 100% success rate; used on the Spirit Jade Table to absorb world reiki at night.",
       "详情": "特殊炼制（不触发丹劫，炼制概率 100%）\n\n炼制时间 4 分钟。\n\n不能正常摧毁，可使用分解法杖分解。\n\n祈雨：右键选择「祈雨」，消耗 20 点灵液，让世界持续下雨；10 分钟后自动恢复，再次祈雨会重新计时。灵液上限 100，不足时会提示「灵液不足。」",
       "英文详情": "Special refining (no pill tribulation, 100% success)\n\nRefining time 4 minutes.\n\nCannot be destroyed normally, but can be deconstructed with a Deconstruction Staff.\n\nRain prayer: right-click and pick \"Pray for Rain\" to spend 20 spirit fluid and force continuous rain; it clears itself after 10 minutes, and praying again restarts that timer. Spirit fluid caps at 100, and a vase that is short of it reports \"Not enough spirit fluid\".",
-      "排序值": "16",
+      "排序值": "14",
       "是否展示": "true"
     },
     {
@@ -439,7 +403,7 @@
       "英文简介": "An 8-slot gourd that absorbs exotic flames and stores pills; it follows the player — hold it in hand and right-click an ownerless exotic flame on the ground to absorb it.",
       "详情": "特殊炼制（不触发丹劫，炼制概率 100%）\n\n炼制时间 4 分钟。\n\n不能摧毁，无法用分解法杖分解。\n\n吸收异火、存放丹药，8 格空间。\n\n吸收异火时「异火焚身」的剩余时间会显示在 HUD 的负面状态面板上；只显示给当前持有葫芦的人，葫芦掉在地上时暂停并移除显示。\n在物品栏里就能右键打开 / 关闭（容器只有一份，跟随葫芦打开的也是它）。打开状态下会一直在，不会因打开其他箱子类物品而自动关闭葫芦。\n可鼠标拿起放置地面跟随；拿起葫芦后对着地上的无主异火右键就能吸收，要贴上去吸（不再是从 16 码外自动飞进来），吸收后归葫芦主人所有。可吸收的是强异火，而且必须是无主状态（已经认主的异火得先等它失主）。\n\n抓丹灵：丹灵吸完灵力睡着的那 60 秒里，拿葫芦右键它（2 格内）就能把它抓走，并把那颗天阶丹药拿回来（见「丹灵」）。\n从物品栏 / 背包里用鼠标拿起葫芦后再放下，会优先放回原来的格子；原格不能用时才随意放置。\n跟随状态下：左键是跟随状态葫芦的打开 / 关闭，右键跟随状态的葫芦就回收。",
       "英文详情": "Special refining (no pill tribulation, 100% success)\n\nRefining time 4 minutes.\n\nCannot be destroyed, and cannot be deconstructed with a Deconstruction Staff.\n\nAbsorbs exotic flames and stores pills, 8 slots.\nRight-click in the inventory to open or close it (there is only one container — the one opened from a following gourd is the same one). While open it stays open; opening other chest-like items will not close the gourd.\nPick it up with the mouse, drop it on the ground and it follows you. With the gourd in hand, right-click an ownerless exotic flame on the ground to absorb it — you have to be right up against it, it no longer flies in from 16 range. Once absorbed it belongs to the gourd's owner. You can also catch a Danling: during the 60 seconds it sleeps after feeding, right-click it with the gourd (within 2 range) to catch it and recover the celestial pill (see Danling).\n\nOnly strong exotic flames can be absorbed, and only while they are ownerless (a flame that already has a master must first lose it).\nPicking the gourd up from your inventory or a backpack with the mouse and putting it down again returns it to the slot it came from whenever that slot is still usable.\nWhile following: left-click opens or closes the gourd, right-click recalls it.",
-      "排序值": "17",
+      "排序值": "15",
       "是否展示": "true"
     },
     {
@@ -457,7 +421,7 @@
       "英文简介": "Plant it in the ground to absorb shadow creatures and turn them into Magic Cores; giving it a Purple Scale Demon Flame unlocks Soul Refining.",
       "详情": "特殊炼制（不触发丹劫，炼制概率 100%）\n\n炼制时间 4 分钟。\n\n无法摧毁，可分解。\n\n给予紫鳞妖焰可解锁技能「炼魂」。\n炼魂：插在地上会自动吸收原版的 5 种影怪（恐吓鸟、爬行梦魇、海上的影怪、梦魇鸟、爬行暗影）、深度入魔产生的影体分身，以及玩家塑造的影体本身；每吸进一只化成一颗魔核，直接掉在魂幡下方。\n　　其他影怪（影骑士、影主教、影车等）不会被吸入。",
       "英文详情": "Special refining (no pill tribulation, 100% success)\n\nRefining time 4 minutes.\n\nCannot be destroyed or deconstructed.\n\nGiving it a Purple Scale Demon Flame unlocks the Soul Refining skill.\nSoul Refining: planted in the ground it automatically absorbs the 5 vanilla shadow creatures (Terrorbeak, Crawling Horror, the ocean shadow creature, Nightmarebeak and Crawling Nightmare), the shadow clones produced by deep demonization, and a player's own shadow body as well; each one absorbed becomes a Magic Core dropped right below the banner.\n　Other shadow creatures (Shadow Knight, Shadow Bishop, Shadow Rook and so on) are not absorbed.",
-      "排序值": "18",
+      "排序值": "16",
       "是否展示": "true"
     },
     {
@@ -475,7 +439,7 @@
       "英文简介": "The product of a failed refinement. Using it costs 30 sanity and 30 health, and restores 30 hunger.",
       "详情": "炼制失败的丹药。\n\n使用后扣除理智 30、生命 30，恢复 30 饱腹。\n\n炼丹失败必定产出废丹，且不返还材料，请谨慎开炉。",
       "英文详情": "A pill that failed to refine.\n\nUsing it costs 30 sanity and 30 health, and restores 30 hunger.\n\nA failed refinement always yields a Failed Pill and never returns the materials, so open the furnace with care.",
-      "排序值": "19",
+      "排序值": "17",
       "是否展示": "true"
     },
     {
@@ -493,7 +457,25 @@
       "英文简介": "A low-tier pill that restores 50 hunger; werepigs like it too.",
       "详情": "低阶丹药（黄），炼制时间 2 分钟。\n\n效果：恢复 50 饱食度，猪人也爱吃。",
       "英文详情": "Low-tier pill (yellow), refining time 2 minutes.\n\nEffect: restores 50 hunger, and werepigs like it too.",
-      "排序值": "20",
+      "排序值": "18",
+      "是否展示": "true"
+    },
+    {
+      "id": "lj_refresh_pill",
+      "分类id": "danyao",
+      "名称": "洗髓丹",
+      "英文名": "Marrow-Cleansing Pill",
+      "标签": "丹药,中阶,灵根",
+      "英文标签": "Pill,Mid Tier,Roots",
+      "图片": "images/lingjie/showcase/lj_refresh_pill.png",
+      "制作配方": "[images/inventoryimages3/tentaclespots.png] 触手皮 2、[images/inventoryimages1/boneshard.png] 骨片 2、[images/inventoryimages2/houndstooth.png] 犬齿 2、[images/lingjie/icons/lj_magic_core.png] 魔核 1",
+      "英文配方": "[images/inventoryimages3/tentaclespots.png] Tentacle Spots 2、[images/inventoryimages1/boneshard.png] Bone Shards 2、[images/inventoryimages2/houndstooth.png] Hound's Tooth 2、[images/lingjie/icons/lj_magic_core.png] Magic Core 1",
+      "需祭坛": "",
+      "简介": "中阶丹药：洗筋伐髓，试着削掉一条多余的灵根；失败会带伤。",
+      "英文简介": "A mid-tier pill that tries to shave off one extra spirit root; it hurts whether it succeeds or fails.",
+      "详情": "中阶丹药（玄），炼制时间 4 分钟。\n\n效果：随机削掉一条灵根。成功率看灵根条数：2 条 8%、3 条 15%、4 条 35%、5 条 60%，每次失败再累加 10%。\n服用条件：灵根 ≥ 2 条、生命 > 20、理智 ≥ 20。\n代价：不管成败，都扣 20 点生命和 20 点理智（不可减免）。",
+      "英文详情": "Mid-tier pill (mystic), refining time 4 minutes.\n\nMaterials: Tentacle Spots 2, Bone Shards 2, Hound's Tooth 2, Magic Core 1.\n\nEffect: randomly shaves off one spirit root. The chance depends on how many you have: 2 roots 8%, 3 roots 15%, 4 roots 35%, 5 roots 60%, and every failure adds another 10%.\nRequirements: at least 2 roots, health above 20, sanity at least 20.\nCost: 20 health and 20 sanity whether it works or not (cannot be reduced).",
+      "排序值": "19",
       "是否展示": "true"
     },
     {
@@ -511,7 +493,7 @@
       "英文简介": "A looks-only shadow double that follows its owner and has no health; surviving a full tribulation with it yields a Body Origin.",
       "详情": "影体是你自己的影分身：只复制外观（皮肤、服装），不复制装备，也没有血量——不会被怪打死。\n\n怎么获得\n　境界达到合婴（第 8 境）以上，用紫晶塑体花右键一座已经摆放好的肉块雕像即可塑造（必须是自己的雕像，别人的不能用）。\n\n表现\n　影体只跟随主人、面朝主人，不会自己去打架、采集或逃跑。\n　魂幡会把它当影怪吸进去，炼成一颗魔核。\n　同一时间只能存在一只影体；死亡或换人时影体会消失。\n\n进阶\n　带着它经历一整场祭天雷劫，就能淬成一层「塑体本源」（见「雷劫」）。",
       "英文详情": "A shadow body is your own shadow double: it copies only your appearance (skin and clothing), never your equipment, and it has no health — creatures cannot kill it.\n\nHow to get one\n　Reach Nascent (the 8th realm) or above, then use the Amethyst Form Flower on a Meat Effigy you have already placed (it must be your own effigy — someone else's will not work).\n\nBehaviour\n　It only follows and faces its owner, and never fights, gathers or flees on its own.\n　The Soul Banner treats it as a shadow creature and absorbs it into a Magic Core.\n　Only one shadow body can exist at a time; it disappears when you die or change characters.\n\nNext step\n　Bring it through an entire Heaven's Judgment tribulation and it tempers into one stack of Body Origin (see Tribulation).",
-      "排序值": "21",
+      "排序值": "20",
       "是否展示": "true"
     },
     {
@@ -529,7 +511,7 @@
       "英文简介": "A protective origin tempered from a shadow body surviving a full tribulation; it blocks one lethal hit.",
       "详情": "影体吃满一整场祭天雷劫后淬成的护身本源。\n\n获得条件\n　境界合婴以上、先塑造出影体，再带着它经历完整的一场祭天雷劫；期间影体与你都必须一直在范围内，也不能中途换影体（每场雷劫独立计算，失败就等下一场）。\n\n效果\n　可抵御一次致命伤害：受到致命伤时本源消耗掉，生命、灵力与理智各恢复到上限的一半。\n　本源在身时不能再塑造影体；死亡或换人会把影体与本源一起清空。",
       "英文详情": "A protective origin tempered after a shadow body survives an entire Heaven's Judgment tribulation.\n\nRequirements\n　Be at Nascent or above, shape a shadow body first, then bring it through one complete tribulation; both the shadow and you must stay inside the area the whole time, and you cannot swap shadows midway (each tribulation counts separately — a failure means waiting for the next one).\n\nEffect\n　Blocks one lethal hit: when you would die the origin is consumed, and health, Reiki and sanity are each restored to half of their maximum.\n　While you hold an origin you cannot shape another shadow body; dying or changing characters clears both the shadow and the origin.",
-      "排序值": "22",
+      "排序值": "21",
       "是否展示": "true"
     },
     {
@@ -547,7 +529,7 @@
       "英文简介": "A low-tier pill that conceals you for 4 minutes; attacking or dying ends it at once.",
       "详情": "低阶丹药（黄），炼制时间 2 分钟。\n\n效果：隐匿气息 4 分钟——附近 64 范围内正盯着你的生物会立刻失去目标；主动攻击或死亡后立即失效。重复服用刷新为 4 分钟。",
       "英文详情": "Low-tier pill (yellow), refining time 2 minutes.\n\nMaterials: Harvested Spirit-Melting Grass 3, Harvested Dragon Claw Flower 3, Blue Cap 1, Magic Core 1.\n\nEffect: conceals you for 4 minutes — creatures within 64 range that are already targeting you lose their target at once; attacking or dying ends it immediately. Taking another one refreshes it to 4 minutes.",
-      "排序值": "23",
+      "排序值": "22",
       "是否展示": "true"
     },
     {
@@ -565,7 +547,7 @@
       "英文简介": "A low-tier pill that warms you and keeps you from freezing for 2 days.",
       "详情": "低阶丹药（黄），炼制时间 2 分钟。\n\n效果：升温效果，不会过冷，持续 2 天。温度按原版热食修正叠加：升到原版热食阈值后不再额外升温。",
       "英文详情": "Low-tier pill (yellow), refining time 2 minutes.\n\nEffect: warming, prevents freezing cold, lasts 2 days. It stacks the vanilla hot-food temperature bonus and stops adding heat once you reach the vanilla hot-food threshold.",
-      "排序值": "24",
+      "排序值": "23",
       "是否展示": "true"
     },
     {
@@ -583,7 +565,7 @@
       "英文简介": "A low-tier pill that cools you and keeps you from overheating for 2 days.",
       "详情": "低阶丹药（黄），炼制时间 2 分钟。\n\n效果：降温效果，不会过热，持续 2 天。温度按原版冷食修正叠加：降到原版冷食阈值后不再额外降温。",
       "英文详情": "Low-tier pill (yellow), refining time 2 minutes.\n\nEffect: cooling, prevents overheating, lasts 2 days. It stacks the vanilla cold-food temperature bonus and stops removing heat once you reach the vanilla cold-food threshold.",
-      "排序值": "25",
+      "排序值": "24",
       "是否展示": "true"
     },
     {
@@ -601,7 +583,7 @@
       "英文简介": "Cures poison, grants poison immunity and a full day of Steady Mind — while it lasts, death costs no stage and does not stall cultivation.",
       "详情": "低阶丹药（黄），炼制时间 2 分钟。\n\n效果：服下后解毒、免疫毒素，并获得「稳固心神」一天——期间每次死亡都不掉阶、也不会停滞修炼；死亡后药效仍继续计时。\n\n原本是死亡掉阶后恢复修炼资格的丹药，现在这份作用也由「稳固心神」一并覆盖。\n\n解毒：服用后直接解除噬魂蛇毒，并在药效期间免疫一切中毒（详见「深度入魔」的毒入骨髓）。",
       "英文详情": "Low-tier pill (yellow), refining time 2 minutes.\n\nEffect: cures poison, grants poison immunity, and gives one day of Steady Mind — during it every death costs no realm stage and never stalls cultivation; the effect keeps counting down even if you die.\n\nIt used to be the pill that unlocked cultivation after a death penalty; Steady Mind now covers that as well.\n\nExtra use: it is also an antidote — taking one removes Soul Snake Venom outright (see Bone-Deep Poison under \"Deep Demonization\").",
-      "排序值": "26",
+      "排序值": "25",
       "是否展示": "true"
     },
     {
@@ -619,7 +601,7 @@
       "英文简介": "A moderate pill that restores 30 Reiki.",
       "详情": "中阶丹药（玄），炼制时间 4 分钟。\n\n效果：回复 30 灵力值。",
       "英文详情": "Moderate pill (mystic), refining time 4 minutes.\n\nEffect: restores 30 Reiki.",
-      "排序值": "27",
+      "排序值": "26",
       "是否展示": "true"
     },
     {
@@ -637,7 +619,7 @@
       "英文简介": "A moderate pill that raises damage by 30% for 3 minutes.",
       "详情": "中阶丹药（玄），炼制时间 4 分钟。\n\n效果：短时间内提高 30% 伤害，持续 3 分钟。",
       "英文详情": "Moderate pill (mystic), refining time 4 minutes.\n\nEffect: +30% damage for a short time, lasting 3 minutes.",
-      "排序值": "28",
+      "排序值": "27",
       "是否展示": "true"
     },
     {
@@ -655,7 +637,7 @@
       "英文简介": "A moderate pill that makes you immune to wetness for 5 days.",
       "详情": "中阶丹药（玄），炼制时间 4 分钟。\n\n效果：免疫潮湿，持续 5 天。",
       "英文详情": "Moderate pill (mystic), refining time 4 minutes.\n\nEffect: immune to wetness for 5 days.",
-      "排序值": "29",
+      "排序值": "28",
       "是否展示": "true"
     },
     {
@@ -673,7 +655,7 @@
       "英文简介": "A moderate pill: for 30 seconds your health cannot drop below 1.",
       "详情": "中阶丹药（玄），炼制时间 4 分钟。\n\n效果：30 秒「不灭」状态，30 秒内生命值最低为 1，其他数值不受影响。",
       "英文详情": "Moderate pill (mystic), refining time 4 minutes.\n\nEffect: a 30-second \"invincible\" state — your health cannot drop below 1 for 30 seconds, and nothing else changes.",
-      "排序值": "30",
+      "排序值": "29",
       "是否展示": "true"
     },
     {
@@ -691,7 +673,7 @@
       "英文简介": "A moderate pill: meditate 10 seconds on the Enlightenment Tempering Seat to advance from Sinew to Fasting.",
       "详情": "中阶丹药（玄），炼制时间 4 分钟。\n\n效果：服用此丹药，在悟道淬体台打坐 10 秒，提升炼筋至辟谷境界。",
       "英文详情": "Moderate pill (mystic), refining time 4 minutes.\n\nEffect: take it and meditate 10 seconds on the Enlightenment Tempering Seat to advance from the Sinew realm to Fasting.",
-      "排序值": "31",
+      "排序值": "30",
       "是否展示": "true"
     },
     {
@@ -709,7 +691,7 @@
       "英文简介": "A moderate pill: meditate 10 seconds on the Enlightenment Tempering Seat to advance a realm.",
       "详情": "中阶丹药（玄），炼制时间 4 分钟。\n\n效果：服用此丹药，在悟道淬体台打坐 10 秒，辟谷境界提升至引气。",
       "英文详情": "Moderate pill (mystic), refining time 4 minutes.\n\nEffect: take it and meditate 10 seconds on the Enlightenment Tempering Seat to advance from Fasting to Guiding.",
-      "排序值": "32",
+      "排序值": "31",
       "是否展示": "true"
     },
     {
@@ -727,7 +709,7 @@
       "英文简介": "A moderate tribulation pill that helps a Guiding cultivator break through to Subtle.",
       "详情": "中阶丹药（玄），炼制时间 4 分钟。可触发丹劫。\n\n效果：服用此丹药，在悟道淬体台打坐 10 秒，助引气强者突破晋升入微的界限，提升实力。",
       "英文详情": "Moderate pill (mystic), refining time 4 minutes. Can trigger a pill tribulation.\n\nEffect: take it and meditate 10 seconds on the Enlightenment Tempering Seat to break the boundary from Guiding to Subtle and grow stronger.",
-      "排序值": "33",
+      "排序值": "32",
       "是否展示": "true"
     },
     {
@@ -745,7 +727,7 @@
       "英文简介": "A moderate tribulation pill: reiki surges, restoring 1 Reiki every 2 seconds for 1 day.",
       "详情": "中阶丹药（玄），炼制时间 4 分钟。可触发丹劫。\n\n效果：灵气充盈，每 2 秒回复 1 点灵力值，持续 1 天。",
       "英文详情": "Moderate pill (mystic), refining time 4 minutes. Can trigger a pill tribulation.\n\nEffect: reiki surges, restoring 1 Reiki every 2 seconds for 1 day.",
-      "排序值": "34",
+      "排序值": "33",
       "是否展示": "true"
     },
     {
@@ -763,7 +745,7 @@
       "英文简介": "A high tribulation pill that raises a Subtle cultivator to Exalted.",
       "详情": "高阶丹药（地），炼制时间 8 分钟。可触发丹劫。\n\n效果：服用此丹药，在悟道淬体台打坐 10 秒，助入微提升超凡级别强者的实力。",
       "英文详情": "High pill (earth), refining time 8 minutes. Can trigger a pill tribulation.\n\nEffect: take it and meditate 10 seconds on the Enlightenment Tempering Seat to raise a Subtle cultivator to the Exalted level.",
-      "排序值": "35",
+      "排序值": "34",
       "是否展示": "true"
     },
     {
@@ -781,7 +763,7 @@
       "英文简介": "A high tribulation pill: meditate 10 seconds on the Enlightenment Tempering Seat to empower a Nascent cultivator.",
       "详情": "高阶丹药（地），炼制时间 8 分钟。可触发丹劫。\n\n效果：服用此丹药，在悟道淬体台打坐 10 秒，提升合婴级别强者的实力。",
       "英文详情": "High pill (earth), refining time 8 minutes. Can trigger a pill tribulation.\n\nEffect: take it and meditate 10 seconds on the Enlightenment Tempering Seat to empower a Nascent-level cultivator.",
-      "排序值": "36",
+      "排序值": "35",
       "是否展示": "true"
     },
     {
@@ -799,7 +781,7 @@
       "英文简介": "A high pill that makes you immune to pill tribulation lightning until it ends.",
       "详情": "高阶丹药（地），炼制时间 8 分钟。可触发丹劫。\n\n效果：服用后免疫丹劫雷击，直至消亡。\n\n用于跳过炼制其他丹药时的雷劫判定——不触发丹劫则炼丹必然失败成为废丹，服用破劫丹可跳过雷劫判定直接成功。",
       "英文详情": "High pill (earth), refining time 8 minutes. Can trigger an Alchemy Tribulation.\n\nEffect: immune to pill tribulation lightning until it ends.\n\nIt is used to skip the lightning check when refining other pills — with no tribulation the refinement always fails and produces a Failed Pill, so taking a Disaster Breaking Pill skips the check and succeeds outright.",
-      "排序值": "37",
+      "排序值": "36",
       "是否展示": "true"
     },
     {
@@ -817,6 +799,24 @@
       "英文简介": "A high tribulation pill, extremely rare, that breaks through to the Manifest realm.",
       "详情": "高阶丹药（地），炼制时间 8 分钟。可触发丹劫。\n\n效果：服用此丹药，在悟道淬体台打坐 10 秒，极为稀有，能突破具灵境界。",
       "英文详情": "High pill (earth), refining time 8 minutes. Can trigger a pill tribulation.\n\nEffect: take it and meditate 10 seconds on the Enlightenment Tempering Seat — extremely rare, it breaks through to the Manifest realm.",
+      "排序值": "37",
+      "是否展示": "true"
+    },
+    {
+      "id": "lj_transcendent_pill",
+      "分类id": "danyao",
+      "名称": "转元丹（天阶）",
+      "英文名": "Essence-Turning Pill（Celestial）",
+      "标签": "丹药,天阶,灵根",
+      "英文标签": "Pill,Celestial,Roots",
+      "图片": "images/lingjie/showcase/lj_transcendent_pill.png",
+      "制作配方": "",
+      "英文配方": "",
+      "需祭坛": "",
+      "简介": "天阶丹药：重塑本元灵根。通用版随机换属性，五个单属性版指定金木水火土；服下后虚弱 30 秒。",
+      "英文简介": "A celestial pill that reshapes your elemental core: the generic version rerolls, the five single-element versions set Metal, Wood, Water, Fire or Earth; it leaves you weakened for 30 seconds.",
+      "详情": "天阶丹药（天），炼制时间 8 分钟。没有落雷丹劫，成败只看火焰：放强异火必成，放墟火只有 5%。\n\n6 种\n　转元丹（通用）：多灵根时随机削掉一条；已经是单灵根则随机换成别的属性。\n　转元丹·金 / 木 / 水 / 火 / 土：把本元重塑成指定属性。\n\n材料\n　通用版：洗尘神树果 1、灌注的[images/inventoryimages3/shadowheart.png] 暗影心房 1、[images/inventoryimages2/livinglog.png] 活木 5、魔晶 10。\n　单属性版：洗尘神树果 1、灌注的[images/inventoryimages3/shadowheart.png] 暗影心房 1、对应稀有海鱼 1、魔晶 1。\n\n代价：服下后虚弱 30 秒——不能装备、不能用道具、不能攻击，已经穿着的装备会全部卸到地上。",
+      "英文详情": "Celestial pill (heaven), refining time 8 minutes. There is no lightning tribulation — success depends only on the flame: a strong exotic flame always succeeds, a Wasteland Flame only 5%.\n\nThe six versions\n　Essence-Turning Pill (generic): with several roots it shaves off a random one; if you already have a single root it rerolls the element.\n　Essence-Turning Pill - Metal / Wood / Water / Fire / Earth: reshapes your core into that element.\n\nMaterials\n　Generic: Dust-Cleansing Fruit 1, Infused Shadow Atrium 1, Living Log 5, Magic Crystal 10.\n　Single-element: Dust-Cleansing Fruit 1, Infused Shadow Atrium 1, the matching rare ocean fish 1, Magic Crystal 1.\n\nCost: 30 seconds of weakness after taking it — you cannot equip, use items or attack, and everything you are wearing drops to the ground.",
       "排序值": "38",
       "是否展示": "true"
     },
