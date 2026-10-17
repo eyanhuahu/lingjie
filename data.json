@@ -1409,7 +1409,7 @@
       "需祭坛": "",
       "简介": "狮骨头盔：靠燃料维持的心魔抵抗与理智恢复，燃料用完需要月树花续。",
       "英文简介": "A lion-bone helmet: fuel-powered resistance to inner demons and sanity regeneration; refuel it with Moon Tree Blossoms.",
-      "详情": "雄狮骨盔缀灵羽，嵌月眼，缠月花。月华涤荡心魔，护持识海。\n\n制作：二本科技（炼金引擎）解锁。\n\n效果：佩戴时抵抗心魔、缓慢回复理智，全靠燃料维持。\n　燃料上限 6 天。\n　用月树花补充，每朵注入 180 秒（3 分钟）。\n燃料耗尽后提示「月华已散，需以月树花续燃」。",
+      "详情": "雄狮骨制成的头盔，上面缀灵羽、嵌月眼、缠月花；月华能涤荡心魔、护持识海。\n\n制作：二本科技（炼金引擎）解锁。\n\n效果：佩戴时抵抗心魔、缓慢回复理智，全靠燃料维持。\n　燃料上限 6 天。\n　用月树花补充，每朵注入 180 秒（3 分钟）。\n燃料耗尽后提示「月华已散，需以月树花续燃」。",
       "英文详情": "A lion-bone casque strung with spirit feathers, set with a moon eye and wrapped in moon flowers. Moonlight washes away inner demons and guards the mind.\n\nRecipe: Lion Bone 1、Glommer's Wings 1、[images/inventoryimages2/moonrockcrater.png] Moon Eye 1、[images/inventoryimages2/moon_tree_blossom.png] Moon Tree Blossom 9 — Science Machine tier.\n\nEffect: while worn it resists inner demons and slowly restores sanity, all powered by fuel.\n　Fuel cap: 6 days.\n　Refuel with Moon Tree Blossoms, each one adds 180 seconds (3 minutes).\nWhen the fuel runs out it says \"The moonlight has faded; feed it Moon Tree Blossoms to rekindle it.\"",
       "排序值": "71",
       "是否展示": "true"
