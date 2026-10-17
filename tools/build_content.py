@@ -154,6 +154,12 @@ def icon_path(basename):
 # mod 自己的材料：中文名 -> 预制体 id。对应图标由 tools/extract_mod_icons.py
 # 从 mod 的 ethereal_realm_icons 图集导出到 images/lingjie/icons/。
 MOD_MATERIAL_ID = {
+    "转元丹": "lj_transcendent_pill",
+    "转元丹·木": "lj_transcendent_wood_pill",
+    "转元丹·火": "lj_transcendent_fire_pill",
+    "转元丹·金": "lj_transcendent_metal_pill",
+    "转元丹·水": "lj_transcendent_water_pill",
+    "转元丹·土": "lj_transcendent_earth_pill",
     "洗尘神树果": "lj_xichen_fruit",
     "淬铁灵剑": "lj_ordinary_sword",
     "魔核碎片": "lj_magic_debris",
@@ -196,6 +202,12 @@ CODE_MATERIAL_NAME = {
 # 原版材料用原版英文名，mod 材料用 NAME_EN 里既有的官方英文名。
 # 没收录的名字会在构建时报告出来，不会静默留中文。
 MATERIAL_EN = {
+    "转元丹": "Essence-Turning Pill",
+    "转元丹·木": "Essence-Turning Pill - Wood",
+    "转元丹·火": "Essence-Turning Pill - Fire",
+    "转元丹·金": "Essence-Turning Pill - Metal",
+    "转元丹·水": "Essence-Turning Pill - Water",
+    "转元丹·土": "Essence-Turning Pill - Earth",
     "洗尘神树果": "Dust-Cleansing Fruit",
     "蜂蜡": "Beeswax",
     "月树花": "Moon Tree Blossom",
@@ -669,6 +681,8 @@ How to catch it
 　4. Miss the window and it fades out over 10 seconds and vanishes, taking the pill with it.
 
 What works as bait: the 5 high-tier pills and the 6 celestial ones — 11 in total; the mid-tier Marrow-Cleansing Pill cannot be offered.
+
+Celestial pills that produce a Danling: the 6 Essence-Turning Pills (the generic one plus the Metal, Wood, Water, Fire and Earth versions).
 """,
     },
     "spirit_roots": {
@@ -3193,7 +3207,10 @@ item(
 　4. 错过这 60 秒，它会渐隐 10 秒后消失，丹药也一起没了。
 
 谁能当诱饵：高阶丹药 5 种 + 天阶丹药 6 种，共 11 种；中阶的洗髓丹不能供奉。
+
+会诞生丹灵的天阶丹药：6 种转元丹（通用版，以及木 / 火 / 金 / 水 / 土五个单属性版）。
 """,
+    recipe=R(("转元丹", 1), ("转元丹·木", 1), ("转元丹·火", 1), ("转元丹·金", 1), ("转元丹·水", 1), ("转元丹·土", 1)),
 )
 
 # 卷目 4：精炼材料
