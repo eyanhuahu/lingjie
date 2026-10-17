@@ -68,6 +68,9 @@ PILL_IDS = (
     "lj_invincible_pill", "lj_bigu_pill", "lj_yinqi_pill", "lj_ruwei_pill",
     "lj_restore_pill", "lj_extraordinary_pill", "lj_heying_pill",
     "lj_disaster_pill", "lj_juling_pill", "lj_concealment_pill", "lj_retain_pill",
+    "lj_refresh_pill", "lj_transcendent_pill", "lj_transcendent_wood_pill",
+    "lj_transcendent_fire_pill", "lj_transcendent_metal_pill",
+    "lj_transcendent_water_pill", "lj_transcendent_earth_pill",
 )
 LOG_IDS = ("lj_ice_log", "lj_dragon_log", "lj_mighty_log", "lj_dust_log", "lj_purplemonster_log")
 BANK_ALIAS = {

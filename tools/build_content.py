@@ -194,6 +194,19 @@ CODE_MATERIAL_NAME = {
 # 原版材料用原版英文名，mod 材料用 NAME_EN 里既有的官方英文名。
 # 没收录的名字会在构建时报告出来，不会静默留中文。
 MATERIAL_EN = {
+    "蜂蜡": "Beeswax",
+    "月树花": "Moon Tree Blossom",
+    "月眼": "Moon Eye",
+    "花瓣": "Petals",
+    "蜘蛛丝": "Silk",
+    "狮骨": "Lion Bone",
+    "淬铁灵剑": "Tempered Iron Spirit Sword",
+    "骨片": "Bone Shards",
+    "犬齿": "Hound's Tooth",
+    "荧光果": "Glow Berry",
+    "月岩": "Moon Rock",
+    "触手皮": "Tentacle Spots",
+    "灌注的暗影心房": "Infused Shadow Atrium",
     "蓝蘑菇": "Blue Cap",
     "魔晶": "Magic Crystal",
     "魔核": "Magic Core",
@@ -433,6 +446,17 @@ NAME_EN = {
     "lj_reiki_grass": "Spirit-Melting Grass",
     "lj_red_magic_flower": "Dragon Claw Flower",
     "lj_purple_magic_flower": "Amethyst Form Flower",
+    "lj_ordinary_sword_fly": "Flying Spirit Sword",
+    "lj_bluemist_robe": "Bluemist Robe",
+    "lj_lion_angle_care": "Moonlion Feather Crown",
+    "lj_three_flames": "Triple Flame Ward",
+    "lj_xichen_tree": "Dust-Cleansing Tree",
+    "lj_xichen_fruit": "Dust-Cleansing Fruit",
+    "lj_danling": "Danling",
+    "spirit_roots": "Five-Element Spirit Roots",
+    "myriad_spirit_ritual": "Myriad Spirit Ritual",
+    "lj_refresh_pill": "Marrow-Cleansing Pill",
+    "lj_transcendent_pill": "Essence-Turning Pill（Celestial）",
     "lj_concealment_pill": "Concealment Pill",
     "lj_retain_pill": "Realm Retention Pill（Tribulation）",
     "shadow_body": "Shadow Body",
@@ -466,6 +490,9 @@ Adds Realm and Reiki values, shown alongside the three vanilla stats.
 [[图片:images/lingjie/anim/realm_badge.png|In-game realm badge (the icon in the middle switches to the matching number as you advance)]]
 
 There are 9 realms: Mortal, Tempered, Sinew, Fasting, Guiding, Subtle, Exalted, Nascent, Manifest. Each realm has 9 stages — Tempered 1, Tempered 2 … Tempered 9.
+
+How to advance
+　Your five-element roots multiply max health and experience (single Earth ×1.9 health, other single roots ×1.5; experience ×1.7 for one root down to ×0.5 for five), and a single root waives the stage loss on death — see Five-Element Spirit Roots.
 
 How to advance
 　Earn experience by killing creatures. You count as a participant if you attacked within the last 30 seconds and within 15 turf of the kill. Abigail's attacks, and kills made by Willow's fire, count for their owner (other followers do not).
@@ -532,6 +559,186 @@ Negative effects (9): Starfire Burn, Frost Erosion, Scorpion Venom, Soul Snake V
 Buffs (6): Blazing Pill, Cold Flame Pill, Drying Pill, Explosion Pill, Invincible Pill, Restore Spirit Pill.
 
 Also: the player avatar popup now has an "Ethereal Realm Guide" entry.
+""",
+    },
+    "lj_ordinary_sword_fly": {
+        "tags": "Weapon,Artifact,Sword Flight,Flying",
+        "summary": "The Tempered Iron Spirit Sword, once bound to you, becomes a flying sword: at Qi Guiding you can ride it (one passenger) with no fall damage.",
+        "detail": """
+A bound flying sword: you can ride it, or ride as a passenger.
+
+Making it
+　Recipe: Tempered Iron Spirit Sword 1 plus 15 Reiki (it sits in the Character tab, has no placement preview and spawns at your feet).
+　Requirement: realm Guiding (the 4th) or above, and you must dismount and be on the ground to take off.
+
+Flying
+　Flight height 6, speed ×1.2, and it carries one passenger. No cooldown.
+　The sword itself deals no damage — combat uses whatever weapon you are holding.
+　In flight you do not drown, you can cross the ocean, you do not attract shadow creatures, you cannot jump onto platforms, and landing never hurts you.
+
+Returning it
+　Right-click the sword (within 3 range, nobody aboard) or simply land, and the original sword comes back; dying or changing characters returns it automatically.
+　The original sword's durability is stored inside the flying sword, so it never wears from the trip; in creative mode the original is not consumed.
+
+Passengers
+　A passenger can only right-click to get off, and cannot move, attack or interact.
+""",
+    },
+    "lj_bluemist_robe": {
+        "tags": "Armour,Body,Sanity",
+        "summary": "A Science Machine body armour: 650 durability, 80% absorption, +10% speed and passive sanity regeneration; repairable with Magic Core Shards.",
+        "detail": """
+Silk-woven robe with a core for armour. Light steps, a steadying mind.
+
+Recipe: """ + R(("Magic Core Shard", 20), ("Silk", 2), ("Petals", 6), ("Beeswax", 1)) + """ — Science Machine tier.
+
+Stats: 650 durability, 80% damage absorption, +10% movement speed, 1 sanity every 8 seconds.
+
+Repair: Magic Core Shards restore 50 armour durability each (hold a stack and right-click to spend several at once, filling the gap).
+""",
+    },
+    "lj_lion_angle_care": {
+        "tags": "Armour,Helmet,Inner Demon,Sanity",
+        "summary": "A lion-bone helmet: fuel-powered resistance to inner demons and sanity regeneration; refuel it with Moon Tree Blossoms.",
+        "detail": """
+A lion-bone casque strung with spirit feathers, set with a moon eye and wrapped in moon flowers. Moonlight washes away inner demons and guards the mind.
+
+Recipe: """ + R(("Lion Bone", 1), ("Glommer's Wings", 1), ("Moon Eye", 1, "moonrockcrater"), ("Moon Tree Blossom", 9, "moon_tree_blossom")) + """ — Science Machine tier.
+
+Effect: while worn it resists inner demons and slowly restores sanity, all powered by fuel.
+　Fuel cap: 6 days.
+　Refuel with Moon Tree Blossoms, each one adds 180 seconds (3 minutes).
+When the fuel runs out it says "The moonlight has faded; feed it Moon Tree Blossoms to rekindle it."
+""",
+    },
+    "lj_three_flames": {
+        "tags": "Technique,Exotic Flame,Void Ring,Active",
+        "summary": "Turn the flame inside your ring into three flames that orbit you: 20 Reiki, 5-second cooldown, 45 fire damage each.",
+        "detail": """
+Equip the Void Ring with an exotic flame inside, then right-click yourself to trigger it.
+
+Costs 20 Reiki, 5-second cooldown.
+
+Releases exactly 3 flames, each dealing 45 fire damage; orbit radius 1.4, range 24.
+After that, your basic attacks (ranged ones too) send the remaining flames after the target; hits apply Starfire Burn and can ignite it.
+
+The flames use the appearance of the exotic flame actually inside the ring.
+""",
+    },
+    "lj_xichen_tree": {
+        "tags": "Plant,Unique,Fruit",
+        "summary": "One per world: grows near the moon base, cannot be chopped or burned, and naturally bears one Dust-Cleansing Fruit every 30 days.",
+        "detail": """
+A divine tree in a muddy world, hard to scorch.
+
+Spawn: only one per world, near the moon base (at least 16 world units from it); existing worlds get one planted on entry.
+Traits: cannot be chopped, cannot be burned, cannot be transplanted.
+
+Fruit: it has three stages of 15 days each, so it bears one Dust-Cleansing Fruit every 30 days; after harvesting it starts over from stage one.
+Forcing it: water it with a full Moon Essence Flask (100 lunar essence) and it fruits in 3 days; the watering has a 10-day cooldown.
+""",
+    },
+    "lj_xichen_fruit": {
+        "tags": "Plant,Fruit,Material",
+        "summary": "The fruit of the Dust-Cleansing Tree: eaten it restores 66 health, 66 sanity and 66 hunger, and grants 30 seconds of soul-erosion immunity.",
+        "detail": """
+Eat it to wash away soul erosion; it is the essential ingredient of the Essence-Turning Pill.
+
+Effect: restores 66 health, 66 sanity and 66 hunger, clears soul erosion and grants 30 seconds of "Soul Erosion Immunity".
+　Eating another resets the immunity to 30 seconds.
+
+Use: required for all 6 celestial Essence-Turning Pills.
+Source: the Dust-Cleansing Tree fruits naturally (one per 30 days), or force it with lunar essence.
+""",
+    },
+    "lj_danling": {
+        "tags": "Pill,Celestial,Capture,Reiki Table",
+        "summary": "A spirit born when a celestial pill is refined: it flies off and hovers, avoids players, and is lured with a Reiki Table to be captured while it sleeps.",
+        "detail": """
+A spirit born from a celestial pill — no rush.
+
+Traits: no health, cannot attack, cannot be killed; it hovers around and dodges players who come near.
+
+How to catch it
+　1. Offer a high-tier pill on a Reiki Table as bait (it only comes if the table is within 30 range, and it stays away while a player is within 15).
+　2. It settles down and feeds for 10 seconds; once done the bait pill is eaten (whether or not you catch it).
+　3. Then it sleeps for 60 seconds — during that window right-click it with the Spirit Void Gourd (within 2 range) to catch it and get the celestial pill back.
+　4. Miss the window and it fades out over 10 seconds and vanishes, taking the pill with it.
+
+What works as bait: the 5 high-tier pills and the 6 celestial ones — 11 in total; the mid-tier Marrow-Cleansing Pill cannot be offered.
+""",
+    },
+    "spirit_roots": {
+        "tags": "Roots,Five Elements,Starting,Attributes",
+        "summary": "Your five-element aptitude, rolled at the start: the number of roots sets your cultivation speed, each element sets a speciality, and a single root adds damage and waives stage loss.",
+        "detail": """
+Your roots are rolled once when you enter the world; afterwards you can identify them at the Myriad Spirit Ritual.
+
+How they are set
+　The mod setting "Starting Spiritual Roots" has two modes: Hidden Jade (default) rolls them on entering the world; Peerless Genius lets you pick a single root from a panel at the start.
+　It only applies to characters that have no roots yet; WX-78 can never roll Water.
+
+How many (by roll)
+　< 2% one · 2%–7% two · 7%–27% three · 27%–60% four · ≥ 60% five (five means all five elements).
+
+The count sets cultivation speed
+　1 ×1.7 · 2 ×1.3 · 3 ×1.0 · 4 ×0.75 · 5 ×0.5 (experience multiplier).
+
+What each element does
+　Metal: healing received ×0.8; hot damage ×2; a single Metal root gives full immunity to lightning and electric damage, and ×1.2 melee while holding a weapon; mining ×1.25 (single ×2).
+　Wood: damage taken ×1.2; a single Wood root immunises and clears snake poison; chopping ×1.25 (single ×2); a single Wood root regrows health out of combat near plants; gathering takes ÷1.25 (single ÷2).
+　Water: a single Water root gives cold damage ×0.5, warming ×0.7, permanent waterproofing and ×1.1 speed; you can spend wetness above 50 as a 1:1 damage buffer; wetness builds up over time (faster near water) and converts to healing when high and not full; fishing is faster (much faster when single).
+　Fire: a single Fire root gives full fire immunity and makes hot damage 0; while burning, cold damage ×2; warming ×1.5 and cooling ×0.5; sanity regenerates near heat sources; a single Fire root regrows health out of combat at a high body temperature.
+　Earth: damage taken ×0.8 (×0.9 with several roots); damage dealt ×0.85 and speed ×0.9; a single Earth root gives ×1.9 max health (other single roots ×1.5, several roots no bonus); a single Earth root is immune to stagger, knockback, knockdown and electric stun.
+
+Single-root bonuses
+　×1.2 global damage and ×1.1 speed, and death costs no realm stage (the same exemption as the Stillness Pill).
+
+Changing roots
+　Marrow-Cleansing Pill tries to shave off one extra root (it hurts whether it works or not). The Essence-Turning Pill reshapes your core into a chosen element.
+""",
+    },
+    "myriad_spirit_ritual": {
+        "tags": "Roots,Structure,Identify",
+        "summary": "Put your hand on it to identify your spirit roots; the result shows as five-element characters on the building.",
+        "detail": """
+Put your hand on it and it mirrors your own spirit roots.
+
+Recipe: Moon Rock 2, Nightmare Fuel 2, Living Log 1, Glow Berry 5 — Science Machine tier.
+
+Use: right-click to run the vanilla channelling action "Identify Roots"; it costs 10 Reiki, has a 10-second cooldown and needs you within 4 range.
+The result is shown as five-element characters on the building — the character no longer speaks it.
+Four hammer hits take it down.
+""",
+    },
+    "lj_refresh_pill": {
+        "tags": "Pill,Mid Tier,Roots",
+        "summary": "A mid-tier pill that tries to shave off one extra spirit root; it hurts whether it succeeds or fails.",
+        "detail": """
+Mid-tier pill (mystic), refining time 4 minutes.
+
+Materials: Tentacle Spots 2, Bone Shards 2, Hound's Tooth 2, Magic Core 1.
+
+Effect: randomly shaves off one spirit root. The chance depends on how many you have: 2 roots 8%, 3 roots 15%, 4 roots 35%, 5 roots 60%, and every failure adds another 10%.
+Requirements: at least 2 roots, health above 20, sanity at least 20.
+Cost: 20 health and 20 sanity whether it works or not (cannot be reduced).
+""",
+    },
+    "lj_transcendent_pill": {
+        "tags": "Pill,Celestial,Roots",
+        "summary": "A celestial pill that reshapes your elemental core: the generic version rerolls, the five single-element versions set Metal, Wood, Water, Fire or Earth; it leaves you weakened for 30 seconds.",
+        "detail": """
+Celestial pill (heaven), refining time 8 minutes. There is no lightning tribulation — success depends only on the flame: a strong exotic flame always succeeds, a Wasteland Flame only 5%.
+
+The six versions
+　Essence-Turning Pill (generic): with several roots it shaves off a random one; if you already have a single root it rerolls the element.
+　Essence-Turning Pill - Metal / Wood / Water / Fire / Earth: reshapes your core into that element.
+
+Materials
+　Generic: Dust-Cleansing Fruit 1, Infused Shadow Atrium 1, Living Log 5, Magic Crystal 10.
+　Single-element: Dust-Cleansing Fruit 1, Infused Shadow Atrium 1, the matching rare ocean fish 1, Magic Crystal 1.
+
+Cost: 30 seconds of weakness after taking it — you cannot equip, use items or attack, and everything you are wearing drops to the ground.
 """,
     },
     "lj_concealment_pill": {
@@ -650,6 +857,15 @@ Demonization has three tiers, shown in game as "Demonization: Light / Moderate /
 Light Demonization, Moderate Demonization, Deep Demonization.
 
 Never demonized: shadow creatures (Crawling Horror, Terrorbeak, Shadow creatures, Ruins shadow creatures, Shadow Knight, Shadow Bishop, Shadow Rook, ocean shadow creatures and so on), passive critters, players, followers, walls, and equipment display models. Creatures hired by a player lose every demonization effect immediately.
+
+Demonization Affixes (new in v0.11)
+　Every demonized creature carries one random element affix on top of its light / moderate / deep tier; the Dragonfly never rolls Flame Bite and the Soul-devouring Snake never rolls Bone Rot.
+　Thunder Bite: hits deal an extra 12 electric damage.
+　Flame Bite: hits deal an extra 20 fire damage and can ignite the target.
+　Bone Rot: hits inflict Soul Snake Venom (240 seconds).
+　Disarm: hits knock the player's weapon out of their hands (12-second cooldown).
+　Stonehide: +15% max health, +15 defence, −10% movement speed.
+　Always: every demonized creature has a 15% chance to ignore a hit from a player's basic attack (it still keeps its target) — the UI never shows this.
 """,
     },
     "corruption_light": {
@@ -707,7 +923,7 @@ Demonic Reflection: 10% chance when the creature takes damage from a player; ref
 Creature buffs
 Conditional Vulnerability: dropping to 50% health or below triggers a 5-second shield with a 5-minute cooldown. It is not invulnerability — while the shield is up a single hit deals at most 90 damage. The shield shows as a red force field.
 
-On death it drops 1 to 2 Magic Cores and 1 to 3 Magic Core Shards plus the creature's own loot.
+On death it drops 1 to 3 Magic Core Shards plus the creature's own loot (since v0.11 it no longer drops Magic Cores).
 """,
     },
     "corruption_deep": {
@@ -759,11 +975,11 @@ On death it adds 1 Magic Crystal plus the creature's own loot, and doubles the v
     },
     "corruption_drops": {
         "tags": "Demonization,Drops,Materials",
-        "summary": "Light demonization drops Magic Core Shards, moderate drops Magic Cores, deep drops a Magic Crystal; vanilla creatures drop according to their demonization tier.",
+        "summary": "Light demonization drops Magic Core Shards, deep drops a Magic Crystal; vanilla creatures drop according to their demonization tier.",
         "detail": """
 Magic Core Shard: killing a lightly demonized creature drops 1 to 3 shards (creatures with 149 or less base health get no extra materials).
 
-Magic Core: dropped by bosses and demonic beasts; 99 Magic Core Shards craft one; moderately demonized creatures drop 1 to 2. Cannot be destroyed or deconstructed.
+Magic Core: dropped by bosses and demonic beasts; 99 Magic Core Shards craft one. Cannot be destroyed or deconstructed.
 
 Magic Crystal: dropped by demonic beasts; 20 Magic Cores craft one; deeply demonized creatures drop 1. Cannot be destroyed or deconstructed.
 
@@ -836,7 +1052,9 @@ Cannot be destroyed, and cannot be deconstructed with a Deconstruction Staff.
 
 Absorbs exotic flames and stores pills, 8 slots.
 Right-click in the inventory to open or close it (there is only one container — the one opened from a following gourd is the same one). While open it stays open; opening other chest-like items will not close the gourd.
-Pick it up with the mouse, drop it on the ground and it follows you. With the gourd in hand, right-click an ownerless exotic flame on the ground to absorb it — you have to be right up against it, it no longer flies in from 16 range. Once absorbed it belongs to the gourd's owner. Only strong exotic flames can be absorbed, and only while they are ownerless (a flame that already has a master must first lose it).
+Pick it up with the mouse, drop it on the ground and it follows you. With the gourd in hand, right-click an ownerless exotic flame on the ground to absorb it — you have to be right up against it, it no longer flies in from 16 range. Once absorbed it belongs to the gourd's owner. You can also catch a Danling: during the 60 seconds it sleeps after feeding, right-click it with the gourd (within 2 range) to catch it and recover the celestial pill (see Danling).
+
+Only strong exotic flames can be absorbed, and only while they are ownerless (a flame that already has a master must first lose it).
 Picking the gourd up from your inventory or a backpack with the mouse and putting it down again returns it to the slot it came from whenever that slot is still usable.
 While following: left-click opens or closes the gourd, right-click recalls it.
 """,
@@ -1211,6 +1429,9 @@ Craftable in the <Ethereal Realm> and <Structures> tabs.
 Can be destroyed with a hammer; crafted with tier-2 science, and destroyed it returns 2 [images/inventoryimages2/goldnugget.png] Gold Nuggets, 2 [images/inventoryimages2/log.png] Logs and 5 [images/inventoryimages1/cutstone.png] Cut Stone.
 
 Put a Moonlight Condensing Vase in it at night to absorb world reiki; note that it needs at least 30 seconds.
+
+Offering pills: right-click it with a high-tier or celestial pill to offer it — the pill shows on the table and the table reads "The pill's spiritual energy is leaking out."; any Danling within 30 range is drawn in to feed (see Danling).
+Taking it back: right-click "Take back" to retrieve the offered pill; hammering the table hands the pill back first, so nothing is lost.
 """,
     },
     "lj_reiki_tablelamp": {
@@ -1315,7 +1536,7 @@ Ice Erosion debuff: each hit adds one stack of freeze, and reaching the creature
 　Large creatures: 5 stacks = frozen for 1 second
 
 Skill: Ice Infusion (right-click)
-Costs 20 Reiki, fires one huge arrow for 300 damage and freezes the target for 3 seconds. 12-second cooldown.
+Costs 15 Reiki, fires one huge arrow for 300 damage that freezes the target for 3 seconds; it bursts on impact, dealing 150 damage to everything within radius 4 and freezing them for 3 seconds too. 5-second cooldown.
 
 Killing any creature restores 5 Reiki.
 
@@ -1581,7 +1802,7 @@ Storage limits: a full Wasteland Flame / exotic flame can only be stored properl
 
 Dropping: a split flame that you drop on the ground disappears at once (only the split flame refunded when an alchemy tribulation blows up the furnace may stay on the ground). A full exotic flame dropped on the ground stays there and starts its ownerless timer. Dropping a flame never burns anything in your inventory.
 
-Light and fire-fighting: a full Wasteland Flame / exotic flame placed on the ground provides 20 range of light and puts out every ordinary fire nearby (exotic flames do not repel each other — two on the ground each give light and heat while still putting out other fires). A split flame placed on the ground simply disappears.
+Light and fire-fighting: a full Wasteland Flame / exotic flame placed on the ground provides light (the visible glow now shows about 10 range, while the functional heat and fire-fighting radius is still 20) and puts out every ordinary fire nearby (exotic flames do not repel each other — two on the ground each give light and heat while still putting out other fires). A split flame placed on the ground simply disappears.
 
 Splitting: an exotic flame absorbed by the Spirit Void Gourd can be split with a right-click, costing 10 Reiki. A split flame can go into a Reiki Table Lamp for light, adds 50% fuel, burns burnables and buildings, and can be put in the Alchemy Furnace to fuse.
 
@@ -1953,6 +2174,8 @@ Scorpion Dragon Bone 1, [images/inventoryimages2/monstermeat.png] Monster Meat 4
         "detail": """
 Summoned 4 at a time by the Blazing Rock Scorpion Dragon every 10000 health it loses.
 
+Since v0.11 a killed larva drops no loot at all.
+
 250 health, 40 attack, 3 poison damage per second for 8 seconds.
 
 The larvae stay around forever, and whether they die does not affect the next summon of 4.
@@ -1975,7 +2198,7 @@ Calling for help: hitting any bat (a killing blow counts too) alerts its own nes
         "tags": "Demon Beast,Butterfly Island,Bat",
         "summary": "A lesser demonic beast. 300 health and 25 damage, and it always drops Monster Meat.",
         "detail": """
-300 health, 25 attack damage, 1-second attack period.
+300 health, 25 attack damage, 2.5-second attack period.
 
 Attacks: it bites within 1 turf, and charges when you are further away. A charge hit staggers you briefly, which you can dodge by moving up or down early.
 
@@ -1993,9 +2216,9 @@ Spawned by Night Bat Nests, 6 per nest, 1 respawning every 5 minutes, up to 6. T
 Attacks: bite and sound wave.
 55 attack damage; it bites within 1 turf and uses the sound wave at longer range.
 
-Sound wave: releases a dark red wave, an area attack centred on itself with radius 8, pulsing every 0.5 seconds, staggering anyone inside continuously for 9 seconds. Step out of the area to end it. 30-second cooldown.
+Sound wave: releases a dark red wave, an area attack centred on itself with radius 8, pulsing every 0.5 seconds, staggering anyone inside continuously for 9 seconds. Step out of the area to end it. 34-second cooldown.
 
-Summoning: below 50% health it starts summoning 1 Demon Bat every 15 seconds with no limit. Out of combat they all return to the nest; the cap is 6, and any extra ones that enter the nest count as dead.
+Summoning: below 50% health it starts summoning 1 Demon Bat every 19 seconds with no limit. Out of combat they all return to the nest; the cap is 6, and any extra ones that enter the nest count as dead.
 
 On death it always drops Blood Bat Essence 1 and [images/inventoryimages2/monstermeat.png] Monster Meat 2 (Magic Core Shards, Magic Cores and Magic Crystals drop according to its current demonization tier).
 
@@ -2037,7 +2260,7 @@ Base stats
 
 Core mechanics
 Disengage and return: once it leaves the area around its flower it stops chasing and goes home, using one roar as the transition; it gives up entirely past 40 distance.
-With flowers within 5 turf it heals 60 health per flower every 10 seconds (an Amethyst Form Flower counts as one flower unit and spawns butterflies like petals do).
+With flowers within 5 turf it heals 60 health per flower every 60 seconds (up to 5 flowers counted per minute) (an Amethyst Form Flower counts as one flower unit and spawns butterflies like petals do).
 Destroying or harvesting nearby flowers interrupts the healing and forces a Lion's Roar within 10 seconds (harvesting petals within those 10 seconds still triggers it only once).
 Standing near a Mandrake — planted ones included — puts it to sleep for 8 seconds, and that sleep can only trigger once per minute.
 
@@ -2063,26 +2286,27 @@ Amethyst Shell 1, Lion Bone 1, [images/inventoryimages2/monstermeat.png] Monster
 SITE = [
     # modinfo.lua 里是 name = "灵界"，author = "犹如黑夜星光、喵大仙BigXian"。
     # 顶栏作者名按作者要求单独写（跟 modinfo 不必一致）。
-    {"网站标题": "灵界", "网站英文名": "Spirit Realm", "网站版本": "v0.10", "作者": "犹如黑夜星光JinYan、喵大仙BigXian"},
+    {"网站标题": "灵界", "网站英文名": "Spirit Realm", "网站版本": "v0.11", "作者": "犹如黑夜星光JinYan、喵大仙BigXian"},
 ]
 
 SECTIONS = [
     # 「短名」用于窄屏菜单：整排卷目按钮放不下时改用短名，省一半宽度。
     # 「英文名 / 英文短名」用于站点中英切换（英文短名同样是给窄屏菜单用的）。
     {"分类id": "jingjie", "分类名": "境界", "短名": "境界", "英文名": "Realms", "英文短名": "Realms", "排序值": "1", "是否展示": "true"},
-    {"分类id": "rumo", "分类名": "生物入魔", "短名": "入魔", "英文名": "Demonization", "英文短名": "Demons", "排序值": "2", "是否展示": "true"},
-    {"分类id": "danyao", "分类名": "丹药与炼制", "短名": "丹药", "英文名": "Pills & Alchemy", "英文短名": "Pills", "排序值": "3", "是否展示": "true"},
-    {"分类id": "cailiao", "分类名": "精炼材料", "短名": "材料", "英文名": "Refined Materials", "英文短名": "Materials", "排序值": "4", "是否展示": "true"},
-    {"分类id": "jianzhu", "分类名": "建筑", "短名": "建筑", "英文名": "Structures", "英文短名": "Buildings", "排序值": "5", "是否展示": "true"},
-    {"分类id": "wuqi", "分类名": "武器与盔甲", "短名": "武器", "英文名": "Weapons & Armour", "英文短名": "Gear", "排序值": "6", "是否展示": "true"},
-    {"分类id": "fabao", "分类名": "法宝与工具", "短名": "法宝", "英文名": "Artifacts & Tools", "英文短名": "Tools", "排序值": "7", "是否展示": "true"},
-    {"分类id": "zhenfa", "分类名": "阵法灵技", "短名": "阵法", "英文名": "Formations", "英文短名": "Forms", "排序值": "8", "是否展示": "true"},
-    {"分类id": "lingzhi", "分类名": "灵植", "短名": "灵植", "英文名": "Spirit Plants", "英文短名": "Plants", "排序值": "9", "是否展示": "true"},
-    {"分类id": "yihuo", "分类名": "墟火与异火", "短名": "墟火", "英文名": "Flames", "英文短名": "Flames", "排序值": "10", "是否展示": "true"},
-    {"分类id": "ditu", "分类名": "地形与Boss", "短名": "地形", "英文名": "Terrain & Bosses", "英文短名": "Terrain", "排序值": "11", "是否展示": "true"},
+    {"分类id": "linggen", "分类名": "五行灵根", "短名": "灵根", "英文名": "Spirit Roots", "英文短名": "Roots", "排序值": "2", "是否展示": "true"},
+    {"分类id": "rumo", "分类名": "生物入魔", "短名": "入魔", "英文名": "Demonization", "英文短名": "Demons", "排序值": "3", "是否展示": "true"},
+    {"分类id": "danyao", "分类名": "丹药与炼制", "短名": "丹药", "英文名": "Pills & Alchemy", "英文短名": "Pills", "排序值": "4", "是否展示": "true"},
+    {"分类id": "cailiao", "分类名": "精炼材料", "短名": "材料", "英文名": "Refined Materials", "英文短名": "Materials", "排序值": "5", "是否展示": "true"},
+    {"分类id": "jianzhu", "分类名": "建筑", "短名": "建筑", "英文名": "Structures", "英文短名": "Buildings", "排序值": "6", "是否展示": "true"},
+    {"分类id": "wuqi", "分类名": "武器与盔甲", "短名": "武器", "英文名": "Weapons & Armour", "英文短名": "Gear", "排序值": "7", "是否展示": "true"},
+    {"分类id": "fabao", "分类名": "法宝与工具", "短名": "法宝", "英文名": "Artifacts & Tools", "英文短名": "Tools", "排序值": "8", "是否展示": "true"},
+    {"分类id": "zhenfa", "分类名": "阵法灵技", "短名": "阵法", "英文名": "Formations", "英文短名": "Forms", "排序值": "9", "是否展示": "true"},
+    {"分类id": "lingzhi", "分类名": "灵植", "短名": "灵植", "英文名": "Spirit Plants", "英文短名": "Plants", "排序值": "10", "是否展示": "true"},
+    {"分类id": "yihuo", "分类名": "墟火与异火", "短名": "墟火", "英文名": "Flames", "英文短名": "Flames", "排序值": "11", "是否展示": "true"},
+    {"分类id": "ditu", "分类名": "地形与Boss", "短名": "地形", "英文名": "Terrain & Bosses", "英文短名": "Terrain", "排序值": "12", "是否展示": "true"},
     # 「人物」是占位卷目：人物还没设计完，排在最后（更新日志之前），暂无条目。
-    {"分类id": "renwu", "分类名": "人物", "短名": "人物", "英文名": "Characters", "英文短名": "People", "排序值": "12", "是否展示": "true"},
-    {"分类id": "log", "分类名": "更新日志", "短名": "日志", "英文名": "Changelog", "英文短名": "Log", "排序值": "99", "是否展示": "true"},
+    {"分类id": "renwu", "分类名": "人物", "短名": "人物", "英文名": "Characters", "英文短名": "People", "排序值": "13", "是否展示": "true"},
+    {"分类id": "log", "分类名": "更新日志", "短名": "日志", "英文名": "Changelog", "英文短名": "Log", "排序值": "100", "是否展示": "true"},
 ]
 
 TELE = [
@@ -2177,6 +2401,9 @@ item(
 [[图片:images/lingjie/anim/realm_badge.png|游戏内的境界徽章（境界越高，中间的图标会换成对应数字）]]
 
 境界共 9 个：凡境、淬体、炼筋、辟谷、引气、入微、超凡、合婴、具灵。每个境界分 9 阶，如淬体一阶、二阶……九阶。
+
+灵根加成
+　五行灵根会**乘进生命上限与经验获取**（单土生命 ×1.9、其他单灵根 ×1.5；经验按灵根条数 ×1.7 ~ ×0.5）；**单灵根死亡不掉阶**。详见「五行灵根」。
 
 升阶方式
 　击杀生物获得经验；在 15 个地皮范围内、30 秒内参与过攻击就算参与。阿比盖尔的攻击，以及薇洛技能火焰造成的击杀，都算它们主人的参战（其他随从不算）。
@@ -2314,6 +2541,85 @@ item(
 )
 
 # ===========================================================================
+item(
+    "linggen", "spirit_roots", "五行灵根", "灵根,五行,开局,属性",
+    "开局定下的五行资质：条数决定修炼快慢，属性决定专精方向；单灵根额外增伤、还能免掉阶。",
+    """
+开局时一次定下灵根，之后可以在万象灵仪上鉴定自己是什么灵根。
+
+怎么定
+　mod 设置里的「开局灵根」有两档：璞玉含章（默认）——进世界时随机；绝世天才——开局弹出「绝世天才 · 选择单灵根」面板自己挑。
+　只对还没生成过灵根的角色生效；机器人（WX-78）不会生成水灵根。
+
+几条灵根（按掷点）
+　< 2% 一条 · 2%~7% 两条 · 7%~27% 三条 · 27%~60% 四条 · ≥ 60% 五条（五条就是五行齐全）。
+
+条数决定修炼速度
+　1 条 ×1.7 · 2 条 ×1.3 · 3 条 ×1.0 · 4 条 ×0.75 · 5 条 ×0.5（经验获取倍率）。
+
+各属性效果
+　金：受治疗 ×0.8；火（hot）伤害 ×2；单金时雷击与电击完全免疫、手持近战 ×1.2；挖矿效率 ×1.25（单金 ×2）。
+　木：受伤 ×1.2；单木时免疫并清除蛇毒；砍伐效率 ×1.25（单木 ×2）；单木脱战后附近有植物会回血；采集动作时长 ÷1.25（单木 ÷2）。
+　水：单水时冷（cold）伤害 ×0.5、升温 ×0.7、防水恒真、移速 ×1.1；可以拿超过 50 的湿度 1:1 抵伤害；湿度会持续积累（附近有水更快），湿度够且没满血时转为回血；钓鱼更快（单水更快）。
+　火：单火时火焰伤害完全免疫、火（hot）伤害为 0；身上有火时冷伤害 ×2；升温 ×1.5 / 降温 ×0.5；附近有热源时回理智；单火脱战且体温偏高时回血。
+　土：受伤 ×0.8（多灵根 ×0.9）；增伤 ×0.85、移速 ×0.9；单土生命上限 ×1.9（其他单灵根 ×1.5，多灵根无加成）；单土免疫受击、击退、击倒与电击。
+
+单灵根专属
+　全局增伤 ×1.2、移速 ×1.1，而且死亡不掉阶（与清心丸走同一条豁免）。
+
+改灵根
+　洗髓丹：试着削掉一条多余的灵根（失败会带伤）。转元丹：把本元重塑成指定属性。
+""",
+)
+
+item(
+    "linggen", "myriad_spirit_ritual", "万象灵仪", "灵根,建筑,鉴定",
+    "把手放上去就能鉴定自身灵根的建筑；结果显示在建筑上的五行字里。",
+    """
+把手放上去，便能照见自身灵根。
+
+配方：""" + R(("月岩", 2, "moonrocknugget"), ("噩梦燃料", 2), ("活木", 1), ("荧光果", 5, "lightbulb")) + """，二本科技解锁。
+
+使用：右键走原版引导动作「鉴定灵根」，消耗 10 点灵力、冷却 10 秒，必须站在 4 格以内。
+结果直接显示在建筑上的五行字里，不再让角色说话。
+用锤子敲 4 下可以拆掉。
+""",
+    recipe=R(("月岩", 2, "moonrocknugget"), ("噩梦燃料", 2), ("活木", 1), ("荧光果", 5, "lightbulb")),
+)
+
+item(
+    "danyao", "lj_refresh_pill", "洗髓丹", "丹药,中阶,灵根",
+    "中阶丹药：洗筋伐髓，试着削掉一条多余的灵根；失败会带伤。",
+    """
+中阶丹药（玄），炼制时间 4 分钟。
+
+材料：""" + R(("触手皮", 2, "tentaclespots"), ("骨片", 2, "boneshard"), ("犬齿", 2, "houndstooth"), ("魔核", 1)) + """。
+
+效果：随机削掉一条灵根。成功率看灵根条数：2 条 8%、3 条 15%、4 条 35%、5 条 60%，每次失败再累加 10%。
+服用条件：灵根 ≥ 2 条、生命 > 20、理智 ≥ 20。
+代价：不管成败，都扣 20 点生命和 20 点理智（不可减免）。
+""",
+    recipe=R(("触手皮", 2, "tentaclespots"), ("骨片", 2, "boneshard"), ("犬齿", 2, "houndstooth"), ("魔核", 1)),
+)
+
+item(
+    "danyao", "lj_transcendent_pill", "转元丹（天阶）", "丹药,天阶,灵根",
+    "天阶丹药：重塑本元灵根。通用版随机换属性，五个单属性版指定金木水火土；服下后虚弱 30 秒。",
+    """
+天阶丹药（天），炼制时间 8 分钟。没有落雷丹劫，成败只看火焰：放强异火必成，放墟火只有 5%。
+
+6 种
+　转元丹（通用）：多灵根时随机削掉一条；已经是单灵根则随机换成别的属性。
+　转元丹·金 / 木 / 水 / 火 / 土：把本元重塑成指定属性。
+
+材料
+　通用版：""" + R(("洗尘神树果", 1), ("灌注的暗影心房", 1, "shadowheart_infused"), ("活木", 5), ("魔晶", 10)) + """。
+　单属性版：""" + R(("洗尘神树果", 1), ("灌注的暗影心房", 1, "shadowheart_infused")) + """ + 对应稀有海鱼 1 + """ + R(("魔晶", 1)) + """。
+
+代价：服下后虚弱 30 秒——不能装备、不能用道具、不能攻击，已经穿着的装备会全部卸到地上。
+""",
+)
+
 # 卷目 2：生物入魔
 # ===========================================================================
 item(
@@ -2332,6 +2638,15 @@ item(
 轻度入魔、中度入魔、深度入魔。
 
 不会被入魔的：影怪系（爬行梦魇、恐怖喙、梦魇、废墟梦魇、影骑士、影主教、影车、海上的影怪等）、被动小动物、玩家、同伴、墙体、装备展示模型。被玩家雇佣的生物会立即清除全部入魔效果。
+
+入魔元素词条（v0.11 新增）
+　每个入魔生物会随机带上一种元素词条，叠在轻 / 中 / 深度入魔之上；龙蝇不会带火噬，噬魂蛇不会带蚀骨。
+　雷噬：命中额外造成 12 点电击伤害。
+　火噬：命中额外造成 20 点火焰伤害，并且能点燃目标。
+　蚀骨：命中会挂上噬魂蛇毒（持续 240 秒）。
+　缴械：命中玩家时打掉他手里的武器（12 秒冷却）。
+　岩固：最大生命 +15%、防御 +15、移速 −10%。
+　通用：所有入魔生物被玩家普通攻击命中时，有 15% 概率免疫该次伤害（免伤时它仍然盯着你），界面上没有任何提示。
 """,
 )
 
@@ -2391,7 +2706,7 @@ item(
 生物强化
 限定易伤：生命值降到 50% 及以下会触发护盾，持续 5 秒，冷却 5 分钟——护盾期间不是无敌，而是单次受到的伤害最多 90 点。护盾表现为红色力场。
 
-击杀后掉落魔核 1 到 2 个、魔核碎片 1 到 3 个 + 生物原生材料。
+击杀后掉落魔核碎片 1 到 3 个 + 生物原生材料（v0.11 起**不再掉魔核**）。
 """,
 )
 
@@ -2449,7 +2764,7 @@ item(
     """
 魔核碎片：击杀轻度入魔生物掉落魔核碎片 1 到 3 不等（原始生命不超过 149 的弱小生物不追加）。
 
-魔核：击杀 Boss 生物、魔兽掉落；99 个魔核碎片合成；中度入魔生物掉落魔核 1 到 2 不等。无法摧毁、分解。
+魔核：击杀 Boss 生物、魔兽掉落；99 个魔核碎片合成。无法摧毁、分解。
 
 魔晶：击杀魔兽掉落；20 个魔核合成；深度入魔生物掉落魔晶 1。无法摧毁、分解。
 
@@ -2532,6 +2847,8 @@ item(
 吸收异火时「异火焚身」的剩余时间会显示在 HUD 的负面状态面板上；只显示给当前持有葫芦的人，葫芦掉在地上时暂停并移除显示。
 在物品栏里就能右键打开 / 关闭（容器只有一份，跟随葫芦打开的也是它）。打开状态下会一直在，不会因打开其他箱子类物品而自动关闭葫芦。
 可鼠标拿起放置地面跟随；拿起葫芦后对着地上的无主异火右键就能吸收，要贴上去吸（不再是从 16 码外自动飞进来），吸收后归葫芦主人所有。可吸收的是强异火，而且必须是无主状态（已经认主的异火得先等它失主）。
+
+抓丹灵：丹灵吸完灵力睡着的那 60 秒里，拿葫芦右键它（2 格内）就能把它抓走，并把那颗天阶丹药拿回来（见「丹灵」）。
 从物品栏 / 背包里用鼠标拿起葫芦后再放下，会优先放回原来的格子；原格不能用时才随意放置。
 跟随状态下：左键是跟随状态葫芦的打开 / 关闭，右键跟随状态的葫芦就回收。
 """,
@@ -2842,6 +3159,24 @@ item(
 )
 
 # ===========================================================================
+item(
+    "danyao", "lj_danling", "丹灵", "丹药,天阶,捕捉,灵玉台",
+    "天阶丹药炼成时诞生的灵智：会飞走悬浮、躲着玩家；用灵玉台供丹引诱、趁休眠用葫芦捕捉。",
+    """
+天阶丹药所化的灵智，急不得。
+
+特性：没有血量、不能攻击、打不死；平时四处悬浮，靠近玩家会躲开。
+
+怎么抓
+　1. 在灵玉台上供一颗高阶丹药当诱饵（台子在 30 格内它才会来；15 格内有人它就不来）。
+　2. 丹灵落下来吸灵力，吸 10 秒；吸完那颗诱饵丹药就被吃掉（跟抓没抓到无关）。
+　3. 吸完之后它会睡着 60 秒——趁这 60 秒拿灵虚葫右键它（2 格内）就能抓住，并拿回那颗天阶丹药。
+　4. 错过这 60 秒，它会渐隐 10 秒后消失，丹药也一起没了。
+
+谁能当诱饵：高阶丹药 5 种 + 天阶丹药 6 种，共 11 种；中阶的洗髓丹不能供奉。
+""",
+)
+
 # 卷目 4：精炼材料
 # ===========================================================================
 item(
@@ -2858,11 +3193,11 @@ item(
 
 item(
     "cailiao", "lj_magic_core", "魔核", "材料,魔气,合成",
-    "99 个魔核碎片合成。Boss、魔兽与中度入魔生物掉落。",
+    "99 个魔核碎片合成。Boss 与魔兽掉落。",
     """
 合成：99 个魔核碎片合成。
 
-来源：击杀 Boss 生物、魔兽掉落；中度入魔生物掉落魔核 1 到 2 不等。
+来源：击杀 Boss 生物、魔兽掉落（v0.11 起中度入魔不再掉魔核）。
 
 无法摧毁、分解。
 
@@ -3116,6 +3451,9 @@ item(
 可使用锤子摧毁，二本制作，摧毁后返还 金块 2、木头 2、石砖 5。
 
 夜晚放入月魄凝液瓶，吸收天地灵气；PS：至少吸取 30 秒。
+
+供丹引灵：右键用高阶或天阶丹药对它触发「供丹」，台面会显示那颗丹药，状态变成「丹药的灵力正在泄露。」；30 格内的丹灵会被引来吸灵力（见「丹灵」）。
+取回：右键「取回」可以把供奉的丹药拿回来；用锤子敲掉台子时会先把丹药退还给玩家，不会丢。
 """,
     recipe=R(("金块", 5), ("木头", 5), ("石砖", 10)),
 )
@@ -3216,7 +3554,7 @@ item(
 　大型生物 5 层 = 冻结 1 秒
 
 技能：玄冰灌注（右键主动）
-消耗 20 点灵力值，释放一只巨箭，造成 300 伤害，并冻结目标 3 秒。冷却 12 秒。
+消耗 15 点灵力值，释放一只巨箭，造成 300 伤害并冻结目标 3 秒；炸开时半径 4 范围内的敌人一起受 150 伤害、同样冻结 3 秒。冷却 5 秒。
 
 击杀任意生物，恢复 5 点灵力值。
 
@@ -3311,6 +3649,62 @@ item(
 )
 
 # ===========================================================================
+item(
+    "wuqi", "lj_ordinary_sword_fly", "御空灵剑", "武器,法宝,御剑,飞行",
+    "淬铁灵剑认主后化作的飞剑：引气境界可御剑飞行，能载一名乘客，落地没有坠落伤害。",
+    """
+认主的飞剑，可以御剑，也可以搭乘。
+
+怎么做
+　配方：""" + R(("淬铁灵剑", 1)) + """ + 消耗 15 点灵力（在「人物」分类里，没有摆放预览，点一下就在脚下生成）。
+　解锁条件：大境界达到引气（第 4 境）以上；要在地面解除骑乘后才能御剑。
+
+飞行
+　飞行高度 6，移速 ×1.2，可以载 1 名乘客；没有冷却。
+　飞剑本身不造成伤害，战斗完全沿用你手里拿的武器。
+　飞行中不会溺水、能飞越海面、不会引来暗影生物、不能平台跳跃；降落不受到坠落伤害。
+
+归还
+　右键飞剑（3 格内、且没人在上面坐）或直接降落，就会归还原剑；死亡或换角色也会自动归还。
+　原剑连耐久一起收进飞剑实体，所以来回不丢耐久；创造模式不消耗原剑。
+
+乘客
+　乘客只能右键自己退出，不能移动、攻击或交互。
+""",
+    recipe=R(("淬铁灵剑", 1)),
+)
+
+item(
+    "wuqi", "lj_bluemist_robe", "青岚道袍", "盔甲,身体,理智",
+    "二本科技的体甲：650 耐久、80% 吸收、移速 +10%，被动回理智；可用魔核碎片修。",
+    """
+岚丝织袍，蕴核为铠。步履轻盈，缓缓安定心神。
+
+配方：""" + R(("魔核碎片", 20), ("蜘蛛丝", 2, "silk"), ("花瓣", 6, "petals"), ("蜂蜡", 1, "beeswax")) + """，二本科技（炼金引擎）解锁。
+
+属性：650 耐久，80% 伤害吸收，移速 +10%，每 8 秒回复 1 点理智。
+
+修复：用魔核碎片修，每份回复 50 点护甲耐久（手持一组右键可以一次按缺口补多份）。
+""",
+    recipe=R(("魔核碎片", 20), ("蜘蛛丝", 2, "silk"), ("花瓣", 6, "petals"), ("蜂蜡", 1, "beeswax")),
+)
+
+item(
+    "wuqi", "lj_lion_angle_care", "月狮羽冠", "盔甲,头盔,心魔,理智",
+    "狮骨头盔：靠燃料维持的心魔抵抗与理智恢复，燃料用完需要月树花续。",
+    """
+雄狮骨盔缀灵羽，嵌月眼，缠月花。月华涤荡心魔，护持识海。
+
+配方：""" + R(("狮骨", 1), ("格罗姆翅膀", 1, "glommerwings"), ("月眼", 1, "moonrockcrater"), ("月树花", 9, "moon_tree_blossom")) + """，二本科技（炼金引擎）解锁。
+
+效果：佩戴时抵抗心魔、缓慢回复理智，全靠燃料维持。
+　燃料上限 6 天。
+　用月树花补充，每朵注入 180 秒（3 分钟）。
+燃料耗尽后提示「月华已散，需以月树花续燃」。
+""",
+    recipe=R(("狮骨", 1), ("格罗姆翅膀", 1, "glommerwings"), ("月眼", 1, "moonrockcrater"), ("月树花", 9, "moon_tree_blossom")),
+)
+
 # 卷目 7：法宝与工具
 # ===========================================================================
 item(
@@ -3460,6 +3854,21 @@ item(
 )
 
 # ===========================================================================
+item(
+    "zhenfa", "lj_three_flames", "三火御元", "灵技,异火,虚空戒,主动",
+    "把戒里的异火化成三朵火环绕自身御敌：20 灵力、5 秒冷却，每朵 45 点火焰伤害。",
+    """
+虚空戒装在手、戒里放着异火，然后右键自己就能发动。
+
+消耗 20 点灵力，冷却 5 秒。
+
+固定放出 3 朵火，每朵 45 点火焰伤害；环绕半径 1.4，射程 24。
+之后你的普通攻击命中会让剩下的火焰自动追击（远程普攻也算），命中目标会挂上星火灼烧，还能点燃目标。
+
+外观直接继承戒里实际放的那朵异火。
+""",
+)
+
 # 卷目 9：灵植
 # ===========================================================================
 item(
@@ -3517,6 +3926,34 @@ item(
 )
 
 # ===========================================================================
+item(
+    "lingzhi", "lj_xichen_tree", "洗尘树", "灵植,唯一,灵果",
+    "全图只有一株的灵树：长在月台附近，不可砍伐、不可焚毁，30 天自然结一颗洗尘神树果。",
+    """
+浊世之中的一株神树，难以焦灼。
+
+生成：全图只长一株，生在月台附近（距月台至少 16 个世界单位）；旧存档进入世界时会补种。
+特性：不可砍伐、不可焚毁，也不能移植。
+
+结果：分三个阶段、每阶段 15 天，自然 30 天结一颗洗尘神树果；摘完回到第一阶段重新长。
+催生：用月魄凝液瓶满瓶（100 灵液）浇灌，浇灌后 3 天就结果，冷却 10 天。
+""",
+)
+
+item(
+    "lingzhi", "lj_xichen_fruit", "洗尘神树果", "灵植,灵果,材料",
+    "洗尘树结的灵果：吃下恢复 66 生命 / 66 理智 / 66 饱食，并获得 30 秒魂蚀免疫。",
+    """
+食之可涤魂蚀，炼制转元丹的必备之物。
+
+效果：吃下恢复 66 点生命、66 点理智、66 点饱食，并清除身上的魂蚀，同时获得 30 秒「魂蚀免疫」。
+　再吃一颗会把免疫时间重置回 30 秒。
+
+用途：6 种转元丹（天阶）的必需材料。
+来源：洗尘树自然结果（30 天一颗），或用月魄凝液浇灌催生。
+""",
+)
+
 # 卷目 10：墟火与异火
 # ===========================================================================
 item(
@@ -3527,7 +3964,7 @@ item(
 
 丢弃规则：分裂火丢在地上会直接消失（只有丹劫炸炉返还的那一份能留在地上）；异火本体丢在地上会留下，并开始计算失主时间。放在物品栏 / 背包里不会焚毁任何东西。
 
-照明与灭火：墟火 / 异火本体放置地上会提供 20 码范围照明，并熄灭周围所有普通火焰（异火之间不互相排斥，比如两个异火都放在地上，各自发光发热，还是会熄灭其他火焰）。分裂出来的放置地上会消失。
+照明与灭火：墟火 / 异火本体放置地上会提供照明（现在**视觉光照显示约 10 码**，但发热与灭火的**功能半径仍是 20 码**），并熄灭周围所有普通火焰（异火之间不互相排斥，比如两个异火都放在地上，各自发光发热，还是会熄灭其他火焰）。分裂出来的放置地上会消失。
 
 分裂：灵虚葫吸收的异火可右键分裂，消耗 10 灵力值。分裂的火焰可放入灵虚光盏提供光照，添加燃料 50%，燃烧可燃物、焚烧建筑，可以放入炼丹炉融合。
 
@@ -3887,6 +4324,8 @@ item(
     """
 由炽岩蝎龙每掉落 10000 血量时召唤 4 只。
 
+v0.11 起：幼虫被击杀**不再掉落任何战利品**。
+
 血量 250，攻击 40，毒伤 3/秒，持续 8 秒。
 
 毒蝎幼虫会一直存在，不死亡也不影响下一次技能召唤 4 只。
@@ -3942,9 +4381,9 @@ item(
 攻击方式：撕咬 / 发射音波。
 攻击伤害 55，1 格地皮内撕咬，超范围音波攻击。
 
-音波攻击：释放暗红色音波，以自身为中心 半径 8 的范围攻击，每 0.5 秒一次脉冲，范围内持续僵直，持续 9 秒。走出范围即可解除。冷却 30 秒。
+音波攻击：释放暗红色音波，以自身为中心 半径 8 的范围攻击，每 0.5 秒一次脉冲，范围内持续僵直，持续 9 秒。走出范围即可解除。冷却 34 秒。
 
-召唤机制：血量 50% 以后开始召唤 1 只妖蝠，冷却 15 秒，无上限。脱离战斗后都会回归巢穴；上限只有 6 只，多的进入巢穴后 = 死亡。
+召唤机制：血量 50% 以后开始召唤 1 只妖蝠，冷却 19 秒，无上限。脱离战斗后都会回归巢穴；上限只有 6 只，多的进入巢穴后 = 死亡。
 
 击杀固定掉落 血蝠精血 1、怪物肉 2（魔核碎片、魔核、魔晶根据当前入魔程度掉落）。
 
@@ -3956,7 +4395,7 @@ item(
     "ditu", "lj_blood_bat", "妖蝠", "魔兽,蝴蝶岛,蝙蝠",
     "小魔兽。血量 300、伤害 25，固定掉落怪物肉。",
     """
-初始血量 300，攻击伤害 25，攻击周期 1 秒。
+初始血量 300，攻击伤害 25，攻击周期 2.5 秒。
 
 攻击方式：1 格地皮内撕咬，超范围冲刺攻击。冲刺击中会有短暂的僵直效果，可提前上下走动躲避。
 
@@ -4004,7 +4443,7 @@ item(
 
 核心机制
 脱战回归：离开守护花所在范围后会停止追击并返回花旁，用一次狮吼作为过渡；追出 40 距离就彻底放弃。
-周围 5 格地皮内有花朵的状态下，每朵每 10 秒恢复 60 血量（紫晶塑体花属于一个花单位，会跟花瓣一样生成蝴蝶）。
+周围 5 格地皮内有花朵的状态下，每朵每 60 秒恢复 60 血量（每分钟最多计 5 朵）（紫晶塑体花属于一个花单位，会跟花瓣一样生成蝴蝶）。
 玩家摧毁、采集附近花朵会打断回血，10 秒内强制触发一次狮吼震慑（10 秒内采集花瓣，只会强制触发一次）。
 靠近曼德拉草会陷入昏睡 8 秒，昏睡状态 1 分钟内只会触发一次（已种下的曼德拉草同样有效）。
 
@@ -4183,6 +4622,34 @@ DATA = {
              "Non-boss deeply demonized creatures gain 1–2 extra Magic Cores\n"
              "Warming and Cooling Pills now stack the vanilla hot-food / cold-food temperature bonuses\n"
              "Visual polish (Void Ring and Starfall floating display, Tempered Iron Spirit Sword animation)\n",
+         "是否展示": "true"},
+        {"日志版本": "v0.11", "日期": "2026-10-17",
+         "内容":
+             "版本号 0.10 → 0.11\n"
+             "新增五行灵根：开局定下灵根，条数决定修炼快慢、属性各有专精；单灵根额外增伤、死亡还不掉阶；可以在万象灵仪上鉴定\n"
+             "新增天阶丹药：炼制 8 分钟、没有落雷丹劫，成败只看火焰（强异火必成、墟火 5%）；新增洗髓丹与 6 种转元丹\n"
+             "新增丹灵：天阶丹药炼成时诞生的灵智，用灵玉台供丹引诱、趁它休眠用灵虚葫捕捉\n"
+             "新增御空灵剑：引气境界起可以御剑飞行或搭乘，能载一人、落地无伤\n"
+             "新增三火御元：手持虚空戒右键自己，戒里的异火化成三朵火环绕御敌\n"
+             "新增洗尘树与洗尘神树果：全图一株、30 天结果，可用月魄凝液催生\n"
+             "新增青岚道袍与月狮羽冠两件装备\n"
+             "入魔生物新增元素词条：雷噬 / 火噬 / 蚀骨 / 缴械 / 岩固，并统一附带「被玩家普攻命中时 15% 概率免伤」\n"
+             "平衡：灵韵弓玄冰灌注 20 灵力→15、冷却 12→5 秒，巨箭新增半径 4 的爆炸；妖蝠与暗影血蝠攻击周期改 2.5 秒、音波冷却 30→34、召唤 15→19 秒\n"
+             "其它：中度入魔不再掉魔核、小蝎子不再掉落战利品、月狮采花回血改成每朵每 60 秒\n"
+             "优化视觉（异火落地光照变小、荒界纳物箱无限堆叠图标、线索道具小地图图标、月狮与噬魂蛇音量下调）\n",
+         "英文内容":
+             "Version 0.10 → 0.11\n"
+             "Five-element spirit roots: rolled at the start, the number of roots sets cultivation speed and each element grants a speciality; a single root adds damage and waives stage loss, and the Myriad Spirit Ritual identifies them\n"
+             "Celestial pills: 8-minute refining with no lightning tribulation — success depends only on the flame (a strong exotic flame always succeeds, a Wasteland Flame gets 5%); adds the Marrow-Cleansing Pill and 6 Essence-Turning Pills\n"
+             "Danling: a spirit born when a celestial pill is refined, lured with a Reiki Table and caught with the Spirit Void Gourd while it sleeps\n"
+             "Flying Spirit Sword: from Qi Guiding you can fly it or ride along, carrying one passenger with no fall damage\n"
+             "Triple Flame Ward: with the Void Ring equipped, right-click yourself to turn its exotic flame into three orbiting flames\n"
+             "Dust-Cleansing Tree and Fruit: one tree per world, fruiting every 30 days and forced with lunar essence\n"
+             "New gear: the Bluemist Robe and the Moonlion Feather Crown\n"
+             "Demonized creatures gain element affixes — Thunder Bite, Flame Bite, Bone Rot, Disarm and Stonehide — plus a universal 15% chance to ignore a player's basic attack\n"
+             "Balance: Reiki Bow ice infusion 20 → 15 Reiki and 12 → 5 second cooldown, with a radius-4 explosion; Demon Bats and Shadow Blood Bats now attack every 2.5 seconds, sound wave cooldown 30 → 34 and summoning 15 → 19 seconds\n"
+             "Also: moderate demonization no longer drops Magic Cores, larvae drop no loot, and the lion's flower healing is now once per 60 seconds per flower\n"
+             "Visual polish (smaller exotic flame ground glow, chest unlimited-stacking icon, clue item minimap icons, quieter lion and snake)\n",
          "是否展示": "true"},
     ],
     "tele": [{"导向id": t[0], "字段": t[1], "说明": "", "是否展示": "true"} for t in TELE],
