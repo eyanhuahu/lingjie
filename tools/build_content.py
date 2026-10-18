@@ -903,8 +903,8 @@ Never demonized: shadow creatures (Crawling Horror, Terrorbeak, Shadow creatures
 
 Demonization Affixes
 　Every demonized creature carries one random element affix on top of its light / moderate / deep tier; the Dragonfly never rolls Flame Bite and the Soul-devouring Snake never rolls Bone Rot.
-　Thunder Bite: hits deal an extra 12 electric damage.
-　Flame Bite: hits deal an extra 20 fire damage and can ignite the target.
+　Thunder Bite: hits deal an extra 10 electric damage.
+　Flame Bite: hits deal an extra 5 fire damage and can ignite the target.
 　Bone Rot: hits inflict Soul Snake Venom (240 seconds).
 　Disarm: hits knock the player's weapon out of their hands (12-second cooldown).
 　Stonehide: +15% max health, +15 defence, −10% movement speed.
@@ -2336,7 +2336,7 @@ Amethyst Shell 1, Lion Bone 1, [images/inventoryimages2/monstermeat.png] Monster
 SITE = [
     # modinfo.lua 里是 name = "灵界"，author = "犹如黑夜星光、喵大仙BigXian"。
     # 顶栏作者名按作者要求单独写（跟 modinfo 不必一致）。
-    {"网站标题": "灵界", "网站英文名": "Spirit Realm", "网站版本": "v0.11", "作者": "犹如黑夜星光JinYan、喵大仙BigXian"},
+    {"网站标题": "灵界", "网站英文名": "Spirit Realm", "网站版本": "v0.12", "作者": "犹如黑夜星光JinYan、喵大仙BigXian"},
 ]
 
 SECTIONS = [
@@ -2684,8 +2684,8 @@ item(
 
 入魔元素词条
 　每个入魔生物会随机带上一种元素词条，叠在轻 / 中 / 深度入魔之上；龙蝇不会带火噬，噬魂蛇不会带蚀骨。
-　雷噬：命中额外造成 12 点电击伤害。
-　火噬：命中额外造成 20 点火焰伤害，并且能点燃目标。
+　雷噬：命中额外造成 10 点电击伤害。
+　火噬：命中额外造成 5 点火焰伤害，并且能点燃目标。
 　蚀骨：命中会挂上噬魂蛇毒（持续 240 秒）。
 　缴械：命中玩家时打掉他手里的武器（12 秒冷却）。
 　岩固：最大生命 +15%、防御 +15、移速 −10%。
@@ -4739,6 +4739,22 @@ DATA = {
              "Balance: Reiki Bow ice infusion 20 → 15 Reiki and 12 → 5 second cooldown, with a radius-4 explosion; Demon Bats and Shadow Blood Bats now attack every 2.5 seconds, sound wave cooldown 30 → 34 and summoning 15 → 19 seconds\n"
              "Also: moderate demonization no longer drops Magic Cores, larvae drop no loot, and the lion's flower healing is now once per 60 seconds per flower\n"
              "Visual polish (smaller exotic flame ground glow, chest unlimited-stacking icon, clue item minimap icons, quieter lion and snake)\n",
+         "是否展示": "true"},
+        {"日志版本": "v0.12", "日期": "2026-10-18",
+         "内容":
+             "版本号 0.11 → 0.12\n"
+             "入魔词条数值调整：雷噬的附加电击伤害 12 → 10，火噬的附加火焰伤害 20 → 5\n"
+             "修复：捕捉丹灵后拿到的是供奉的诱饵丹药，现在会还给你炼出的那颗天阶丹药\n"
+             "御剑载客时的图层修正：正面朝镜头时，乘客会正确地盖在御剑者前面\n"
+             "灵剑与星陨的普攻动画：步行时换成专属动作，骑乘时保留原版骑乘攻击\n"
+             "优化视觉（丹灵、万象灵仪、五行灵根相关的动画与界面更新）\n",
+         "英文内容":
+             "Version 0.11 → 0.12\n"
+             "Demonization affix tuning: Thunder Bite bonus damage 12 → 10, Flame Bite bonus damage 20 → 5\n"
+             "Fix: catching a Danling used to hand you the bait pill; it now returns the celestial pill you refined\n"
+             "Sword carrying fix: when facing the camera the passenger now renders in front of the sword's rider\n"
+             "Attack animations for the Spirit Sword and Starfall Sword: a dedicated walk attack on foot, vanilla riding attack while mounted\n"
+             "Visual polish (updated animations and UI for the Danling, Myriad Spirit Ritual and five-element roots)\n",
          "是否展示": "true"},
     ],
     "tele": [{"导向id": t[0], "字段": t[1], "说明": "", "是否展示": "true"} for t in TELE],
