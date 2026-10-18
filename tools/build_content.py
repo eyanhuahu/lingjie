@@ -773,7 +773,7 @@ Cost: 20 health and 20 sanity whether it works or not (cannot be reduced).
         "tags": "Pill,Celestial,Roots",
         "summary": "A celestial pill that reshapes your elemental core: the generic version rerolls, the five single-element versions set Metal, Wood, Water, Fire or Earth; it leaves you weakened for 30 seconds.",
         "detail": """
-Celestial pill (heaven), refining time 8 minutes. There is no lightning tribulation — success depends only on the flame: a strong exotic flame always succeeds, a Wasteland Flame only 5%.
+Celestial pill (heaven), refining time 8 minutes. There is no lightning tribulation - success depends only on the flame: a strong exotic flame always succeeds; anything that is not a strong exotic flame (a Wasteland Flame, for example) only gets 5%.
 
 The six versions
 　Essence-Turning Pill (generic): with several roots it shaves off a random one; if you already have a single root it rerolls the element.
@@ -3226,7 +3226,7 @@ item(
     "danyao", "lj_transcendent_pill", "转元丹（天阶）", "丹药,天阶,灵根",
     "天阶丹药：重塑本元灵根。通用版随机换属性，五个单属性版指定金木水火土；服下后虚弱 30 秒。",
     """
-天阶丹药（天），炼制时间 8 分钟。没有落雷丹劫，成败只看火焰：放强异火必成，放墟火只有 5%。
+天阶丹药（天），炼制时间 8 分钟。没有落雷丹劫，成败只看火焰：放强异火必成；不是强异火（比如只放墟火）就只有 5%。
 
 6 种
 　转元丹（通用）：多灵根时随机削掉一条；已经是单灵根则随机换成别的属性。
