@@ -775,6 +775,19 @@ Cost: 20 health and 20 sanity whether it works or not (cannot be reduced).
         "detail": """
 Celestial pill (heaven), refining time 8 minutes. There is no lightning tribulation - success depends only on the flame: a strong exotic flame always succeeds (split flames count as strong too); anything that is not a strong exotic flame (a Wasteland Flame, for example) only gets 5%.
 
+Heavenly Omen
+　With exactly 2 minutes 6 seconds of refining left, the furnace triggers its heavenly omen on its own:
+　　1. Six bolts of lightning strike and a light pillar rises; the pillar stays lit until the pill is finished.
+　　2. Six seconds after the pillar appears the siege begins — it lasts the full two minutes until the pill is done.
+　The attackers arrive on a rhythm:
+　　· A Hound every 12 seconds (the first one 2 seconds after the pillar appears).
+　　· A Werepig every 30 seconds (the first one immediately).
+　　· They only go for the furnace, never chase players, and are not saved with the world.
+　During the siege the furnace has just 100 health and cannot heal:
+　　· Each hit it takes counts as one strike, and so does each blocked attack.
+　　· Five strikes in total, or running out of health, destroys the furnace and fails the batch.
+　Failure leaves 5 Charcoal plus 1 Failed Pill on the ground; the exotic flame inside is thrown back onto the ground (you can pick it up again) and every other ingredient is lost.
+
 The six versions
 　Essence-Turning Pill (generic): with several roots it shaves off a random one; if you already have a single root it rerolls the element.
 　Essence-Turning Pill - Metal / Wood / Water / Fire / Earth: reshapes your core into that element (only for a single-root character, and not for the element you already have).
@@ -3227,6 +3240,19 @@ item(
     "天阶丹药：重塑本元灵根。通用版随机换属性，五个单属性版指定金木水火土；服下后虚弱 30 秒。",
     """
 天阶丹药（天），炼制时间 8 分钟。没有落雷丹劫，成败只看火焰：放强异火必成（分裂火也算强异火，同样必成）；不是强异火（比如只放墟火）就只有 5%。
+
+天地异象
+　成丹只剩最后 2 分 6 秒时，炉子会自动触发天地异象：
+　　1. 连落 6 道闪电、升起一根光柱，光柱会一直亮到炼完。
+　　2. 光柱亮起 6 秒后开始「守炉」——围攻会持续整整 2 分钟，直到成丹。
+　守炉时来得很有节奏：
+　　· 每 12 秒来一只猎犬（光柱亮起 2 秒后就先来一只）。
+　　· 每 30 秒来一只疯猪（当场就先来一只）。
+　　· 这些怪只盯着炉子打，不会追玩家，也不会被存进存档。
+　炉子在守炉期间只有 100 点耐久、且不能回血：
+　　· 被怪物打中一次算 1 次撞击，被格挡（blocked）也算 1 次。
+　　· 累计撞 5 次，或者耐久被打空，就直接炸炉失败。
+　炸炉的后果：炉子炸毁，地上只剩 5 个木炭 + 1 颗废丹；炉里的异火会被抛回地面（可以捡回来），其它材料一概不返还。
 
 6 种
 　转元丹（通用）：多灵根时随机削掉一条；已经是单灵根则随机换成别的属性。
