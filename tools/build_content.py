@@ -730,7 +730,7 @@ What each element does
 　Earth — the tank: more health, harder to move
 　　Any Earth root: you take 10% less damage.
 　　Single Earth only: ×1.9 max health (nearly double); you take 20% less damage; you never flinch from a hit, cannot be knocked back or knocked down, ignore electric stuns and cannot be disarmed.
-　　Cost: you hit a little softer (×0.85 damage) and move a little slower (×0.9 speed).
+　　Cost: you hit a little softer (×0.85 damage) and move a little slower (×0.9 speed) — but a single root already gives ×1.2 damage and ×1.1 speed, so the two cancel out: single Earth ends up at about +2% damage and −1% speed, i.e. practically no cost. Only a two-root Earth build really feels ×0.85 / ×0.9.
 
 Single-root bonuses
 　×1.2 global damage and ×1.1 speed, and death costs no realm stage.
@@ -2636,7 +2636,7 @@ item(
 　土 —— 肉盾，血厚、站得住
 　　所有土：受伤少一成。
 　　只有单土：生命上限 ×1.9（差不多翻倍）；受伤少两成；不会被打出受击硬直、不会被击退、击倒，也不怕电击；不会被缴械（武器打不掉）。
-　　代价：打得轻一点（伤害 ×0.85）、跑得慢一点（移速 ×0.9）。
+　　代价：打得轻一点（伤害 ×0.85）、跑得慢一点（移速 ×0.9）——不过单灵根本身带 ×1.2 增伤与 ×1.1 移速，正好抵掉：单土实际是伤害 +2%、移速 −1%，几乎等于没有代价；只有双灵根带土时才是真的 ×0.85 / ×0.9。
 
 单灵根专属
 　全局增伤 ×1.2、移速 ×1.1，而且死亡不掉阶。
