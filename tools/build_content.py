@@ -729,7 +729,7 @@ What each element does
 
 　Earth — the tank: more health, harder to move
 　　Any Earth root: you take 10% less damage.
-　　Single Earth only: ×1.9 max health (nearly double); you take 20% less damage; you never flinch from a hit, cannot be knocked back or knocked down, and ignore electric stuns.
+　　Single Earth only: ×1.9 max health (nearly double); you take 20% less damage; you never flinch from a hit, cannot be knocked back or knocked down, ignore electric stuns and cannot be disarmed.
 　　Cost: you hit a little softer (×0.85 damage) and move a little slower (×0.9 speed).
 
 Single-root bonuses
@@ -907,7 +907,7 @@ Demonization Affixes
 　Thunder Bite: hits deal an extra 10 electric damage.
 　Flame Bite: hits deal an extra 5 fire damage and can ignite the target.
 　Bone Rot: hits inflict Soul Snake Venom (240 seconds).
-　Disarm: hits knock the player's weapon out of their hands (12-second cooldown).
+　Disarm: hits knock the player's weapon out of their hands (12-second cooldown); a single Earth root ignores this.
 　Stonehide: +15% max health, +15 defence, −10% movement speed.
 　Always: every demonized creature has a 15% chance to ignore a hit from a player's basic attack (it still keeps its target) — the UI never shows this.
 """,
@@ -2635,7 +2635,7 @@ item(
 
 　土 —— 肉盾，血厚、站得住
 　　所有土：受伤少一成。
-　　只有单土：生命上限 ×1.9（差不多翻倍）；受伤少两成；不会被打出受击硬直、不会被击退、击倒，也不怕电击。
+　　只有单土：生命上限 ×1.9（差不多翻倍）；受伤少两成；不会被打出受击硬直、不会被击退、击倒，也不怕电击；不会被缴械（武器打不掉）。
 　　代价：打得轻一点（伤害 ×0.85）、跑得慢一点（移速 ×0.9）。
 
 单灵根专属
@@ -2689,7 +2689,7 @@ item(
 　雷噬：命中额外造成 10 点电击伤害。
 　火噬：命中额外造成 5 点火焰伤害，并且能点燃目标。
 　蚀骨：命中会挂上噬魂蛇毒（持续 240 秒）。
-　缴械：命中玩家时打掉他手里的武器（12 秒冷却）。
+　缴械：命中玩家时打掉他手里的武器（12 秒冷却）；单土灵根免疫这一条。
 　岩固：最大生命 +15%、防御 +15、移速 −10%。
 　通用：所有入魔生物被玩家普通攻击命中时，有 15% 概率免疫该次伤害（免伤时它仍然盯着你），界面上没有任何提示。
 """,
