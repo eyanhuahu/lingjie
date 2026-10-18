@@ -719,7 +719,7 @@ What each element does
 
 　Water — tougher the wetter you are, the angler's friend
 　　Any Water root: fishing is a little faster, and wetness builds up at only 80% (a single Water root is exempt).
-　　Single Water only: you stay dry, move 10% faster and shrug off cold better; your wetness soaks up damage for you and, when you are not at full health, turns into healing; fishing is much faster.
+　　Single Water only: you stay dry, move 10% faster and shrug off cold better; you have a firm grip, so effects like a knock-it-out-of-your-hands or the Moon Lion's roar cannot strip your weapon; your wetness soaks up damage for you and, when you are not at full health, turns into healing; fishing is much faster.
 　　Single-root cost: you warm up slowly, and in extreme heat or cold you only move at 85%.
 
 　Fire — at home in the flames, safe down a burning mine
@@ -729,7 +729,7 @@ What each element does
 
 　Earth — the tank: more health, harder to move
 　　Any Earth root: you take 10% less damage.
-　　Single Earth only: ×1.9 max health (nearly double); you take 20% less damage; you cannot be staggered, knocked back, knocked down or stunned by electricity.
+　　Single Earth only: ×1.9 max health (nearly double); you take 20% less damage; you never flinch from a hit, cannot be knocked back or knocked down, and ignore electric stuns.
 　　Cost: you hit a little softer (×0.85 damage) and move a little slower (×0.9 speed).
 
 Single-root bonuses
@@ -2625,7 +2625,7 @@ item(
 
 　水 —— 越湿越抗打，钓鱼好手
 　　所有水：钓鱼快一点；受潮速度只有八成（湿气攒得慢，单水不受这条影响）。
-　　只有单水：自动防水、走路快一成、更耐冷；身上的湿气能替你挡伤害，没满血时湿气还会变成回血；钓鱼快很多。
+　　只有单水：自动防水、走路快一成、更耐冷；手里的东西握得牢（被甩落、被狮吼这类效果打不掉武器）；身上的湿气能替你挡伤害，没满血时湿气还会变成回血；钓鱼快很多。
 　　单水的代价：暖得慢（只有七成的升温速度）；过热或过冷时走路只有八成五。
 
 　火 —— 火里来火里去，下矿不怕烧
@@ -2635,7 +2635,7 @@ item(
 
 　土 —— 肉盾，血厚、站得住
 　　所有土：受伤少一成。
-　　只有单土：生命上限 ×1.9（差不多翻倍）；受伤少两成；不会被击退、击倒、电击。
+　　只有单土：生命上限 ×1.9（差不多翻倍）；受伤少两成；不会被打出受击硬直、不会被击退、击倒，也不怕电击。
 　　代价：打得轻一点（伤害 ×0.85）、跑得慢一点（移速 ×0.9）。
 
 单灵根专属
