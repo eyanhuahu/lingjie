@@ -704,7 +704,8 @@ The count sets cultivation speed
 
 What each element does
 　Each element works on two levels: "any Metal root" applies as soon as you carry that element; "single Metal only" is the extra you get when it is your ONLY root.
-　So multiple roots are not a pure downgrade — you still get every element's base effect, you just miss the "single root only" tier (and you do cultivate more slowly).
+　Penalties have their own threshold: only one-root and two-root characters take the "Cost" lines below; with three roots or more every penalty is waived.
+　So multiple roots are not a pure downgrade — you keep every element's base effect, three or more roots even drop the penalties, and you only miss the "single root only" tier (while cultivating more slowly).
 
 　Metal — unstoppable by lightning, the miner's pick
 　　Any Metal root: mining is 25% faster.
@@ -717,7 +718,7 @@ What each element does
 　　Cost: thin skin — you take 20% more damage.
 
 　Water — tougher the wetter you are, the angler's friend
-　　Any Water root: fishing is a little faster.
+　　Any Water root: fishing is a little faster, and wetness builds up at only 80% (a single Water root is exempt).
 　　Single Water only: you stay dry, move 10% faster and shrug off cold better; your wetness soaks up damage for you and, when you are not at full health, turns into healing; fishing is much faster.
 　　Single-root cost: you warm up slowly, and in extreme heat or cold you only move at 85%.
 
@@ -761,7 +762,7 @@ Mid-tier pill (mystic), refining time 4 minutes.
 
 Materials: Tentacle Spots 2, Bone Shards 2, Hound's Tooth 2, Magic Core 1.
 
-Effect: randomly shaves off one spirit root. The chance depends on how many you have: 2 roots 8%, 3 roots 15%, 4 roots 35%, 5 roots 60%, and every failure adds another 10%.
+Effect: randomly shaves off one spirit root. The chance depends on how many you have: 2 roots 8%, 3 roots 15%, 4 roots 35%, 5 roots 60%. The chance is fixed and does not rise with repeated use.
 Requirements: at least 2 roots, health above 20, sanity at least 20.
 Cost: 20 health and 20 sanity whether it works or not (cannot be reduced).
 """,
@@ -774,7 +775,7 @@ Celestial pill (heaven), refining time 8 minutes. There is no lightning tribulat
 
 The six versions
 　Essence-Turning Pill (generic): with several roots it shaves off a random one; if you already have a single root it rerolls the element.
-　Essence-Turning Pill - Metal / Wood / Water / Fire / Earth: reshapes your core into that element.
+　Essence-Turning Pill - Metal / Wood / Water / Fire / Earth: reshapes your core into that element (only for a single-root character, and not for the element you already have).
 
 Materials
 　Generic: Dust-Cleansing Fruit 1, Infused Shadow Atrium 1, Living Log 5, Magic Crystal 10.
@@ -2609,7 +2610,8 @@ item(
 
 各属性效果
 　每个灵根分两档：「所有X灵根」是只要带这一种就生效；「只有单X」是只抽到这一种才多给的加成。
-　所以抽到多灵根并不吃亏——每种灵根的基础效果照样吃得到，只是拿不到「只有单X」那一档（另外修炼会慢一些）。
+　负面另有一条门槛：只有单灵根、双灵根才会承担下面写的「代价」；三条灵根及以上，全部代价一律免除。
+　所以抽到多灵根并不吃亏——每条灵根的基础效果照样吃得到，三条以上连代价都免疫，只是拿不到「只有单X」那一档（另外修炼会慢一些）。
 
 　金 —— 雷打不动，矿工首选
 　　所有金：挖矿快 25%。
@@ -2622,7 +2624,7 @@ item(
 　　代价：皮薄——受到的伤害多两成。
 
 　水 —— 越湿越抗打，钓鱼好手
-　　所有水：钓鱼快一点。
+　　所有水：钓鱼快一点；受潮速度只有八成（湿气攒得慢，单水不受这条影响）。
 　　只有单水：自动防水、走路快一成、更耐冷；身上的湿气能替你挡伤害，没满血时湿气还会变成回血；钓鱼快很多。
 　　单水的代价：暖得慢（只有七成的升温速度）；过热或过冷时走路只有八成五。
 
@@ -3039,7 +3041,7 @@ item(
 
 材料：""" + R(("触手皮", 2, "tentaclespots"), ("骨片", 2, "boneshard"), ("犬齿", 2, "houndstooth"), ("魔核", 1)) + """。
 
-效果：随机削掉一条灵根。成功率看灵根条数：2 条 8%、3 条 15%、4 条 35%、5 条 60%，每次失败再累加 10%。
+效果：随机削掉一条灵根。成功率看灵根条数：2 条 8%、3 条 15%、4 条 35%、5 条 60%，成功率固定，不随服用次数变化。
 服用条件：灵根 ≥ 2 条、生命 > 20、理智 ≥ 20。
 代价：不管成败，都扣 20 点生命和 20 点理智（不可减免）。
 """,
@@ -3225,7 +3227,7 @@ item(
 
 6 种
 　转元丹（通用）：多灵根时随机削掉一条；已经是单灵根则随机换成别的属性。
-　转元丹·金 / 木 / 水 / 火 / 土：把本元重塑成指定属性。
+　转元丹·金 / 木 / 水 / 火 / 土：把本元重塑成指定属性（只能给单灵根吃，而且不能本来就是这个属性）。
 
 材料
 　通用版：见上方配方。
