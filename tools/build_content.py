@@ -733,7 +733,8 @@ What each element does
 　　Cost: you hit a little softer (×0.85 damage) and move a little slower (×0.9 speed) — but a single root already gives ×1.2 damage and ×1.1 speed, so the two cancel out: single Earth ends up at about +2% damage and −1% speed, i.e. practically no cost. Only a two-root Earth build really feels ×0.85 / ×0.9.
 
 Single-root bonuses
-　×1.2 global damage and ×1.1 speed, and death costs no realm stage.
+　×1.2 global damage, ×1.1 speed, ×1.5 max health (×1.9 for Earth), and death costs no realm stage.
+Note: those ×1.2 / ×1.1 only happen to cancel Earth's own ×0.85 / ×0.9. The other four elements' costs sit on damage taken, healing, body temperature and fire/cold damage - a different multiplier - so they still apply: a single Metal root still burns, a single Wood root still takes extra damage, a single Water root still warms up slowly and a single Fire root still freezes. Single Water's extreme-temperature 85% speed does get the ×1.1, but only while freezing or overheating, so it still ends up slower.
 
 Changing roots
 　Marrow-Cleansing Pill tries to shave off one extra root — whether it works or not it costs 20 health and 20 sanity (cannot be reduced). The Essence-Turning Pill reshapes your core into a chosen element.
@@ -2639,7 +2640,8 @@ item(
 　　代价：打得轻一点（伤害 ×0.85）、跑得慢一点（移速 ×0.9）——不过单灵根本身带 ×1.2 增伤与 ×1.1 移速，正好抵掉：单土实际是伤害 +2%、移速 −1%，几乎等于没有代价；只有双灵根带土时才是真的 ×0.85 / ×0.9。
 
 单灵根专属
-　全局增伤 ×1.2、移速 ×1.1，而且死亡不掉阶。
+　全局增伤 ×1.2、移速 ×1.1，生命上限 ×1.5（土是 ×1.9），而且死亡不掉阶。
+　注意：这 ×1.2 增伤 / ×1.1 移速，只在土身上刚好把它自己的 ×0.85 / ×0.9 抵掉了。其它四行的代价挂在受伤、回血、体温、冷火伤害上，不在同一个乘数里，抵不掉——单金照样怕火、单木照样多受伤、单水照样暖得慢、单火照样怕冷；单水那条「极端温度移速 ×0.85」虽然吃得到 ×1.1，但要过冷或过热才触发，净下来仍是慢一成半左右。
 
 改灵根
 　洗髓丹：试着削掉一条多余的灵根——不管成败都会扣 20 点生命和 20 点理智（不可减免）。转元丹：把本元重塑成指定属性。
