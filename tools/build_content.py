@@ -596,7 +596,7 @@ Making it
 Flying
 　To get on: right-click the sword on the ground and pick "Board". To ride along on someone else's sword, right-click that flying player and pick "Board" too.
 Flight height 6, speed ×1.2, and it carries one passenger. No cooldown.
-　The sword itself deals no damage — to fight, you still rely on whatever weapon you are holding.
+　The sword itself deals no damage, and you cannot attack while flying — in the air you may only move, change equipment, eat and land. Land first if you want a fight.
 　In flight you do not drown, you can cross the ocean, you do not attract shadow creatures, you cannot jump onto platforms, and landing never hurts you.
 
 Returning it
@@ -3788,7 +3788,7 @@ item(
 飞行
 　想骑上去：右键地上的飞剑，选「登上」。想搭别人的剑，右键那个正在御剑的人，同样选「登上」。
 飞行高度 6，移速 ×1.2，可以载 1 名乘客；没有冷却。
-　飞剑本身不造成伤害——要打架，靠的还是你手里那把武器。
+　飞剑本身不造成伤害；而且飞行中不能攻击——天上只允许移动、换装备、吃食物和降落，其它操作一律不行。（想打架得先落地。）
 　飞行中不会溺水、能飞越海面、不会引来暗影生物、不能平台跳跃；降落不受到坠落伤害。
 
 归还
