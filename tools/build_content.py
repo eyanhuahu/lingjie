@@ -594,8 +594,9 @@ Making it
 　Requirement: realm Guiding (the 4th) or above, and you must dismount and be on the ground to take off.
 
 Flying
-　Flight height 6, speed ×1.2, and it carries one passenger. No cooldown.
-　The sword itself deals no damage — combat uses whatever weapon you are holding.
+　To get on: right-click the sword on the ground and pick "Board". To ride along on someone else's sword, right-click that flying player and pick "Board" too.
+Flight height 6, speed ×1.2, and it carries one passenger. No cooldown.
+　The sword itself deals no damage — to fight, you still rely on whatever weapon you are holding.
 　In flight you do not drown, you can cross the ocean, you do not attract shadow creatures, you cannot jump onto platforms, and landing never hurts you.
 
 Returning it
@@ -3785,8 +3786,9 @@ item(
 　解锁条件：大境界达到引气（第 4 境）以上；要在地面解除骑乘后才能御剑。
 
 飞行
-　飞行高度 6，移速 ×1.2，可以载 1 名乘客；没有冷却。
-　飞剑本身不造成伤害，战斗完全沿用你手里拿的武器。
+　想骑上去：右键地上的飞剑，选「登上」。想搭别人的剑，右键那个正在御剑的人，同样选「登上」。
+飞行高度 6，移速 ×1.2，可以载 1 名乘客；没有冷却。
+　飞剑本身不造成伤害——要打架，靠的还是你手里那把武器。
 　飞行中不会溺水、能飞越海面、不会引来暗影生物、不能平台跳跃；降落不受到坠落伤害。
 
 归还
