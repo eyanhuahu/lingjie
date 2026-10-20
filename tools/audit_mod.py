@@ -48,6 +48,12 @@ VANILLA = {
     "oceanfish_small_8_inv": ["炽热太阳鱼"], "oceanfish_medium_1_inv": ["泥鱼"],
     "oceanfish_medium_8_inv": ["冰鲷鱼"],
 }
+# mod 自己的材料（不存在于原版物品表，跳过英文名核对）
+WHITELIST_MOD = {"魔核碎片", "魔核", "魔晶", "洗尘神树果", "淬铁灵剑", "蝎龙骨", "血蝠精血",
+                 "紫晶壳", "狮骨", "噬魂蛇皮", "采下的融灵草", "采下的龙爪花", "紫晶塑体花瓣",
+                 "转元丹", "转元丹·木", "转元丹·火", "转元丹·金", "转元丹·水", "转元丹·土",
+                 "风干的羽毛", "灵韵", "星陨", "冰霜业火本体", "龙炎心火本体", "彩虹宝石"}
+
 MOD_CN = {
     "lj_magic_debris": "魔核碎片", "lj_magic_core": "魔核", "lj_magic_crystal": "魔晶",
     "lj_xichen_fruit": "洗尘神树果", "lj_ordinary_sword": "淬铁灵剑",
@@ -98,6 +104,18 @@ def load_po():
                         out[key] = val
                     break
     return out
+
+
+def game_item_names():
+    """游戏里所有物品英文名（STRINGS.NAMES 的值集合）"""
+    if not os.path.exists(GAME_SCRIPTS):
+        return set()
+    z = zipfile.ZipFile(GAME_SCRIPTS)
+    try:
+        t = z.read("scripts/strings.lua").decode("utf-8", "replace")
+    except KeyError:
+        return set()
+    return set(re.findall(r'^\s*[A-Z0-9_]+\s*=\s*"([^"]+)"', t, re.M))
 
 
 def main(argv):
@@ -182,6 +200,25 @@ def main(argv):
                 bad += 1
     if not bad:
         print("  ✓ 都没有疑点")
+
+
+    # ---- 3.5 英文名必须是游戏里的物品名 ----
+    src = io.open(os.path.join(ROOT, "tools", "build_content.py"), encoding="utf-8").read()
+    k = src.find("MATERIAL_EN = {")
+    en_block = src[k:src.find("}", k)] if k >= 0 else ""
+    en_map = dict(re.findall(r'"([^"]+)":\s*"([^"]+)"', en_block))
+    known = game_item_names()
+    if known:
+        print("\n=== 材料英文名核对（必须是游戏物品名）===")
+        bad2 = 0
+        for cn, en in sorted(en_map.items()):
+            if cn in WHITELIST_MOD or en in ("", "-"):
+                continue
+            if en not in known:
+                print("  ⚠️ 「%s」的英文名「%s」不在游戏物品名里（中文名很可能也不对）" % (cn, en))
+                bad2 += 1
+        if not bad2:
+            print("  ✓ 都是游戏里的物品名")
 
     # ---- 3. 常量清单 ----
     print("\n=== 本轮改动脚本里的数字常量（人工逐条落到卡片）===")
