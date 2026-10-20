@@ -56,7 +56,7 @@ MATERIAL_ICON = {
     "蜘蛛腺": "spidergland",
     "格罗姆的黏液": "glommerfuel",
     "格罗姆翅膀": "glommerwings",
-    "佩珀": "pepper",
+    "辣椒": "pepper",
     "噩梦燃料": "nightmarefuel",
     "针刺": "stinger",
     "芦苇": "cutreeds",
@@ -274,7 +274,7 @@ MATERIAL_EN = {
     "格罗姆翅膀": "Glommer's Wings",
     "绿蘑菇": "Green Cap",
     "高脚鸟蛋": "Tallbird Egg",
-    "佩珀": "Pepper",
+    "辣椒": "Pepper",
     "针刺": "Stinger",
     "告密的心": "Telltale Heart",
     "猪皮": "Pig Skin",
@@ -3090,11 +3090,11 @@ item(
     """
 中阶丹药（玄），炼制时间 4 分钟。
 
-材料：""" + R(("佩珀", 1), ("噩梦燃料", 1), ("针刺", 5), ("魔核", 1)) + """。
+材料：""" + R(("辣椒", 1), ("噩梦燃料", 1), ("针刺", 5), ("魔核", 1)) + """。
 
 效果：短时间内提高 30% 伤害，持续 3 分钟。
 """,
-    recipe=R(("佩珀", 1), ("噩梦燃料", 1), ("针刺", 5), ("魔核", 1)),
+    recipe=R(("辣椒", 1), ("噩梦燃料", 1), ("针刺", 5), ("魔核", 1)),
 )
 
 item(

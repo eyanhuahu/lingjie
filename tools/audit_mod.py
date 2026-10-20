@@ -100,7 +100,8 @@ def load_po():
                     val = nxt[len("msgstr "):].strip()
                     if len(val) >= 2 and val[0] == '"' and val[-1] == '"':
                         val = val[1:-1]
-                    if key:
+                    # 同一个 msgid 可能有多条（物品名 + 皮肤名），物品名在前，保留第一条
+                    if key and key not in out:
                         out[key] = val
                     break
     return out
