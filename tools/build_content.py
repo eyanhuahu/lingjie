@@ -577,8 +577,8 @@ Scaling: follows the vanilla HUD scale setting.
 
 Visibility: a panel only ever shows your own effects, so other players never see them.
 
-Negative effects (9): Starfire Burn, Frost Erosion, Scorpion Venom, Soul Snake Venom, Petrified, Bound, Flame Backlash, Alchemy Tribulation, Sacrificial Tribulation.
-Buffs (6): Blazing Pill, Cold Flame Pill, Drying Pill, Explosion Pill, Invincible Pill, Restore Spirit Pill.
+Negative effects (10): Starfire Burn, Frost Erosion, Scorpion Venom, Soul Snake Venom, Petrified, Bound, Flame Backlash, Alchemy Tribulation, Sacrificial Tribulation, Essence-Turning Weakness.
+Buffs (9): Blazing Pill, Cold Flame Pill, Drying Pill, Explosion Pill, Invincible Pill, Restore Spirit Pill, Repelling Pill, Stillness Pill, Soul-Erosion Immunity.
 
 Also: the player avatar popup now has an "Ethereal Realm Guide" entry.
 """,
@@ -591,7 +591,7 @@ A bound flying sword: you can ride it, or ride as a passenger.
 
 Making it
 　Craft it in the Character tab; it costs 15 Reiki.
-　Requirement: realm Guiding (the 4th) or above, and you must dismount and be on the ground to take off.
+　Requirement: realm Grain Avoidance (the 3rd) or above, and you must dismount and be on the ground to take off.
 
 Flying
 　To get on: right-click the sword on the ground and pick "Board". To ride along on someone else's sword, right-click that flying player and pick "Board" too.
@@ -615,9 +615,9 @@ Silk-woven robe with a core for armour. Light steps, a steadying mind.
 
 Recipe: """ + R(("Magic Core Shard", 20), ("Silk", 2), ("Petals", 6), ("Beeswax", 1)) + """ — Science Machine tier.
 
-Stats: 650 durability, 80% damage absorption, +10% movement speed, 1 sanity every 8 seconds.
+Stats: 650 durability, 80% damage absorption, +10% movement speed, 1 sanity every 8 seconds. At 0 durability the robe is destroyed outright (an equipped one drops back into your pack first).
 
-Repair: Magic Core Shards restore 50 armour durability each (hold a stack and right-click to spend several at once, filling the gap).
+Repair: Magic Core Shards restore 50 armour durability each (hold a stack and right-click to spend several at once, filling the gap); you can repair even at full durability, which wastes one shard.
 """,
     },
     "lj_lion_angle_care": {
@@ -628,7 +628,7 @@ A lion-bone casque strung with spirit feathers, set with a moon eye and wrapped 
 
 Recipe: """ + R(("Lion Bone", 1), ("Glommer's Wings", 1), ("Moon Eye", 1, "moonrockcrater"), ("Moon Tree Blossom", 9, "moon_tree_blossom")) + """ — Science Machine tier.
 
-Effect: while worn it resists inner demons and slowly restores sanity, all powered by fuel.
+Effect: while worn it resists inner demons, slowly restores sanity and is 100% waterproof, all powered by fuel.
 　Fuel cap: 6 days.
 　Refuel with Moon Tree Blossoms, each one adds 180 seconds (3 minutes).
 When the fuel runs out it says "The moonlight has faded; feed it Moon Tree Blossoms to rekindle it."
@@ -722,13 +722,13 @@ What each element does
 
 　Wood — a feller and a farmer who heals on the job
 　　Any Wood root: chopping and gathering are 25% faster.
-　　Single Wood only: you are immune to snake venom; chopping and gathering are twice as fast; out of combat, plants nearby slowly heal you.
+　　Single Wood only: you are immune to snake venom; chopping and gathering are twice as fast; out of combat, plants nearby slowly heal you and restore the same amount of sanity.
 　　Cost: thin skin — you take 20% more damage.
 
 　Water — tougher the wetter you are, the angler's friend
 　　Any Water root: fishing is a little faster, and wetness builds up at only 80% (a single Water root is exempt).
-　　Single Water only: you stay dry, move 10% faster and shrug off cold better; you have a firm grip, so effects like a knock-it-out-of-your-hands or the Moon Lion's roar cannot strip your weapon; your wetness soaks up damage for you and, when you are not at full health, turns into healing; fishing is much faster.
-　　Single-root cost: you warm up slowly, and in extreme heat or cold you only move at 85%.
+　　Single Water only: you can walk on water without drowning; you stay dry, move 10% faster and shrug off cold better; wetness no longer drains sanity — above 30 wetness it actually restores 7.5 sanity per minute; items in your pack never get damp (containers included); you have a firm grip, so nothing can knock the weapon out of your hands; your wetness soaks up damage for you and, when you are not at full health, turns into healing; fishing is much faster.
+　　Also for a single Water root: wetness can chill you by at most 10 degrees, cold caused by wetness never hurts you, natural cold is only halved, and in extreme heat or cold you only move at 85%.
 
 　Fire — at home in the flames, safe down a burning mine
 　　Any Fire root: you warm up fast and cool down slowly, and regain sanity near heat such as campfires.
@@ -929,7 +929,7 @@ Demonization Affixes
 　Thunder Bite: hits deal an extra 10 electric damage.
 　Flame Bite: hits deal an extra 5 fire damage and can ignite the target.
 　Bone Rot: hits inflict Soul Snake Venom (240 seconds).
-　Disarm: hits knock the player's weapon out of their hands (12-second cooldown); a single Earth root ignores this.
+　Disarm: hits knock the player's weapon out of their hands (12-second cooldown); a single Water or single Earth root ignores this.
 　Stonehide: +15% max health, +15 defence, −10% movement speed.
 　Always: every demonized creature has a 15% chance to ignore a hit from a player's basic attack (it still keeps its target) — the UI never shows this.
 """,
@@ -2359,7 +2359,7 @@ Amethyst Shell 1, Lion Bone 1, [images/inventoryimages2/monstermeat.png] Monster
 SITE = [
     # modinfo.lua 里是 name = "灵界"，author = "犹如黑夜星光、喵大仙BigXian"。
     # 顶栏作者名按作者要求单独写（跟 modinfo 不必一致）。
-    {"网站标题": "灵界", "网站英文名": "Spirit Realm", "网站版本": "v0.12", "作者": "犹如黑夜星光JinYan、喵大仙BigXian"},
+    {"网站标题": "灵界", "网站英文名": "Spirit Realm", "网站版本": "v0.14", "作者": "犹如黑夜星光JinYan、喵大仙BigXian"},
 ]
 
 SECTIONS = [
@@ -2576,8 +2576,8 @@ item(
 
 可见范围：只显示自己的状态，别的玩家看不到你的限时状态。
 
-负面状态（9 种）：星火灼烧、冰蚀、蝎毒、蛇毒、石化、束缚、异火焚身、丹劫、祭天雷劫。
-增益状态（6 种）：赤焰丹、冷焰丹、防潮丹、爆裂丸、不灭丹、复灵丹。
+负面状态（10 种）：星火灼烧、冰蚀、蝎毒、蛇毒、石化、束缚、异火焚身、丹劫、祭天雷劫、转元丹虚弱。
+增益状态（9 种）：赤焰丹、冷焰丹、防潮丹、爆裂丸、不灭丹、复灵丹、凝摒丹、清心丸、魂蚀免疫。
 
 另外：玩家头像弹窗里新增了「灵界介绍页」入口。
 """,
@@ -2642,13 +2642,13 @@ item(
 
 　木 —— 砍树种地，边打边回血
 　　所有木：砍树、采集都快 25%。
-　　只有单木：免疫蛇毒；砍树、采集快一倍；打完架停下来，附近有植物就会慢慢回血。
+　　只有单木：免疫蛇毒；砍树、采集快一倍；打完架停下来，附近有植物就会慢慢回血，并同时回等量理智。
 　　代价：皮薄——受到的伤害多两成。
 
 　水 —— 越湿越抗打，钓鱼好手
 　　所有水：钓鱼快一点；受潮速度只有八成（湿气攒得慢，单水不受这条影响）。
-　　只有单水：自动防水、走路快一成、更耐冷；手里的东西握得牢（被甩落、被狮吼这类效果打不掉武器）；身上的湿气能替你挡伤害，没满血时湿气还会变成回血；钓鱼快很多。
-　　单水的代价：暖得慢（只有七成的升温速度）；过热或过冷时走路只有八成五。
+　　只有单水：可以在水面上走（踏水，不会落水）；自动防水、走路快一成、更耐冷；潮湿不再扣理智，反而潮湿超过 30 时每分钟回 7.5 点理智；背包里的物品不会返潮（连容器一起）；手里的东西握得牢（被甩落、被狮吼、被缴械都打不掉）；身上的湿气能替你挡伤害，没满血时湿气还会变成回血；钓鱼快很多。
+　　单水的其他好处：潮湿最多让你降温 10 度（治「湿了更冷」，但环境寒冷照常算）；因为潮湿才导致的过冷直接免伤，自然寒冷只减半；过热或过冷时走路只有八成五。
 
 　火 —— 火里来火里去，下矿不怕烧
 　　所有火：暖得快、凉得慢；靠近火堆之类的热源会回理智。
@@ -2712,7 +2712,7 @@ item(
 　雷噬：命中额外造成 10 点电击伤害。
 　火噬：命中额外造成 5 点火焰伤害，并且能点燃目标。
 　蚀骨：命中会挂上噬魂蛇毒（持续 240 秒）。
-　缴械：命中玩家时打掉他手里的武器（12 秒冷却）；单土灵根免疫这一条。
+　缴械：命中玩家时打掉他手里的武器（12 秒冷却）；单水、单土灵根免疫这一条。
 　岩固：最大生命 +15%、防御 +15、移速 −10%。
 　通用：所有入魔生物被玩家普通攻击命中时，有 15% 概率免疫该次伤害（免伤时它仍然盯着你），界面上没有任何提示。
 """,
@@ -3783,7 +3783,7 @@ item(
 
 怎么做
 　在「人物」分类里制作，消耗 15 点灵力。
-　解锁条件：大境界达到引气（第 4 境）以上；要在地面解除骑乘后才能御剑。
+　解锁条件：大境界达到辟谷（第 3 境）以上；要在地面解除骑乘后才能御剑。
 
 飞行
 　想骑上去：右键地上的飞剑，选「登上」。想搭别人的剑，右键那个正在御剑的人，同样选「登上」。
@@ -3809,9 +3809,9 @@ item(
 
 制作：二本科技（炼金引擎）解锁。
 
-属性：650 耐久，80% 伤害吸收，移速 +10%，每 8 秒回复 1 点理智。
+属性：650 耐久，80% 伤害吸收，移速 +10%，每 8 秒回复 1 点理智。耐久归零会直接损毁（装备中的会先脱回背包再消失）。
 
-修复：用魔核碎片修，每份回复 50 点护甲耐久（手持一组右键可以一次按缺口补多份）。
+修复：用魔核碎片修，每份回复 50 点护甲耐久（手持一组右键可以一次按缺口补多份）；满耐久时也能修，会消耗一份但耐久不变。
 """,
     recipe=R(("魔核碎片", 20), ("蜘蛛丝", 2, "silk"), ("花瓣", 6, "petals"), ("蜂蜡", 1, "beeswax")),
 )
@@ -3824,7 +3824,7 @@ item(
 
 制作：二本科技（炼金引擎）解锁。
 
-效果：佩戴时抵抗心魔、缓慢回复理智，全靠燃料维持。
+效果：佩戴时抵抗心魔、缓慢回复理智，并且 100% 防水；全靠燃料维持。
 　燃料上限 6 天。
 　用月树花补充，每朵注入 180 秒（3 分钟）。
 燃料耗尽后提示「月华已散，需以月树花续燃」。
@@ -4794,6 +4794,33 @@ DATA = {
              "Sword carrying fix: when facing the camera the passenger now renders in front of the sword's rider\n"
              "Attack animations for the Spirit Sword and Starfall Sword: a dedicated walk attack on foot, vanilla riding attack while mounted\n"
              "Visual polish (updated animations and UI for the Danling, Myriad Spirit Ritual and five-element roots)\n",
+         "是否展示": "true"},
+        {"日志版本": "v0.14", "日期": "2026-10-20",
+         "内容":
+             "版本号 0.12 → 0.14\n"
+             "单水灵根大幅加强：新增踏水（能在水面上走，不会落水）；潮湿不再扣理智，潮湿超过 30 反而每分钟回 7.5 点理智；"
+             "背包里的物品（含容器）不再返潮；潮湿最多让你降温 10 度；因潮湿导致的过冷直接免伤；同时取消了「暖得慢」这条代价\n"
+             "单木灵根：脱战后回血时会同时回等量理智\n"
+             "单土灵根：获得强握，免疫缴械（现在和单水一样）\n"
+             "御空灵剑：解锁境界由引气改为辟谷（第 3 境）\n"
+             "月狮羽冠：新增 100% 防水\n"
+             "青岚道袍：耐久归零会直接损毁；修理由其他玩家也能操作，满耐久时也能修（会浪费一份魔核碎片）\n"
+             "限时状态面板：新增「转元丹虚弱」「凝摒丹」「清心丸」「魂蚀免疫」四项\n"
+             "修复：御剑飞行时生成的食人花与暗影裂隙不再悬在半空\n"
+             "优化视觉（星陨手持充能特效重做、月狮羽冠戴帽图层修正、青岚道袍动画更新）\n",
+         "英文内容":
+             "Version 0.12 → 0.14\n"
+             "Single Water root heavily upgraded: it can now walk on water without drowning; wetness no longer drains sanity "
+             "and above 30 it restores 7.5 sanity per minute; items in your pack (containers included) never get damp; "
+             "wetness can chill you by at most 10 degrees; cold caused by wetness never hurts you; the old \"warms up slowly\" cost is gone\n"
+             "Single Wood root: out-of-combat healing now restores the same amount of sanity\n"
+             "Single Earth root: gains a firm grip and ignores Disarm, just like single Water\n"
+             "Flying Spirit Sword: unlocks at Grain Avoidance (the 3rd realm) instead of Qi Guiding\n"
+             "Moonlion Feather Crown: now 100% waterproof\n"
+             "Bluemist Robe: destroyed outright at 0 durability; other players can repair it for you, and you can repair even at full durability (wasting one shard)\n"
+             "Timed effects panel: adds Essence-Turning Weakness, Repelling Pill, Stillness Pill and Soul-Erosion Immunity\n"
+             "Fix: Lureplants and Shadow Rifts spawned while flying no longer hang in the air\n"
+             "Visual polish (Starfall Sword charge FX rework, Moonlion Feather Crown hat-layer fix, Bluemist Robe animation update)\n",
          "是否展示": "true"},
     ],
     "tele": [{"导向id": t[0], "字段": t[1], "说明": "", "是否展示": "true"} for t in TELE],
