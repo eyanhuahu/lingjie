@@ -819,7 +819,7 @@ The six versions
 
 Materials
 　Generic: Dust-Cleansing Fruit 1, Possessed Shadow Atrium 1, Living Log 5, Magic Crystal 10.
-　Single-element: Dust-Cleansing Fruit 1, Possessed Shadow Atrium 1, Magic Crystal 10, plus one matching rare ocean fish —
+　Single-element: Dust-Cleansing Fruit 1, Possessed Shadow Atrium 1, Magic Crystal 10, plus one matching rare ocean fish (all five come from the Hermit Island's trash piles) —
 　　Wood = Bloomfin Tuna · Fire = Scorching Sunfish · Metal = Fallounder · Water = Ice Bream · Earth = Mudfish.
 
 Cost: 30 seconds of weakness after taking it — you cannot equip, use items or attack, and everything you are wearing drops to the ground.
@@ -3285,7 +3285,7 @@ item(
 
 材料
 　通用版：见上方配方。
-　单属性版：洗尘神树果 1、附身暗影心房 1、魔晶 10，再加一条对应的稀有海鱼——
+　单属性版：洗尘神树果 1、附身暗影心房 1、魔晶 10，再加一条对应的稀有海鱼（这 5 条鱼都出在「奶奶岛的垃圾堆」）——
 　　木 = 花朵金枪鱼 · 火 = 炽热太阳鱼 · 金 = 落叶比目鱼 · 水 = 冰鲷鱼 · 土 = 泥鱼。
 
 代价：服下后虚弱 30 秒——不能装备、不能用道具、不能攻击，已经穿着的装备会全部卸到地上。
