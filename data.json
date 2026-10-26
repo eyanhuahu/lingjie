@@ -2205,6 +2205,24 @@
       "英文详情": "Spawns beside an Amethyst Form Flower. Epic boss.\n\nBase stats\n24000 health, 15% armour, medium movement speed.\n\nCore mechanics\nDisengage and return: once it leaves the area around its flower it stops chasing and goes home, using one roar as the transition; it gives up entirely past 40 distance.\nWith flowers within 5 turf it heals 60 health per flower every 60 seconds (up to 5 flowers counted per minute) (an Amethyst Form Flower counts as one flower unit and spawns butterflies like petals do).\nDestroying or harvesting nearby flowers interrupts the healing and forces a Lion's Roar within 10 seconds (harvesting petals within those 10 seconds still triggers it only once).\nStanding near a Mandrake — planted ones included — puts it to sleep for 8 seconds, and that sleep can only trigger once per minute.\n\nSkills (normal attacks only rotate between claw and scale powder missiles; the roar and earth-rending step are now condition-triggered)\nCrystal Claw Smash: a single-target melee heavy blow. 70 damage, 5-second cooldown, range about 1 turf (4 units), knocks small creatures down, and staggers a hit player for 0.6 seconds. If the player is closer than 1 turf, there is a 60% chance of one swing with each claw for 70 damage each (140 total), and a 40% chance of a single swing. Three consecutive melee misses force one earth-rending step (any hit resets the count).\nScale Powder Missiles (ranged): fans one wing to fire 3 scale powder orbs in a triangular spread. 40 damage each, 120 for all three. Blast radius about 0.4 turf (1.5 units), and each blast leaves a petal at the impact point. 18-second cooldown, up to 10 turf flight distance, exploding on contact with an obstacle.\nLion's Roar (control): a screen-wide sound wave with 6 turf of range. No damage, but it staggers the player for 1.2 seconds and forces their weapon to drop.\nEarth-Rending Step (condition-triggered: after 3 consecutive melee misses, or when flower-picking interrupts its healing): the lion raises one front paw, sinks its body to gather power, the ground trembles faintly and dust kicks up at its feet, with a small screen shake warning players to move. A flower-triggered earth-rending step has its own 20-second interval.\n　Spawn area: centred on itself with 8 turf (32 units) of radius, it spawns one temporary pit under every player in range; pits never overlap, and no pit spawns where the ground is impassable.\n　The pit does not destroy buildings, turf, walls or crops, and when it first appears only cracks show as a warning for 1 second.\n　It then advances one collapse stage per second, 3 stages in all: stages 1 and 3 each deal 60 area damage, and stage 2 is effects only.\n　From the second second on it deals an extra 1 area damage per second; the collapse and damage radius are both 2.5 units (about 0.6 turf).\n　When stage 3 ends the pit is removed immediately, so it exists for about 3 seconds in total (unlike the Antlion's permanent sinkholes).\n　⚠️ The pit only deals damage and does not slow you.\n　18-second cooldown.\n\nDrops on kill\nAmethyst Shell 1, Lion Bone 1, [images/inventoryimages2/monstermeat.png] Monster Meat 4, Magic Crystal 2, Magic Core 6, Magic Core Shard 10, [images/inventoryimages3/redgem.png] Red Gem 2, [images/inventoryimages1/bluegem.png] Blue Gem 2, [images/inventoryimages2/purplegem.png] Purple Gem 2.",
       "排序值": "115",
       "是否展示": "true"
+    },
+    {
+      "id": "hermit_trash_fish",
+      "分类id": "ditu",
+      "名称": "奶奶岛的垃圾堆",
+      "英文名": "",
+      "标签": "奶奶岛,垃圾堆,稀有海鱼,转元丹,采集",
+      "英文标签": "",
+      "图片": "",
+      "制作配方": "",
+      "英文配方": "",
+      "需祭坛": "",
+      "简介": "奶奶岛周围的垃圾堆，敲开时还可能掉出稀有海鱼：首次敲开时随机 5 堆各绑一条，属一次性产物。",
+      "英文简介": "",
+      "详情": "奶奶岛（原版住着隐士的那座小岛）周围的垃圾堆，用镐敲开就能清理。敲开时还会额外掉出稀有海鱼，属一次性产物。\n\n怎么出鱼\n　首次敲开垃圾堆时，岛上随机 5 堆会分别绑定 花朵金枪鱼、炽热太阳鱼、落叶比目鱼、冰鲷鱼 和 泥鱼 各 1 条。\n　绑定结果不会刷新，敲开顺序不影响产物。\n　只有这 5 堆被敲开时才会额外掉鱼，其余垃圾堆永远没有额外产出。\n　原版的掉落照旧，不受影响。\n\n要注意\n　绑定结果会存进存档，读档、重进世界都不会重新洗牌。\n　垃圾堆少于 5 个的岛，只会绑上堆数那么多条鱼，剩下的鱼不出现。\n　它们正是转元丹单属性版的材料：木 = 花朵金枪鱼 · 火 = 炽热太阳鱼 · 金 = 落叶比目鱼 · 水 = 冰鲷鱼 · 土 = 泥鱼。",
+      "英文详情": "",
+      "排序值": "116",
+      "是否展示": "true"
     }
   ],
   "changelog": [
