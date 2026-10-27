@@ -213,6 +213,12 @@ mark{background:var(--c-hl);color:var(--c-ink);padding:0 .12em;border-radius:4px
 .card.card-stack .card-media{height:auto;margin:0;border-radius:12px;overflow:hidden}
 .card.card-stack .card-media img{width:100%;height:auto;object-fit:cover;display:block}
 .card.card-stack .card-summary{padding:0 4px}
+/* 页尾浏览人数 */
+.site-footer{width:min(760px,100%);margin:26px auto 10px;padding:14px 8px 6px;text-align:center;
+  border-top:1px solid rgba(183,154,84,.35)}
+.site-counter{font-size:12px;color:rgba(40,86,94,.62);letter-spacing:.3px}
+.site-counter b{font-weight:600;color:rgba(40,86,94,.85);font-variant-numeric:tabular-nums}
+
 
 /* 境界 / 灵力 两个徽章的原始素材只有约 135×115（mod 的 UI 图集就这么大，
    dst-app 的 max_dimension 是上限、不会放大），拉到图区 172px 会放大 1.5 倍而发虚。

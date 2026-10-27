@@ -256,6 +256,12 @@ function ensureShell() {
       </main>
     </div>
 
+    <footer class="site-footer">
+      <span class="site-counter">
+        本站浏览 <b id="busuanzi_value_site_pv">—</b> 次 · 访客 <b id="busuanzi_value_site_uv">—</b> 人
+      </span>
+    </footer>
+
     <button class="to-top" type="button" id="toTopBtn" aria-label="${t("toTop")}">${t("toTop")}</button>
 
     <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
@@ -273,6 +279,21 @@ function ensureShell() {
       </section>
     </div>
   `;
+  mountVisitorCounter();
+}
+
+// 页尾浏览人数：不蒜子（busuanzi）。脚本拿不到时保持「—」，不影响页面。
+function mountVisitorCounter() {
+  if (window.__ljVisitorMounted) return;
+  window.__ljVisitorMounted = true;
+  const script = document.createElement("script");
+  script.async = true;
+  script.src = "https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js";
+  script.onerror = () => {
+    document.querySelectorAll("#busuanzi_value_site_pv, #busuanzi_value_site_uv")
+      .forEach((el) => { el.textContent = "—"; });
+  };
+  document.body.appendChild(script);
 }
 
 function parseHash() {
