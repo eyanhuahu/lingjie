@@ -4630,6 +4630,15 @@ item(
 """,
 )
 
+item(
+    "renwu", "xiaohuohuo", "萧火火", "人物,角色,海报",
+    "灵界的联动角色海报：萧火火。",
+    """
+[[图片:images/lingjie/anim/xiaohuohuo_poster.png|萧火火 · Don't Starve × 灵界 联动海报]]
+""",
+    image="images/lingjie/showcase/xiaohuohuo.png",
+)
+
 
 
 
