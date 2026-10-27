@@ -266,7 +266,7 @@ function ensureShell() {
 
     <footer class="site-footer">
       <span class="site-counter">
-        <span id="ljCounterPvPart">${t("counterL")} <b id="ljCounterPv">—</b> ${t("counterLUnit")}</span><span id="ljCounterUvPart" hidden> ·
+        <span id="ljCounterPvPart">${t("counterL")} <b id="ljCounterPv">—</b> ${t("counterLUnit")}</span><span id="ljCounterUvPart"> ·
         ${t("counterR")} <b id="ljCounterUv">—</b> ${t("counterRUnit")}</span>
       </span>
     </footer>
@@ -322,11 +322,17 @@ async function fetchVisitorCount() {
     const resp = await fetch(GOATCOUNTER_COUNT_URL, { cache: "no-store" });
     if (!resp.ok) return;
     const data = await resp.json();
-    const raw = data && (data.count !== undefined ? data.count : data);
-    const count = Number(String(raw).replace(/[^0-9]/g, ""));
-    if (!Number.isFinite(count)) return;
+    const toNum = (v) => {
+      const n = Number(String(v).replace(/[^0-9]/g, ""));
+      return Number.isFinite(n) ? n : null;
+    };
+    const pv = toNum(data && (data.count !== undefined ? data.count : data));
+    const uv = toNum(data && data.count_unique);
+    if (pv === null) return;
     const el = document.getElementById("ljCounterPv");
-    if (el) el.textContent = count.toLocaleString("en-US");
+    if (el) el.textContent = pv.toLocaleString("en-US");
+    const el2 = document.getElementById("ljCounterUv");
+    if (el2 && uv !== null) el2.textContent = uv.toLocaleString("en-US");
   } catch (err) {
     /* 读不到就保持「—」，不影响页面 */
   }
