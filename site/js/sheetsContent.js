@@ -36,6 +36,7 @@
       "英文简介": "summaryEn", "summaryEn": "summaryEn",
       "详情": "detail", "detail": "detail",
       "英文详情": "detailEn", "detailEn": "detailEn",
+      "卡片布局": "layout", "布局": "layout", "layout": "layout",
       "排序值": "sort_order", "排序": "sort_order", "sort_order": "sort_order",
       "是否展示": "visible", "展示": "visible", "visible": "visible"
     },
@@ -628,6 +629,7 @@
           detailText: row.detail || "",
           detailHtml: row.detail || "",
           detailTextEn: row.detailEn || "",
+          layout: row.layout || "",
         };
       });
   }
