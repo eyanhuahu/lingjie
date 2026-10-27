@@ -640,7 +640,7 @@ function renderCard(item) {
   const recipe = recipeText ? `<div class="card-recipe">${parseRecipe(recipeText)}</div>` : "";
   const hasImages = Array.isArray(item.images) && item.images.filter(Boolean).length > 0;
   return `
-    <article class="card${hasImages ? "" : " no-media"}" id="${escapeHtml(item.id)}" data-item-id="${escapeHtml(item.id)}" tabindex="0">
+    <article class="card${hasImages ? "" : " no-media"}${item["卡片布局"] === "竖版" ? " card-stack" : ""}" id="${escapeHtml(item.id)}" data-item-id="${escapeHtml(item.id)}" tabindex="0">
       <div class="card-top">
         ${renderCarousel(item)}
         <div class="card-summary">

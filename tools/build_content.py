@@ -2445,7 +2445,7 @@ ITEMS = []
 _ORDER = {}
 
 
-def item(sec, iid, name, tags, summary, detail, recipe="", image="", visible=True):
+def item(sec, iid, name, tags, summary, detail, recipe="", image="", visible=True, layout=""):
     """visible=False 的条目仍保留在 data.json 里供维护者查阅，但前台不显示。
 
     用于「文档写了、mod 里没实装」的内容，避免玩家查到用不了的东西。
@@ -2468,6 +2468,7 @@ def item(sec, iid, name, tags, summary, detail, recipe="", image="", visible=Tru
         "标签": tags,
         "英文标签": en.get("tags", ""),
         "图片": image,
+        "卡片布局": layout,
         "制作配方": recipe,
         "英文配方": recipe_en(recipe),
         "需祭坛": "true" if iid in ALTAR_RECIPES else "",
@@ -4637,6 +4638,7 @@ item(
 [[图片:images/lingjie/anim/xiaohuohuo_poster.png|萧火火 · Don't Starve × 灵界 联动海报]]
 """,
     image="images/lingjie/showcase/xiaohuohuo.png",
+    layout="竖版",
 )
 
 
