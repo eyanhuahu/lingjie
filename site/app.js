@@ -266,8 +266,8 @@ function ensureShell() {
 
     <footer class="site-footer">
       <span class="site-counter">
-        ${t("counterL")} <b id="busuanzi_value_site_pv">—</b> ${t("counterLUnit")} ·
-        ${t("counterR")} <b id="busuanzi_value_site_uv">—</b> ${t("counterRUnit")}
+        <span id="ljCounterPvPart">${t("counterL")} <b id="ljCounterPv">—</b> ${t("counterLUnit")}</span><span id="ljCounterUvPart" hidden> ·
+        ${t("counterR")} <b id="ljCounterUv">—</b> ${t("counterRUnit")}</span>
       </span>
     </footer>
 
@@ -291,18 +291,45 @@ function ensureShell() {
   mountVisitorCounter();
 }
 
-// 页尾浏览人数：不蒜子（busuanzi）。脚本拿不到时保持「—」，不影响页面。
+// 访客统计：GoatCounter（自己的账号）。
+// 埋点只在正式域名加载，本地预览不计入，避免把真实数据搞脏。
+// 页尾数字读它的公开接口 /counter/TOTAL.json；接口没开或失败就保持「—」。
+const GOATCOUNTER_URL = "https://lingjie.goatcounter.com";
+const GOATCOUNTER_COUNT_URL = GOATCOUNTER_URL + "/counter/TOTAL.json";
+
+function isLocalHost() {
+  const h = location.hostname;
+  return h === "localhost" || h === "127.0.0.1" || h === "" || h === "0.0.0.0";
+}
+
 function mountVisitorCounter() {
-  if (window.__ljVisitorMounted) return;
-  window.__ljVisitorMounted = true;
-  const script = document.createElement("script");
-  script.async = true;
-  script.src = "https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js";
-  script.onerror = () => {
-    document.querySelectorAll("#busuanzi_value_site_pv, #busuanzi_value_site_uv")
-      .forEach((el) => { el.textContent = "—"; });
-  };
-  document.body.appendChild(script);
+  if (!window.__ljVisitorMounted) {
+    window.__ljVisitorMounted = true;
+    if (!isLocalHost()) {
+      const script = document.createElement("script");
+      script.async = true;
+      script.dataset.goatcounter = GOATCOUNTER_URL + "/count";
+      script.src = "https://gc.zgo.at/count.js";
+      script.onerror = () => {};
+      document.body.appendChild(script);
+    }
+    fetchVisitorCount();
+  }
+}
+
+async function fetchVisitorCount() {
+  try {
+    const resp = await fetch(GOATCOUNTER_COUNT_URL, { cache: "no-store" });
+    if (!resp.ok) return;
+    const data = await resp.json();
+    const raw = data && (data.count !== undefined ? data.count : data);
+    const count = Number(String(raw).replace(/[^0-9]/g, ""));
+    if (!Number.isFinite(count)) return;
+    const el = document.getElementById("ljCounterPv");
+    if (el) el.textContent = count.toLocaleString("en-US");
+  } catch (err) {
+    /* 读不到就保持「—」，不影响页面 */
+  }
 }
 
 function parseHash() {
