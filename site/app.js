@@ -62,6 +62,10 @@ const I18N = {
     copied: "已复制",
     toTop: "回到顶部",
     closeModal: "关闭弹窗",
+    counterL: "灵界香火",
+    counterLUnit: "缕",
+    counterR: "问道道友",
+    counterRUnit: "位",
   },
   en: {
     skip: "Skip to content",
@@ -86,6 +90,10 @@ const I18N = {
     copied: "Copied",
     toTop: "Back to top",
     closeModal: "Close dialog",
+    counterL: "Incense offered to the Spirit Realm",
+    counterLUnit: "",
+    counterR: "Fellow cultivators",
+    counterRUnit: "",
   },
 };
 
@@ -258,7 +266,8 @@ function ensureShell() {
 
     <footer class="site-footer">
       <span class="site-counter">
-        本站浏览 <b id="busuanzi_value_site_pv">—</b> 次 · 访客 <b id="busuanzi_value_site_uv">—</b> 人
+        ${t("counterL")} <b id="busuanzi_value_site_pv">—</b> ${t("counterLUnit")} ·
+        ${t("counterR")} <b id="busuanzi_value_site_uv">—</b> ${t("counterRUnit")}
       </span>
     </footer>
 
