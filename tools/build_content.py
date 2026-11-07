@@ -544,6 +544,8 @@ Bottlenecks and meditation
 
 Breakthrough
 　From Sinew → Fasting onward, every realm breakthrough (Fasting, Guiding, Subtle, Exalted, Nascent, Manifest) needs the matching pill plus 10 seconds of meditation. 6 breakthrough pills in total.
+Order: Fasting Pill (Sinew → Fasting) → Guiding Pill (Fasting → Guiding) → Subtle Pill (Guiding → Subtle) → Exalted Pill (Subtle → Exalted) → Nascent Pill (Exalted → Nascent) → Manifest Pill (Nascent → Manifest).
+The first two need no pill tribulation; from the Subtle Pill on, all of them do. Tier rises from mid (Profound) to high (Earth).
 
 Death penalty
 　Every death costs one stage. After losing a stage you must take a Stillness Pill before you can cultivate again, otherwise you stay stuck.
@@ -1252,7 +1254,7 @@ Effect: a 30-second "invincible" state — your health cannot drop below 1 for 3
         "detail": """
 Moderate pill (mystic), refining time 4 minutes.
 
-Effect: take it and meditate 10 seconds on the Enlightenment Tempering Seat to advance from the Sinew realm to Fasting.
+Effect: take it and meditate 10 seconds on the Enlightenment Tempering Seat to advance from the Sinew realm to Fasting (Sinew stage 9 → Fasting stage 1).
 """,
     },
     "lj_yinqi_pill": {
@@ -1261,7 +1263,7 @@ Effect: take it and meditate 10 seconds on the Enlightenment Tempering Seat to a
         "detail": """
 Moderate pill (mystic), refining time 4 minutes.
 
-Effect: take it and meditate 10 seconds on the Enlightenment Tempering Seat to advance from Fasting to Guiding.
+Effect: take it and meditate 10 seconds on the Enlightenment Tempering Seat to advance from Fasting to Guiding (Fasting stage 9 → Guiding stage 1).
 """,
     },
     "lj_ruwei_pill": {
@@ -1270,7 +1272,7 @@ Effect: take it and meditate 10 seconds on the Enlightenment Tempering Seat to a
         "detail": """
 Moderate pill (mystic), refining time 4 minutes. Can trigger a pill tribulation.
 
-Effect: take it and meditate 10 seconds on the Enlightenment Tempering Seat to break the boundary from Guiding to Subtle and grow stronger.
+Effect: take it and meditate 10 seconds on the Enlightenment Tempering Seat to break the boundary from Guiding to Subtle (Guiding stage 9 → Subtle stage 1).
 """,
     },
     "lj_extraordinary_pill": {
@@ -1279,7 +1281,7 @@ Effect: take it and meditate 10 seconds on the Enlightenment Tempering Seat to b
         "detail": """
 High pill (earth), refining time 8 minutes. Can trigger a pill tribulation.
 
-Effect: take it and meditate 10 seconds on the Enlightenment Tempering Seat to raise a Subtle cultivator to the Exalted level.
+Effect: take it and meditate 10 seconds on the Enlightenment Tempering Seat to raise a Subtle cultivator to the Exalted level (Subtle stage 9 → Exalted stage 1).
 """,
     },
     "lj_heying_pill": {
@@ -1288,7 +1290,7 @@ Effect: take it and meditate 10 seconds on the Enlightenment Tempering Seat to r
         "detail": """
 High pill (earth), refining time 8 minutes. Can trigger a pill tribulation.
 
-Effect: take it and meditate 10 seconds on the Enlightenment Tempering Seat to empower a Nascent-level cultivator.
+Effect: take it and meditate 10 seconds on the Enlightenment Tempering Seat to raise an Exalted cultivator to the Nascent level (Exalted stage 9 → Nascent stage 1).
 """,
     },
     "lj_disaster_pill": {
@@ -1308,7 +1310,7 @@ It is used to skip the lightning check when refining other pills — with no tri
         "detail": """
 High pill (earth), refining time 8 minutes. Can trigger a pill tribulation.
 
-Effect: take it and meditate 10 seconds on the Enlightenment Tempering Seat — extremely rare, it breaks through to the Manifest realm.
+Effect: take it and meditate 10 seconds on the Enlightenment Tempering Seat — extremely rare, it breaks through to the Manifest realm (Nascent stage 9 → Manifest stage 1).
 """,
     },
     "lj_reiki_pill": {
@@ -2507,6 +2509,8 @@ item(
 
 突破
 　从炼筋升辟谷开始，之后每一次跨大境界（辟谷、引气、入微、超凡、合婴、具灵）都要服用对应丹药并打坐 10 秒。共 6 种突破丹药。
+　顺序：辟谷丹（炼筋→辟谷）→ 引气丹（辟谷→引气）→ 入微丹（引气→入微）→ 超凡丹（入微→超凡）→ 合婴丹（超凡→合婴）→ 具灵丹（合婴→具灵）。
+　前两颗不需要渡丹劫，从入微丹开始三颗都要渡丹劫；品阶也从前两颗的中阶（玄）升到后四颗的高阶（地）。
 
 死亡惩罚
 　死亡一次掉一阶。掉阶后必须服用清心丸才能继续修炼，否则会止步不前。
@@ -3150,7 +3154,7 @@ item(
 
 材料：""" + R(("猪皮", 2), ("蕨叶", 5), ("蓝宝石", 2), ("魔核", 2)) + """。
 
-效果：服用此丹药，在悟道淬体台打坐 10 秒，提升炼筋至辟谷境界。
+效果：服用此丹药，在悟道淬体台打坐 10 秒，提升炼筋至辟谷境界（炼筋九阶 → 辟谷一阶）。
 """,
     recipe=R(("猪皮", 2), ("蕨叶", 5), ("蓝宝石", 2), ("魔核", 2)),
 )
@@ -3163,7 +3167,7 @@ item(
 
 材料：""" + R(("铥矿", 2), ("兔绒", 5), ("红宝石", 2), ("魔核", 5)) + """。
 
-效果：服用此丹药，在悟道淬体台打坐 10 秒，辟谷境界提升至引气。
+效果：服用此丹药，在悟道淬体台打坐 10 秒，辟谷境界提升至引气（辟谷九阶 → 引气一阶）。
 """,
     recipe=R(("铥矿", 2), ("兔绒", 5), ("红宝石", 2), ("魔核", 5)),
 )
@@ -3176,7 +3180,7 @@ item(
 
 材料：""" + R(("藤壶", 5), ("饼干切割机壳", 5), ("暗影心房", 1), ("魔晶", 1)) + """。
 
-效果：服用此丹药，在悟道淬体台打坐 10 秒，助引气强者突破晋升入微的界限，提升实力。
+效果：服用此丹药，在悟道淬体台打坐 10 秒，助引气强者突破晋升入微的界限，提升实力（引气九阶 → 入微一阶）。
 """,
     recipe=R(("藤壶", 5), ("饼干切割机壳", 5), ("暗影心房", 1), ("魔晶", 1)),
 )
@@ -3202,7 +3206,7 @@ item(
 
 材料：""" + R(("活木头", 5), ("噬魂蛇皮", 2), ("血蝠精血", 1), ("魔晶", 3)) + """。
 
-效果：服用此丹药，在悟道淬体台打坐 10 秒，助入微提升超凡级别强者的实力。
+效果：服用此丹药，在悟道淬体台打坐 10 秒，助入微强者晋升超凡级别（入微九阶 → 超凡一阶）。
 """,
     recipe=R(("活木头", 5), ("噬魂蛇皮", 2), ("血蝠精血", 1), ("魔晶", 3)),
 )
@@ -3215,7 +3219,7 @@ item(
 
 材料：""" + R(("龙爪花", 3), ("黄宝石", 2), ("紫晶壳", 1), ("魔晶", 5)) + """。
 
-效果：服用此丹药，在悟道淬体台打坐 10 秒，提升合婴级别强者的实力。
+效果：服用此丹药，在悟道淬体台打坐 10 秒，助超凡强者晋升合婴级别（超凡九阶 → 合婴一阶）。
 """,
     recipe=R(("龙爪花", 3), ("黄宝石", 2), ("紫晶壳", 1), ("魔晶", 5)),
 )
@@ -3243,7 +3247,7 @@ item(
 
 材料：""" + R(("彩虹宝石", 1), ("格罗姆翅膀", 1), ("蝎龙骨", 1), ("魔晶", 10)) + """。
 
-效果：服用此丹药，在悟道淬体台打坐 10 秒，极为稀有，能突破具灵境界。
+效果：服用此丹药，在悟道淬体台打坐 10 秒，极为稀有，能突破具灵境界（合婴九阶 → 具灵一阶）。
 """,
     recipe=R(("彩虹宝石", 1), ("格罗姆翅膀", 1), ("蝎龙骨", 1), ("魔晶", 10)),
 )
