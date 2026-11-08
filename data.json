@@ -36,20 +36,20 @@
       "是否展示": "true"
     },
     {
-      "分类id": "danyao",
-      "分类名": "丹药与炼制",
-      "短名": "丹药",
-      "英文名": "Pills & Alchemy",
-      "英文短名": "Pills",
-      "排序值": "4",
-      "是否展示": "true"
-    },
-    {
       "分类id": "yihuo",
       "分类名": "墟火与异火",
       "短名": "墟火",
       "英文名": "Flames",
       "英文短名": "Flames",
+      "排序值": "4",
+      "是否展示": "true"
+    },
+    {
+      "分类id": "danyao",
+      "分类名": "丹药与炼制",
+      "短名": "丹药",
+      "英文名": "Pills & Alchemy",
+      "英文短名": "Pills",
       "排序值": "5",
       "是否展示": "true"
     },
@@ -264,7 +264,7 @@
       "需祭坛": "",
       "简介": "开局的生物会随机入魔，入魔天数可调；到达设定天数后，史诗 Boss 必定深度入魔。",
       "英文简介": "Creatures demonize at random as the world runs, and the threshold day is configurable. Past that day, epic bosses always demonize deeply.",
-      "详情": "生物生成时随机抽入魔等级。游玩天数可调节为 30 / 60 / 90 天，默认为 60 天。\n\n抽取概率\n　未到设定天数：轻度 47.5%、中度 47.5%、深度 5%。\n　已到设定天数：史诗 Boss 必定深度入魔；其他生物 轻度 50%、中度 25%、深度 25%。\n\n所有入魔生物均为敌对目标（切斯特这类中立生物除外；玩家的特定属性关系也除外，比如蜘蛛不会攻击蜘蛛人）。\n\n入魔分三档，游戏内显示为「入魔程度：轻度 / 中度 / 深度」：\n轻度入魔、中度入魔、深度入魔。\n\n不会被入魔的：影怪系（爬行梦魇、恐怖喙、梦魇、废墟梦魇、影骑士、影主教、影车、海上的影怪等）、被动小动物、玩家、同伴、墙体、装备展示模型。被玩家雇佣的生物会立即清除全部入魔效果。\n\n入魔元素词条\n　每个入魔生物会随机带上一种元素词条，叠在轻 / 中 / 深度入魔之上；龙蝇不会带火噬，噬魂蛇不会带蚀骨。\n　雷噬：命中额外造成 10 点电击伤害。\n　火噬：命中额外造成 5 点火焰伤害，并且能点燃目标。\n　蚀骨：命中会挂上噬魂蛇毒（持续 240 秒）。\n　缴械：命中玩家时打掉他手里的武器（12 秒冷却）；单水、单土灵根免疫这一条。\n　岩固：最大生命 +15%、防御 +15、移速 −10%。\n　通用：所有入魔生物被玩家普通攻击命中时，有 15% 概率免疫该次伤害（免伤时它仍然盯着你），界面上没有任何提示。\n　它会随机带哪种词条会显示在界面里（雷噬 / 火噬 / 蚀骨 / 岩固 / 缴械），不用靠猜。",
+      "详情": "生物生成时随机抽入魔等级。游玩天数可调节为 30 / 60 / 90 天，默认为 60 天。\n\n抽取概率\n　未到设定天数：轻度 47.5%、中度 47.5%、深度 5%。\n　已到设定天数：史诗 Boss 必定深度入魔；其他生物 轻度 50%、中度 25%、深度 25%。\n\n所有入魔生物均为敌对目标（切斯特这类中立生物除外；玩家的特定属性关系也除外，比如蜘蛛不会攻击蜘蛛人）。\n\n入魔分三档，游戏内显示为「入魔程度：轻度 / 中度 / 深度」：\n轻度入魔、中度入魔、深度入魔。\n\n不会被入魔的：影怪系（爬行梦魇、恐怖喙、梦魇、废墟梦魇、影骑士、影主教、影车、海上的影怪等）、被动小动物、玩家、同伴、墙体、装备展示模型。被玩家雇佣的生物会立即清除全部入魔效果。\n\n入魔元素词条\n　每个入魔生物会随机带上一种元素词条，叠在轻 / 中 / 深度入魔之上；龙蝇不会带火噬，噬魂蛇不会带蚀骨。\n　雷噬：命中额外造成 10 点电击伤害。\n　火噬：命中额外造成 5 点火焰伤害，并且能点燃目标。\n　蚀骨：命中会挂上噬魂蛇毒（持续 240 秒）。\n　缴械：命中玩家时打掉他手里的武器（12 秒冷却）；单水、单土灵根免疫这一条。\n　岩固：最大生命 +15%、防御 +15、移速 −10%。\n　通用：所有入魔生物被玩家普通攻击命中时，有 15% 概率免疫该次伤害（免伤时它仍然盯着你），界面上没有任何提示。\n　它带的是哪一种词条，会直接显示在界面上（雷噬、火噬、蚀骨、岩固、缴械）。",
       "英文详情": "Creatures roll a demonization level when they spawn. The threshold day can be set to 30 / 60 / 90 days; the default is 60.\n\nRoll chances\n　Before the threshold day: light 47.5%, moderate 47.5%, deep 5%.\n　From the threshold day on: epic bosses always demonize deeply; other creatures get light 50%, moderate 25%, deep 25%.\n\nEvery demonized creature is hostile (neutral creatures such as Chester are excluded, as are special player relationships — spiders still will not attack Webber).\n\nDemonization has three tiers, shown in game as \"Demonization: Light / Moderate / Deep\":\nLight Demonization, Moderate Demonization, Deep Demonization.\n\nNever demonized: shadow creatures (Crawling Horror, Terrorbeak, Shadow creatures, Ruins shadow creatures, Shadow Knight, Shadow Bishop, Shadow Rook, ocean shadow creatures and so on), passive critters, players, followers, walls, and equipment display models. Creatures hired by a player lose every demonization effect immediately.\n\nDemonization Affixes\n　Every demonized creature carries one random element affix on top of its light / moderate / deep tier; the Dragonfly never rolls Flame Bite and the Soul-devouring Snake never rolls Bone Rot.\n　Thunder Bite: hits deal an extra 10 electric damage.\n　Flame Bite: hits deal an extra 5 fire damage and can ignite the target.\n　Bone Rot: hits inflict Soul Snake Venom (240 seconds).\n　Disarm: hits knock the player's weapon out of their hands (12-second cooldown); a single Water or single Earth root ignores this.\n　Stonehide: +15% max health, +15 defence, −10% movement speed.\n　Always: every demonized creature has a 15% chance to ignore a hit from a player's basic attack (it still keeps its target) — the UI never shows this.",
       "排序值": "7",
       "是否展示": "true"
@@ -1499,7 +1499,7 @@
       "需祭坛": "true",
       "简介": "开局自带；同一账号每次换人后都能重新领取一次的戒指，一格空间可放墟火 / 异火，装备后可远程点燃目标。",
       "英文简介": "A ring you start with (the same account can claim it again after switching characters); one slot holds a Wasteland Flame or an exotic flame, and once equipped you can ignite targets from a distance.",
-      "详情": "特殊制作：靠近修复的残骸祭坛解锁，每次制作都需要靠近残骸祭坛。\n\n不能摧毁，无法用分解法杖分解。\n\n开局自带；同一账号每次换人后都能重新领取一次，一格空间，可放入墟火 / 异火。戒内放有异火本体时，装备后右键目标就能像火魔杖一样远程点燃：射出火球，射程 8 到 10，消耗 10 点灵力值。\n命中效果与火魔杖相同：点燃目标，或给可燃燃料装置补一份燃料；顺带解冻目标、叫醒睡眠中的目标，并让它仇恨你。本身不造成伤害；戒内没有异火时不会出现点燃动作。\n\n可在 <灵界>、<工具> 栏位制作。\n\n虚空挪移\n　境界到超凡以上，手持虚空戒右键地图上已探明的陆地，消耗 20 点灵力，就能原地撕开一对虚空裂隙：入口在身边、出口在目的地。跳进身边那个，会从目的地那个跳出来，裂隙 10 秒后自行收合。\n　只能落在陆地（海洋地块、虚空、地形阻挡处都不行）；灵力不够或境界不够时不会出现这个动作。",
+      "详情": "特殊制作：靠近修复的残骸祭坛解锁，每次制作都需要靠近残骸祭坛。\n\n不能摧毁，无法用分解法杖分解。\n\n开局自带；同一账号每次换人后都能重新领取一次，一格空间，可放入墟火 / 异火。戒内放有异火本体时，装备后右键目标就能像火魔杖一样远程点燃：射出火球，射程 8 到 10，消耗 10 点灵力值。\n命中效果与火魔杖相同：点燃目标，或给可燃燃料装置补一份燃料；顺带解冻目标、叫醒睡眠中的目标，并让它仇恨你。本身不造成伤害；戒内没有异火时不会出现点燃动作。\n\n可在 <灵界>、<工具> 栏位制作。\n\n虚空挪移\n　境界到超凡以上，手持虚空戒右键地图上已探明的陆地，消耗 20 点灵力，就能原地撕开一对虚空裂隙：入口在身边、出口在目的地。跳入入口，即从出口出来，裂隙 10 秒后自行收合。\n　只能落在陆地（海洋地块、虚空、地形阻挡处都不行）；境界或灵力不足时不会出现这个动作。",
       "英文详情": "Special crafting: unlocked near the restored Remains Altar, and every craft still needs you to be near it.\n\nCannot be destroyed, and cannot be deconstructed with a Deconstruction Staff.\n\nYou start with it. One slot holds a Wasteland Flame or an exotic flame. With a full exotic flame inside, equipping the ring lets you right-click a target to ignite it at range like a Fire Staff: it fires a fireball, range 8 to 10, costing 10 Reiki.\nThe hit works exactly like a Fire Staff: it ignites the target, or tops up a burnable fuel device by one fuel; it also thaws frozen targets, wakes sleeping ones and makes them hate you. It deals no damage of its own, and with no exotic flame inside there is no ignite action at all.\n\nCraftable in the <Ethereal Realm> and <Tools> tabs.",
       "排序值": "72",
       "是否展示": "true"
@@ -1822,7 +1822,7 @@
       "需祭坛": "",
       "简介": "一簇异火只能融出一门神通，融成后只能持有一门；融合要在悟道淬体台上打坐。",
       "英文简介": "One exotic flame yields one art and you can hold only one; fusing it happens while meditating at the Enlightenment Tempering Seat.",
-      "详情": "融合规则\n　在悟道淬体台上「交付异火」，台面会一直亮着那簇火（跟台子一起存档）；打坐时才开始真正的融合。\n　融合过程：5 朵火绕身，每 3 秒扑入一朵，每朵造成 15 点真实伤害；血量不够时会保底留 1 点并融合失败——「气息散乱，融合失败；这一簇异火就此熄灭」，这簇异火就没了。\n　一簇异火只对应一门神通，融合成功后只能持有一门、不能叠加。\n　持有神通期间移速 +10%。\n\n五种神通\n　冰霜业火　冰狱封灵：召出三个影体同时射出玄冰巨箭（半径 8）。\n　龙炎心火　烬龙贯日：影体连续冲刺三次，沿途每次伤害独立结算。\n　狂鬃焰　　战意反燃：5 秒内被击中 3 次就把火焰吸在身上，之后每秒对周围 6 格造成 75 点伤害；自己半血以下时伤害翻倍。\n　灵煊尘火　尘界显形：三朵火依次追击目标，每朵炸开直径 8 单位。\n　紫鳞妖焰　噬魂回响：周围 10 格时间停止 5 秒，2.5 秒后影体出场，解除时逐个目标落雷。\n\n　普通墟火没有神通，融不出东西。",
+      "详情": "融合规则\n　在悟道淬体台上「交付异火」，台面会一直亮着那簇火（跟台子一起存档）；打坐时才开始真正的融合。\n　融合过程：5 朵火绕身，每 3 秒扑入一朵，每朵造成 15 点真实伤害；血量不够时会保底留 1 点并融合失败——「气息散乱，融合失败；这一簇异火就此熄灭」，这簇异火就没了。\n　一簇异火只对应一门神通，融合成功后只能持有一门、不能叠加。\n　持有神通期间移速 +10%。\n\n五种神通\n　冰霜业火　冰狱封灵：召出三个影体同时射出玄冰巨箭（半径 8）。\n　龙炎心火　烬龙贯日：影体连续冲刺三次，沿途每次伤害独立结算。\n　狂鬃焰　　战意反燃：5 秒内被击中 3 次就把火焰吸在身上，之后每秒对周围 6 格造成 75 点伤害；自己半血以下时伤害翻倍。\n　灵煊尘火　尘界显形：三朵火依次追击目标，每朵炸开直径 8 单位。\n　紫鳞妖焰　噬魂回响：周围 10 格时间停止 5 秒，2.5 秒后影体出场，解除时逐个目标落雷。\n\n　普通墟火没有神通，无法用于融合。",
       "英文详情": "Fusing\nHand the exotic flame to the Enlightenment Tempering Seat: the flame sits on the seat (it saves with the seat), and fusing only starts when you meditate.\nDuring fusing 5 flames orbit you, one dives in every 3 seconds, each dealing 15 true damage; if your health is too low it leaves you at 1 HP and fails — that flame is gone.\nOne flame maps to one art; you can hold only one and they do not stack. While attuned you move 10% faster.\n\nThe five arts\nIce Flame — Ice Prison Sealing: three shadow bodies fire giant ice arrows together (radius 8).\nDragon Flame — Ember Dragon Piercing: a shadow body lunges three times, each hit resolved separately.\nMighty Flame — Battle Will Rekindled: 3 hits within 5 seconds pulls the fire onto you, then 75 damage per second around you (radius 6), doubled under half health.\nDust Flame — Dust Realm Manifested: three flames chase targets in turn, each bursting with diameter 8.\nPurple Flame — Soul-Devouring Echo: time stops for 5 seconds within radius 10, a shadow body appears after 2.5 seconds, and lightning falls on each target when it ends.\n\nPlain Voidfire has no art and cannot be fused.",
       "排序值": "89",
       "是否展示": "true"
