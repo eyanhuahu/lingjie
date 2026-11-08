@@ -66,7 +66,7 @@ def find_zip(argv):
     if argv:
         return argv[0]
     cands = []
-    for d in (os.path.dirname(ROOT), os.path.expanduser("~/Downloads")):
+    for d in (os.path.dirname(ROOT), os.path.expanduser("~/Downloads"), os.path.join(ROOT, ".work")):
         if os.path.isdir(d):
             for f in os.listdir(d):
                 if f.lower().startswith("lj_mod") and f.lower().endswith(".zip"):

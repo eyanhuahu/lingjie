@@ -521,6 +521,22 @@ NAME_EN = {
 #   「标签　内容」两行以上会渲染成表格（标签 ≤8 字符且不含空格才会被认成表格）、
 #   [[图片:路径|说明]] 独占一段、[路径] 表示行内小图标
 EN_CONTENT = {
+    "flame_arts": {
+        "tags": "exotic flame, art, fusion, shadow body",
+        "summary": "One exotic flame yields one art and you can hold only one; fusing it happens while meditating at the Enlightenment Tempering Seat.",
+        "detail":
+            "Fusing\n"
+            "Hand the exotic flame to the Enlightenment Tempering Seat: the flame sits on the seat (it saves with the seat), and fusing only starts when you meditate.\n"
+            "During fusing 5 flames orbit you, one dives in every 3 seconds, each dealing 15 true damage; if your health is too low it leaves you at 1 HP and fails — that flame is gone.\n"
+            "One flame maps to one art; you can hold only one and they do not stack. While attuned you move 10% faster.\n\n"
+            "The five arts\n"
+            "Ice Flame — Ice Prison Sealing: three shadow bodies fire giant ice arrows together (radius 8).\n"
+            "Dragon Flame — Ember Dragon Piercing: a shadow body lunges three times, each hit resolved separately.\n"
+            "Mighty Flame — Battle Will Rekindled: 3 hits within 5 seconds pulls the fire onto you, then 75 damage per second around you (radius 6), doubled under half health.\n"
+            "Dust Flame — Dust Realm Manifested: three flames chase targets in turn, each bursting with diameter 8.\n"
+            "Purple Flame — Soul-Devouring Echo: time stops for 5 seconds within radius 10, a shadow body appears after 2.5 seconds, and lightning falls on each target when it ends.\n\n"
+            "Plain Voidfire has no art and cannot be fused.",
+    },
     "realm_system": {
         "tags": "Realm,Cultivation,Breakthrough,Experience,Attributes",
         "summary": "Nine realms, nine stages each. Kill creatures to earn experience and advance; dying costs one stage. Includes per-stage experience thresholds, per-realm stat bonuses and the per-stage attack bonus.",
@@ -2379,7 +2395,7 @@ Amethyst Shell 1, Lion Bone 1, [images/inventoryimages2/monstermeat.png] Monster
 SITE = [
     # modinfo.lua 里是 name = "灵界"，author = "犹如黑夜星光、喵大仙BigXian"。
     # 顶栏作者名按作者要求单独写（跟 modinfo 不必一致）。
-    {"网站标题": "灵界", "网站英文名": "Spirit Realm", "网站版本": "v0.14", "作者": "犹如黑夜星光JinYan、喵大仙BigXian"},
+    {"网站标题": "灵界", "网站英文名": "Spirit Realm", "网站版本": "v0.15", "作者": "犹如黑夜星光JinYan、喵大仙BigXian"},
 ]
 
 SECTIONS = [
@@ -2511,6 +2527,17 @@ item(
 　从炼筋升辟谷开始，之后每一次跨大境界（辟谷、引气、入微、超凡、合婴、具灵）都要服用对应丹药并打坐 10 秒。共 6 种突破丹药。
 　顺序：辟谷丹（炼筋→辟谷）→ 引气丹（辟谷→引气）→ 入微丹（引气→入微）→ 超凡丹（入微→超凡）→ 合婴丹（超凡→合婴）→ 具灵丹（合婴→具灵）。
 　前两颗不需要渡丹劫，从入微丹开始三颗都要渡丹劫；品阶也从前两颗的中阶（玄）升到后四颗的高阶（地）。
+
+境界宣告（升到该境界时角色会说一句）
+　凡境　初入凡境，吾还在摸索，还不知我的大道在何方!
+　淬体　身在淬体，千磨万砺皮肉，誓要炼一副不坏皮囊!
+　炼筋　行至炼筋，灵流奔涌筋络，一身气力早已今非昔比!
+　辟谷　修成辟谷，断绝烟火俗食，一身生机由灵息自持!
+　引气　步入引气，揽取天地灵息，从此踏稳这条修行长路!
+　入微　抵达入微，洞察毫末幽踪，世间隐异皆瞒不住吾!
+　超凡　登临超凡，脱却凡胎桎梏，暗影惑神之术奈何不了我!
+　合婴　修成合婴，神胎内藏于己，影随神动，形神共生!
+　具灵　臻至具灵，吾身即是灵源，大道由我，不假外物!
 
 死亡惩罚
 　死亡一次掉一阶。掉阶后必须服用清心丸才能继续修炼，否则会止步不前。
@@ -2738,6 +2765,7 @@ item(
 　缴械：命中玩家时打掉他手里的武器（12 秒冷却）；单水、单土灵根免疫这一条。
 　岩固：最大生命 +15%、防御 +15、移速 −10%。
 　通用：所有入魔生物被玩家普通攻击命中时，有 15% 概率免疫该次伤害（免伤时它仍然盯着你），界面上没有任何提示。
+　它会随机带哪种词条会显示在界面里（雷噬 / 火噬 / 蚀骨 / 岩固 / 缴械），不用靠猜。
 """,
 )
 
@@ -3018,7 +3046,8 @@ item(
 　境界合婴以上、先塑造出影体，再带着它经历完整的一场祭天雷劫；期间影体与你都必须一直在范围内，也不能中途换影体（每场雷劫独立计算，失败就等下一场）。
 
 效果
-　可抵御一次致命伤害：受到致命伤时本源消耗掉，生命、灵力与理智各恢复到上限的一半。
+　可抵御一次致命伤害：受到致命伤时本源消耗掉，生命、灵力与理智各恢复到上限的一半，然后进入「塑体冷却」。
+　持有本源期间还常驻三项：移速 +10%、免疫减速（只丢掉小于 1 的减速，道路之类大于 1 的加成照常）、无视体积碰撞（能穿实体，但仍会被水陆边界挡住，走不进海里）。
 　本源在身时不能再塑造影体；死亡或换人会把影体与本源一起清空。
 """,
 )
@@ -3871,6 +3900,10 @@ item(
 命中效果与火魔杖相同：点燃目标，或给可燃燃料装置补一份燃料；顺带解冻目标、叫醒睡眠中的目标，并让它仇恨你。本身不造成伤害；戒内没有异火时不会出现点燃动作。
 
 可在 <灵界>、<工具> 栏位制作。
+
+虚空挪移
+　境界到超凡以上，手持虚空戒右键地图上已探明的陆地，消耗 20 点灵力，就能原地撕开一对虚空裂隙：入口在身边、出口在目的地。跳进身边那个，会从目的地那个跳出来，裂隙 10 秒后自行收合。
+　只能落在陆地（海洋地块、虚空、地形阻挡处都不行）；灵力不够或境界不够时不会出现这个动作。
 """,
     recipe=R(("魔晶", 1), ("红宝石", 1), ("蓝宝石", 1), ("紫宝石", 1), ("黄宝石", 1), ("橙宝石", 1), ("绿宝石", 1)),
 )
@@ -3887,6 +3920,8 @@ item(
 之后你的普通攻击命中会让剩下的火焰自动追击（远程普攻也算），命中目标会挂上星火灼烧，还能点燃目标。
 
 外观直接继承戒里实际放的那朵异火。
+
+撤火：三朵火还没用完时，右键自己可以把它们收回（灵力在召唤时已经付过，撤火不返还）。
 """,
 )
 
@@ -4128,6 +4163,27 @@ item(
 )
 
 item(
+    "yihuo", "flame_arts", "异火神通", "异火,神通,融合,影体",
+    "一簇异火只能融出一门神通，融成后只能持有一门；融合要在悟道淬体台上打坐。",
+    """
+融合规则
+　在悟道淬体台上「交付异火」，台面会一直亮着那簇火（跟台子一起存档）；打坐时才开始真正的融合。
+　融合过程：5 朵火绕身，每 3 秒扑入一朵，每朵造成 15 点真实伤害；血量不够时会保底留 1 点并融合失败——「气息散乱，融合失败；这一簇异火就此熄灭」，这簇异火就没了。
+　一簇异火只对应一门神通，融合成功后只能持有一门、不能叠加。
+　持有神通期间移速 +10%。
+
+五种神通
+　冰霜业火　冰狱封灵：召出三个影体同时射出玄冰巨箭（半径 8）。
+　龙炎心火　烬龙贯日：影体连续冲刺三次，沿途每次伤害独立结算。
+　狂鬃焰　　战意反燃：5 秒内被击中 3 次就把火焰吸在身上，之后每秒对周围 6 格造成 75 点伤害；自己半血以下时伤害翻倍。
+　灵煊尘火　尘界显形：三朵火依次追击目标，每朵炸开直径 8 单位。
+　紫鳞妖焰　噬魂回响：周围 10 格时间停止 5 秒，2.5 秒后影体出场，解除时逐个目标落雷。
+
+　普通墟火没有神通，融不出东西。
+""",
+)
+
+item(
     "yihuo", "lj_ordinary_flame", "墟火", "墟火,开局自带,火焰",
     "所有人物出生自带的火焰，存在于虚空戒中。",
     """
@@ -4152,7 +4208,8 @@ item(
 用途：制作灵韵需要冰霜业火本体。
 
 线索链：冻僵的日志 → 冰霜日志 → 冰霜业火 → 独眼巨鹿。
-""",
+
+神通：冰狱封灵——融合它后，会同时召出三个影体一起射出玄冰巨箭（范围半径 8）。""",
 )
 
 item(
@@ -4168,7 +4225,8 @@ item(
 用途：制作星陨需要龙炎心火本体。
 
 线索链：焦黑鳞片 → 龙炎日志 → 龙炎心火 → 龙蝇。
-""",
+
+神通：烬龙贯日——融合它后，影体会连续冲刺三次，沿途每次伤害独立结算。""",
 )
 
 item(
@@ -4189,7 +4247,8 @@ item(
 举例：护甲初始防御 80，受到攻击 100，造成 20 点伤害，再吃 15 免伤，实际造成 17 点伤害。
 
 线索链：腐烂的背包 → 狂鬃日志 → 狂鬃焰 → 熊獾。
-""",
+
+神通：战意反燃——融合它后，5 秒内被击中 3 次就会把火焰吸在身上，之后每秒对周围 6 格造成 75 点伤害，自己半血以下时伤害翻倍。""",
 )
 
 item(
@@ -4206,7 +4265,8 @@ item(
 ⚠️ 放入虚空戒目前不会解锁任何东西（灵技玩法开发中，敬请期待）。
 
 线索链：风干的羽毛 → 尘火日志 → 灵煊尘火 → 蚁狮。
-""",
+
+神通：尘界显形——融合它后，三朵火会依次追击目标，每朵炸开直径 8 单位。""",
 )
 
 item(
@@ -4222,7 +4282,8 @@ item(
 用途：可制作魂幡；给予魂幡可解锁技能「炼魂」。
 
 线索链：泡胀的卷轴 → 紫鳞日志 → 紫鳞妖焰 → 噬魂蛇。
-""",
+
+神通：噬魂回响——融合它后，能让周围 10 格时间停止 5 秒，2.5 秒后影体出场，解除时逐个目标落雷。""",
 )
 
 item(
@@ -4873,6 +4934,35 @@ DATA = {
              "Timed effects panel: adds Essence-Turning Weakness, Repelling Pill, Stillness Pill and Soul-Erosion Immunity\n"
              "Fix: Lureplants and Shadow Rifts spawned while flying no longer hang in the air\n"
              "Visual polish (Starfall Sword charge FX rework, Moonlion Feather Crown hat-layer fix, Bluemist Robe animation update)\n",
+         "是否展示": "true"},
+        {"日志版本": "v0.15", "日期": "2026-11-08",
+         "内容":
+             "版本号 0.14 → 0.15\n"
+             "新增「异火神通」：把异火交付到悟道淬体台、打坐融合（5 朵火绕身，每 3 秒一朵、各 15 点真伤，血不够会失败），"
+             "一簇异火对应一门神通且只能持有一门，持有期间移速 +10%；"
+             "五种神通分别是冰狱封灵、烬龙贯日、战意反燃、尘界显形、噬魂回响\n"
+             "虚空戒新增「虚空挪移」：超凡境起可右键地图上已探明的陆地，消耗 20 灵力撕开一对裂隙（入口在身边、出口在目的地），"
+             "跳进去立刻从对面出来，裂隙 10 秒后收合\n"
+             "塑体本源增强：持有期间移速 +10%、免疫减速、无视体积碰撞（仍走不进海里）；挡下致命伤后生命/灵力/理智各恢复至一半，并进入塑体冷却\n"
+             "三火御元：三朵火没用完时可以右键自己收回（灵力不返还）\n"
+             "入魔生物的词条现在会显示在界面上（雷噬 / 火噬 / 蚀骨 / 岩固 / 缴械）\n"
+             "每个大境界升上去时，角色会宣告一句对应台词\n"
+             "影体大改；重新调整星陨等武器的施法状态（影体也能用）；新增五组特效（深渊火、能量爆发、落雷、影涌泉、红天眼裂隙）\n",
+         "英文内容":
+             "Version 0.14 → 0.15\n"
+             "New Flame Arts: hand an exotic flame to the Enlightenment Tempering Seat and fuse it while meditating "
+             "(5 flames orbit you, one every 3 seconds, 15 true damage each; too little health makes it fail). "
+             "One flame yields one art and you can hold only one; +10% movement speed while attuned. "
+             "The five arts are Ice Prison Sealing, Ember Dragon Piercing, Battle Will Rekindled, Dust Realm Manifested "
+             "and Soul-Devouring Echo\n"
+             "Void Ring gains Void Shift: from the Exalted realm, right-click explored land on the map to spend 20 spirit and tear "
+             "open a pair of rifts (entry beside you, exit at the destination). Jump in and step out the other side; rifts close after 10 seconds\n"
+             "Body Origin buffed: +10% speed, immunity to slows and no body collision (you still cannot walk into the sea); "
+             "surviving a lethal hit restores half of max health, spirit and sanity, then goes on cooldown\n"
+             "Three Flames: right-click yourself to recall unused flames (spirit is not refunded)\n"
+             "Corrupted creatures now show their affix in the UI (Thunderbite, Firebite, Bone Erosion, Rock Solid, Disarm)\n"
+             "Each major realm breakthrough now plays a declaration line\n"
+             "Shadow bodies reworked; weapon cast states refactored (shadow bodies can use them too); five new FX sets\n",
          "是否展示": "true"},
     ],
     "tele": [{"导向id": t[0], "字段": t[1], "说明": "", "是否展示": "true"} for t in TELE],
